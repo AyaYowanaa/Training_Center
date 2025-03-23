@@ -1,0 +1,17 @@
+<?php return array (
+  'time_data' => 'time_data',
+  'impl_date' => 'Implementation date',
+  'impl_period' => 'Implementation period',
+  'buss_type' => 'Bussiness type',
+  'mainData' => 'MainData',
+  'title' => 'Title',
+  'details' => 'Details',
+  'location_data' => 'Location data',
+  'location' => 'Location',
+  'area' => 'Area',
+  'images' => 'Images',
+  'create' => 'Create',
+  'features' => 'features',
+  'district' => 'district',
+  'city' => 'city',
+);

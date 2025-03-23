@@ -1,0 +1,18 @@
+<?php return array (
+  'create' => 'انشاء مشروع',
+  'date_at' => 'تاريخ',
+  'details' => 'التفاصيل',
+  'features' => 'مميزات',
+  'images' => 'الصور',
+  'location' => 'الموقع',
+  'location_map' => 'الموقع على الخريطة',
+  'mainData' => 'البيانات الاساسية',
+  'main_image' => 'الصورة الرئيسية',
+  'publisher' => 'المطور',
+  'time_data' => 'بيانات الوقت',
+  'title' => 'عنوان',
+  'update' => 'تعديل بيانات المشروع',
+  'ID' => 'ID',
+  'Action' => 'Action',
+  'district' => 'district',
+);

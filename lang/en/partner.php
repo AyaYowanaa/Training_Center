@@ -1,0 +1,15 @@
+<?php return array (
+  'title' => 'title',
+  'link' => 'link',
+  'trust_us' => 'Trust us',
+  'our_clients' => 'Our Clients',
+  '' => '',
+  'number' => 'number',
+  'icon' => 'icon',
+  'description' => 'description',
+  'create' => 'create',
+  'image' => 'image',
+  'mainData' => 'mainData',
+  'ID' => 'ID',
+  'Action' => 'Action',
+);

@@ -1,0 +1,17 @@
+<?php return array (
+  'create' => 'create',
+  'image' => 'image',
+  'mainData' => 'mainData',
+  'name' => 'name',
+  'job_title' => 'Job title',
+  'ID' => 'ID',
+  'Action' => 'Action',
+  'feedback' => 'feedback',
+  'jop_title' => 'Job title',
+  'update' => 'update',
+  'title' => 'title',
+  'link' => 'link',
+  'impression' => 'Impression',
+  '' => '',
+  'Customer_feedback' => 'Customer Feedback',
+);
