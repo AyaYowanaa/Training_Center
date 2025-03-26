@@ -49,4 +49,6 @@
   'partners' => 'partners',
   'statistics' => 'statistics',
   'eventDetails' => 'eventDetails',
+  'hr' => 'hr',
+  'setting' => 'setting',
 );

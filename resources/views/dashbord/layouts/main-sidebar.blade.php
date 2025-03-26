@@ -116,21 +116,51 @@
 												</span>
                                                 <!--end::Svg Icon-->
 											</span>
-											<span class="menu-title">{{trans('sidebar.stetting')}}</span>
+											<span class="menu-title">{{trans('sidebar.Settings')}}</span>
 											<span class="menu-arrow"></span>
 										</span>
                     <!--end:Menu link-->
-                    <!--begin:Menu sub-->
+                           <!--begin:Menu sub-->
                     <div
-                        class="menu-sub menu-sub-accordion  <?php  if (in_array(optional(explode('.', Route::currentRouteName()))[1], array('city', 'types_exercises', 'district'))) {
+                        class="menu-sub menu-sub-accordion  <?php  if (in_array(optional(explode('.', Route::currentRouteName()))[1], array('city', 'district'))) {
                             echo 'show';
                         } ?>">
+
+
+    <!--begin:Menu item-->
+    <div class="menu-item">
+        <!--begin:Menu link-->
+        <a class="menu-link <?php  if (optional(explode('.', Route::currentRouteName()))[2] == 'mainsetting') {
+            echo 'active';
+        } ?>" href="{{ route('admin.Settings.mainsetting.index') }}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+            <span class="menu-title">{{trans('sidebar.Mainsetting')}}</span>
+        </a>
+        <!--end:Menu link-->
+    </div>
+    <!--end:Menu item-->
+     <!--begin:Menu item-->
+                      <div class="menu-item">
+                     <!--begin:Menu link-->
+                    <a class="menu-link <?php  if (optional(explode('.', Route::currentRouteName()))[2] == 'typesetting') {
+                  echo 'active';
+               } ?>" href="{{ route('admin.Settings.typesetting.index') }}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                 <span class="menu-title">{{trans('sidebar.TypeSettings')}}</span>
+               </a>
+        <!--end:Menu link-->
+             </div>
+    <!--end:Menu item-->
                         <!--begin:Menu item-->
                         <div class="menu-item">
                             <!--begin:Menu link-->
                             <a class="menu-link <?php  if (optional(explode('.', Route::currentRouteName()))[2] == 'city') {
                                 echo 'active';
-                            } ?>" href="{{ route('admin.setting.city.index') }}">
+                            } ?>" href="{{ route('admin.Settings.city.index') }}">
 													<span class="menu-bullet">
 														<span class="bullet bullet-dot"></span>
 													</span>
@@ -144,7 +174,7 @@
                             <!--begin:Menu link-->
                             <a class="menu-link <?php  if (optional(explode('.', Route::currentRouteName()))[2] == 'district') {
                                 echo 'active';
-                            } ?>" href="{{ route('admin.setting.district.index') }}">
+                            } ?>" href="{{ route('admin.Settings.district.index') }}">
 													<span class="menu-bullet">
 														<span class="bullet bullet-dot"></span>
 													</span>
@@ -157,6 +187,7 @@
 
                     </div>
                     <!--end:Menu sub-->
+            
 
                 </div>
                 <!--end:Menu item-->

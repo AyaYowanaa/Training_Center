@@ -33,4 +33,7 @@
   'statistics' => 'statistics',
   'advantages' => 'advantages',
   'banner' => 'banner',
+  'Settings' => 'Settings',
+  'Mainsetting' => 'Mainsetting',
+  'TypeSettings' => 'TypeSettings',
 );

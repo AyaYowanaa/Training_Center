@@ -4,8 +4,8 @@ use App\Http\Controllers\Admin\hr\EmployeeController;
 use App\Http\Controllers\Admin\hr\HolidaysController;
 use App\Http\Controllers\Admin\hr\MainHrController;
 use App\Http\Controllers\Admin\hr\Setting\HolidaysettingController;
-use App\Http\Controllers\Admin\hr\Setting\MainsettingController;
-use App\Http\Controllers\Admin\hr\Setting\TypeSettingController;
+use App\Http\Controllers\Admin\Training_Center\Settings\MainsettingController;
+use App\Http\Controllers\Admin\Training_Center\Settings\TypeSettingController;
 use App\Http\Controllers\Admin\settings\CityController;
 use App\Http\Controllers\Admin\settings\DistrictController;
 use App\Http\Controllers\Admin\Site\BlogController;
@@ -76,8 +76,28 @@ Route::group(
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+      /*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Training Center @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
+      Route::group(['prefix' => 'Settings', 'as' => 'Settings.'], function () {
 
+     /********************************typesetting******************************/
+     Route::resource('typesetting', TypeSettingController::class);
+     Route::get('typesetting/delete/{id}', [TypeSettingController::class, 'delete'])->name('typesetting.delete');
 
+     /********************************mainsetting******************************/
+     Route::resource('mainsetting', MainsettingController::class);
+     Route::get('mainsetting/delete/{id}', [MainsettingController::class, 'delete'])->name('mainsetting.delete');
+    
+     /********************************************************************************************** */
+     
+     Route::resource('district', DistrictController::class);
+     Route::get('district/delete/{id}', [DistrictController::class, 'delete'])->name('district.delete');
+
+     Route::resource('city', CityController::class);
+     Route::get('city/delete/{id}', [CityController::class, 'delete'])->name('city.delete');
+     Route::post('getDistricts', [MainController::class, 'getDistricts'])->name('getDistricts');
+      
+    });
+      /*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
         /************************** MAINDATA *****************************/
         Route::resource('mdata', MaindataController::class);
         /************************** About *****************************/
@@ -135,18 +155,7 @@ Route::group(
          Route::resource('banner', BannerController::class);
          Route::get('banner/show_load/{id}', [BannerController::class, 'show_load'])->name('banner.load_details');
 
-        /*-----------------------------setting --------------------------*/
-
-        Route::group(['prefix' => 'setting', 'as' => 'setting.'], function () {
-            Route::resource('district', DistrictController::class);
-            Route::get('district/delete/{id}', [DistrictController::class, 'delete'])->name('district.delete');
-
-            Route::resource('city', CityController::class);
-            Route::get('city/delete/{id}', [CityController::class, 'delete'])->name('city.delete');
-            Route::post('getDistricts', [MainController::class, 'getDistricts'])->name('getDistricts');
-
-
-        });
+      
         /*-----------------------------setting --------------------------*/
 
         Route::group(['prefix' => 'UserManagement', 'as' => 'UserManagement.'], function () {

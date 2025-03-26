@@ -30,5 +30,6 @@
   'password' => 'password',
   'SignIn_btn' => 'SignIn_btn',
   'Action' => 'Action',
-
+  'active' => 'active',
+  'not-active' => 'not-active',
 );
