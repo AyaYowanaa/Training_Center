@@ -1,13 +1,12 @@
 <?php
 
 use App\Http\Controllers\Admin\Training_Center\CourseController;
+use App\Http\Controllers\Admin\Training_Center\Settings\CityController;
 use App\Http\Controllers\Admin\Training_Center\Settings\DistrictController;
 use App\Http\Controllers\Admin\Training_Center\Settings\MainsettingController;
 use App\Http\Controllers\Admin\Training_Center\Settings\TypeSettingController;
-use App\Http\Controllers\Admin\Training_Center\Settings\EntitySettingController;
+//use App\Http\Controllers\Admin\Training_Center\Settings\EntitySettingController;
 use App\Http\Controllers\Admin\Training_Center\Settings\ExpensesController;
-use App\Http\Controllers\Admin\settings\CityController;
-use App\Http\Controllers\Admin\settings\DistrictController;
 use App\Http\Controllers\Admin\Site\BlogController;
 use App\Http\Controllers\Admin\Site\ContactController;
 use App\Http\Controllers\Admin\Site\EventController;
@@ -93,150 +92,139 @@ Route::group(
 
             Route::resource('district', DistrictController::class);
             Route::get('district/delete/{id}', [DistrictController::class, 'delete'])->name('district.delete');
-     /********************************mainsetting******************************/
-     Route::resource('mainsetting', MainsettingController::class);
-     Route::get('mainsetting/delete/{id}', [MainsettingController::class, 'delete'])->name('mainsetting.delete');
 
-     /*********************************Entity *********************************************************** */
-     Route::resource('entity', EntitySettingController::class);
-     Route::get('entity/delete/{id}', [EntitySettingController::class, 'delete'])->name('entity.delete');
+            /*********************************Entity *********************************************************** */
+//            Route::resource('entity', EntitySettingController::class);
+//            Route::get('entity/delete/{id}', [EntitySettingController::class, 'delete'])->name('entity.delete');
 
-     /*********************************** Expenses ********************************************************* */
-     Route::resource('Expenses', ExpensesController::class);
-     Route::get('Expenses/delete/{id}', [ExpensesController::class, 'delete'])->name('Expenses.delete');
-      /*********************************************************************************************** */
+            /*********************************** Expenses ********************************************************* */
+            Route::resource('Expenses', ExpensesController::class);
+            Route::get('Expenses/delete/{id}', [ExpensesController::class, 'delete'])->name('Expenses.delete');
+            /*********************************************************************************************** */
 
 
+            /****************************************************************************** */
+                Route::resource('district', DistrictController::class);
+           Route::get('district/delete/{id}', [DistrictController::class, 'delete'])->name('district.delete');
+
+                  Route::resource('city', CityController::class);
+                  Route::get('city/delete/{id}', [CityController::class, 'delete'])->name('city.delete');
+                  Route::post('getDistricts', [MainController::class, 'getDistricts'])->name('getDistricts');
+
+              });
+            /************************** MAINDATA *****************************/
+            Route::resource('mdata', MaindataController::class);
+            /************************** About *****************************/
+            Route::resource('about', \App\Http\Controllers\Admin\Site\AboutController::class);
+            Route::get('about/show_load/{id}', [\App\Http\Controllers\Admin\Site\AboutController::class, 'show_load'])->name('about.load_details');
+            /************************** Staff *****************************/
+            Route::resource('staff', StaffController::class);
+
+            Route::get('staff/show_load/{id}', [StaffController::class, 'show_load'])->name('staff.load_details');
+            /************************** Contact Us *****************************/
+            Route::resource('contact', ContactController::class);
+            Route::get('contact/delete/{id}', [ContactController::class, 'delete'])->name('contact.delete');
+
+            /************************** Blog *****************************/
+            Route::resource('blog', BlogController::class);
+            Route::get('blog/destroy_image/{id}', [BlogController::class, 'destroy_image'])->name('blog.destroy_image');
+            Route::get('blog/show_load/{id}', [BlogController::class, 'show_load'])->name('blog.load_details');
+
+            /************************** Events *****************************/
+            Route::resource('event', EventController::class);
+            Route::get('event/destroy_image/{id}', [EventController::class, 'destroy_image'])->name('event.destroy_image');
+
+            /************************* Projects ***********************/
+            Route::resource('projects', ProjectController::class);
+            Route::get('projects/destroy_image/{id}', [ProjectController::class, 'destroy_image'])->name('project.destroy_image');
+            Route::get('projects/show_load/{id}', [ProjectController::class, 'show_load'])->name('projects.load_details');
+
+            /************************** Gallery *****************************/
+            Route::resource('gallery', GalleryController::class);
+            Route::get('gallery/destroy_image/{id}', [GalleryController::class, 'destroy_image'])->name('gallery.destroy_image');
+            Route::get('gallery/show_load/{id}', [GalleryController::class, 'show_load'])->name('gallery.load_details');
+            /************************** video *****************************/
+            Route::resource('videos', VideosController::class);
+            Route::get('videos/show_load/{id}', [VideosController::class, 'show_load'])->name('videos.load_details');
+            /*************************** Feedback ********************************* */
+            Route::resource('feedback', SiteFeedbackController::class);
+            //  Route::get('feedback/destroy/{id}', [SiteFeedbackController::class, 'destroy'])->name('feedback.destroy');
+            Route::get('feedback/show_load/{id}', [SiteFeedbackController::class, 'show_load'])->name('feedback.load_details');
+            /*************************** Partner ********************************* */
+            Route::resource('partner', SitePartenersController::class);
+            Route::get('partner/show_load/{id}', [SitePartenersController::class, 'show_load'])->name('partner.load_details');
+            /*************************** Statistics ********************************* */
+            Route::resource('statistics', SiteStatisticsController::class);
+
+            /*************************** Advantages ********************************* */
+            Route::resource('advantages', SiteAdvantageController::class);
+            Route::get('advantages/show_load/{id}', [SiteAdvantageController::class, 'show_load'])->name('advantages.load_details');
 
 
+            /*************************** polices ********************************* */
+            Route::resource('polices', SitePolicesController::class);
+            Route::get('polices/show_load/{id}', [SitePolicesController::class, 'show_load'])->name('polices.load_details');
+
+            /*************************** Banner ********************************* */
+            Route::resource('banner', BannerController::class);
+            Route::get('banner/show_load/{id}', [BannerController::class, 'show_load'])->name('banner.load_details');
 
 
+            /*-----------------------------setting --------------------------*/
+
+            Route::group(['prefix' => 'UserManagement', 'as' => 'UserManagement.'], function () {
+
+                Route::resource('users', UsersController::class);
+
+                /*Route::get('/add_user', [UsersController::class, 'index'])->name('add_users_form');
+                Route::post('/add_user', [UsersController::class, 'store'])->name('add_users');
+                Route::get('/all_users', [UsersController::class, 'get_all_users'])->name('all_users');
+                Route::get('/all_users/{id}', [UsersController::class, 'edit'])->name('user.edit');
+                Route::patch('/all_users/{id}', [UsersController::class, 'update'])->name('user_update');
+                Route::delete('/all_users/{id}', [UsersController::class, 'destroy'])->name('user_destroy');*/
+                Route::get('users/delete/{id}', [UsersController::class, 'destroy'])->name('users.delete');
 
 
+                /************************** permission *****************************/
+                Route::resource('permission', PermissionsController::class);
+                Route::get('permission/delete/{id}', [PermissionsController::class, 'delete'])->name('permission.delete');
+                /************************** rolls *****************************/
+                Route::resource('roles', RolesController::class);
+                Route::get('roles/load_edit', [RolesController::class, 'load_edit'])->name('roles.load_edit');
 
-     /****************************************************************************** */
-      /*    Route::resource('district', DistrictController::class);
-     Route::get('district/delete/{id}', [DistrictController::class, 'delete'])->name('district.delete');
+                Route::get('roles/permission/{id}', [RolesController::class, 'get_permission'])->name('roles.permission');
+                Route::get('roles/delete/{id}', [RolesController::class, 'delete'])->name('roles.delete');
 
-            Route::resource('city', CityController::class);
-            Route::get('city/delete/{id}', [CityController::class, 'delete'])->name('city.delete');
-            Route::post('getDistricts', [MainController::class, 'getDistricts'])->name('getDistricts');
+            });
+
+            Route::resource('TrainingCenters', TrainingCentersController::class);
+            Route::get('TrainingCenters/show_load/{id}', [TrainingCentersController::class, 'show_load'])->name('TrainingCenters.load_details');
+            Route::get('TrainingCenters/edit_en/{id}', [TrainingCentersController::class, 'edit_en'])->name('TrainingCenters.edit_en');
+            Route::patch('TrainingCenters/update_en/{id}', [TrainingCentersController::class, 'update_en'])->name('TrainingCenters.update_en');
+
+            /*--------------------------------finance_dervice------------------------------*/
+
+            Route::resource('service', FinanceServiceController::class);
+            Route::get('service/show_load/{id}', [FinanceServiceController::class, 'show_load'])->name('service.load_details');
+            Route::get('service/edit_en/{id}', [FinanceServiceController::class, 'edit_en'])->name('service.edit_en');
+            Route::patch('service/update_en/{id}', [FinanceServiceController::class, 'update_en'])->name('service.update_en');
+
+            /*--------------------------------supporting entity------------------------------*/
+
+            Route::resource('entity', SupportingEntityController::class);
+            Route::get('entity/show_load/{id}', [SupportingEntityController::class, 'show_load'])->name('entity.load_details');
+            Route::get('entity/edit_en/{id}', [SupportingEntityController::class, 'edit_en'])->name('entity.edit_en');
+            Route::patch('entity/update_en/{id}', [SupportingEntityController::class, 'update_en'])->name('entity.update_en');
+
 
         });
-        /*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
-        /************************** MAINDATA *****************************/
-        Route::resource('mdata', MaindataController::class);
-        /************************** About *****************************/
-        Route::resource('about', \App\Http\Controllers\Admin\Site\AboutController::class);
-        Route::get('about/show_load/{id}', [\App\Http\Controllers\Admin\Site\AboutController::class, 'show_load'])->name('about.load_details');
-        /************************** Staff *****************************/
-        Route::resource('staff', StaffController::class);
-
-        Route::get('staff/show_load/{id}', [StaffController::class, 'show_load'])->name('staff.load_details');
-        /************************** Contact Us *****************************/
-        Route::resource('contact', ContactController::class);
-        Route::get('contact/delete/{id}', [ContactController::class, 'delete'])->name('contact.delete');
-
-        /************************** Blog *****************************/
-        Route::resource('blog', BlogController::class);
-        Route::get('blog/destroy_image/{id}', [BlogController::class, 'destroy_image'])->name('blog.destroy_image');
-        Route::get('blog/show_load/{id}', [BlogController::class, 'show_load'])->name('blog.load_details');
-
-        /************************** Events *****************************/
-        Route::resource('event', EventController::class);
-        Route::get('event/destroy_image/{id}', [EventController::class, 'destroy_image'])->name('event.destroy_image');
-
-        /************************* Projects ***********************/
-        Route::resource('projects', ProjectController::class);
-        Route::get('projects/destroy_image/{id}', [ProjectController::class, 'destroy_image'])->name('project.destroy_image');
-        Route::get('projects/show_load/{id}', [ProjectController::class, 'show_load'])->name('projects.load_details');
-
-        /************************** Gallery *****************************/
-        Route::resource('gallery', GalleryController::class);
-        Route::get('gallery/destroy_image/{id}', [GalleryController::class, 'destroy_image'])->name('gallery.destroy_image');
-        Route::get('gallery/show_load/{id}', [GalleryController::class, 'show_load'])->name('gallery.load_details');
-        /************************** video *****************************/
-        Route::resource('videos', VideosController::class);
-        Route::get('videos/show_load/{id}', [VideosController::class, 'show_load'])->name('videos.load_details');
-        /*************************** Feedback ********************************* */
-        Route::resource('feedback', SiteFeedbackController::class);
-        //  Route::get('feedback/destroy/{id}', [SiteFeedbackController::class, 'destroy'])->name('feedback.destroy');
-        Route::get('feedback/show_load/{id}', [SiteFeedbackController::class, 'show_load'])->name('feedback.load_details');
-        /*************************** Partner ********************************* */
-        Route::resource('partner', SitePartenersController::class);
-        Route::get('partner/show_load/{id}', [SitePartenersController::class, 'show_load'])->name('partner.load_details');
-        /*************************** Statistics ********************************* */
-        Route::resource('statistics', SiteStatisticsController::class);
-
-        /*************************** Advantages ********************************* */
-        Route::resource('advantages', SiteAdvantageController::class);
-        Route::get('advantages/show_load/{id}', [SiteAdvantageController::class, 'show_load'])->name('advantages.load_details');
-
-
-        /*************************** polices ********************************* */
-        Route::resource('polices', SitePolicesController::class);
-        Route::get('polices/show_load/{id}', [SitePolicesController::class, 'show_load'])->name('polices.load_details');
-
-        /*************************** Banner ********************************* */
-        Route::resource('banner', BannerController::class);
-        Route::get('banner/show_load/{id}', [BannerController::class, 'show_load'])->name('banner.load_details');
-
-
-        /*-----------------------------setting --------------------------*/
-
-        Route::group(['prefix' => 'UserManagement', 'as' => 'UserManagement.'], function () {
-
-            Route::resource('users', UsersController::class);
-
-            /*Route::get('/add_user', [UsersController::class, 'index'])->name('add_users_form');
-            Route::post('/add_user', [UsersController::class, 'store'])->name('add_users');
-            Route::get('/all_users', [UsersController::class, 'get_all_users'])->name('all_users');
-            Route::get('/all_users/{id}', [UsersController::class, 'edit'])->name('user.edit');
-            Route::patch('/all_users/{id}', [UsersController::class, 'update'])->name('user_update');
-            Route::delete('/all_users/{id}', [UsersController::class, 'destroy'])->name('user_destroy');*/
-            Route::get('users/delete/{id}', [UsersController::class, 'destroy'])->name('users.delete');
-
-
-            /************************** permission *****************************/
-            Route::resource('permission', PermissionsController::class);
-            Route::get('permission/delete/{id}', [PermissionsController::class, 'delete'])->name('permission.delete');
-            /************************** rolls *****************************/
-            Route::resource('roles', RolesController::class);
-            Route::get('roles/load_edit', [RolesController::class, 'load_edit'])->name('roles.load_edit');
-
-            Route::get('roles/permission/{id}', [RolesController::class, 'get_permission'])->name('roles.permission');
-            Route::get('roles/delete/{id}', [RolesController::class, 'delete'])->name('roles.delete');
-
-        });
-
-        Route::resource('TrainingCenters', TrainingCentersController::class);
-        Route::get('TrainingCenters/show_load/{id}', [TrainingCentersController::class, 'show_load'])->name('TrainingCenters.load_details');
-        Route::get('TrainingCenters/edit_en/{id}', [TrainingCentersController::class, 'edit_en'])->name('TrainingCenters.edit_en');
-        Route::patch('TrainingCenters/update_en/{id}', [TrainingCentersController::class, 'update_en'])->name('TrainingCenters.update_en');
-
-        /*--------------------------------finance_dervice------------------------------*/
-
-        Route::resource('service', FinanceServiceController::class);
-        Route::get('service/show_load/{id}', [FinanceServiceController::class, 'show_load'])->name('service.load_details');
-        Route::get('service/edit_en/{id}', [FinanceServiceController::class, 'edit_en'])->name('service.edit_en');
-        Route::patch('service/update_en/{id}', [FinanceServiceController::class, 'update_en'])->name('service.update_en');
-
-        /*--------------------------------supporting entity------------------------------*/
-
-        Route::resource('entity', SupportingEntityController::class);
-        Route::get('entity/show_load/{id}', [SupportingEntityController::class, 'show_load'])->name('entity.load_details');
-        Route::get('entity/edit_en/{id}', [SupportingEntityController::class, 'edit_en'])->name('entity.edit_en');
-        Route::patch('entity/update_en/{id}', [SupportingEntityController::class, 'update_en'])->name('entity.update_en');
 
 
     });
-
-
-});
-Route::group(
-    [
-        'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
-    ], function () {
-    require __DIR__ . '/adminauth.php';
-});
+    Route::group(
+        [
+            'prefix' => LaravelLocalization::setLocale(),
+            'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
+        ], function () {
+        require __DIR__ . '/adminauth.php';
+    });
