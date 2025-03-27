@@ -32,4 +32,5 @@
   'Action' => 'Action',
   'active' => 'active',
   'not-active' => 'not-active',
+  'ExportToExcel' => 'ExportToExcel',
 );

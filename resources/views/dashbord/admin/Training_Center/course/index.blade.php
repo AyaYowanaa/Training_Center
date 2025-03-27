@@ -1,5 +1,4 @@
 @extends('dashbord.layouts.master')
-
 @section('toolbar')
     <!--begin::Toolbar container-->
     <div id="kt_app_toolbar_container" class="app-container container-xxl d-flex flex-stack">
@@ -7,7 +6,7 @@
         <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
             <!--begin::Title-->
             <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                {{trans('Surveys/service.create')}}</h1>
+                {{trans('course.create')}}</h1>
             <!--end::Title-->
             <!--begin::Breadcrumb-->
             <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -20,13 +19,13 @@
                     <span class="bullet bg-gray-400 w-5px h-2px"></span>
                 </li>
                 <li class="breadcrumb-item text-muted">
-                    {{trans('Toolbar.site')}}
+                    {{trans('Toolbar.finance')}}
                 </li>
                 <li class="breadcrumb-item">
                     <span class="bullet bg-gray-400 w-5px h-2px"></span>
                 </li>
                 <li class="breadcrumb-item text-muted">
-                    {{trans('Toolbar.blog')}}
+                    {{trans('Toolbar.course')}}
                 </li>
 
 
@@ -37,7 +36,7 @@
         <div class="d-flex align-items-center gap-2 gap-lg-3">
             <!--begin::Filter menu-->
             <div class="d-flex">
-                <a href="{{route('admin.service.create')}}"
+                <a href="{{route('admin.Settings.course.create')}}"
                    class="btn btn-icon btn-sm btn-success flex-shrink-0 ms-4">
                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
                     <span class="svg-icon svg-icon-2">
@@ -52,14 +51,36 @@
 												</span>
                     <!--end::Svg Icon-->
                 </a>
+                <a href="{{route('admin.Settings.course.tree')}}"
+                   class="btn btn-icon btn-sm btn-info flex-shrink-0 ms-4">
+
+
+                    <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/keenthemes/keen/docs/core/html/src/media/icons/duotune/abstract/abs027.svg-->
+                    <span class="svg-icon svg-icon-2">
+                        <svg width="24" height="24" viewBox="0 0 24 24"
+                             fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+<path opacity="0.3"
+      d="M21.25 18.525L13.05 21.825C12.35 22.125 11.65 22.125 10.95 21.825L2.75 18.525C1.75 18.125 1.75 16.725 2.75 16.325L4.04999 15.825L10.25 18.325C10.85 18.525 11.45 18.625 12.05 18.625C12.65 18.625 13.25 18.525 13.85 18.325L20.05 15.825L21.35 16.325C22.35 16.725 22.35 18.125 21.25 18.525ZM13.05 16.425L21.25 13.125C22.25 12.725 22.25 11.325 21.25 10.925L13.05 7.62502C12.35 7.32502 11.65 7.32502 10.95 7.62502L2.75 10.925C1.75 11.325 1.75 12.725 2.75 13.125L10.95 16.425C11.65 16.725 12.45 16.725 13.05 16.425Z"
+      fill="currentColor"/>
+<path
+    d="M11.05 11.025L2.84998 7.725C1.84998 7.325 1.84998 5.925 2.84998 5.525L11.05 2.225C11.75 1.925 12.45 1.925 13.15 2.225L21.35 5.525C22.35 5.925 22.35 7.325 21.35 7.725L13.05 11.025C12.45 11.325 11.65 11.325 11.05 11.025Z"
+    fill="currentColor"/>
+</svg>
+</span>
+                    <!--end::Svg Icon-->
+                </a>
             </div>
-
+            <!--end::Filter menu-->
+            <!--begin::Secondary button-->
+            <!--end::Secondary button-->
+            <!--begin::Primary button-->
+            <!--end::Primary button-->
         </div>
-
+        <!--end::Actions-->
     </div>
     <!--end::Toolbar container-->
 @endsection
-
 @section('content')
 
     <!--begin::Content container-->
@@ -68,60 +89,76 @@
         <div class="card card-flush">
 
             <div class="card-body pt-0">
-
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="table-responsive">
+
                     <table class="table align-middle table-row-dashed fs-6 gy-3"
                            id="data">
                         <thead>
                         <tr class="fw-semibold fs-6 text-gray-800">
-                            <th>{{trans('Surveys/service.id')}}</th>
-                            <th>{{trans('Surveys/service.name')}}</th>
-                            <th>{{trans('Surveys/service.phone')}}</th>
-                            <th>{{trans('Surveys/service.fax')}}</th>
-                            <th>{{trans('Surveys/service.address')}}</th>
-                            <th>{{trans('Surveys/service.governorate')}}</th>
-                            <th>{{trans('Surveys/service.city')}}</th>
-                            <th>{{trans('Surveys/service.action')}}</th>
-
+                            <th class="text-center">{{trans('course.ID')}}</th>
+                            <th class="text-center">{{trans('course.code')}}</th>
+                            <th class="text-center">{{trans('course.name')}}</th>
+{{--                            <th class="text-center">{{trans('course.account_type')}}</th>--}}
+                            <th class="text-center">{{trans('course.parant')}}</th>
+                            <th class="text-center">{{trans('course.Action')}}</th>
                         </tr>
                         </thead>
                     </table>
+
                 </div>
             </div>
         </div>
 
     </div>
 
-    <!-- Modal --->
+
     <div class="modal fade" tabindex="-1" id="kt_modal_1">
-        <div class="modal-dialog modal-xl">
+        <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title">{{trans('contactus.details')}}</h3>
+                <form enctype="multipart/form-data" action="{{ route('admin.Settings.course.import_accounts') }}"
+                      method="post">
+                    @csrf
+                    <div class="modal-header">
+                        <h3 class="modal-title">{{trans('course.file_excel_add')}}</h3>
 
-                    <!--begin::Close-->
-                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal"
-                         aria-label="Close">
-                        <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
+                        <!--begin::Close-->
+                        <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal"
+                             aria-label="Close">
+                            <i class="fa fa-close fs-1"><span class="path1"></span><span class="path2"></span></i>
+                        </div>
+                        <!--end::Close-->
                     </div>
-                    <!--end::Close-->
-                </div>
 
-                <div class="modal-body" id="load_div">
+                    <div class="modal-body">
+                        <div class="mb-10">
+                            <label for="exampleFormControlInput1"
+                                   class="required form-label">{{trans('course.file_excel')}}</label>
+                            <input type="file" name="excel" class="form-control form-control-solid"
+                                   placeholder="accounts.excel"/>
+                        </div>
 
+                    </div>
 
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light"
+                                data-bs-dismiss="modal">{{trans('sub.Close')}}</button>
+                        <button type="submit" class="btn btn-primary">{{trans('forms.save_btn')}}</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-
 @endsection
 @section('js')
-
 
     <script>
         // Class definition
@@ -137,22 +174,56 @@
                     searchDelay: 500,
                     processing: true,
                     serverSide: true,
-                    dom: "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
+                    lengthMenu: [
+                        [10, 25, 50, -1], // Page lengths
+                        [10, 25, 50, 'All'] // Labels
+                    ],
+                    dom: "<'row'<'col-sm-12 col-md-4'l><'col-sm-12 col-md-4'f><'col-sm-12 col-md-4'B>>" +
                         "<'row'<'col-sm-12'tr>>" +
                         "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-                    ajax: "{{route('admin.service.index')}}",
+                    ajax: "{{route('admin.Settings.course.index')}}",
                     columns: [
                         {data: 'id', name: 'id'},
+                        {data: 'code', name: 'code'},
                         {data: 'name', name: 'name'},
-                        {data: 'phone', name: 'phone'},
-                        {data: 'fax', name: 'fax'},
-                        {data: 'address', name: 'address'},
-                        {data: 'governorate', name: 'governorate'},
-                        {data: 'city', name: 'city'},
+                        // {data: 'account_type', name: 'account_type'},
+                        {data: 'parent', name: 'parent'},
                         {data: 'action', name: 'action', orderable: false},
                     ],
                     order: [[0, 'desc']],
+                    columnDefs: [
+                        {
+                            "targets": [1, 2],
+                            "createdCell": function (td, cellData, rowData, row, col) {
+                                $(td).css({
+                                    'font-weight': '600',
+                                    'text-align': 'center',
 
+                                });
+                            }
+                        }, {
+                            "targets": [2],
+                            className: 'text-info',
+                        }, {
+                            "targets": [3],
+                            className: 'text-success',
+                        }
+
+                    ],
+                    buttons: [
+                        {
+                            extend: 'excelHtml5',
+                            title: "{{trans('course.title')}}",
+                            text: '{{trans('forms.ExportToExcel')}}',
+                            exportOptions: {
+                                columns: ':visible:not(.no-export)'  // Exclude columns with class 'no-export'
+                            }
+                        }
+                    ],
+                    createdRow: function (row, data, dataIndex) {
+                        // Add 'text-center' class to all <td> elements in the row
+                        $('td', row).addClass('text-center');
+                    }
                 });
 
                 table = dt.$;
@@ -166,6 +237,13 @@
             var handleDeleteRows = function () {
                 const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
+                // Select all delete buttons
+                /*   const deleteButtons = document.querySelectorAll('[data-kt-table-delete="delete_row"]');
+
+                   deleteButtons.forEach(d => {
+                       // Delete button on click
+                       d.addEventListener('click', function (e) {
+                           e.preventDefault();*/
                 KTUtil.on(document.body, '[data-kt-table-delete="delete_row"]', 'click', function (e) {
                     e.preventDefault();
                     // Select parent row
@@ -213,7 +291,7 @@
 
                                 if (action) {
                                     fetch(action, {
-                                        method: 'DELETE', // or 'GET', 'POST', etc. depending on your server setup
+                                        method: 'delete', // or 'GET', 'POST', etc. depending on your server setup
                                         headers: {
                                             'Content-Type': 'application/json',
                                             'X-CSRF-TOKEN': csrfToken,
@@ -270,46 +348,11 @@
 
             }
 
-
-            var handleDetailsRows = function () {
-
-                KTUtil.on(document.body, '[data-kt-table-details="details_row"]', 'click', function (e) {
-                    var id = e.target.getAttribute('data-id');
-                    var action = e.target.getAttribute('data-url');
-                    $.ajax({
-                        type: 'get',
-                        url: action,
-                        beforeSend: function () {
-                            const loadingEl = document.createElement("div");
-                            document.getElementById('kt_modal_1').prepend(loadingEl);
-                            loadingEl.classList.add("page-loader");
-                            loadingEl.classList.add("flex-column");
-                            loadingEl.classList.add("bg-dark");
-                            loadingEl.classList.add("bg-opacity-25");
-                            loadingEl.innerHTML = `
-        <span class="spinner-border text-primary" role="status"></span>
-        <span class="text-gray-800 fs-6 fw-semibold mt-5">{{trans('forms.Loading')}}</span>`;
-                            // Show page loading
-                            KTApp.showPageLoading();
-                        },
-
-                        success: function (resb) {
-                            KTApp.hidePageLoading();
-                            // loadingEl.remove();
-                            $('#load_div').html(resb);
-
-                        }
-                    });
-                });
-            }
-
-
             // Public methods
             return {
                 init: function () {
                     initDatatable();
                     handleDeleteRows();
-                    handleDetailsRows();
                 }
             }
         }();

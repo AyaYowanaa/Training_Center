@@ -51,4 +51,8 @@
   'eventDetails' => 'eventDetails',
   'hr' => 'hr',
   'setting' => 'setting',
+  'finance' => 'finance',
+  'course' => 'course',
+  'accountCreate' => 'accountCreate',
+  'accountEdit' => 'accountEdit',
 );

@@ -1,13 +1,9 @@
 <?php
 
-use App\Http\Controllers\Admin\hr\EmployeeController;
-use App\Http\Controllers\Admin\hr\HolidaysController;
-use App\Http\Controllers\Admin\hr\MainHrController;
-use App\Http\Controllers\Admin\hr\Setting\HolidaysettingController;
+use App\Http\Controllers\Admin\Training_Center\CourseController;
+use App\Http\Controllers\Admin\Training_Center\Settings\DistrictController;
 use App\Http\Controllers\Admin\Training_Center\Settings\MainsettingController;
 use App\Http\Controllers\Admin\Training_Center\Settings\TypeSettingController;
-use App\Http\Controllers\Admin\settings\CityController;
-use App\Http\Controllers\Admin\settings\DistrictController;
 use App\Http\Controllers\Admin\Site\BlogController;
 use App\Http\Controllers\Admin\Site\ContactController;
 use App\Http\Controllers\Admin\Site\EventController;
@@ -22,9 +18,7 @@ use App\Http\Controllers\Admin\Site\SiteStatisticsController;
 use App\Http\Controllers\Admin\Site\SiteAdvantageController;
 use App\Http\Controllers\Admin\Site\SitePolicesController;
 use App\Http\Controllers\Admin\Site\BannerController;
-use App\Http\Controllers\Admin\Surveys\FinanceServiceController;
-use App\Http\Controllers\Admin\Surveys\TrainingCentersController;
-use App\Http\Controllers\Admin\Surveys\SupportingEntityController;
+
 use App\Http\Controllers\Admin\Users\PermissionsController;
 use App\Http\Controllers\Admin\Users\ProfileController;
 use App\Http\Controllers\Admin\Users\RolesController;
@@ -32,10 +26,7 @@ use App\Http\Controllers\Admin\Users\UsersController;
 use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-use App\Http\Controllers\Admin\subscriptions\Exercises_C;
-use App\Http\Controllers\Admin\subscriptions\MainSubscription_C;
-use App\Http\Controllers\Admin\subscriptions\Transportation_C;
-use App\Http\Controllers\Admin\subscriptions\Offers_C;
+
 
 // use App\Http\Controllers\Admin\Users\UsersController;
 
@@ -76,28 +67,35 @@ Route::group(
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-      /*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Training Center @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
-      Route::group(['prefix' => 'Settings', 'as' => 'Settings.'], function () {
+        /*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Training Center @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
+        Route::group(['prefix' => 'Settings', 'as' => 'Settings.'], function () {
 
-     /********************************typesetting******************************/
-     Route::resource('typesetting', TypeSettingController::class);
-     Route::get('typesetting/delete/{id}', [TypeSettingController::class, 'delete'])->name('typesetting.delete');
+            /********************************typesetting******************************/
+            Route::resource('typesetting', TypeSettingController::class);
+            Route::get('typesetting/delete/{id}', [TypeSettingController::class, 'delete'])->name('typesetting.delete');
 
-     /********************************mainsetting******************************/
-     Route::resource('mainsetting', MainsettingController::class);
-     Route::get('mainsetting/delete/{id}', [MainsettingController::class, 'delete'])->name('mainsetting.delete');
-    
-     /********************************************************************************************** */
-     
-     Route::resource('district', DistrictController::class);
-     Route::get('district/delete/{id}', [DistrictController::class, 'delete'])->name('district.delete');
+            /********************************mainsetting******************************/
+            Route::resource('mainsetting', MainsettingController::class);
+            Route::get('mainsetting/delete/{id}', [MainsettingController::class, 'delete'])->name('mainsetting.delete');
 
-     Route::resource('city', CityController::class);
-     Route::get('city/delete/{id}', [CityController::class, 'delete'])->name('city.delete');
-     Route::post('getDistricts', [MainController::class, 'getDistricts'])->name('getDistricts');
-      
-    });
-      /*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
+            /********************************************************************************************** */
+            Route::get('course/tree', [CourseController::class, 'tree'])->name('course.tree');
+            Route::get('course/load_child', [CourseController::class, 'load_child'])->name('course.load_child');
+            Route::get('course/load_roots', [CourseController::class, 'load_roots'])->name('course.load_roots');
+            Route::get('course/load_edit', [CourseController::class, 'load_edit'])->name('course.load_edit');
+            Route::post('course/import_accounts', [CourseController::class, 'import_accounts'])->name('course.import_accounts');
+            Route::resource('course', CourseController::class);
+
+
+            Route::resource('district', DistrictController::class);
+            Route::get('district/delete/{id}', [DistrictController::class, 'delete'])->name('district.delete');
+
+            Route::resource('city', CityController::class);
+            Route::get('city/delete/{id}', [CityController::class, 'delete'])->name('city.delete');
+            Route::post('getDistricts', [MainController::class, 'getDistricts'])->name('getDistricts');
+
+        });
+        /*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
         /************************** MAINDATA *****************************/
         Route::resource('mdata', MaindataController::class);
         /************************** About *****************************/
@@ -146,16 +144,16 @@ Route::group(
         Route::resource('advantages', SiteAdvantageController::class);
         Route::get('advantages/show_load/{id}', [SiteAdvantageController::class, 'show_load'])->name('advantages.load_details');
 
-        
+
         /*************************** polices ********************************* */
         Route::resource('polices', SitePolicesController::class);
         Route::get('polices/show_load/{id}', [SitePolicesController::class, 'show_load'])->name('polices.load_details');
 
-         /*************************** Banner ********************************* */
-         Route::resource('banner', BannerController::class);
-         Route::get('banner/show_load/{id}', [BannerController::class, 'show_load'])->name('banner.load_details');
+        /*************************** Banner ********************************* */
+        Route::resource('banner', BannerController::class);
+        Route::get('banner/show_load/{id}', [BannerController::class, 'show_load'])->name('banner.load_details');
 
-      
+
         /*-----------------------------setting --------------------------*/
 
         Route::group(['prefix' => 'UserManagement', 'as' => 'UserManagement.'], function () {
