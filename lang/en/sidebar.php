@@ -36,4 +36,6 @@
   'Settings' => 'Settings',
   'Mainsetting' => 'Mainsetting',
   'TypeSettings' => 'TypeSettings',
+  'Entities' => 'Entities',
+  'Expenses' => 'Expenses',
 );

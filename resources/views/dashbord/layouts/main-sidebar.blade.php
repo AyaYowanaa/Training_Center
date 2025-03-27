@@ -90,7 +90,7 @@
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
                 <div data-kt-menu-trigger="click"
-                     class="menu-item menu-accordion <?php  if (in_array(optional(explode('.', Route::currentRouteName()))[2], array('city', 'district'))) {
+                     class="menu-item menu-accordion <?php  if (in_array(optional(explode('.', Route::currentRouteName()))[2], array())) {
                          echo 'show';
                      } ?>">
                     <!--begin:Menu link-->
@@ -122,7 +122,7 @@
                     <!--end:Menu link-->
                            <!--begin:Menu sub-->
                     <div
-                        class="menu-sub menu-sub-accordion  <?php  if (in_array(optional(explode('.', Route::currentRouteName()))[1], array('city', 'district'))) {
+                        class="menu-sub menu-sub-accordion  <?php  if (in_array(optional(explode('.', Route::currentRouteName()))[1], array('mainsetting', 'typesetting','Entity','Expenses'))) {
                             echo 'show';
                         } ?>">
 
@@ -155,35 +155,35 @@
         <!--end:Menu link-->
              </div>
     <!--end:Menu item-->
-                        <!--begin:Menu item-->
-                        <div class="menu-item">
-                            <!--begin:Menu link-->
-                            <a class="menu-link <?php  if (optional(explode('.', Route::currentRouteName()))[2] == 'city') {
-                                echo 'active';
-                            } ?>" href="{{ route('admin.Settings.city.index') }}">
-													<span class="menu-bullet">
-														<span class="bullet bullet-dot"></span>
-													</span>
-                                <span class="menu-title">{{trans('sidebar.city')}}</span>
-                            </a>
-                            <!--end:Menu link-->
-                        </div>
-                        <!--end:Menu item-->
-                        <!--begin:Menu item-->
-                        <div class="menu-item">
-                            <!--begin:Menu link-->
-                            <a class="menu-link <?php  if (optional(explode('.', Route::currentRouteName()))[2] == 'district') {
-                                echo 'active';
-                            } ?>" href="{{ route('admin.Settings.district.index') }}">
-													<span class="menu-bullet">
-														<span class="bullet bullet-dot"></span>
-													</span>
-                                <span class="menu-title">{{trans('sidebar.district')}}</span>
-                            </a>
-                            <!--end:Menu link-->
-                        </div>
-                        <!--end:Menu item-->
-
+                       <!--begin:Menu item-->
+    <div class="menu-item">
+        <!--begin:Menu link-->
+        <a class="menu-link <?php  if (optional(explode('.', Route::currentRouteName()))[2] == 'Entity') {
+            echo 'active';
+        } ?>" href="{{ route('admin.Settings.Expenses.index') }}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+            <span class="menu-title">{{trans('sidebar.Entities')}}</span>
+        </a>
+        <!--end:Menu link-->
+    </div>
+    <!--end:Menu item-->
+                       
+  <!--begin:Menu item-->
+  <div class="menu-item">
+    <!--begin:Menu link-->
+    <a class="menu-link <?php  if (optional(explode('.', Route::currentRouteName()))[2] == 'Expenses') {
+        echo 'active';
+    } ?>" href="{{ route('admin.Settings.Expenses.index') }}">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+        <span class="menu-title">{{trans('sidebar.Expenses')}}</span>
+    </a>
+    <!--end:Menu link-->
+</div>
+<!--end:Menu item-->
 
                     </div>
                     <!--end:Menu sub-->

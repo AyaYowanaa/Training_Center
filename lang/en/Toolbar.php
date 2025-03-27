@@ -51,4 +51,5 @@
   'eventDetails' => 'eventDetails',
   'hr' => 'hr',
   'setting' => 'setting',
+  'Expenses' => 'Expenses',
 );
