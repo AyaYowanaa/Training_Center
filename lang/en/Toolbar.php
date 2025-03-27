@@ -55,4 +55,5 @@
   'course' => 'course',
   'accountCreate' => 'accountCreate',
   'accountEdit' => 'accountEdit',
+  'Expenses' => 'Expenses',
 );

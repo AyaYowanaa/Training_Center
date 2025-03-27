@@ -4,6 +4,10 @@ use App\Http\Controllers\Admin\Training_Center\CourseController;
 use App\Http\Controllers\Admin\Training_Center\Settings\DistrictController;
 use App\Http\Controllers\Admin\Training_Center\Settings\MainsettingController;
 use App\Http\Controllers\Admin\Training_Center\Settings\TypeSettingController;
+use App\Http\Controllers\Admin\Training_Center\Settings\EntitySettingController;
+use App\Http\Controllers\Admin\Training_Center\Settings\ExpensesController;
+use App\Http\Controllers\Admin\settings\CityController;
+use App\Http\Controllers\Admin\settings\DistrictController;
 use App\Http\Controllers\Admin\Site\BlogController;
 use App\Http\Controllers\Admin\Site\ContactController;
 use App\Http\Controllers\Admin\Site\EventController;
@@ -67,7 +71,7 @@ Route::group(
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-        /*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Training Center @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
+        /*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Training Center @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
         Route::group(['prefix' => 'Settings', 'as' => 'Settings.'], function () {
 
             /********************************typesetting******************************/
@@ -89,6 +93,30 @@ Route::group(
 
             Route::resource('district', DistrictController::class);
             Route::get('district/delete/{id}', [DistrictController::class, 'delete'])->name('district.delete');
+     /********************************mainsetting******************************/
+     Route::resource('mainsetting', MainsettingController::class);
+     Route::get('mainsetting/delete/{id}', [MainsettingController::class, 'delete'])->name('mainsetting.delete');
+
+     /*********************************Entity *********************************************************** */
+     Route::resource('entity', EntitySettingController::class);
+     Route::get('entity/delete/{id}', [EntitySettingController::class, 'delete'])->name('entity.delete');
+
+     /*********************************** Expenses ********************************************************* */
+     Route::resource('Expenses', ExpensesController::class);
+     Route::get('Expenses/delete/{id}', [ExpensesController::class, 'delete'])->name('Expenses.delete');
+      /*********************************************************************************************** */
+
+
+
+
+
+
+
+
+
+     /****************************************************************************** */
+      /*    Route::resource('district', DistrictController::class);
+     Route::get('district/delete/{id}', [DistrictController::class, 'delete'])->name('district.delete');
 
             Route::resource('city', CityController::class);
             Route::get('city/delete/{id}', [CityController::class, 'delete'])->name('city.delete');
