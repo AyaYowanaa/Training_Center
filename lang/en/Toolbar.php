@@ -52,4 +52,5 @@
   'hr' => 'hr',
   'setting' => 'setting',
   'Expenses' => 'Expenses',
+  'Entities' => 'Entities',
 );

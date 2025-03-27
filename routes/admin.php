@@ -93,8 +93,8 @@ Route::group(
      Route::get('mainsetting/delete/{id}', [MainsettingController::class, 'delete'])->name('mainsetting.delete');
     
      /*********************************Entity *********************************************************** */
-     Route::resource('entity', EntitySettingController::class);
-     Route::get('entity/delete/{id}', [EntitySettingController::class, 'delete'])->name('entity.delete');
+     Route::resource('Entity', EntitySettingController::class);
+     Route::get('Entity/delete/{id}', [EntitySettingController::class, 'delete'])->name('Entity.delete');
 
      /*********************************** Expenses ********************************************************* */
      Route::resource('Expenses', ExpensesController::class);
