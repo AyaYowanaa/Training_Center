@@ -5,7 +5,7 @@ use App\Http\Controllers\Admin\Training_Center\Settings\CityController;
 use App\Http\Controllers\Admin\Training_Center\Settings\DistrictController;
 use App\Http\Controllers\Admin\Training_Center\Settings\MainsettingController;
 use App\Http\Controllers\Admin\Training_Center\Settings\TypeSettingController;
-//use App\Http\Controllers\Admin\Training_Center\Settings\EntitySettingController;
+use App\Http\Controllers\Admin\Training_Center\Settings\EntitySettingController;
 use App\Http\Controllers\Admin\Training_Center\Settings\ExpensesController;
 use App\Http\Controllers\Admin\Site\BlogController;
 use App\Http\Controllers\Admin\Site\ContactController;
@@ -94,8 +94,8 @@ Route::group(
             Route::get('district/delete/{id}', [DistrictController::class, 'delete'])->name('district.delete');
 
             /*********************************Entity *********************************************************** */
-//            Route::resource('entity', EntitySettingController::class);
-//            Route::get('entity/delete/{id}', [EntitySettingController::class, 'delete'])->name('entity.delete');
+           Route::resource('Entity', EntitySettingController::class);
+           Route::get('Entity/delete/{id}', [EntitySettingController::class, 'delete'])->name('Entity.delete');
 
             /*********************************** Expenses ********************************************************* */
             Route::resource('Expenses', ExpensesController::class);

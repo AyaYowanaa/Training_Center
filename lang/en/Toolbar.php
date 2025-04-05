@@ -56,4 +56,5 @@
   'accountCreate' => 'accountCreate',
   'accountEdit' => 'accountEdit',
   'Expenses' => 'Expenses',
+  'Entities' => 'Entities',
 );

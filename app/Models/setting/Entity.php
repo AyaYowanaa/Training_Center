@@ -11,7 +11,7 @@ class Entity extends Model
 
     protected $table = 'entities';
 
-    public $translatable = ['name'];
+    public $translatable = ['name','address'];
     protected $fillable = [
         'name','email','address','phone'
     ];
