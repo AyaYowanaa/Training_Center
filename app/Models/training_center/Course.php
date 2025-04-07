@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\trinaing_center;
+namespace App\Models\training_center;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

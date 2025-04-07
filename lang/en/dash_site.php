@@ -57,4 +57,7 @@
   'description' => 'description',
   'Advantages' => 'Advantages',
   'icon' => 'icon',
+  'code' => 'code',
+  'phone' => 'phone',
+  'email' => 'email',
 );

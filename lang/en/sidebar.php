@@ -38,4 +38,8 @@
   'TypeSettings' => 'TypeSettings',
   'Entities' => 'Entities',
   'Expenses' => 'Expenses',
+  'Clients' => 'Clients',
+  'Students' => 'Students',
+  'Training_Center' => 'Training_Center',
+  'Trainers' => 'Trainers',
 );

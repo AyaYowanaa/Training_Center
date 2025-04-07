@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\trinaing_centre\course\StoreRequest;
 use App\Http\Requests\trinaing_centre\course\UpdateRequest;
 use App\Models\Finance\Accounts_type;
-use App\Models\trinaing_center\Course;
+use App\Models\training_center\Course;
 use Exception;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;

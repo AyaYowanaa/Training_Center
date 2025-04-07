@@ -57,4 +57,8 @@
   'accountEdit' => 'accountEdit',
   'Expenses' => 'Expenses',
   'Entities' => 'Entities',
+  'account' => 'account',
+  'TrainingCenter' => 'TrainingCenter',
+  'StudentCreate' => 'StudentCreate',
+  'Students' => 'Students',
 );

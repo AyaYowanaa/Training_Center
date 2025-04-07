@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\Training_Center\Settings\MainsettingController;
 use App\Http\Controllers\Admin\Training_Center\Settings\TypeSettingController;
 use App\Http\Controllers\Admin\Training_Center\Settings\EntitySettingController;
 use App\Http\Controllers\Admin\Training_Center\Settings\ExpensesController;
+use App\Http\Controllers\Admin\Training_Center\StudentController;
+use App\Http\Controllers\Admin\Training_Center\TrainerController;
 use App\Http\Controllers\Admin\Site\BlogController;
 use App\Http\Controllers\Admin\Site\ContactController;
 use App\Http\Controllers\Admin\Site\EventController;
@@ -100,7 +102,13 @@ Route::group(
             /*********************************** Expenses ********************************************************* */
             Route::resource('Expenses', ExpensesController::class);
             Route::get('Expenses/delete/{id}', [ExpensesController::class, 'delete'])->name('Expenses.delete');
-            /*********************************************************************************************** */
+            /*********************************** Students ************************************* */
+            Route::resource('Student', StudentController::class);
+            Route::get('Student/delete/{id}', [StudentController::class, 'delete'])->name('Student.delete');
+           /*********************************** Trainers ************************************* */
+            Route::resource('Trainer', TrainerController::class);
+            Route::get('Trainer/delete/{id}', [TrainerController::class, 'delete'])->name('Trainer.delete');
+
 
 
             /****************************************************************************** */
