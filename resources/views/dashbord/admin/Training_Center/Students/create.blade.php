@@ -180,7 +180,7 @@
                                 @enderror
                             </div>
                             <div class="col-md-4">
-                                <label class="required form-label">{{trans('trainingCenter.Courses')}}</label>
+                                <label class="form-label">{{trans('trainingCenter.Courses')}}</label>
 
                                 <!--begin::Select2-->
                                 <select class="form-select mb-2 @error('courses_id') is-invalid @enderror"
@@ -199,7 +199,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label class="required form-label">{{trans('trainingCenter.Grades')}}</label>
+                                    <label class="form-label">{{trans('trainingCenter.Grades')}}</label>
     
                                     <!--begin::Select2-->
                                     <select class="form-select mb-2 @error('grades_id') is-invalid @enderror"
@@ -215,6 +215,18 @@
                                     </select>
                                     <!--end::Select2-->
                                 </div>
+                                <div class="col-md-4">
+                             
+                                        <label class="required form-label">{{trans('trainingCenter.Bulk_Import')}}</label>
+                                        <select class="form-select mb-2 @error('bulk_import') is-invalid @enderror"
+                                                data-control="select2" data-hide-search="false"
+                                            data-placeholder="Select an option" data-allow-clear="true"
+                                                id="bulk_import" name="bulk_import">
+                                      <option value="0">No</option>
+                                      <option value="1">Yes</option>
+                                      </select>
+                                </div>
+                          
                             </div>
 
                         </div>

@@ -21,15 +21,15 @@ class Students extends Model
         'bulk_import',
     ];
 
-    protected $casts = [
+  /*   protected $casts = [
         'courses' => 'array',
         'grades' => 'array',
-       // 'bulk_import' => 'boolean',
-    ];
+        'bulk_import' => 'boolean',
+    ]; */
 
     public function coursesData()
     {
-        return $this->belongsTo(Course::class, 'curses_id');
+        return $this->belongsTo(Course::class, 'courses_id');
     }
 
 }

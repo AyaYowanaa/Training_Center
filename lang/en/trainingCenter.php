@@ -7,4 +7,5 @@
   'mainData' => 'mainData',
   'Courses' => 'Courses',
   'Grades' => 'Grades',
+  'Bulk_Import' => 'Bulk_Import',
 );

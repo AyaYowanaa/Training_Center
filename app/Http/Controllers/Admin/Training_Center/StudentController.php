@@ -77,10 +77,11 @@ class StudentController extends Controller
      */
     public function create()
     {    $data['one_data']= new Students();
-         $data['courses']= Course::all();
+        // $data['courses']= Course::all();
+         $courses=Course::all();
         // $data['grades']= Grades::all();
         return view('dashbord.admin.Training_Center.Students.create'
-        , compact('data'));
+        , compact('data','courses'));
 
     }
     public function show_load($id)
@@ -98,6 +99,7 @@ class StudentController extends Controller
 
             $insert_data = $request->all();
             $insert_data['name'] = ['en' => $request->name_en, 'ar' => $request->name_ar];
+         //   $insert_data['bulk_import'] = (bool) $request->input('bulk_import');
             $inserted_data = Students::create($insert_data);
             $insert_id = $inserted_data->id;
             toastr()->addSuccess(trans('forms.success'));
