@@ -8,4 +8,8 @@
   'Courses' => 'Courses',
   'Grades' => 'Grades',
   'Bulk_Import' => 'Bulk_Import',
+  'attribute' => 'attribute',
+  'value' => 'value',
+  'courses' => 'courses',
+  'email' => 'email',
 );

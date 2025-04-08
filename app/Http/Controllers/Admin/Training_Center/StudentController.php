@@ -22,8 +22,8 @@ class StudentController extends Controller
                     return $row->name;
                 }) 
                 ->editColumn('courses_id', function ($row) {
-                    return $row->coursesData->name;
-                }) 
+                    return $row->coursesData?->name ?? '—';
+                })
                 ->addColumn('action', function ($row) {
                     return '<a href="#" class="btn btn-sm btn-light btn-active-light-primary"
                    data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end"> ' . trans('forms.action') . '
@@ -50,7 +50,7 @@ class StudentController extends Controller
                         </div>
                    		
                         <div class="menu-item px-3">
-                                <a href="javascript:void(0)" data-kt-table-details="details_row" data-url="' . route('dmin.Settings.Student.load_details', $row->id) . '"
+                                <a href="javascript:void(0)" data-kt-table-details="details_row" data-url="' . route('admin.Settings.Student.load_details', $row->id) . '"
                                            address="' . trans('forms.details') . '" class="menu-link px-3"
                                          data-bs-toggle="modal" data-bs-target="#kt_modal_1"  >' . trans('forms.details') . '</a>
                         </div>
@@ -77,16 +77,17 @@ class StudentController extends Controller
      */
     public function create()
     {    $data['one_data']= new Students();
-        // $data['courses']= Course::all();
-         $courses=Course::all();
+         $data['courses']= Course::all();
+        // $courses=Course::all();
         // $data['grades']= Grades::all();
         return view('dashbord.admin.Training_Center.Students.create'
-        , compact('data','courses'));
+        , $data);
 
     }
     public function show_load($id)
     {
         $data['one_data'] = Students::findOrFail($id);
+
         return view('dashbord.admin.Training_Center.Students.load_details', $data);
     }
     /**
@@ -96,10 +97,10 @@ class StudentController extends Controller
     {
 
         try {
+          //  dd($request->input('courses_id'));
 
             $insert_data = $request->all();
             $insert_data['name'] = ['en' => $request->name_en, 'ar' => $request->name_ar];
-         //   $insert_data['bulk_import'] = (bool) $request->input('bulk_import');
             $inserted_data = Students::create($insert_data);
             $insert_id = $inserted_data->id;
             toastr()->addSuccess(trans('forms.success'));
@@ -112,8 +113,9 @@ class StudentController extends Controller
 
     public function edit($id)
     {
-        $one_data = Students::findOrFail($id);
-        return view('dashbord.admin.Site.About.edit', $one_data);
+        $data['one_data'] = Students::findOrFail($id);
+        $data['courses']= Course::all();
+        return view('dashbord.admin.Training_Center.Students.edit',$data);
 
     }
 

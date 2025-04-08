@@ -15,10 +15,10 @@
                         <td>{{ trans('trainingCenter.name') }}</td>
                         <td class="fs-6 fw-semibold text-dark">{{$one_data->name}}</td>
                     </tr>
-                    <tr>
+               {{--      <tr>
                         <td>{{ trans('trainingCenter.courses') }}</td>
                         <td class="fs-6 fw-semibold text-dark">{{$one_data->coursesData->name}}</td>
-                    </tr>
+                    </tr> --}}
                   
                     <tr>
                         <td>{{ trans('trainingCenter.code') }}</td>

@@ -98,7 +98,7 @@
                     <div class="card-body pt-0">
                         <!--begin::Input group-->
 <?php
-$name==$one_data->getTranslations('name');
+$name=$one_data->getTranslations('name');
 
 ?>
                         <div class="mb-10 fv-row row">
@@ -109,11 +109,12 @@ $name==$one_data->getTranslations('name');
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" name="name[en]"
-                                       class="form-control mb-2  @error('name[en]') is-invalid @enderror"
-                                       placeholder="{{trans('trainingCenter.name')}}" value="$name['en']"/>
+                                <input type="text" name="name_en"
+                                       class="form-control mb-2  @error('name_en') is-invalid @enderror"
+                                       placeholder="{{trans('trainingCenter.name')}}" 
+                                       value="{{old('name_en',$name['en'])}}" />
                                 <!--end::Input-->
-                                @error('name[en]')
+                                @error('name_en')
                                 <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -126,11 +127,12 @@ $name==$one_data->getTranslations('name');
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" name="name[ar]"
-                                       class="form-control mb-2  @error('name[ar]') is-invalid @enderror"
-                                       placeholder="{{trans('trainingCenter.name')}}" value="$name['ar']"/>
+                                <input type="text" name="name_ar"
+                                       class="form-control mb-2  @error('name_ar') is-invalid @enderror"
+                                       placeholder="{{trans('trainingCenter.name')}}" 
+                                       value="{{old('name_ar',$name['ar'])}}" />
                                 <!--end::Input-->
-                                @error('name[ar]')
+                                @error('name_ar')
                                 <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -143,7 +145,7 @@ $name==$one_data->getTranslations('name');
                                 <!--begin::Input-->
                                 <input type="text" name="code"
                                        class="form-control mb-2  @error('code') is-invalid @enderror"
-                                       placeholder="{{trans('trainingCenter.code')}}" value="{{old('code')}}"/>
+                                       placeholder="{{trans('trainingCenter.code')}}" value="{{old('code',$one_data->code)}}"/>
                                 <!--end::Input-->
                                 @error('code')
                                 <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
@@ -161,7 +163,7 @@ $name==$one_data->getTranslations('name');
                                 <!--begin::Input-->
                                 <input type="text" name="phone"
                                        class="form-control mb-2  @error('phone') is-invalid @enderror"
-                                       placeholder="" value="{{old('phone')}}"/>
+                                       placeholder="" value="{{old('phone',$one_data->phone)}}"/>
                                 <!--end::Input-->
                                 @error('phone')
                                 <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
@@ -177,7 +179,7 @@ $name==$one_data->getTranslations('name');
                                 <!--begin::Input-->
                                 <input type="text" name="email"
                                        class="form-control mb-2  @error('email') is-invalid @enderror"
-                                       placeholder="" value="{{old('email')}}"/>
+                                       placeholder="" value="{{old('email',$one_data->email)}}"/>
                                 <!--end::Input-->
                                 @error('email')
                                 <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>

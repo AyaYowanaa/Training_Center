@@ -96,7 +96,6 @@
                     <!--begin::Card body-->
                     <div class="card-body pt-0">
                         <!--begin::Input group-->
-
                         <div class="mb-10 fv-row row">
                             <div class="col-md-4">
                                 <!--begin::Label-->
@@ -105,11 +104,11 @@
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" name="name[en]"
-                                       class="form-control mb-2  @error('name[en]') is-invalid @enderror"
+                                <input type="text" name="name_en"
+                                       class="form-control mb-2  @error('name_en') is-invalid @enderror"
                                        placeholder="{{trans('trainingCenter.name')}}" value=""/>
                                 <!--end::Input-->
-                                @error('name[en]')
+                                @error('name_en')
                                 <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -122,11 +121,11 @@
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" name="name[ar]"
-                                       class="form-control mb-2  @error('name[ar]') is-invalid @enderror"
+                                <input type="text" name="name_ar"
+                                       class="form-control mb-2  @error('name_ar') is-invalid @enderror"
                                        placeholder="{{trans('trainingCenter.name')}}" value=""/>
                                 <!--end::Input-->
-                                @error('name[ar]')
+                                @error('name_ar')
                                 <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -215,7 +214,7 @@
                                     </select>
                                     <!--end::Select2-->
                                 </div>
-                                <div class="col-md-4">
+                              {{--   <div class="col-md-4">
                              
                                         <label class="required form-label">{{trans('trainingCenter.Bulk_Import')}}</label>
                                         <select class="form-select mb-2 @error('bulk_import') is-invalid @enderror"
@@ -225,7 +224,7 @@
                                       <option value="0">No</option>
                                       <option value="1">Yes</option>
                                       </select>
-                                </div>
+                                </div> --}}
                           
                             </div>
 
