@@ -60,4 +60,10 @@
   'code' => 'code',
   'phone' => 'phone',
   'email' => 'email',
+  'time_data' => 'time_data',
+  'from_time' => 'from_time',
+  'to_time' => 'to_time',
+  'location_data' => 'location_data',
+  'location' => 'location',
+  'location_map' => 'location_map',
 );
