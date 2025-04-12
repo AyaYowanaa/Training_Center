@@ -60,4 +60,8 @@
   'code' => 'code',
   'phone' => 'phone',
   'email' => 'email',
+  'blog' => 'blog',
+  'Cv_File' => 'Cv_File',
+  'Specialization' => 'Specialization',
+  'Files' => 'Files',
 );

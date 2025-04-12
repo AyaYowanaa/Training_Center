@@ -16,12 +16,10 @@ return new class extends Migration
             $table->string('code')->unique();
             $table->string('name');
             $table->string('image')->nullable();
-            $table->text('bio')->nullable();
-            $table->string('cv')->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
+            $table->integer('sp\\ecialization_id')->nullable();
             $table->json('courses_id')->nullable();
-            $table->json('documents')->nullable();
-            $table->string('passport_id')->nullable();
-            $table->string('bank_info')->nullable();
             $table->text('evaluation')->nullable();
             $table->json('course_evaluations')->nullable();
             $table->float('average_grade')->nullable();

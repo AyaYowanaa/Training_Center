@@ -12,4 +12,12 @@
   'value' => 'value',
   'courses' => 'courses',
   'email' => 'email',
+  'main_image' => 'main_image',
+  'Data' => 'Data',
+  'Specialization' => 'Specialization',
+  'Name' => 'Name',
+  'Files' => 'Files',
+  'Cv_File' => 'Cv_File',
+  'image' => 'image',
+  'Documents/Files' => 'Documents/Files',
 );

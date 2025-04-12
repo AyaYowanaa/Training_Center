@@ -62,4 +62,5 @@
   'StudentCreate' => 'StudentCreate',
   'Students' => 'Students',
   'StudentUpdate' => 'StudentUpdate',
+  'TrainerCreate' => 'TrainerCreate',
 );
