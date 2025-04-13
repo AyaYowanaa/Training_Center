@@ -16,4 +16,11 @@
   'parent_id' => 'parent_id',
   'parent' => 'parent',
   'edit' => 'edit',
+  'Capacity' => 'Capacity',
+  'Duration' => 'Duration',
+  'duration' => 'duration',
+  'capacity' => 'capacity',
+  'Fees' => 'Fees',
+  'fee' => 'fee',
+  'Courses' => 'Courses',
 );

@@ -1,5 +1,4 @@
 @extends('dashbord.layouts.master')
-
 @section('toolbar')
     <!--begin::Toolbar container-->
     <div id="kt_app_toolbar_container" class="app-container container-xxl d-flex flex-stack">
@@ -16,17 +15,12 @@
                     <a href="{{ route('admin.dashboard') }}" class="text-muted text-hover-primary">
                         {{trans('Toolbar.home')}}</a>
                 </li>
+         
                 <li class="breadcrumb-item">
                     <span class="bullet bg-gray-400 w-5px h-2px"></span>
                 </li>
                 <li class="breadcrumb-item text-muted">
-                    {{trans('Toolbar.site')}}
-                </li>
-                <li class="breadcrumb-item">
-                    <span class="bullet bg-gray-400 w-5px h-2px"></span>
-                </li>
-                <li class="breadcrumb-item text-muted">
-                    {{trans('Toolbar.event')}}
+                    {{trans('Toolbar.TrainingCourses')}}
                 </li>
 
 
@@ -66,7 +60,6 @@
 
 @section('content')
 
-    <!--begin::Content container-->
     <div id="kt_app_content_container" class="app-container container-xxxl">
 
         <div class="card card-flush">
@@ -79,10 +72,13 @@
                     <thead>
                     <tr class="fw-semibold fs-6 text-gray-800">
                         <th>{{trans('dash_site.ID')}}</th>
-                        <th>{{trans('dash_site.title')}}</th>
-                        <th>{{trans('dash_site.date_at')}}</th>
-                        <th>{{trans('dash_site.publisher')}}</th>
-                        <th>{{trans('forms.Action')}}</th>
+                        <th>{{trans('dash_site.name')}}</th>
+                        <th>{{trans('dash_site.Courses')}}
+                        <th>{{trans('dash_site.fees')}}</th>
+{{--                         <th>{{trans('dash_site.location')}}</th>
+ --}}               
+                       <th>{{trans('dash_site.Duration(days)')}}</th>
+                     <th>{{trans('forms.Action')}}</th>
                     </tr>
                     </thead>
                 </table>
@@ -92,9 +88,35 @@
 
     </div>
 
+    <!-- Modal --->
+    <div class="modal fade" tabindex="-1" id="kt_modal_1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">{{trans('dash_site.details')}}</h3>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal"
+                         aria-label="Close">
+                        <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <div class="modal-body" id="load_div">
+
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection
 @section('js')
-
 
     <script>
         // Class definition
@@ -117,30 +139,15 @@
                     columns: [
                         {data: 'id', name: 'id'},
                         {data: 'title', name: 'title'},
-                        {data: 'date_at', name: 'date_at'},
-                        {data: 'publisher', name: 'publisher'},
+                        {data: 'courses_id', name: 'courses_id'},
+                        {data: 'fee', name: 'fee'},
+                        {data: 'duration', name: 'duration'},
+
+                      //  {data: 'location_id', name: 'location_id'},
                         {data: 'action', name: 'action', orderable: false},
                     ],
                     order: [[0, 'desc']],
-                    columnDefs: [
-                        {
-                            "targets": [1, 2],
-                            "createdCell": function (td, cellData, rowData, row, col) {
-                                $(td).css({
-                                    'font-weight': '600',
-                                    'text-align': 'center',
 
-                                });
-                            }
-                        }, {
-                            "targets": [2],
-                            className: 'text-info',
-                        }, {
-                            "targets": [3],
-                            className: 'text-success',
-                        }
-
-                    ],
                 });
 
                 table = dt.$;
@@ -183,17 +190,7 @@
                         }
                     }).then(function (result) {
                         if (result.value) {
-                            // Simulate delete request -- for demo purpose only
-                            /*Swal.fire({
-                                showConfirmButton: false,
-                                imageUrl: 'https://media.tenor.com/C7KormPGIwQAAAAi/epic-loading.gif',
-                                imageWidth: 200,
-                                imageHeight: 200,
-                                target: '#ConvertModalInfo',
-                                imageAlt: '',
-                                allowOutsideClick: false,
-                                allowEscapeKey: false
-                            });*/
+                       
                             Swal.fire({
                                 imageUrl: 'https://media.tenor.com/C7KormPGIwQAAAAi/epic-loading.gif',
                                 imageWidth: 200,
@@ -265,11 +262,46 @@
 
             }
 
+
+            var handleDetailsRows = function () {
+
+                KTUtil.on(document.body, '[data-kt-table-details="details_row"]', 'click', function (e) {
+                    var id = e.target.getAttribute('data-id');
+                    var action = e.target.getAttribute('data-url');
+                    $.ajax({
+                        type: 'get',
+                        url: action,
+                        beforeSend: function () {
+                            const loadingEl = document.createElement("div");
+                            document.getElementById('kt_modal_1').prepend(loadingEl);
+                            loadingEl.classList.add("page-loader");
+                            loadingEl.classList.add("flex-column");
+                            loadingEl.classList.add("bg-dark");
+                            loadingEl.classList.add("bg-opacity-25");
+                            loadingEl.innerHTML = `
+        <span class="spinner-border text-primary" role="status"></span>
+        <span class="text-gray-800 fs-6 fw-semibold mt-5">{{trans('forms.Loading')}}</span>`;
+                            // Show page loading
+                            KTApp.showPageLoading();
+                        },
+
+                        success: function (resb) {
+                            KTApp.hidePageLoading();
+                            // loadingEl.remove();
+                            $('#load_div').html(resb);
+
+                        }
+                    });
+                });
+            }
+
+
             // Public methods
             return {
                 init: function () {
                     initDatatable();
                     handleDeleteRows();
+                    handleDetailsRows();
                 }
             }
         }();

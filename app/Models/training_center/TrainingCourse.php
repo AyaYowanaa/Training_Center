@@ -17,8 +17,16 @@ class TrainingCourse extends Model
 
     public $timestamps = true;
 
-    public function images()
+    /* public function images()
     {
         return $this->hasMany(SiteEventImage::class, 'event_id');
+    } */
+    public function coursesData()
+    {
+        return $this->belongsTo(Course::class, 'courses_id');
+    }
+    public function locationData()
+    {
+        return $this->belongsTo(MainSetting::class, 'location_id');
     }
 }

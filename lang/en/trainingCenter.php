@@ -20,4 +20,6 @@
   'Cv_File' => 'Cv_File',
   'image' => 'image',
   'Documents/Files' => 'Documents/Files',
+  'From_date' => 'From_date',
+  'To_date' => 'To_date',
 );

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
-            $table->integer('sp\\ecialization_id')->nullable();
+            $table->integer('specialization_id')->nullable();
             $table->json('courses_id')->nullable();
             $table->text('evaluation')->nullable();
             $table->json('course_evaluations')->nullable();

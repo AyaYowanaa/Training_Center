@@ -63,4 +63,7 @@
   'Students' => 'Students',
   'StudentUpdate' => 'StudentUpdate',
   'TrainerCreate' => 'TrainerCreate',
+  'Trainer_Courses_Create' => 'Trainer_Courses_Create',
+  'TrainingCourses' => 'TrainingCourses',
+  'Update_Trainer_Courses' => 'Update_Trainer_Courses',
 );

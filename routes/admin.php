@@ -125,6 +125,7 @@ Route::group(
 
             Route::resource('training_courses', TrainingCourseController::class);
             Route::get('training_courses/show_load/{id}', [TrainingCourseController::class, 'show_load'])->name('training_courses.load_details');
+           // Route::get('training_courses/delete/{id}', [TrainingCourseController::class, 'delete'])->name('training_courses.delete');
 
         });
         /************************** MAINDATA *****************************/
