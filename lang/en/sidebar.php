@@ -44,4 +44,5 @@
   'Trainers' => 'Trainers',
   'Instuctor' => 'Instuctor',
   'Courses' => 'Courses',
+  'Training_Courses' => 'Training_Courses',
 );
