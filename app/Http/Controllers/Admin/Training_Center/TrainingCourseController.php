@@ -60,10 +60,10 @@ class TrainingCourseController extends Controller
                                title="' . trans('forms.edite_btn') . '" class="menu-link px-3"
                                >' . trans('forms.edite_btn') . '</a>
                         </div>
-                   		<div class="menu-item px-3">
-                                <a href="' . route('admin.Settings.training_courses.show', $row->id) . '"
-                                           title="' . trans('forms.details') . '" class="menu-link px-3"
-                                           >' . trans('forms.details') . '</a>
+                   		 <div class="menu-item px-3">
+                                <a href="javascript:void(0)" data-kt-table-details="details_row" data-url="' . route('admin.Settings.training_courses.load_details', $row->id) . '"
+                                           address="' . trans('forms.details') . '" class="menu-link px-3"
+                                         data-bs-toggle="modal" data-bs-target="#kt_modal_1"  >' . trans('forms.details') . '</a>
                         </div>
                         <div class="menu-item px-3">
                                 <a href="' . route('admin.Settings.training_courses.destroy', $row->id) . '" data-kt-table-delete="delete_row"
@@ -124,8 +124,8 @@ class TrainingCourseController extends Controller
     {
      //  $one_data = TrainingCourse::with('images')->findOrFail($id);
 
-        $data['one_data'] = $one_data;
-        return view('dashbord.admin.Training_Center.training_courses.details', $data);
+     //   $data['one_data'] = $one_data;
+      //  return view('dashbord.admin.Training_Center.training_courses.details', $data);
     }
 
     /**
@@ -140,7 +140,12 @@ class TrainingCourseController extends Controller
         return view('dashbord.admin.Training_Center.training_courses.edit', $data);
 
     }
+    public function show_load($id)
+    {
+        $data['one_data'] = TrainingCourse::findOrFail($id);
 
+        return view('dashbord.admin.Training_Center.training_courses.load_details', $data);
+    }
     /**
      * Update the specified resource in storage.
      */

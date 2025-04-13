@@ -22,4 +22,9 @@
   'Documents/Files' => 'Documents/Files',
   'From_date' => 'From_date',
   'To_date' => 'To_date',
+  'Duration' => 'Duration',
+  'Fees' => 'Fees',
+  'From_Date' => 'From_Date',
+  'To_Date' => 'To_Date',
+  'Capacity' => 'Capacity',
 );
