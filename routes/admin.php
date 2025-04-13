@@ -109,8 +109,9 @@ Route::group(
             Route::get('Student/show_load/{id}', [StudentController::class, 'show_load'])->name('Student.load_details');
 
             /*********************************** instructors ************************************* */
-            Route::resource('Instuctor', TrainerController::class);
-            Route::get('Instuctor/delete/{id}', [TrainerController::class, 'delete'])->name('Instuctor.delete');
+            Route::resource('Instructor', TrainerController::class);
+           // Route::get('Instructor/delete/{id}', [TrainerController::class, 'delete'])->name('Instructor.delete');
+            Route::get('Instructor/show_load/{id}', [TrainerController::class, 'show_load'])->name('Instructor.load_details');
 
 
             /****************************************************************************** */

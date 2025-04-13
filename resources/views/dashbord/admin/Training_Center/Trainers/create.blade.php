@@ -21,7 +21,7 @@
                 </li>
               
                 <li class="breadcrumb-item text-muted">
-                    <a href="{{ route('admin.Settings.Instuctor.index') }}"
+                    <a href="{{ route('admin.Settings.Instructor.index') }}"
                        class="text-muted text-hover-primary"> {{trans('Toolbar.TrainingCenter')}}</a>
                 </li>
                 <li class="breadcrumb-item">
@@ -39,7 +39,7 @@
         <div class="d-flex align-items-center gap-2 gap-lg-3">
             <!--begin::Filter menu-->
             <div class="d-flex">
-                <a href="{{route('admin.Settings.Instuctor.index')}}"
+                <a href="{{route('admin.Settings.Instructor.index')}}"
                    class="btn btn-icon btn-sm btn-primary flex-shrink-0 ms-4">
 
                     <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/keenthemes/keen/docs/core/html/src/media/icons/duotune/arrows/arr054.svg-->
@@ -79,7 +79,7 @@
             </div>
         @endif
         <form id="StorForm" class="form d-flex flex-column flex-lg-row "
-              action="{{route('admin.Settings.Instuctor.store')}}" method="post" enctype="multipart/form-data">
+              action="{{route('admin.Settings.Instructor.store')}}" method="post" enctype="multipart/form-data">
         @csrf
         <!--begin::Aside column-->
             <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
@@ -177,14 +177,14 @@
                             <div class="">
                                 <!--begin::Label-->
                                 <label
-                                    class="required fs-6 fw-semibold mb-2">{{trans('trainingCenter.Specialization')}}</label>
+                                    class="fs-6 fw-semibold mb-2">{{trans('trainingCenter.Specialization')}}</label>
                                 <!--end::Label-->
                                  <!--begin::Select2-->
-                                 <select class="form-select mb-2 @error('specialization') is-invalid @enderror"
+                                 <select class="form-select mb-2 @error('specialization_id') is-invalid @enderror"
                                  onchange="/*set_status()*/"
                                  data-control="select2" data-hide-search="false"
                              data-placeholder="Select an option" data-allow-clear="true"
-                                 id="specialization" name="specialization">
+                                 id="specialization_id" name="specialization_id">
 
                              <option value=" ">{{trans('maindata.Select')}}</option>
                           
@@ -326,13 +326,11 @@
                             <!--end::Label-->
                             <!--begin::Input-->
                             <input type="file" multiple
-                                   class="form-control mb-2  @error('cv[]') is-invalid @enderror"
-                                   name="cv[]"
+                                   class="form-control mb-2"
+                                   name=""
                                    accept=".png, .jpg, .jpeg" placeholder="Meta tag name"/>
                             <!--end::Input-->
-                            @error('cv[]')
-                            <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
-                            @enderror
+                          
                         </div>
                       
                         <div class="previews"></div>

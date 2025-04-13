@@ -126,8 +126,8 @@ class StudentController extends Controller
     {
         try {
             $data = Students::find($request->id);
-            $update_data['name'] = ['en' => $request->name_en, 'ar' => $request->name_ar];
             $update_data = $request->all();
+            $update_data['name'] = ['en' => $request->name_en, 'ar' => $request->name_ar];
             $data->update($update_data);
             toastr()->addSuccess(trans('forms.success'));
             return redirect()->route('admin.Settings.Student.index');

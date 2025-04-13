@@ -21,14 +21,14 @@
                 </li>
               
                 <li class="breadcrumb-item text-muted">
-                    <a href="{{ route('admin.Settings.Instuctor.index') }}"
+                    <a href="{{ route('admin.Settings.Instructor.index') }}"
                        class="text-muted text-hover-primary"> {{trans('Toolbar.TrainingCenter')}}</a>
                 </li>
                 <li class="breadcrumb-item">
                     <span class="bullet bg-gray-400 w-5px h-2px"></span>
                 </li>
                 <li class="breadcrumb-item text-muted">
-                    {{trans('Toolbar.TrainerUpdate')}}
+                    {{trans('Toolbar.Instructor_Update')}}
                 </li>
 
 
@@ -39,7 +39,7 @@
         <div class="d-flex align-items-center gap-2 gap-lg-3">
             <!--begin::Filter menu-->
             <div class="d-flex">
-                <a href="{{route('admin.Settings.Instuctor.index')}}"
+                <a href="{{route('admin.Settings.Instructor.index')}}"
                    class="btn btn-icon btn-sm btn-primary flex-shrink-0 ms-4">
 
                     <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/keenthemes/keen/docs/core/html/src/media/icons/duotune/arrows/arr054.svg-->
@@ -79,11 +79,10 @@
             </div>
         @endif
         <form id="StorForm" class="form d-flex flex-column flex-lg-row "
-              action="{{route('admin.Settings.Instuctor.update',$one_data->id)}}" method="post" enctype="multipart/form-data">
-        @csrf
-        @method('PATCH')
-        <input type="hidden" name="id" value="{{$one_data->id}}">
-        <!--begin::Aside column-->
+        action="{{route('admin.Settings.Instructor.update',$one_data->id)}}" method="post" enctype="multipart/form-data">
+  @csrf
+  @method('PATCH')
+  <input type="hidden" name="id" value="{{$one_data->id}}">
             <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
                 <!--begin::Thumbnail settings-->
                 <div class="card card-flush py-4">
@@ -179,14 +178,14 @@
                             <div class="">
                                 <!--begin::Label-->
                                 <label
-                                    class="required fs-6 fw-semibold mb-2">{{trans('trainingCenter.Specialization')}}</label>
+                                    class="fs-6 fw-semibold mb-2">{{trans('trainingCenter.Specialization')}}</label>
                                 <!--end::Label-->
                                  <!--begin::Select2-->
-                                 <select class="form-select mb-2 @error('specialization') is-invalid @enderror"
+                                 <select class="form-select mb-2 @error('specialization_id') is-invalid @enderror"
                                  onchange="/*set_status()*/"
                                  data-control="select2" data-hide-search="false"
                              data-placeholder="Select an option" data-allow-clear="true"
-                                 id="specialization" name="specialization">
+                                 id="specialization_id" name="specialization_id">
 
                              <option value=" ">{{trans('maindata.Select')}}</option>
                           
@@ -201,6 +200,10 @@
                 </div>
             </div>
             <!--end::Aside column-->
+            <?php
+            $name=$one_data->getTranslations('name');
+            
+            ?>       
             <!--begin::Main column-->
             <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
                 <!--begin::General options-->
@@ -215,10 +218,6 @@
                     <!--begin::Card body-->
                     <div class="card-body pt-0">
                         <!--begin::Input group-->
-                        <?php
-                        $name=$one_data->getTranslations('name');
-                         ?>
-
                         <div class="row">
                         <div class="col-md-6">
                             <!--begin::Label-->
@@ -249,7 +248,7 @@
                             <!--begin::Input-->
                             <input type="text" name="name_ar"
                                    class="form-control mb-2  @error('name_ar') is-invalid @enderror"
-                                   placeholder="name in Arabic" value="{{old('name_ar',$name['ar'])}}"/>
+                                   placeholder="name in Arabic"  value="{{old('name_ar',$name['ar'])}}"/>
                             <!--end::Input-->
                             @error('name_ar')
                             <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
@@ -257,7 +256,7 @@
                         </div>
                         <!--end::Input group-->
                         <!--begin::Input group-->
-                        </div>
+                    </div>
 
                     <div class="row">
 
@@ -270,7 +269,8 @@
                             <!--begin::Input-->
                             <input type="text" name="code"
                                    class="form-control mb-2  @error('code') is-invalid @enderror"
-                                   placeholder="{{trans('trainingCenter.code')}}" value="{{old('code',$one_data->code)}}"/>
+                                   placeholder="{{trans('trainingCenter.code')}}" 
+                                   value="{{old('code',$one_data->code)}}"/>
                             <!--end::Input-->
                             @error('code')
                             <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
@@ -285,7 +285,7 @@
                             <!--begin::Input-->
                             <input type="text" name="phone"
                                    class="form-control mb-2  @error('phone') is-invalid @enderror"
-                                   placeholder="" value="{{old('phone',$one_data->phone)}}"/>
+                                   placeholder=""  value="{{old('phone',$one_data->phone)}}"/>
                             <!--end::Input-->
                             @error('phone')
                             <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
@@ -303,7 +303,7 @@
                             <!--begin::Input-->
                             <input type="text" name="email"
                                    class="form-control mb-2  @error('email') is-invalid @enderror"
-                                   placeholder="" value="{{old('email',$one_data->email)}}"/>
+                                   placeholder=""  value="{{old('email',$one_data->email)}}"/>
                             <!--end::Input-->
                             @error('email')
                             <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
@@ -328,19 +328,17 @@
                         <!--begin::Input group-->
                         <div class="mb-10">
                             <!--begin::Label-->
-                            <label class="form-label">{{trans('trainingCenter.Cv_File')}}</label>
+                            <label class="form-label">{{trans('trainingCenter.Documents/Files')}}</label>
                             <!--end::Label-->
                             <!--begin::Input-->
                             <input type="file" multiple
-                                   class="form-control mb-2  @error('cv[]') is-invalid @enderror"
-                                   name="images[]"
+                                   class="form-control mb-2"
+                                   name=""
                                    accept=".png, .jpg, .jpeg" placeholder="Meta tag name"/>
                             <!--end::Input-->
-                            @error('cv[]')
-                            <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
-                            @enderror
+                          
                         </div>
-                        <!--end::Input group-->
+                      
                         <div class="previews"></div>
 
                     </div>
