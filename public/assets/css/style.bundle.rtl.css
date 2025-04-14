@@ -47149,7 +47149,7 @@ body,
 }
 @media (min-width: 992px) {
   .app-content {
-    padding-top: 30px;
+    padding-top: 10px;
     padding-bottom: 30px;
     padding-right: 0;
     padding-left: 0;
@@ -47158,7 +47158,7 @@ body,
 @media (max-width: 991.98px) {
   .app-content {
     max-width: none;
-    padding-top: 20px;
+    padding-top: 10px;
     padding-bottom: 20px;
     padding-right: 0;
     padding-left: 0;
