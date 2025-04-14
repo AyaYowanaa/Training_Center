@@ -105,7 +105,7 @@ Route::group(
             Route::get('Expenses/delete/{id}', [ExpensesController::class, 'delete'])->name('Expenses.delete');
             /*********************************** Students ************************************* */
             Route::resource('Student', StudentController::class);
-            Route::get('Student/delete/{id}', [StudentController::class, 'delete'])->name('Student.delete');
+           // Route::get('Student/delete/{id}', [StudentController::class, 'delete'])->name('Student.delete');
             Route::get('Student/show_load/{id}', [StudentController::class, 'show_load'])->name('Student.load_details');
 
             /*********************************** instructors ************************************* */
