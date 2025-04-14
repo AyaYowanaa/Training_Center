@@ -184,9 +184,7 @@ Route::group(
         Route::resource('banner', BannerController::class);
         Route::get('banner/show_load/{id}', [BannerController::class, 'show_load'])->name('banner.load_details');
 
-
         /*-----------------------------setting --------------------------*/
-
         Route::group(['prefix' => 'UserManagement', 'as' => 'UserManagement.'], function () {
 
             Route::resource('users', UsersController::class);
