@@ -15877,14 +15877,14 @@ var DataTable = $.fn.dataTable;
 
 /* Set the defaults for DataTables initialisation */
 $.extend( true, DataTable.defaults, {
-	dom: 
+	dom:
 		"<'table-responsive'tr>" +
-		
-		"<'row'" + 
-		"<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'li>" + 
-		"<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+
+		"<'row'" +
+		"<'col-sm-12 col-md-9 d-flex align-items-center justify-content-center justify-content-md-start'li>" +
+		"<'col-sm-12 col-md-3 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
 		">",
-	
+
 	renderer: 'bootstrap'
 } );
 

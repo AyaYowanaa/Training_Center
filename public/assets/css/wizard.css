@@ -1,0 +1,53 @@
+
+
+.step-container {
+    position: relative;
+    text-align: center;
+    transform: translateY(-50%);
+}
+
+.step-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 2px solid #d4a801;
+    line-height: 40px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* margin-bottom: 10px; */
+    cursor: pointer; /* Added cursor pointer */
+    background: #d4a801;
+    color: #fff;
+}
+
+.step-line {
+    position: absolute;
+    top: 16px;
+    left: 50px;
+    width: calc(100% - 100px);
+    height: 2px;
+    background-color: #007bff;
+    z-index: -1;
+}
+
+#multi-step-form{
+    overflow-x: hidden;
+} .mb-121 {
+      margin-bottom: 7px;
+      color: #d4a801;
+      margin-top: 15px;
+      /* text-align: center; */
+  }.mb-25 {
+       margin-bottom: 25px;
+       color: var(--bs-text-gray-900);
+       /* text-align: center; */
+   } .justify-content {
+         justify-content: center;
+     }
+.float {
+    float: right;
+    margin-right: 10px;
+}
