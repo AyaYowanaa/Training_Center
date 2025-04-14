@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin\Training_Center;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Site\Event\StoreRequest;
-use App\Http\Requests\Site\Event\UpdateRequest;
-use App\Http\Resources\Site\EventResource;
-
+ use App\Http\Requests\training_center\training_courses\StoreRequest;
+use App\Http\Requests\training_center\training_courses\UpdateRequest;
 use App\Models\training_center\TrainingCourse;
+use App\Models\setting\MainSetting;
+use App\Models\training_center\Course;
 use App\Traits\ResponseApi;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -16,7 +16,7 @@ class TrainingCourseController extends Controller
 {
     use ResponseApi;
 
-    protected $upload_folder = 'Training_Center/training_courses';
+   // protected $upload_folder = 'Training_Center/training_courses';
 
     /**
      * Display a listing of the resource.
@@ -30,6 +30,12 @@ class TrainingCourseController extends Controller
                 ->editColumn('title', function ($row) {
                     return $row->title;
                 })
+                ->editColumn('courses_id', function ($row) {
+                    return $row->coursesData?->name ?? '—';
+                })
+               /*  ->editColumn('location_id', function ($row) {
+                    return $row->locationData?->name ?? '—';
+                }) */
                 ->addColumn('action', function ($row) {
                     return '<a href="#" class="btn btn-sm btn-light btn-active-light-primary"
                    data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end"> ' . trans('forms.action') . '
@@ -54,10 +60,10 @@ class TrainingCourseController extends Controller
                                title="' . trans('forms.edite_btn') . '" class="menu-link px-3"
                                >' . trans('forms.edite_btn') . '</a>
                         </div>
-                   		<div class="menu-item px-3">
-                                <a href="' . route('admin.Settings.training_courses.show', $row->id) . '"
-                                           title="' . trans('forms.details') . '" class="menu-link px-3"
-                                           >' . trans('forms.details') . '</a>
+                   		 <div class="menu-item px-3">
+                                <a href="javascript:void(0)" data-kt-table-details="details_row" data-url="' . route('admin.Settings.training_courses.load_details', $row->id) . '"
+                                           address="' . trans('forms.details') . '" class="menu-link px-3"
+                                         data-bs-toggle="modal" data-bs-target="#kt_modal_1"  >' . trans('forms.details') . '</a>
                         </div>
                         <div class="menu-item px-3">
                                 <a href="' . route('admin.Settings.training_courses.destroy', $row->id) . '" data-kt-table-delete="delete_row"
@@ -82,7 +88,10 @@ class TrainingCourseController extends Controller
      */
     public function create()
     {
-        return view('dashbord.admin.Training_Center.training_courses.create');
+        $data['location_id'] = MainSetting::all();  //::where('type', '105')->get();
+        $data['courses'] = Course::all();
+
+        return view('dashbord.admin.Training_Center.training_courses.create',$data);
 
     }
 
@@ -96,7 +105,7 @@ class TrainingCourseController extends Controller
             $insert_data = $request->all();
             $insert_data['title'] = ['en' => $request->title_en, 'ar' => $request->title_ar];
             $insert_data['details'] = ['en' => $request->details_en, 'ar' => $request->details_ar];
-            $update_data['location'] = ['en' => $request->location_en, 'ar' => $request->location_ar];
+           // $update_data['location'] = ['en' => $request->location_en, 'ar' => $request->location_ar];
 
             $inserted_data = TrainingCourse::create($insert_data);
             $insert_id = $inserted_data->id;
@@ -113,26 +122,30 @@ class TrainingCourseController extends Controller
      */
     public function show($id)
     {
-        $one_data = TrainingCourse::with('images')->findOrFail($id);
-//        $one_data = new EventResource($one_data);
-//        $data['one_data'] = $this->prepare_data($one_data->edite_data($one_data));
-        $data['one_data'] = $one_data;
-        return view('dashbord.admin.Training_Center.training_courses.details', $data);
+     //  $one_data = TrainingCourse::with('images')->findOrFail($id);
+
+     //   $data['one_data'] = $one_data;
+      //  return view('dashbord.admin.Training_Center.training_courses.details', $data);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit($id)
-    {
-        $one_data = TrainingCourse::with('images')->findOrFail($id);
-//        $one_data = new EventResource($one_data);
-//        $data['one_data'] = $this->prepare_data($one_data->edite_data($one_data));
-        $data['one_data'] = $one_data;
+    {   
+       $data['one_data'] = TrainingCourse::findOrFail($id);
+       $data['location_id'] = MainSetting::all();  //::where('type', '105')->get();
+       $data['courses'] = Course::all();
+
         return view('dashbord.admin.Training_Center.training_courses.edit', $data);
 
     }
+    public function show_load($id)
+    {
+        $data['one_data'] = TrainingCourse::findOrFail($id);
 
+        return view('dashbord.admin.Training_Center.training_courses.load_details', $data);
+    }
     /**
      * Update the specified resource in storage.
      */
@@ -140,11 +153,9 @@ class TrainingCourseController extends Controller
     {
         try {
             $data = TrainingCourse::find($request->id);
-
             $update_data = $request->all();
             $update_data['title'] = ['en' => $request->title_en, 'ar' => $request->title_ar];
             $update_data['details'] = ['en' => $request->details_en, 'ar' => $request->details_ar];
-            $update_data['location'] = ['en' => $request->location_en, 'ar' => $request->location_ar];
 
             $data->update($update_data);
             $insert_id = $request->id;
@@ -161,17 +172,12 @@ class TrainingCourseController extends Controller
     public function destroy($id)
     {
         try {
+            TrainingCourse::destroy($id);
+            toastr()->addSuccess(trans('forms.Delete'));
 
-            $delete_data = TrainingCourse::with('images')->find($id);
-            $delete_data->delete();
-            $blog_folder = $this->upload_folder . '/' . $id;
-            $this->deleteFolder($blog_folder);
-            toastr()->error(trans('forms.Delete'));
-
-            return response()->json(['message' => 'Image deleted successfully.'], 200);
+            return redirect()->route('admin.Settings.training_courses.index');
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
-
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
 

@@ -42,4 +42,8 @@
   'Students' => 'Students',
   'Training_Center' => 'Training_Center',
   'Trainers' => 'Trainers',
+  'Instuctor' => 'Instuctor',
+  'Courses' => 'Courses',
+  'Training_Courses' => 'Training_Courses',
+  'Instructor' => 'Instructor',
 );

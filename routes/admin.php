@@ -108,9 +108,10 @@ Route::group(
             Route::get('Student/delete/{id}', [StudentController::class, 'delete'])->name('Student.delete');
             Route::get('Student/show_load/{id}', [StudentController::class, 'show_load'])->name('Student.load_details');
 
-            /*********************************** Trainers ************************************* */
-            Route::resource('Trainer', TrainerController::class);
-            Route::get('Trainer/delete/{id}', [TrainerController::class, 'delete'])->name('Trainer.delete');
+            /*********************************** instructors ************************************* */
+            Route::resource('Instructor', TrainerController::class);
+           // Route::get('Instructor/delete/{id}', [TrainerController::class, 'delete'])->name('Instructor.delete');
+            Route::get('Instructor/show_load/{id}', [TrainerController::class, 'show_load'])->name('Instructor.load_details');
 
 
             /****************************************************************************** */
@@ -125,6 +126,7 @@ Route::group(
 
             Route::resource('training_courses', TrainingCourseController::class);
             Route::get('training_courses/show_load/{id}', [TrainingCourseController::class, 'show_load'])->name('training_courses.load_details');
+           // Route::get('training_courses/delete/{id}', [TrainingCourseController::class, 'delete'])->name('training_courses.delete');
 
         });
         /************************** MAINDATA *****************************/

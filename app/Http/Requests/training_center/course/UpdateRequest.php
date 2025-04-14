@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\trinaing_centre\course;
+namespace App\Http\Requests\training_center\course;
 
 use DB;
 use Illuminate\Contracts\Validation\ValidationRule;

@@ -20,7 +20,7 @@
                     <span class="bullet bg-gray-400 w-5px h-2px"></span>
                 </li>
                 <li class="breadcrumb-item text-muted">
-                    {{trans('Toolbar.TrainingCourses')}}
+                    {{trans('Toolbar.Instructors')}}
                 </li>
 
 
@@ -31,7 +31,7 @@
         <div class="d-flex align-items-center gap-2 gap-lg-3">
             <!--begin::Filter menu-->
             <div class="d-flex">
-                <a href="{{route('admin.Settings.training_courses.create')}}"
+                <a href="{{route('admin.Settings.Instructor.create')}}"
                    class="btn btn-icon btn-sm btn-success flex-shrink-0 ms-4">
                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
                     <span class="svg-icon svg-icon-2">
@@ -73,12 +73,10 @@
                     <tr class="fw-semibold fs-6 text-gray-800">
                         <th>{{trans('dash_site.ID')}}</th>
                         <th>{{trans('dash_site.name')}}</th>
-                        <th>{{trans('dash_site.Courses')}}
-                        <th>{{trans('dash_site.fees')}}</th>
-{{--                         <th>{{trans('dash_site.location')}}</th>
- --}}               
-                       <th>{{trans('dash_site.Duration(days)')}}</th>
-                     <th>{{trans('forms.Action')}}</th>
+                        <th>{{trans('dash_site.code')}}</th>
+                        <th>{{trans('dash_site.phone')}}</th>
+                        <th>{{trans('dash_site.email')}}</th>
+                        <th>{{trans('forms.Action')}}</th>
                     </tr>
                     </thead>
                 </table>
@@ -135,15 +133,13 @@
                     dom: "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
                         "<'row'<'col-sm-12'tr>>" +
                         "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-                    ajax: "{{route('admin.Settings.training_courses.index')}}",
+                    ajax: "{{route('admin.Settings.Instructor.index')}}",
                     columns: [
                         {data: 'id', name: 'id'},
-                        {data: 'title', name: 'title'},
-                        {data: 'courses_id', name: 'courses_id'},
-                        {data: 'fee', name: 'fee'},
-                        {data: 'duration', name: 'duration'},
-
-                      //  {data: 'location_id', name: 'location_id'},
+                        {data: 'name', name: 'name'},
+                        {data: 'code', name: 'code'},
+                        {data: 'phone', name: 'phone'},
+                        {data: 'email', name: 'email'},
                         {data: 'action', name: 'action', orderable: false},
                     ],
                     order: [[0, 'desc']],

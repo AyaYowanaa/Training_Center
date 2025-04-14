@@ -22,8 +22,9 @@ return new class extends Migration
                 $table->text('effort')->nullable();
                 $table->string('from_date',30)->nullable();
                 $table->string('to_date',30)->nullable();
+                $table->string('duration')->nullable();
                 $table->integer('location_id')->unsigned()->nullable();
-                $table->decimal('fee','19.2')->nullable();
+                $table->decimal('fee', 19, 2)->nullable(); 
                 $table->integer('courses_id')->unsigned()->nullable();
                 $table->integer('capacity')->default(0)->nullable();
                 $table->timestamps();

@@ -66,4 +66,8 @@
   'location_data' => 'location_data',
   'location' => 'location',
   'location_map' => 'location_map',
+  'Courses' => 'Courses',
+  'fees' => 'fees',
+  'Duration' => 'Duration',
+  'Duration(days)' => 'Duration(days)',
 );
