@@ -3,17 +3,17 @@
 namespace App\Models\training_center;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+//use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Translatable\HasTranslations;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Trainer extends Model
 {
-    use SoftDeletes,HasTranslations;
+    use HasTranslations;
 
     protected $table = 'trainers';
 
- 
+    public $translatable = ['name'];
     protected $fillable = [
         'code', 'name', 'image', 'cv', 'courses_id','phone','email',
        'evaluation', 'course_evaluations', 'average_grade','specialization'

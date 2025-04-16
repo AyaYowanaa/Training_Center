@@ -55,7 +55,7 @@ class StudentController extends Controller
                                          data-bs-toggle="modal" data-bs-target="#kt_modal_1"  >' . trans('forms.details') . '</a>
                         </div>
                         <div class="menu-item px-3">
-                                <a href="' . route('admin.Settings.Student.delete', $row->id) . '" data-kt-table-delete="delete_row"
+                                <a href="' . route('admin.Settings.Student.destroy', $row->id) . '" data-kt-table-delete="delete_row"
                                            address="' . trans('forms.delete_btn') . '" class="menu-link px-3"
                                            >' . trans('forms.delete_btn') . '</a>
                         </div>
@@ -139,18 +139,20 @@ class StudentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function delete($id)
+    public function destroy($id)
     {
        
+       
         try {
-           
-            $delete_data = Students::find($id);
-            $delete_data->delete();
-            toastr()->addSuccess(trans('forms.Delete'));
 
-            return redirect()->route('admin.Settings.Student.index');
+            $one_data = Students::find($id);
+
+            $one_data->delete();
+            toastr()->error(trans('forms.Delete'));
+            return response()->json(['message' => trans('forms.Delete')], 200);
         } catch (Exception $e) {
-            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+            return response()->json(['error' => $e->getMessage()], 500);
+
         }
     }
 

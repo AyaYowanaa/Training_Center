@@ -93,7 +93,7 @@ class TrainerController extends Controller
     public function store(Request $request)
     {
 
-        try {
+       try {
      
             $insert_data = $request->all();
             $insert_data['name'] = ['en' => $request->name_en, 'ar' => $request->name_ar];
@@ -152,14 +152,16 @@ class TrainerController extends Controller
     public function destroy($id)
     {
         try {
-            Trainer::destroy($id);
-            toastr()->addSuccess(trans('forms.Delete'));
 
-            return redirect()->route('admin.Settings.Instructor.index');
-        } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+            $one_data = Trainer::find($id);
+
+            $one_data->delete();
+            toastr()->error(trans('forms.Delete'));
+            return response()->json(['message' => trans('forms.Delete')], 200);
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+
         }
-      
     }
 
 

@@ -171,13 +171,17 @@ class TrainingCourseController extends Controller
      */
     public function destroy($id)
     {
+    
         try {
-            TrainingCourse::destroy($id);
-            toastr()->addSuccess(trans('forms.Delete'));
 
-            return redirect()->route('admin.Settings.training_courses.index');
-        } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+            $one_data = TrainingCourse::find($id);
+
+            $one_data->delete();
+            toastr()->error(trans('forms.Delete'));
+            return response()->json(['message' => trans('forms.Delete')], 200);
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+
         }
     }
 
