@@ -48919,7 +48919,7 @@ table.dataTable {
 
 table.dataTable th {
   border-bottom-color: var(--bs-table-border-color);
-  color: #01283ac2 !important;
+  color: var(--bs-text-gray-900)!important;
   font-weight: 700 !important;
 }
 

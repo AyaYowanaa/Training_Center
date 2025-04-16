@@ -361,12 +361,14 @@ div.dataTables_wrapper div.dataTables_filter input {
 
 div.dataTables_wrapper div.dataTables_info {
   padding-top: 0.85em;
+  float: left;
 }
 
 div.dataTables_wrapper div.dataTables_paginate {
   margin: 0;
   white-space: nowrap;
   text-align: right;
+  float: right;
 }
 
 div.dataTables_wrapper div.dataTables_paginate ul.pagination {
@@ -1593,3 +1595,9 @@ div.dt-datetime-error {
   text-align: center;
   color: #b11f1f;
 }
+ .dataTables_length {
+  float: left;
+}div.dataTables_wrapper div.dataTables_filter {
+
+   float: right;
+ }

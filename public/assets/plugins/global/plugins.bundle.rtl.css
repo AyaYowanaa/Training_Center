@@ -48918,7 +48918,9 @@ table.dataTable {
 }
 
 table.dataTable th {
-  border-bottom-color: var(--bs-table-border-color)
+  border-bottom-color: var(--bs-table-border-color);
+  color: var(--bs-text-gray-900)!important;
+  font-weight: 700 !important;
 }
 
 table.dataTable td.dt-type-date,table.dataTable td.dt-type-numeric,table.dataTable th.dt-type-date,table.dataTable th.dt-type-numeric {
