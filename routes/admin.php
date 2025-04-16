@@ -3,7 +3,7 @@
 use App\Http\Controllers\Admin\Training_Center\CourseController;
 use App\Http\Controllers\Admin\Training_Center\Settings\CityController;
 use App\Http\Controllers\Admin\Training_Center\Settings\DistrictController;
-use App\Http\Controllers\Admin\Training_Center\Settings\MainsettingController;
+use App\Http\Controllers\Admin\Training_Center\Settings\MainSettingController;
 use App\Http\Controllers\Admin\Training_Center\Settings\TypeSettingController;
 use App\Http\Controllers\Admin\Training_Center\Settings\EntitySettingController;
 use App\Http\Controllers\Admin\Training_Center\Settings\ExpensesController;
@@ -81,8 +81,8 @@ Route::group(
             Route::get('typesetting/delete/{id}', [TypeSettingController::class, 'delete'])->name('typesetting.delete');
 
             /********************************mainsetting******************************/
-            Route::resource('mainsetting', MainsettingController::class);
-            Route::get('mainsetting/delete/{id}', [MainsettingController::class, 'delete'])->name('mainsetting.delete');
+            Route::resource('mainsetting', MainSettingController::class);
+            Route::get('mainsetting/delete/{id}', [MainSettingController::class, 'delete'])->name('mainsetting.delete');
 
             /********************************************************************************************** */
             Route::get('course/tree', [CourseController::class, 'tree'])->name('course.tree');
