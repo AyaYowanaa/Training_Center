@@ -18,12 +18,7 @@
                 <li class="breadcrumb-item">
                     <span class="bullet bg-gray-400 w-5px h-2px"></span>
                 </li>
-                <li class="breadcrumb-item text-muted">
-                    {{trans('Toolbar.hr')}}
-                </li>
-                <li class="breadcrumb-item">
-                    <span class="bullet bg-gray-400 w-5px h-2px"></span>
-                </li>
+              
                 <li class="breadcrumb-item text-muted">
                     {{trans('Toolbar.setting')}}
                 </li>

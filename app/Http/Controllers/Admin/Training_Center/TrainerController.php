@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\training_center\Trainer;
 use App\Models\training_center\Course;
 use Illuminate\Http\Request;
+use App\Http\Requests\training_center\Trainers\StoreRequest;
+use App\Http\Requests\training_center\Trainers\UpdateRequest;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
 
@@ -90,7 +92,7 @@ class TrainerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
 
        try {
@@ -125,7 +127,7 @@ class TrainerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
         try {
             $data = Trainer::find($request->id);

@@ -67,4 +67,5 @@
   'TrainingCourses' => 'TrainingCourses',
   'Update_Trainer_Courses' => 'Update_Trainer_Courses',
   'Instructors' => 'Instructors',
+  'Instructor_Update' => 'Instructor_Update',
 );
