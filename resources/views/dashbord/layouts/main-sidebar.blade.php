@@ -169,7 +169,7 @@
         <!--begin:Menu link-->
         <a class="menu-link <?php  if (optional(explode('.', Route::currentRouteName()))[2] == 'Entity') {
             echo 'active';
-        } ?>" href="{{ route('admin.Settings.Expenses.index') }}">
+        } ?>" href="{{ route('admin.Settings.Entity.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -189,6 +189,20 @@
                                 <span class="bullet bullet-dot"></span>
                             </span>
         <span class="menu-title">{{trans('sidebar.Expenses')}}</span>
+    </a>
+    <!--end:Menu link-->
+</div>
+<!--end:Menu item-->
+ <!--begin:Menu item-->
+ <div class="menu-item">
+    <!--begin:Menu link-->
+    <a class="menu-link <?php  if (optional(explode('.', Route::currentRouteName()))[2] == 'Expenses') {
+        echo 'active';
+    } ?>" href="{{ route('admin.Settings.course.index') }}">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+        <span class="menu-title">{{trans('sidebar.Courses_Settings')}}</span>
     </a>
     <!--end:Menu link-->
 </div>

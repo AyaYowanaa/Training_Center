@@ -19,7 +19,7 @@
                 <li class="breadcrumb-item">
                     <span class="bullet bg-gray-400 w-5px h-2px"></span>
                 </li>
-              
+
                 <li class="breadcrumb-item text-muted">
                     <a href="{{ route('admin.Settings.Instructor.index') }}"
                        class="text-muted text-hover-primary"> {{trans('Toolbar.TrainingCenter')}}</a>
@@ -165,14 +165,7 @@
                 <div class="card card-flush py-4">
                     <div class="card-body pt-0">
                         <div class="row g-9 mb-7">
-                            <!--begin::Col-->
-                            <div class="">
-                                <!--begin::Label-->
-                                <label
-                                    class="required fs-6 fw-semibold mb-2">{{trans('trainingCenter.Data')}}</label>
-                             
-                            </div>
-                            <!--end::Col-->
+
                             <!--begin::Col-->
                             <div class="">
                                 <!--begin::Label-->
@@ -187,10 +180,10 @@
                                  id="specialization_id" name="specialization_id">
 
                              <option value=" ">{{trans('maindata.Select')}}</option>
-                          
+
                          </select>
                          <!--end::Select2-->
-                               
+
                             </div>
                             <!--end::Col-->
                         </div>
@@ -231,7 +224,7 @@
                             @enderror
                         </div>
                         <!--end::Input group-->
-                       
+
                         <!--begin::Input group-->
                         <div class="col-md-6">
                             <!--begin::Label-->
@@ -330,9 +323,9 @@
                                    name=""
                                    accept=".png, .jpg, .jpeg" placeholder="Meta tag name"/>
                             <!--end::Input-->
-                          
+
                         </div>
-                      
+
                         <div class="previews"></div>
 
                     </div>
@@ -369,6 +362,6 @@
     {!! JsValidator::formRequest('App\Http\Requests\training_center\Trainers\StoreRequest','#StorForm'); !!}
 
 
-  
+
 @endsection
 

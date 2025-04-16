@@ -9,7 +9,7 @@
             <!--end::Title-->
 
              </div>
-        
+
     </div>
     <!--end::Toolbar container-->
 @endsection
@@ -611,4 +611,32 @@
     </div>
     <!--end::Content-->
 
+@endsection
+
+@section('css')
+    <link rel="stylesheet" href="{{asset('assets/css/wizard.css')}}">
+
+
+    @if(app()->getLocale() =='ar')
+
+        <link href="{{asset('assets/plugins/custom/vis-timeline/vis-timeline.bundle.rtl.css')}}" rel="stylesheet" type="text/css"/>
+    @else
+        <link href="{{asset('assets/plugins/custom/vis-timeline/vis-timeline.bundle.css')}}" rel="stylesheet"
+              type="text/css"/>
+    @endif
+
+@endsection
+@section('js')
+    <script src="{{asset('assets/plugins/custom/vis-timeline/vis-timeline.bundle.js')}}"></script>
+
+    <script src="{{asset('assets/js/custom/apps/ecommerce/catalog/products.js')}}"></script>
+    <!--  Smart Wizard -->
+    <script src="{{asset('assets/js/smartWizard.js')}}"></script>
+    <script type="text/javascript">
+        document.querySelectorAll('input[type="date"], input[type="time"]').forEach(function(input) {
+            input.addEventListener("click", function() {
+                this.showPicker();
+            });
+        });
+    </script>
 @endsection
