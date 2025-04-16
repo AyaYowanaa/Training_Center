@@ -7,11 +7,20 @@
     <!--begin::Logo-->
     <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
         <!--begin::Logo image-->
-        <a href="{{route('admin.dashboard')}}">
-            <img alt="Logo"
-                 src="{{asset((!empty($mainData->image)) ? $mainData->image : 'assets/media/logos/default-dark.svg')}}"
-                 class="h-30px app-sidebar-logo-default"/>
-        </a>
+           @if(app()->getLocale() =='ar')
+            <!--begin::Logo image-->
+                <a href="{{route('admin.dashboard')}}">
+                    <img alt="Logo"
+                         src="{{asset((!empty($mainData->image)) ? $mainData->image : 'assets/media/logos/logowhite-ar.webp')}}"
+                         class="h-50px app-sidebar-logo-default"/>
+                </a> @else
+        <!--begin::Logo image-->
+            <a href="{{route('admin.dashboard')}}">
+                <img alt="Logo"
+                     src="{{asset((!empty($mainData->image)) ? $mainData->image : 'assets/media/logos/logowhiteen.webp')}}"
+                     class="h-50px app-sidebar-logo-default"/>
+            </a>
+    @endif
         <!--end::Logo image-->
         <!--begin::Sidebar toggle-->
         <div id="kt_app_sidebar_toggle" class="app-sidebar-toggle btn btn-icon btn-sm h-30px w-30px rotate"

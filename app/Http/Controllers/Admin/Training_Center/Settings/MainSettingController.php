@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
 
-class MainsettingController extends Controller
+class MainSettingController extends Controller
 {
     /**
      * Display a listing of the resource.

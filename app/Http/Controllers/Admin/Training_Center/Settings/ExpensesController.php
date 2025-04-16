@@ -17,7 +17,7 @@ class ExpensesController extends Controller
     {
 
         $obj=Expenses::all();
-        return view('dashbord.admin.Training_center.setting.Expenses.index',compact('obj'));
+        return view('dashbord.admin.Training_Center.setting.Expenses.index',compact('obj'));
     }
 
    
