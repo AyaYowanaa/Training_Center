@@ -46,4 +46,5 @@
   'Courses' => 'Courses',
   'Training_Courses' => 'Training_Courses',
   'Instructor' => 'Instructor',
+  'Courses_Settings' => 'Courses_Settings',
 );

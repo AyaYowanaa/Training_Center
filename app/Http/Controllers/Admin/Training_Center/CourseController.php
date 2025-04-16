@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin\Training_Center;
 
 use App\Http\Controllers\Controller;
 
-use App\Http\Requests\trinaing_centre\course\StoreRequest;
-use App\Http\Requests\trinaing_centre\course\UpdateRequest;
+use App\Http\Requests\training_center\course\StoreRequest;
+use App\Http\Requests\training_center\course\UpdateRequest;
 use App\Models\Finance\Accounts_type;
 use App\Models\training_center\Course;
 use Exception;
