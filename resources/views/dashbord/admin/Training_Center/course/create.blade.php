@@ -245,7 +245,7 @@
 
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
 
-    {!! JsValidator::formRequest('App\Http\Requests\trinaing_centre\course\StoreRequest', '#StorForm') !!}
+    {!! JsValidator::formRequest('App\Http\Requests\training_center\course\StoreRequest', '#StorForm') !!}
     <script>
         var KTAppaccountSave = function () {
 
