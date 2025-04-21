@@ -21,14 +21,14 @@
                 </li>
               
                 <li class="breadcrumb-item text-muted">
-                    <a href="{{ route('admin.Settings.Student.index') }}"
+                    <a href="{{ route('admin.Settings.CoursesFees.index') }}"
                        class="text-muted text-hover-primary"> {{trans('Toolbar.TrainingCenter')}}</a>
                 </li>
                 <li class="breadcrumb-item">
                     <span class="bullet bg-gray-400 w-5px h-2px"></span>
                 </li>
                 <li class="breadcrumb-item text-muted">
-                    {{trans('Toolbar.StudentUpdate')}}
+                    {{trans('Toolbar.CourseFees')}}
                 </li>
 
 
@@ -39,7 +39,7 @@
         <div class="d-flex align-items-center gap-2 gap-lg-3">
             <!--begin::Filter menu-->
             <div class="d-flex">
-                <a href="{{route('admin.Settings.Student.index')}}"
+                <a href="{{route('admin.Settings.CoursesFees.index')}}"
                    class="btn btn-icon btn-sm btn-primary flex-shrink-0 ms-4">
 
                     <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/keenthemes/keen/docs/core/html/src/media/icons/duotune/arrows/arr054.svg-->
@@ -79,10 +79,9 @@
             </div>
         @endif
         <form id="StorForm" class="form d-flex flex-column flex-lg-row "
-              action="{{route('admin.Settings.Student.update',$one_data->id)}}" method="post" enctype="multipart/form-data">
+              action="{{route('admin.Settings.CoursesFees.store')}}" method="post" enctype="multipart/form-data">
             @csrf
-            @method('PATCH')
-            <input type="hidden" name="id" value="{{$one_data->id}}">
+
             <!--begin::Main column-->
             <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
                 <!--begin::General options-->
@@ -97,96 +96,35 @@
                     <!--begin::Card body-->
                     <div class="card-body pt-0">
                         <!--begin::Input group-->
-<?php
-$name=$one_data->getTranslations('name');
-
-?>
+                      
+                      
+                      
                         <div class="mb-10 fv-row row">
-                            <div class="col-md-4">
-                                <!--begin::Label-->
-                                <label class="required form-label">{{trans('trainingCenter.name')}}
-                                    <span class="text-muted fs-7">"{{trans('forms.lable_en')}}"</span>
-                                </label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="text" name="name_en"
-                                       class="form-control mb-2  @error('name_en') is-invalid @enderror"
-                                       placeholder="{{trans('trainingCenter.name')}}" 
-                                       value="{{old('name_en',$name['en'])}}" />
-                                <!--end::Input-->
-                                @error('name_en')
-                                <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
+                  
+                            
 
                             <div class="col-md-4">
                                 <!--begin::Label-->
-                                <label class="required form-label">{{trans('trainingCenter.name')}}
-                                    <span class="text-muted fs-7">"{{trans('forms.lable_ar')}}"</span>
-
+                                <label class="required form-label">{{trans('trainingCenter.Amount')}}
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" name="name_ar"
-                                       class="form-control mb-2  @error('name_ar') is-invalid @enderror"
-                                       placeholder="{{trans('trainingCenter.name')}}" 
-                                       value="{{old('name_ar',$name['ar'])}}" />
+                                <input type="text" name="amount"
+                                       class="form-control mb-2  @error('amount') is-invalid @enderror"
+                                       placeholder="{{trans('trainingCenter.Amount')}}" value="{{old('amount')}}"/>
                                 <!--end::Input-->
-                                @error('name_ar')
+                                @error('amount')
                                 <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-         
-                            <div class="col-md-4">
-                                <!--begin::Label-->
-                                <label class="required form-label">{{trans('trainingCenter.code')}}
-                                </label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="text" name="code"
-                                       class="form-control mb-2  @error('code') is-invalid @enderror"
-                                       placeholder="{{trans('trainingCenter.code')}}" value="{{old('code',$one_data->code)}}"/>
-                                <!--end::Input-->
-                                @error('code')
-                                <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                    </div>
+                    
 
-                    <div class="row">
-                            <div class="col-md-4">
-                                <!--begin::Label-->
-                                <label class="required form-label">{{trans('trainingCenter.phone')}}
-
-                                </label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="text" name="phone"
-                                       class="form-control mb-2  @error('phone') is-invalid @enderror"
-                                       placeholder="" value="{{old('phone',$one_data->phone)}}"/>
-                                <!--end::Input-->
-                                @error('phone')
-                                <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
+                  
+                         
+                        
                         
                             <div class="col-md-4">
-                                <!--begin::Label-->
-                                <label class="required form-label">{{trans('trainingCenter.Email')}}
-
-                                </label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="text" name="email"
-                                       class="form-control mb-2  @error('email') is-invalid @enderror"
-                                       placeholder="" value="{{old('email',$one_data->email)}}"/>
-                                <!--end::Input-->
-                                @error('email')
-                                <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="col-md-4">
-                                <label class="required form-label">{{trans('trainingCenter.Courses')}}</label>
+                                <label class="form-label">{{trans('trainingCenter.Courses')}}</label>
 
                                 <!--begin::Select2-->
                                 <select class="form-select mb-2 @error('courses_id') is-invalid @enderror"
@@ -202,26 +140,28 @@ $name=$one_data->getTranslations('name');
                                 </select>
                                 <!--end::Select2-->
                             </div>
+
+                            <div class="col-md-4">
+                                <label class="form-label">{{trans('trainingCenter.Expenses')}}</label>
+
+                                <!--begin::Select2-->
+                                <select class="form-select mb-2 @error('expenses_id') is-invalid @enderror"
+                                        onchange="/*set_status()*/"
+                                        data-control="select2" data-hide-search="false"
+                                    data-placeholder="Select an option" data-allow-clear="true"
+                                        id="expenses_id" name="expenses_id">
+
+                                    <option value=" ">{{trans('maindata.Select')}}</option>
+                                    @foreach($expenses as $row)
+                                    <option value="{{ $row->id }}">{{ $row->name}}</option>
+                                @endforeach
+                                </select>
+                                <!--end::Select2-->
                             </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label class="required form-label">{{trans('trainingCenter.Grades')}}</label>
-    
-                                    <!--begin::Select2-->
-                                    <select class="form-select mb-2 @error('grades_id') is-invalid @enderror"
-                                            onchange="/*set_status()*/"
-                                            data-control="select2" data-hide-search="false"
-                                          data-placeholder="Select an option" data-allow-clear="true"
-                                            id="grades_id" name="grades_id">
-    
-                                        <option value=" ">{{trans('maindata.Select')}}</option>
-                                     {{--    @foreach($grades as $row)
-                                        <option value="{{ $row->id }}">{{ $row->name}}</option>
-                                    @endforeach --}}
-                                    </select>
-                                    <!--end::Select2-->
-                                </div>
+
+
                             </div>
+                          
 
                         </div>
 
@@ -253,7 +193,6 @@ $name=$one_data->getTranslations('name');
 @section('js')
   
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
-    {!! JsValidator::formRequest('App\Http\Requests\training_center\Students\UpdateRequest','#StorForm'); !!}
 
  
 @endsection

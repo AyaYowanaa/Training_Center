@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models\training_center;
-
+use App\Models\training_center\Course;
 use Illuminate\Database\Eloquent\Model;
 //use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Translatable\HasTranslations;

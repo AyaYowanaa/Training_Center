@@ -11,27 +11,21 @@
                     </tr>
                 </thead>
                 <tbody>
+                 
                     <tr>
-                        <td>{{ trans('trainingCenter.name') }}</td>
-                        <td class="fs-6 fw-semibold text-dark">{{$one_data->name}}</td>
-                    </tr>
-                    <tr>
-                        <td>{{ trans('trainingCenter.courses') }}</td>
+                        <td>{{ trans('trainingCenter.Course') }}</td>
                         <td class="fs-6 fw-semibold text-dark">{{$one_data->coursesData->title}}</td>
                     </tr> 
                   
                     <tr>
-                        <td>{{ trans('trainingCenter.code') }}</td>
-                        <td class="fs-6 fw-semibold text-dark">{{$one_data->code}}</td>
+                        <td>{{ trans('trainingCenter.Expenses') }}</td>
+                        <td class="fs-6 fw-semibold text-dark">{{$one_data->expensesData->name}}</td>
                     </tr>
                     <tr>
-                        <td>{{ trans('trainingCenter.phone') }}</td>
-                        <td class="fs-6 fw-semibold text-dark">{{$one_data->phone}}</td>
+                        <td>{{ trans('trainingCenter.Amount') }}</td>
+                        <td class="fs-6 fw-semibold text-dark">{{$one_data->amount}}</td>
                     </tr>
-                    <tr>
-                        <td>{{ trans('trainingCenter.email') }}</td>
-                        <td class="fs-6 fw-semibold text-dark">{{$one_data->email}}</td>
-                    </tr>
+                 
                     
                 </tbody>
             </table>

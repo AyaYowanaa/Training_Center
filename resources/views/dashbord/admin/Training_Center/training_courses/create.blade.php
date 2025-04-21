@@ -21,14 +21,7 @@
                 </li>
               
                 <li class="breadcrumb-item text-muted">
-                    <a href="{{ route('admin.Settings.training_courses.index') }}"
-                       class="text-muted text-hover-primary"> {{trans('Toolbar.TrainingCenter')}}</a>
-                </li>
-                <li class="breadcrumb-item">
-                    <span class="bullet bg-gray-400 w-5px h-2px"></span>
-                </li>
-                <li class="breadcrumb-item text-muted">
-                    {{trans('Toolbar.Trainer_Courses_Create')}}
+                    {{trans('Toolbar.Create_Training_Courses')}}
                 </li>
 
 
@@ -228,7 +221,7 @@
 
                                     <option value=" ">{{trans('maindata.Select')}}</option>
                                     @foreach($courses as $row)
-                                    <option value="{{ $row->id }}">{{ $row->name}}</option>
+                                    <option value="{{ $row->id }}">{{ $row->title}}</option>
                                 @endforeach
                                 </select>
 
