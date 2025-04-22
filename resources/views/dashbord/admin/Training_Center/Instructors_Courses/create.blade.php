@@ -20,9 +20,9 @@
                     <span class="bullet bg-gray-400 w-5px h-2px"></span>
                 </li>
               
-           
+               
                 <li class="breadcrumb-item text-muted">
-                    {{trans('Toolbar.CourseCosts')}}
+                    {{trans('Toolbar.Instructors_Courses')}}
                 </li>
 
 
@@ -33,7 +33,7 @@
         <div class="d-flex align-items-center gap-2 gap-lg-3">
             <!--begin::Filter menu-->
             <div class="d-flex">
-                <a href="{{route('admin.Settings.CourseCosts.index')}}"
+                <a href="{{route('admin.Settings.Instructors_Courses.index')}}"
                    class="btn btn-icon btn-sm btn-primary flex-shrink-0 ms-4">
 
                     <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/keenthemes/keen/docs/core/html/src/media/icons/duotune/arrows/arr054.svg-->
@@ -73,10 +73,10 @@
             </div>
         @endif
         <form id="StorForm" class="form d-flex flex-column flex-lg-row "
-        action="{{route('admin.Settings.CourseCosts.update',$one_data->id)}}" method="post" enctype="multipart/form-data">
-      @csrf
-      @method('PATCH')
-      <input type="hidden" name="id" value="{{$one_data->id}}">
+              action="{{route('admin.Settings.Instructors_Courses.store')}}" method="post" enctype="multipart/form-data">
+            @csrf
+
+            <!--begin::Main column-->
             <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
                 <!--begin::General options-->
                 <div class="card card-flush py-4">
@@ -97,20 +97,7 @@
                   
                             
 
-                            <div class="col-md-4">
-                                <!--begin::Label-->
-                                <label class="required form-label">{{trans('trainingCenter.Amount')}}
-                                </label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="text" name="amount"
-                                       class="form-control mb-2  @error('amount') is-invalid @enderror"
-                                       placeholder="{{trans('trainingCenter.Amount')}}" value="{{old('amount',$one_data->amount)}}"/>
-                                <!--end::Input-->
-                                @error('amount')
-                                <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
+                           
                     
 
                   
@@ -118,38 +105,35 @@
                         
                         
                             <div class="col-md-4">
-                                <label class="form-label">{{ trans('trainingCenter.Courses') }}</label>
-                            
+                                <label class="form-label">{{trans('trainingCenter.Courses')}}</label>
+
                                 <!--begin::Select2-->
                                 <select class="form-select mb-2 @error('courses_id') is-invalid @enderror"
+                                        onchange="/*set_status()*/"
                                         data-control="select2" data-hide-search="false"
+                                    data-placeholder="Select an option" data-allow-clear="true"
                                         id="courses_id" name="courses_id">
-                            
-                                    <option disabled {{ old('courses_id') ? '' : 'selected' }} value="">
-                                        {{ trans('maindata.Select') }}
-                                    </option>
-                            
+
+                                    <option value=" ">{{trans('maindata.Select')}}</option>
                                     @foreach($courses as $row)
-                                        <option value="{{ $row->id }}" {{ old('courses_id') == $row->id ? 'selected' : '' }}>
-                                            {{ $row->title }}
-                                        </option>
-                                    @endforeach
+                                    <option value="{{ $row->id }}">{{ $row->title}}</option>
+                                @endforeach
                                 </select>
                                 <!--end::Select2-->
                             </div>
 
                             <div class="col-md-4">
-                                <label class="form-label">{{trans('trainingCenter.Expenses')}}</label>
+                                <label class="form-label">{{trans('trainingCenter.Trainer')}}</label>
 
                                 <!--begin::Select2-->
-                                <select class="form-select mb-2 @error('expenses_id') is-invalid @enderror"
+                                <select class="form-select mb-2 @error('trainer_id') is-invalid @enderror"
                                         onchange="/*set_status()*/"
                                         data-control="select2" data-hide-search="false"
                                     data-placeholder="Select an option" data-allow-clear="true"
-                                        id="expenses_id" name="expenses_id">
+                                        id="trainer_id" name="trainer_id">
 
                                     <option value=" ">{{trans('maindata.Select')}}</option>
-                                    @foreach($expenses as $row)
+                                    @foreach($trainers as $row)
                                     <option value="{{ $row->id }}">{{ $row->name}}</option>
                                 @endforeach
                                 </select>

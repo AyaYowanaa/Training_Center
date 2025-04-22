@@ -22,7 +22,7 @@
               
            
                 <li class="breadcrumb-item text-muted">
-                    {{trans('Toolbar.CourseCosts')}}
+                    {{trans('Toolbar.Update_Instructors_Courses')}}
                 </li>
 
 
@@ -33,7 +33,7 @@
         <div class="d-flex align-items-center gap-2 gap-lg-3">
             <!--begin::Filter menu-->
             <div class="d-flex">
-                <a href="{{route('admin.Settings.CourseCosts.index')}}"
+                <a href="{{route('admin.Settings.Instructors_Courses.index')}}"
                    class="btn btn-icon btn-sm btn-primary flex-shrink-0 ms-4">
 
                     <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/keenthemes/keen/docs/core/html/src/media/icons/duotune/arrows/arr054.svg-->
@@ -73,7 +73,7 @@
             </div>
         @endif
         <form id="StorForm" class="form d-flex flex-column flex-lg-row "
-        action="{{route('admin.Settings.CourseCosts.update',$one_data->id)}}" method="post" enctype="multipart/form-data">
+        action="{{route('admin.Settings.Instructors_Courses.update',$one_data->id)}}" method="post" enctype="multipart/form-data">
       @csrf
       @method('PATCH')
       <input type="hidden" name="id" value="{{$one_data->id}}">
@@ -97,20 +97,7 @@
                   
                             
 
-                            <div class="col-md-4">
-                                <!--begin::Label-->
-                                <label class="required form-label">{{trans('trainingCenter.Amount')}}
-                                </label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="text" name="amount"
-                                       class="form-control mb-2  @error('amount') is-invalid @enderror"
-                                       placeholder="{{trans('trainingCenter.Amount')}}" value="{{old('amount',$one_data->amount)}}"/>
-                                <!--end::Input-->
-                                @error('amount')
-                                <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
+                          
                     
 
                   
@@ -146,10 +133,10 @@
                                         onchange="/*set_status()*/"
                                         data-control="select2" data-hide-search="false"
                                     data-placeholder="Select an option" data-allow-clear="true"
-                                        id="expenses_id" name="expenses_id">
+                                        id="trainer_id" name="trainer_id">
 
                                     <option value=" ">{{trans('maindata.Select')}}</option>
-                                    @foreach($expenses as $row)
+                                    @foreach($trainers as $row)
                                     <option value="{{ $row->id }}">{{ $row->name}}</option>
                                 @endforeach
                                 </select>

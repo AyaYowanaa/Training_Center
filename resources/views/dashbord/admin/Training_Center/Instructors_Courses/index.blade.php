@@ -20,7 +20,7 @@
                     <span class="bullet bg-gray-400 w-5px h-2px"></span>
                 </li>
                 <li class="breadcrumb-item text-muted">
-                    {{trans('Toolbar.CourseCosts')}}
+                    {{trans('Toolbar.Instructors_Courses')}}
                 </li>
 
 
@@ -31,7 +31,7 @@
         <div class="d-flex align-items-center gap-2 gap-lg-3">
             <!--begin::Filter menu-->
             <div class="d-flex">
-                <a href="{{route('admin.Settings.CourseCosts.create')}}"
+                <a href="{{route('admin.Settings.Instructors_Courses.create')}}"
                    class="btn btn-icon btn-sm btn-success flex-shrink-0 ms-4">
                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
                     <span class="svg-icon svg-icon-2">
@@ -73,8 +73,8 @@
                     <tr class="fw-semibold fs-6 text-gray-800">
                         <th>{{trans('trainingCenter.ID')}}</th>
                         <th>{{trans('trainingCenter.Course')}}</th>
-                        <th>{{trans('trainingCenter.Expenses')}}</th>
-                        <th>{{trans('trainingCenter.Amount')}}</th>
+                        <th>{{trans('trainingCenter.Trainer')}}</th>
+               
                         <th>{{trans('forms.Action')}}</th>
                     </tr>
                     </thead>
@@ -132,12 +132,11 @@
                     dom: "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
                         "<'row'<'col-sm-12'tr>>" +
                         "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-                    ajax: "{{route('admin.Settings.CourseCosts.index')}}",
+                    ajax: "{{route('admin.Settings.Instructors_Courses.index')}}",
                     columns: [
                         {data: 'id', name: 'id'},
                         {data: 'courses_id', name: 'courses_id'},
-                        {data: 'expenses_id', name: 'expenses_id'},
-                        {data: 'amount', name: 'amount'},
+                        {data: 'trainer_id', name: 'trainer_id'},
                         {data: 'action', name: 'action', orderable: false},
                     ],
                     order: [[0, 'desc']],

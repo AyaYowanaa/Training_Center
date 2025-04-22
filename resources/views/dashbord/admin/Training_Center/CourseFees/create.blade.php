@@ -20,15 +20,9 @@
                     <span class="bullet bg-gray-400 w-5px h-2px"></span>
                 </li>
               
+               
                 <li class="breadcrumb-item text-muted">
-                    <a href="{{ route('admin.Settings.CoursesFees.index') }}"
-                       class="text-muted text-hover-primary"> {{trans('Toolbar.TrainingCenter')}}</a>
-                </li>
-                <li class="breadcrumb-item">
-                    <span class="bullet bg-gray-400 w-5px h-2px"></span>
-                </li>
-                <li class="breadcrumb-item text-muted">
-                    {{trans('Toolbar.CourseFees')}}
+                    {{trans('Toolbar.CourseCosts')}}
                 </li>
 
 
@@ -39,7 +33,7 @@
         <div class="d-flex align-items-center gap-2 gap-lg-3">
             <!--begin::Filter menu-->
             <div class="d-flex">
-                <a href="{{route('admin.Settings.CoursesFees.index')}}"
+                <a href="{{route('admin.Settings.CourseCosts.index')}}"
                    class="btn btn-icon btn-sm btn-primary flex-shrink-0 ms-4">
 
                     <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/keenthemes/keen/docs/core/html/src/media/icons/duotune/arrows/arr054.svg-->
@@ -79,7 +73,7 @@
             </div>
         @endif
         <form id="StorForm" class="form d-flex flex-column flex-lg-row "
-              action="{{route('admin.Settings.CoursesFees.store')}}" method="post" enctype="multipart/form-data">
+              action="{{route('admin.Settings.CourseCosts.store')}}" method="post" enctype="multipart/form-data">
             @csrf
 
             <!--begin::Main column-->

@@ -19,21 +19,10 @@
                 <li class="breadcrumb-item">
                     <span class="bullet bg-gray-400 w-5px h-2px"></span>
                 </li>
+           
+            
                 <li class="breadcrumb-item text-muted">
-                    {{trans('Toolbar.finance')}}
-                </li>
-                <li class="breadcrumb-item">
-                    <span class="bullet bg-gray-400 w-5px h-2px"></span>
-                </li>
-                <li class="breadcrumb-item text-muted">
-                    <a href="{{ route('admin.Settings.course.index') }}"
-                       class="text-muted text-hover-primary"> {{trans('Toolbar.course')}}</a>
-                </li>
-                <li class="breadcrumb-item">
-                    <span class="bullet bg-gray-400 w-5px h-2px"></span>
-                </li>
-                <li class="breadcrumb-item text-muted">
-                    {{trans('Toolbar.accountCreate')}}
+                    {{trans('Toolbar.Courses')}}
                 </li>
 
 
