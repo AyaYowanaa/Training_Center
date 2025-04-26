@@ -177,6 +177,7 @@
 @section('js')
   
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+    {!! JsValidator::formRequest('App\Http\Requests\training_center\Instructors_Courses\UpdateRequest','#StorForm'); !!}
 
  
 @endsection

@@ -8,8 +8,8 @@ use App\Models\training_center\Instructors_Courses;
 use App\Models\training_center\Trainer;
 use App\Models\training_center\TrainingCourse;
 use App\Models\setting\Expenses;
-/* use App\Http\Requests\training_center\Instructors_Courses\StoreRequest;
-use App\Http\Requests\training_center\Instructors_Courses\UpdateRequest; */
+use App\Http\Requests\training_center\Instructors_Courses\StoreRequest;
+use App\Http\Requests\training_center\Instructors_Courses\UpdateRequest;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
 
@@ -93,11 +93,10 @@ class Instructors_CoursesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
 
         try {
-          //  dd($request->input('courses_id'));
 
             $insert_data = $request->all();
             $inserted_data = Instructors_Courses::create($insert_data);
@@ -123,7 +122,7 @@ class Instructors_CoursesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
         try {
             $data = Instructors_Courses::findOrFail($id);
