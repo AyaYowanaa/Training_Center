@@ -7,7 +7,7 @@
             <a href="{{ route('admin.store.categories.destroy', $child) }}">Edit</a>
 --}}
             @if($child->children->isNotEmpty())
-                @include('dashbord.admin.Finance.accounts.children', ['children' => $child->children])
+                @include('dashbord.admin.Training_Center.courses.children', ['children' => $child->children])
             @endif
         </li>
     @endforeach

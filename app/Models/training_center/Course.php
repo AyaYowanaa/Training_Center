@@ -18,7 +18,7 @@ class Course extends Model
     public $translatable = ['name'];
     protected $table = 'tc_courses';
 
-    protected $fillable = ['name', 'code', 'description', 'account_type', 'parent_id'];
+    protected $fillable = ['name', 'code', 'description', 'course_type', 'parent_id'];
 
 
     function parent_data()

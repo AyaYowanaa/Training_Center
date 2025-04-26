@@ -33,7 +33,7 @@
                     <span class="bullet bg-gray-400 w-5px h-2px"></span>
                 </li>
                 <li class="breadcrumb-item text-muted">
-                    {{trans('Toolbar.accountEdit')}}
+                    {{trans('Toolbar.courseEdit')}}
                 </li>
 
 
@@ -162,42 +162,42 @@
                             {{--
                                                         <div class="col-md-4">
                                                             <!--begin::Label-->
-                                                            <label class="required form-label">{{trans('course.account_num')}}
+                                                            <label class="required form-label">{{trans('course.course_num')}}
 
                                                             </label>
                                                             <!--end::Label-->
                                                             <!--begin::Input-->
-                                                            <input type="text" name="account_num"
-                                                                   class="form-control mb-2  @error('account_num') is-invalid @enderror"
-                                                                   placeholder="{{trans('course.account_num')}}" value="{{old('account_num',$one_data->account_num)}}"/>
+                                                            <input type="text" name="course_num"
+                                                                   class="form-control mb-2  @error('course_num') is-invalid @enderror"
+                                                                   placeholder="{{trans('course.course_num')}}" value="{{old('course_num',$one_data->course_num)}}"/>
                                                             <!--end::Input-->
-                                                            @error('account_num')
+                                                            @error('course_num')
                                                             <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
                                                             @enderror
                                                         </div>
                             --}}
                             <div class="col-md-4">
                                 <!--begin::Label-->
-                                <label class="required form-label">{{trans('account.account_type')}}
+                                <label class="required form-label">{{trans('course.course_type')}}
 
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <select name="account_type"
-                                        class="form-control mb-2  @error('account_type') is-invalid @enderror"
+                                <select name="course_type"
+                                        class="form-control mb-2  @error('course_type') is-invalid @enderror"
                                         data-control="select2" data-placeholder="{{trans('forms.Select')}}">
-                                    <option value="0"> {{trans('account.account_type')}}</option>
+                                    <option value="0"> {{trans('course.course_type')}}</option>
                                     @php
-                                        $accounts_type=['main'=>trans('course.main'),'program'=>trans('course.program'),'general'=>trans('course.general')];
+                                        $courses_type=['main'=>trans('course.main'),'program'=>trans('course.program'),'general'=>trans('course.general')];
                                     @endphp
-                                    @foreach($accounts_type as $account_type=>$text)
-                                        <option value="{{$account_type}}" @if($one_data->account_type==$account_type)
+                                    @foreach($courses_type as $course_type=>$text)
+                                        <option value="{{$course_type}}" @if($one_data->course_type==$course_type)
                                             {{'selected'}}
                                             @endif>{{$text}}</option>
                                     @endforeach
                                 </select>
                                 <!--end::Input-->
-                                @error('account_type')
+                                @error('course_type')
                                 <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -213,8 +213,8 @@
                                         data-control="select2" data-placeholder="{{trans('forms.Select')}}">
                                     <option value="0"> {{trans('course.parent')}}</option>
 
-                                @foreach($accounts as $account)
-                                        <option value="{{$account->id}}" @if($one_data->parent_id==$account->id ) {{'selected'}} @endif>{{$account->name}}</option>
+                                @foreach($courses as $course)
+                                        <option value="{{$course->id}}" @if($one_data->parent_id==$course->id ) {{'selected'}} @endif>{{$course->name}}</option>
                                     @endforeach
                                 </select>
                                 <!--end::Input-->
@@ -258,7 +258,7 @@
 
     {!! JsValidator::formRequest('App\Http\Requests\training_center\course\UpdateRequest', '#StorForm') !!}
     <script>
-        var KTAppaccountSave = function () {
+        var KTAppcourseSave = function () {
 
 
             // Public methods
@@ -270,7 +270,7 @@
         }();
         // On document ready
         KTUtil.onDOMContentLoaded(function () {
-            KTAppaccountSave.init();
+            KTAppcourseSave.init();
         });
     </script>
 @endsection

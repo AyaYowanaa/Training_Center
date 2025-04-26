@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\Http\Requests\training_center\course\StoreRequest;
 use App\Http\Requests\training_center\course\UpdateRequest;
-use App\Models\Finance\Accounts_type;
+use App\Models\Finance\courses_type;
 use App\Models\training_center\Course;
 use Exception;
 use Illuminate\Http\Request;
@@ -79,16 +79,16 @@ class CourseController extends Controller
 
     public function tree()
     {
-        $accounts = Course::with('children')->get()->toTree();
-        $categoryTree = $this->buildTree($accounts);
+        $courses = Course::with('children')->get()->toTree();
+        $categoryTree = $this->buildTree($courses);
 
-        return view('dashbord.admin.Training_Center.course.tree', compact('accounts', 'categoryTree'));
+        return view('dashbord.admin.Training_Center.course.tree', compact('courses', 'categoryTree'));
     }
 
     public function load_roots()
     {
-        $accounts = Course::whereIsRoot()->get();
-        return response()->json($this->formataccounts($accounts));
+        $courses = Course::whereIsRoot()->get();
+        return response()->json($this->formatcourses($courses));
     }
 
     public function load_child(Request $request)
@@ -96,14 +96,14 @@ class CourseController extends Controller
         $parent = Course::find($request->id);
         if ($parent) {
             $children = $parent->children()->get();
-            return response()->json($this->formataccounts($children));
+            return response()->json($this->formatcourses($children));
         }
         return response()->json([]);
     }
 
-    private function formataccounts($accounts)
+    private function formatcourses($courses)
     {
-        return $accounts->map(function ($category) {
+        return $courses->map(function ($category) {
             if ($category->children()->exists()) {
                 $icon = 'ki-solid ki-add-folder text-success';
             } else {
@@ -134,8 +134,8 @@ class CourseController extends Controller
 
     public function create()
     {
-        $accounts = Course::all();
-        return view('dashbord.admin.Training_Center.course.create', compact('accounts'));
+        $courses = Course::all();
+        return view('dashbord.admin.Training_Center.course.create', compact('courses'));
     }
 
     public function store(StoreRequest $request)
@@ -154,27 +154,27 @@ class CourseController extends Controller
 
     public function show(Course $category)
     {
-        return view('accounts.show', compact('category'));
+        return view('courses.show', compact('category'));
     }
 
     public function edit(Request $request, $id)
     {
 
-        $accounts = Course::all();
-//        $accounts_type = Accounts_type::all();
+        $courses = Course::all();
+//        $courses_type = courses_type::all();
 
         $one_data = Course::find($id);
 
-        return view('dashbord.admin.Training_Center.course.edit', compact('one_data', 'accounts'));
+        return view('dashbord.admin.Training_Center.course.edit', compact('one_data', 'courses'));
     }
 
     public function load_edit(Request $request)
     {
 //        dd($request);
-//        $accounts = Course::all();
+//        $courses = Course::all();
         $category = Course::find($request->id);
 
-//        return view('accounts.edit', compact('category', 'accounts'));
+//        return view('courses.edit', compact('category', 'courses'));
         return response()->json($category);
 
     }
@@ -183,14 +183,14 @@ class CourseController extends Controller
     {
         $data = $request->all();
 
-        $account = Course::find($data['id']);
-        $account->update($data);
+        $course = Course::find($data['id']);
+        $course->update($data);
 
         if ($request->input('parent_id')) {
             $parent = Course::find($request->input('parent_id'));
-            $account->appendToNode($parent)->save();
+            $course->appendToNode($parent)->save();
         } else {
-            $account->saveAsRoot();
+            $course->saveAsRoot();
         }
 
         return redirect()->route('admin.Settings.course.index');

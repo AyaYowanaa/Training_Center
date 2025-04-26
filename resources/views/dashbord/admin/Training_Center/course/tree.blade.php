@@ -102,7 +102,7 @@
 
 
                              @if($category->children->isNotEmpty())
-                                 @include('dashbord.admin.Finance.accounts.children', ['children' => $category->children])
+                                 @include('dashbord.admin.Finance.courses.children', ['children' => $category->children])
                              @endif
                          </li>
                      @endforeach

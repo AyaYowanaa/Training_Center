@@ -17,7 +17,7 @@ return new class extends Migration
             $table->json('name')->nullable();
             $table->float('code')->nullable();
             $table->text('description')->nullable();
-            $table->string('account_type')->nullable();
+            $table->string('course_type')->nullable();
             NestedSet::columns($table);
 
             $table->timestamps();
