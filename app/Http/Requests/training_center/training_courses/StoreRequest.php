@@ -26,8 +26,11 @@ class StoreRequest extends FormRequest
         return [
             'title_ar' => 'required|unique:training_courses,title->ar',
             'title_en' => 'required|unique:training_courses,title->en',
+            'courses_id' => 'required|exists:tc_courses,id',
+            'capacity'=>'required|numeric|min:1',
+            'fee'=>'required|numeric|min:1',
+            'location_id'=>'required|exists:locations,id',
 
-        
         ];
     }
 

@@ -9,7 +9,7 @@ class Entity extends Model
 {
     use SoftDeletes,HasTranslations;
 
-    protected $table = 'entities';
+    protected $table = 'tc_entities';
 
     public $translatable = ['name','address'];
     protected $fillable = [

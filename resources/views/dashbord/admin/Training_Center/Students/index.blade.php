@@ -6,7 +6,7 @@
         <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
             <!--begin::Title-->
             <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                {{trans('dash_site.create')}}</h1>
+                {{trans('trainingCenter.Students')}}</h1>
             <!--end::Title-->
             <!--begin::Breadcrumb-->
             <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -15,7 +15,7 @@
                     <a href="{{ route('admin.dashboard') }}" class="text-muted text-hover-primary">
                         {{trans('Toolbar.home')}}</a>
                 </li>
-         
+
                 <li class="breadcrumb-item">
                     <span class="bullet bg-gray-400 w-5px h-2px"></span>
                 </li>
@@ -71,11 +71,11 @@
                        id="data">
                     <thead>
                     <tr class="fw-semibold fs-6 text-gray-800">
-                        <th>{{trans('dash_site.ID')}}</th>
-                        <th>{{trans('dash_site.name')}}</th>
-                        <th>{{trans('dash_site.code')}}</th>
-                        <th>{{trans('dash_site.phone')}}</th>
-                        <th>{{trans('dash_site.email')}}</th>
+                        <th>{{trans('trainingCenter.ID')}}</th>
+                        <th>{{trans('trainingCenter.NameStudent')}}</th>
+                        <th>{{trans('trainingCenter.code')}}</th>
+                        <th>{{trans('trainingCenter.phone')}}</th>
+                        <th>{{trans('trainingCenter.email')}}</th>
                         <th>{{trans('forms.Action')}}</th>
                     </tr>
                     </thead>
@@ -91,7 +91,7 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title">{{trans('dash_site.details')}}</h3>
+                    <h3 class="modal-title">{{trans('trainingCenter.details')}}</h3>
 
                     <!--begin::Close-->
                     <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal"
@@ -186,7 +186,7 @@
                         }
                     }).then(function (result) {
                         if (result.value) {
-                       
+
                             Swal.fire({
                                 imageUrl: 'https://media.tenor.com/C7KormPGIwQAAAAi/epic-loading.gif',
                                 imageWidth: 200,

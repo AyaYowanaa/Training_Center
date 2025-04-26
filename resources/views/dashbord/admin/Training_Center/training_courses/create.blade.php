@@ -7,7 +7,7 @@
         <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
             <!--begin::Title-->
             <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                {{trans('trainingCenter.create')}}</h1>
+                {{trans('course.create')}}</h1>
             <!--end::Title-->
             <!--begin::Breadcrumb-->
             <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -19,7 +19,7 @@
                 <li class="breadcrumb-item">
                     <span class="bullet bg-gray-400 w-5px h-2px"></span>
                 </li>
-              
+
                 <li class="breadcrumb-item text-muted">
                     {{trans('Toolbar.Create_Training_Courses')}}
                 </li>
@@ -73,9 +73,9 @@
         @endif
         <form id="StorForm" class="form d-flex flex-column flex-lg-row "
               action="{{route('admin.Settings.training_courses.store')}}" method="post" enctype="multipart/form-data">
-        @csrf
+            @csrf
 
-        <!--begin::Main column-->
+            <!--begin::Main column-->
             <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
                 <!--begin::General options-->
                 <div class="card card-flush py-4">
@@ -122,20 +122,20 @@
                                 <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-                        {{--     <div class="col-md-4">
-                                <!--begin::Label-->
-                                <label class="required form-label">{{trans('course.code')}}
-                                </label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="text" name="code"
-                                       class="form-control mb-2  @error('code') is-invalid @enderror"
-                                       placeholder="{{trans('course.code')}}" value="{{old('code')}}"/>
-                                <!--end::Input-->
-                                @error('code')
-                                <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div> --}}
+                            {{--     <div class="col-md-4">
+                                    <!--begin::Label-->
+                                    <label class="required form-label">{{trans('course.code')}}
+                                    </label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <input type="text" name="code"
+                                           class="form-control mb-2  @error('code') is-invalid @enderror"
+                                           placeholder="{{trans('course.code')}}" value="{{old('code')}}"/>
+                                    <!--end::Input-->
+                                    @error('code')
+                                    <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div> --}}
                             <div class="col-md-4">
                                 <!--begin::Label-->
                                 <label class="required form-label">{{trans('course.Duration')}}
@@ -153,11 +153,11 @@
                         </div>
 
                         <div class="mb-10 fv-row row">
-                           
+
                             <div class="col-md-4">
-                                
+
                                 <label
-                                    class="required fs-6 fw-semibold mb-2">{{trans('trainingCenter.To_date')}}</label>
+                                    class="required fs-6 fw-semibold mb-2">{{trans('course.To_date')}}</label>
                                 <input
                                     class="form-control form-control-solid @error('from_date') is-invalid @enderror"
                                     value="" name="from_date"
@@ -166,27 +166,27 @@
                                 <div
                                     class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
                                 @enderror
-                           
-                           
-                        </div>
-                          
-                            <div class="col-md-4">
-                                
-                                    <label
-                                        class="required fs-6 fw-semibold mb-2">{{trans('trainingCenter.From_date')}}</label>
-                                    <input
-                                        class="form-control form-control-solid @error('to_date') is-invalid @enderror"
-                                        value="" name="to_date"
-                                        placeholder="Pick date rage" id="to_date"/>
-                                    @error('to_date')
-                                    <div
-                                        class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                               
-                               
+
+
                             </div>
-                            
-                          
+
+                            <div class="col-md-4">
+
+                                <label
+                                    class="required fs-6 fw-semibold mb-2">{{trans('course.From_date')}}</label>
+                                <input
+                                    class="form-control form-control-solid @error('to_date') is-invalid @enderror"
+                                    value="" name="to_date"
+                                    placeholder="Pick date rage" id="to_date"/>
+                                @error('to_date')
+                                <div
+                                    class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
+                                @enderror
+
+
+                            </div>
+
+
                             <div class="col-md-4">
                                 <!--begin::Label-->
                                 <label class="required form-label">{{trans('course.Capacity')}}
@@ -212,41 +212,41 @@
                                     <span class="text-muted fs-7">"{{trans('forms.lable_ar')}}"</span>
 
                                 </label>
-                                        <!--begin::Select2-->
-                                        <select class="form-select mb-2 @error('courses_id') is-invalid @enderror"
+                                <!--begin::Select2-->
+                                <select class="form-select mb-2 @error('courses_id') is-invalid @enderror"
                                         onchange="/*set_status()*/"
                                         data-control="select2" data-hide-search="false"
-                                    data-placeholder="Select an option" data-allow-clear="true"
+                                        data-placeholder="Select an option" data-allow-clear="true"
                                         id="courses_id" name="courses_id">
 
                                     <option value=" ">{{trans('maindata.Select')}}</option>
                                     @foreach($courses as $row)
-                                    <option value="{{ $row->id }}">{{ $row->title}}</option>
-                                @endforeach
+                                        <option value="{{ $row->id }}">{{ $row->title}}</option>
+                                    @endforeach
                                 </select>
 
-                           
-                            </div> 
 
-                           
+                            </div>
+
+
                             <div class="col-md-4">
                                 <!--begin::Label-->
-                                <label class=" required form-label">{{trans('dash_site.location')}}
+                                <label class=" required form-label">{{trans('course.location')}}
                                     <span class="text-muted fs-7">"{{trans('forms.lable_ar')}}"</span>
                                 </label>
-                    
-                           
+
+
                                 <!--begin::Select2-->
                                 <select class="form-select mb-2 @error('location_id') is-invalid @enderror"
                                         onchange="/*set_status()*/"
                                         data-control="select2" data-hide-search="false"
-                                    data-placeholder="Select an option" data-allow-clear="true"
+                                        data-placeholder="Select an option" data-allow-clear="true"
                                         id="location_id" name="location_id">
 
                                     <option value=" ">{{trans('maindata.Select')}}</option>
                                     @foreach($location_id as $row)
-                                    <option value="{{ $row->id }}">{{ $row->name}}</option>
-                                @endforeach
+                                        <option value="{{ $row->id }}">{{ $row->name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="col-md-4">
@@ -263,17 +263,17 @@
                                 <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-                        
+
                         </div>
                         <div class="mb-10 fv-row row">
                             <div class="col-md-6 english">
                                 <!--begin::Label-->
-                                <label class="form-label">{{trans('dash_site.details')}}
+                                <label class="form-label">{{trans('course.details')}}
                                     <span class="text-muted fs-7">"{{trans('forms.lable_en')}}"</span>
                                 </label>
                                 <!--end::Label-->
-                            {{--                                        <input type="hidden" id="details_en" name="details_en" >--}}
-                            <!--begin::Editor-->
+                                {{--                                        <input type="hidden" id="details_en" name="details_en" >--}}
+                                <!--begin::Editor-->
                                 <textarea id="details_en" name="details_en"
                                           class="min-h-200px mb-2 @error('details_en') is-invalid @enderror">{{old('details_en')}}</textarea>
                                 <!--end::Editor-->
@@ -283,13 +283,13 @@
                             </div>
                             <div class="col-md-6 arabic">
                                 <!--begin::Label-->
-                                <label class="form-label">{{trans('dash_site.details')}}
+                                <label class="form-label">{{trans('course.details')}}
                                     <span class="text-muted fs-7">"{{trans('forms.lable_ar')}}"</span>
                                 </label>
                                 <!--end::Label-->
-                            {{--                                        <input type="hidden" id="details_ar" name="details_ar" >--}}
-    
-                            <!--begin::Editor-->
+                                {{--                                        <input type="hidden" id="details_ar" name="details_ar" >--}}
+
+                                <!--begin::Editor-->
                                 <textarea id="details_ar" name="details_ar"
                                           class="min-h-200px mb-2 @error('details_ar') is-invalid @enderror">{{old('details_ar')}}</textarea>
                                 <!--end::Editor-->
@@ -333,119 +333,119 @@
 
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
 
-     {!! JsValidator::formRequest('App\Http\Requests\training_center\training_courses\StoreRequest', '#StorForm') !!}
- <script>
-var KTAppaccountSave = function () {
+    {!! JsValidator::formRequest('App\Http\Requests\training_center\training_courses\StoreRequest', '#StorForm') !!}
+    <script>
+        var KTAppaccountSave = function () {
 
-const initDaterangepicker_1 = () => {
+            const initDaterangepicker_1 = () => {
 
-    $("#to_date").daterangepicker({
-    singleDatePicker: true,
-    showDropdowns: true,
-    minYear: 2025,
-    maxYear: parseInt(moment().format("YYYY"), 12)
-}
-);
-}
-const initDaterangepicker_2 = () => {
+                $("#to_date").daterangepicker({
+                        singleDatePicker: true,
+                        showDropdowns: true,
+                        minYear: 2025,
+                        maxYear: parseInt(moment().format("YYYY"), 12)
+                    }
+                );
+            }
+            const initDaterangepicker_2 = () => {
 
-$("#from_date").daterangepicker({
-singleDatePicker: true,
-showDropdowns: true,
-minYear: 2025,
-maxYear: parseInt(moment().format("YYYY"), 12)
-}
-);
-}
-const initckeditor = () => {
+                $("#from_date").daterangepicker({
+                        singleDatePicker: true,
+                        showDropdowns: true,
+                        minYear: 2025,
+                        maxYear: parseInt(moment().format("YYYY"), 12)
+                    }
+                );
+            }
+            const initckeditor = () => {
 
-const elements_en = [
-    '#details_en'
-];
-const elements_ar = [
-    '#details_ar'
-];
+                const elements_en = [
+                    '#details_en'
+                ];
+                const elements_ar = [
+                    '#details_ar'
+                ];
 
 // Loop all elements
-elements_en.forEach((element, index) => {
-    // Get quill element
-    let ckeditor = document.querySelector(element);
+                elements_en.forEach((element, index) => {
+                    // Get quill element
+                    let ckeditor = document.querySelector(element);
 
-    // Break if element not found
-    if (!ckeditor) {
-        return;
-    }
+                    // Break if element not found
+                    if (!ckeditor) {
+                        return;
+                    }
 
-    // Init quill --- more info: https://quilljs.com/docs/quickstart/
-    ClassicEditor
-        .create(ckeditor, {
-            toolbar: {
-                items: [
-                    'undo', 'redo',
-                    '|', 'heading',
-                    '|', 'bold', 'italic',
-                    '|', 'link', 'insertTable', 'mediaEmbed', 'blockQuote',
-                    '|', 'bulletedList', 'numberedList', 'outdent', 'indent'
-                ]
-            }, heading: {
-                options: [
-                    {model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph'},
-                    {model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1'},
-                    {model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2'},
-                    {model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3'}
-                ]
-            }, language: 'en'
-        })
-        .then(editor => {
-            console.log(editor);
-        })
-        .catch(error => {
-            console.error(error);
-        });
+                    // Init quill --- more info: https://quilljs.com/docs/quickstart/
+                    ClassicEditor
+                        .create(ckeditor, {
+                            toolbar: {
+                                items: [
+                                    'undo', 'redo',
+                                    '|', 'heading',
+                                    '|', 'bold', 'italic',
+                                    '|', 'link', 'insertTable', 'mediaEmbed', 'blockQuote',
+                                    '|', 'bulletedList', 'numberedList', 'outdent', 'indent'
+                                ]
+                            }, heading: {
+                                options: [
+                                    {model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph'},
+                                    {model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1'},
+                                    {model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2'},
+                                    {model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3'}
+                                ]
+                            }, language: 'en'
+                        })
+                        .then(editor => {
+                            console.log(editor);
+                        })
+                        .catch(error => {
+                            console.error(error);
+                        });
 
 
-});
+                });
 // Loop all elements
-elements_ar.forEach((element, index) => {
-    // Get quill element
-    let ckeditor = document.querySelector(element);
+                elements_ar.forEach((element, index) => {
+                    // Get quill element
+                    let ckeditor = document.querySelector(element);
 
-    // Break if element not found
-    if (!ckeditor) {
-        return;
-    }
+                    // Break if element not found
+                    if (!ckeditor) {
+                        return;
+                    }
 
-    // Init quill --- more info: https://quilljs.com/docs/quickstart/
-    ClassicEditor
-        .create(ckeditor, {
-            toolbar: {
-                items: [
-                    'undo', 'redo',
-                    '|', 'heading',
-                    '|', 'bold', 'italic',
-                    '|', 'link', 'insertTable', 'mediaEmbed', 'blockQuote',
-                    '|', 'bulletedList', 'numberedList', 'outdent', 'indent'
-                ]
-            }, heading: {
-                options: [
-                    {model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph'},
-                    {model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1'},
-                    {model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2'},
-                    {model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3'}
-                ]
-            }, language: 'ar'
-        })
-        .then(editor => {
-            console.log(editor);
-        })
-        .catch(error => {
-            console.error(error);
-        });
+                    // Init quill --- more info: https://quilljs.com/docs/quickstart/
+                    ClassicEditor
+                        .create(ckeditor, {
+                            toolbar: {
+                                items: [
+                                    'undo', 'redo',
+                                    '|', 'heading',
+                                    '|', 'bold', 'italic',
+                                    '|', 'link', 'insertTable', 'mediaEmbed', 'blockQuote',
+                                    '|', 'bulletedList', 'numberedList', 'outdent', 'indent'
+                                ]
+                            }, heading: {
+                                options: [
+                                    {model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph'},
+                                    {model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1'},
+                                    {model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2'},
+                                    {model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3'}
+                                ]
+                            }, language: 'ar'
+                        })
+                        .then(editor => {
+                            console.log(editor);
+                        })
+                        .catch(error => {
+                            console.error(error);
+                        });
 
 
-});
+                });
 
-}
+            }
 
 
             // Public methods

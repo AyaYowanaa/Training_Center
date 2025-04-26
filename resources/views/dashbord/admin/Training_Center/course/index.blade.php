@@ -6,7 +6,7 @@
         <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
             <!--begin::Title-->
             <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                {{trans('course.create')}}</h1>
+                {{trans('TC_Setting.create')}}</h1>
             <!--end::Title-->
             <!--begin::Breadcrumb-->
             <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -15,7 +15,7 @@
                     <a href="{{ route('admin.dashboard') }}" class="text-muted text-hover-primary">
                         {{trans('Toolbar.home')}}</a>
                 </li>
-              
+
                 <li class="breadcrumb-item">
                     <span class="bullet bg-gray-400 w-5px h-2px"></span>
                 </li>
@@ -99,12 +99,12 @@
                            id="data">
                         <thead>
                         <tr class="fw-semibold fs-6 text-gray-800">
-                            <th class="text-center">{{trans('course.ID')}}</th>
-                            <th class="text-center">{{trans('course.code')}}</th>
-                            <th class="text-center">{{trans('course.name')}}</th>
-{{--                            <th class="text-center">{{trans('course.account_type')}}</th>--}}
-                            <th class="text-center">{{trans('course.parant')}}</th>
-                            <th class="text-center">{{trans('course.Action')}}</th>
+                            <th class="text-center">{{trans('TC_Setting.ID')}}</th>
+                            <th class="text-center">{{trans('TC_Setting.code')}}</th>
+                            <th class="text-center">{{trans('TC_Setting.name_cat')}}</th>
+{{--                            <th class="text-center">{{trans('TC_Setting.account_type')}}</th>--}}
+                            <th class="text-center">{{trans('TC_Setting.parant')}}</th>
+                            <th class="text-center">{{trans('TC_Setting.Action')}}</th>
                         </tr>
                         </thead>
                     </table>
@@ -123,7 +123,7 @@
                       method="post">
                     @csrf
                     <div class="modal-header">
-                        <h3 class="modal-title">{{trans('course.file_excel_add')}}</h3>
+                        <h3 class="modal-title">{{trans('TC_Setting.file_excel_add')}}</h3>
 
                         <!--begin::Close-->
                         <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal"
@@ -136,7 +136,7 @@
                     <div class="modal-body">
                         <div class="mb-10">
                             <label for="exampleFormControlInput1"
-                                   class="required form-label">{{trans('course.file_excel')}}</label>
+                                   class="required form-label">{{trans('TC_Setting.file_excel')}}</label>
                             <input type="file" name="excel" class="form-control form-control-solid"
                                    placeholder="accounts.excel"/>
                         </div>
@@ -208,7 +208,7 @@
                     buttons: [
                         {
                             extend: 'excelHtml5',
-                            title: "{{trans('course.title')}}",
+                            title: "{{trans('TC_Setting.title')}}",
                             text: '{{trans('forms.ExportToExcel')}}',
                             exportOptions: {
                                 columns: ':visible:not(.no-export)'  // Exclude columns with class 'no-export'

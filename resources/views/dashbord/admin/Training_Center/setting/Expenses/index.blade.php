@@ -6,7 +6,7 @@
         <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
             <!--begin::Title-->
             <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                {{trans('about.create')}}</h1>
+                {{trans('TC_Setting.createExpenses')}}</h1>
             <!--end::Title-->
             <!--begin::Breadcrumb-->
             <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -75,7 +75,7 @@
 
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">{{trans('Expenses.Add')}}</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">{{trans('TC_Setting.Add')}}</h5>
                     </div>
                     <!--begin::Formmmmm-->
 
@@ -84,22 +84,22 @@
 
 
                             <div class="row">
-                                <label class="required form-label">{{trans('Expenses.Name')}}(<span
+                                <label class="required form-label">{{trans('TC_Setting.NameExpenses')}}(<span
                                         class="text-gray-600">{{trans('forms.lable_en')}}</span>)</label>
 
                                 <input type="text" name="name_en" class="form-control mb-2"
                                        placeholder="name" value="" required autocomplete/>
-                           
-                        
-                                <label class="required form-label">{{trans('Expenses.Name')}}(<span
+
+
+                                <label class="required form-label">{{trans('TC_Setting.NameExpenses')}}(<span
                                         class="text-gray-600">{{trans('forms.lable_ar')}}</span>)</label>
 
                                 <input type="text" name="name_ar" class="form-control mb-2"
                                        placeholder="الاسم " value="" required autocomplete/>
                             </div>
-                          
-                        
-                        
+
+
+
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -153,8 +153,8 @@
                     <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                         <th class="min-w-250px">#</th>
 
-                        <th class="min-w-250px">{{trans('Expenses.Name')}}</th>
-                        <th class="text-end min-w-70px">{{trans('Expenses.Action')}}</th>
+                        <th class="min-w-250px">{{trans('TC_Setting.NameExpenses')}}</th>
+                        <th class="text-end min-w-70px">{{trans('TC_Setting.Action')}}</th>
                     </tr>
                     <!--end::Table row-->
                     </thead>
@@ -164,7 +164,7 @@
                     <!--begin::Table row-->
                     @php
                         $i=1;
-                      
+
 
                     @endphp
 
@@ -173,11 +173,11 @@
 
                         <tr>
                           <td>{{$i++}}</td>
-              {{--        <td>{{ $x->name[app()->getLocale()] ?? '-' }}</td>  
-              {{--            <td>{{ json_decode($x->name, true)['en'] ?? '-' }}</td>  
+              {{--        <td>{{ $x->name[app()->getLocale()] ?? '-' }}</td>
+              {{--            <td>{{ json_decode($x->name, true)['en'] ?? '-' }}</td>
                          <td>{{ $name['en'] ?? '-' }}</td> --}}
                           <td>{{$x->name}}</td>
-                        
+
 
                             <!--begin::Action=-->
 
@@ -222,7 +222,7 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel">
-                                            {{trans('Expenses.Update')}}</h5>
+                                            {{trans('TC_Setting.Update')}}</h5>
                                     </div>
 
 
@@ -233,14 +233,14 @@
                                         {{--     @php
                                                 $name=optional($x->getTranslations('name')); //return local lang
                                             @endphp --}}
-                                           <?php 
+                                           <?php
                                          $name=optional($x->getTranslations('name'));
                                          /* $name = optinal(json_decode($x->name, true)); */ ?>
-                                       
+
 
                                             <div class="row">
                                                 <label
-                                                    class="required form-label">{{trans('Expenses.Name')}}
+                                                    class="required form-label">{{trans('TC_Setting.NameExpenses')}}
                                                     (<span
                                                         class="text-gray-600">{{trans('forms.lable_en')}}</span>)</label>
 
@@ -248,10 +248,10 @@
                                                        placeholder="Name" value="{{$name['en']}}"
                                                        {{-- value="{{$name['en']?? '-'}}---}}
                                                        required autocomplete/>
-                                        
-                                        
+
+
                                                 <label
-                                                    class="required form-label">{{trans('Expenses.Name')}}
+                                                    class="required form-label">{{trans('TC_Setting.NameExpenses')}}
                                                     (<span
                                                         class="text-gray-600">{{trans('forms.lable_ar')}}</span>)</label>
 
@@ -259,7 +259,7 @@
                                                        placeholder="الاسم" value="{{$name['ar']}}"
                                                        required autocomplete/>
                                             </div>
-                                            
+
 
                                             <!--end::Button-->
 

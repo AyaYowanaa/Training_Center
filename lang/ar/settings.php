@@ -1,30 +1,4 @@
-<?php
-
-return array (
-  '' => '',
-  'Actions' => 'العمليه',
-  'Add' => 'اضافة محافظة',
-  'Add Car Brand' => 'قم باضافه ماركه السياره',
-  'Add City' => 'قم باضافه مدينه ',
-  'Add Group' => 'قم باضافه مجموعه',
-  'Add Group Type' => 'اضافه نوع مجموعه',
-  'Add_City' => 'اضافة مدينة',
-  'Add_district_name' => 'اضافة محافظة',
-  'Brand Name' => 'اسم الماركه',
-  'City Name' => 'اسم المدينه ',
-  'City_Name' => 'اسم المدينة',
-  'Close' => 'اغلاق',
-  'Delete' => 'حذف',
-  'Edit' => 'تعديل',
-  'Group Type' => 'نوع المجموعه',
-  'Save Changes' => 'حفظ التغيرات ',
-  'Save_Changes' => 'حفظ',
-  'Search City Name' => 'البحث عن اسم المدينه',
-  'Search Groups' => 'البحث عن مجموعه',
-  'Update Car Brand' => 'تعديل ماركه السياره',
-  'Update City' => 'تعديل اسم المدينه',
-  'Update_City' => 'تعديل بيانات المدينة',
-  'cities' => 'المدن',
-  'district_name' => 'اسم المحافظة',
-  'update_district_name' => 'تعديل بينات المحافظة',
+<?php return array (
+  'Save Changes' => 'Save Changes',
+  'Close' => 'Close',
 );

@@ -1,13 +1,9 @@
-
-<?php
-
-return array (
-  'email' => 'الايميل',
-  'image' => 'صورة',
-  'password' => 'كلمة المرور',
-  'phone' => 'رقم الجوال',
-  'roles' => 'دور الصلاحية',
-  'status' => 'حاله',
-  'user_data' => 'بيانات المستخدم',
-  'user_name' => 'اسم المستخدم',
+<?php return array (
+  'image' => 'image',
+  'user_data' => 'user_data',
+  'user_name' => 'user_name',
+  'email' => 'email',
+  'password' => 'password',
+  'phone' => 'phone',
+  'status' => 'status',
 );

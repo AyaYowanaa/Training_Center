@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class CourseFees extends Model
 {
 
-    protected $table = 'courses_fees';
+    protected $table = 'tc_courses_fees';
 
     protected $fillable = [
         'courses_id',
         'expenses_id',
         'amount',
-  
+
     ];
 
     public function coursesData()

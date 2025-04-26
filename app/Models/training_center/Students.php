@@ -9,7 +9,7 @@ class Students extends Model
 {
     use SoftDeletes,HasTranslations;
 
-    protected $table = 'students';
+    protected $table = 'tc_students';
     public $translatable = ['name'];
 
     protected $fillable = [

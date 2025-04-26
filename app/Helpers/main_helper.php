@@ -83,6 +83,53 @@ if (!function_exists('getFirstLetters')) {
         return $firstLetters;
     }
 
+    if (!function_exists('getDefultImageIfile')) {
+
+        function getDefultImageIfile($filename)
+        {
+            $extension = pathinfo($filename, PATHINFO_EXTENSION);
+
+            $image = asset('assets/media/svg/files/blank-image.svg');
+            $imagedark = asset('assets/media/svg/files/blank-image-dark.svg');
+
+            $wordExtensions = ["doc", "docx"];
+            $xlsExtensions = ["xls", "xlsx", "ods", "csv"];
+            if (in_array($extension, $wordExtensions)) {
+                $image = asset('assets/media/svg/files/doc.svg');
+                $imagedark = asset('assets/media/svg/files/doc-dark.svg');
+            } elseif (in_array($extension, $xlsExtensions)) {
+                $image = asset('assets/images/files/xls.png');
+                $imagedark = asset('assets/images/files/xls.png');
+
+            } elseif ($extension == 'pdf') {
+                $image = asset('assets/media/svg/files/pdf.svg');
+                $imagedark = asset('assets/media/svg/files/pdf-dark.svg');
+
+            }
+
+            return ['image'=>$image,'imagedark'=>$imagedark];
+        }
+    }
+    if (!function_exists('isImageIfile')) {
+
+        function isImageIfile($filename)
+        {
+//        $extension = $image->getClientOriginalExtension();
+            $extension = pathinfo($filename, PATHINFO_EXTENSION);
+
+            $imageExtensions = [
+                "jpg", "jpeg", "png", "gif", "bmp", "tiff", "tif", "webp", "svg", "ico", "heic", "heif", "raw", "cr2", "nef", "dng", "xcf", "pcx", "tga"
+            ];
+            return in_array($extension,$imageExtensions);
+        }
+    }
+    if (!function_exists('getDefultImage')) {
+
+        function getDefultImage()
+        {
+            return asset('assets/media/avatars/blank.png');
+        }
+    }
 
 }
 

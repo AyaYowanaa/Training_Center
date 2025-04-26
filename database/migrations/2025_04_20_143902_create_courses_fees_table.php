@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('courses_fees', function (Blueprint $table) {
+        Schema::create('tc_courses_fees', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('courses_id');
             $table->unsignedInteger('expenses_id');
             $table->decimal('amount', 10, 2)->default(0);
             $table->timestamps();
-      
+
         });
     }
 

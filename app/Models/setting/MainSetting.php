@@ -9,7 +9,7 @@ use Spatie\Translatable\HasTranslations;
 class MainSetting extends Model
 {
 
-    protected $table = 'hr_main_setting';
+    protected $table = 'tc_main_setting';
     public $timestamps = true;
 
     use SoftDeletes,HasTranslations;

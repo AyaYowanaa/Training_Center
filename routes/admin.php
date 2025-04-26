@@ -113,11 +113,12 @@ Route::group(
             Route::resource('Instructor', TrainerController::class);
            // Route::get('Instructor/delete/{id}', [TrainerController::class, 'delete'])->name('Instructor.delete');
             Route::get('Instructor/show_load/{id}', [TrainerController::class, 'show_load'])->name('Instructor.load_details');
+            Route::get('Instructor/destroy_file/{id}', [TrainerController::class, 'destroy_file'])->name('Instructor.destroy_file');
 
             /*********************************** Course Fees ******************************** */
             Route::resource('CoursesFees', CoursesFeesController::class);
             Route::get('CoursesFees/show_load/{id}', [CoursesFeesController::class, 'show_load'])->name('CoursesFees.load_details');
-          
+
             /****************************************************************************** */
             Route::resource('district', DistrictController::class);
             Route::get('district/delete/{id}', [DistrictController::class, 'delete'])->name('district.delete');

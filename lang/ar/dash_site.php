@@ -1,3 +1,4 @@
 <?php return array (
-  'Please wait' => 'Please wait',
+  'CourseFees' => 'CourseFees',
+  'details' => 'details',
 );

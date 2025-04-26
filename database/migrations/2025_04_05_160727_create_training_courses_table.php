@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable('training_courses')) {
+        if (!Schema::hasTable('tc_training_courses')) {
 
-            Schema::create('training_courses', function (Blueprint $table) {
+            Schema::create('tc_training_courses', function (Blueprint $table) {
                 $table->id();
                 $table->text('title')->nullable();
                 $table->text('details')->nullable();
@@ -24,7 +24,7 @@ return new class extends Migration
                 $table->string('to_date',30)->nullable();
                 $table->string('duration')->nullable();
                 $table->integer('location_id')->unsigned()->nullable();
-                $table->decimal('fee', 19, 2)->nullable(); 
+                $table->decimal('fee', 19, 2)->nullable();
                 $table->integer('courses_id')->unsigned()->nullable();
                 $table->integer('capacity')->default(0)->nullable();
                 $table->timestamps();
@@ -37,6 +37,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('training_courses');
+        Schema::dropIfExists('tc_training_courses');
     }
 };

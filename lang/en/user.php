@@ -6,5 +6,4 @@
   'password' => 'password',
   'phone' => 'phone',
   'status' => 'status',
-  'roles' => 'roles',
 );

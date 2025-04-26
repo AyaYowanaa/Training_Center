@@ -14,10 +14,10 @@ return new class extends Migration
     public function up()
     {
 
-        
-            if (!Schema::hasTable('entities')) {
 
-                Schema::create('entities', function (Blueprint $table) {
+            if (!Schema::hasTable('tc_entities')) {
+
+                Schema::create('tc_entities', function (Blueprint $table) {
                     $table->id();
                     $table->text('name')->nullable();
                     $table->string('email', 255)->nullable();
@@ -27,7 +27,7 @@ return new class extends Migration
                     $table->softDeletes();
                 });
             }
-      
+
     }
 
     /**
@@ -37,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('entities');
+        Schema::dropIfExists('tc_entities');
     }
 };

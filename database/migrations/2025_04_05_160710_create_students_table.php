@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('students', function (Blueprint $table) {
+        Schema::create('tc_students', function (Blueprint $table) {
             $table->id();
             $table->string('code')->unique();
             $table->string('name');
             $table->string('phone')->nullable();
-            $table->string('email')->unique()->nullable(); 
-            $table->integer('grades_id')->nullable(); 
-            $table->integer('courses_id')->nullable(); 
-            $table->boolean('bulk_import')->default(false); 
+            $table->string('email')->unique()->nullable();
+            $table->integer('grades_id')->nullable();
+            $table->integer('courses_id')->nullable();
+            $table->boolean('bulk_import')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('students');
+        Schema::dropIfExists('tc_students');
     }
 };

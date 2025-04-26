@@ -10,7 +10,7 @@ use Image;
 
 trait  ImageProcessing
 {
-    function upload_image($file, $folder_uplaod)
+    function upload_file($file, $folder_uplaod)
     {
         $name = $file->getClientOriginalName();
         $extension = $file->getClientOriginalExtension();
@@ -18,7 +18,24 @@ trait  ImageProcessing
         return $path;
     }
 
+    function isImage($file)
+    {
+        // List of common image MIME types
+        $imageMimeTypes = [
+            'image/jpeg', // JPEG images
+            'image/png',  // PNG images
+            'image/gif',  // GIF images
+            'image/bmp',  // BMP images
+            'image/svg+xml', // SVG images
+            'image/webp', // WEBP images
+        ];
 
+        // Get the MIME type of the uploaded file
+        $fileMimeType = $file->getMimeType();
+
+        // Check if the MIME type is NOT in the list of image MIME types
+        return in_array($fileMimeType, $imageMimeTypes);
+    }
     public function get_mime($mime)
     {
         if ($mime == 'image/jpeg')

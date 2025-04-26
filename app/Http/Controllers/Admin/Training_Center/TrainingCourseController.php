@@ -91,7 +91,7 @@ class TrainingCourseController extends Controller
         $data['location_id'] = MainSetting::all();  //::where('type', '105')->get();
         $data['courses'] = Course::all();
 
-        return view('dashbord.admin.Training_Center.training_courses.create',$data);
+        return view('dashbord.admin.Training_Center.training_courses.createSteper',$data);
 
     }
 
@@ -132,7 +132,7 @@ class TrainingCourseController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit($id)
-    {   
+    {
        $data['one_data'] = TrainingCourse::findOrFail($id);
        $data['location_id'] = MainSetting::all();  //::where('type', '105')->get();
        $data['courses'] = Course::all();
@@ -171,7 +171,7 @@ class TrainingCourseController extends Controller
      */
     public function destroy($id)
     {
-    
+
         try {
 
             $one_data = TrainingCourse::find($id);

@@ -9,7 +9,7 @@ class Expenses extends Model
 {
     use SoftDeletes,HasTranslations;
 
-    protected $table = 'expenses';
+    protected $table = 'tc_expenses';
 
     public $translatable = ['name'];
     protected $fillable = [

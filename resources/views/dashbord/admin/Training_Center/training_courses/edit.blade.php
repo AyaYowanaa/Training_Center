@@ -7,7 +7,7 @@
         <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
             <!--begin::Title-->
             <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                {{trans('trainingCenter.create')}}</h1>
+                {{trans('trainingCenter.Update_Training_Courses')}}</h1>
             <!--end::Title-->
             <!--begin::Breadcrumb-->
             <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -19,7 +19,7 @@
                 <li class="breadcrumb-item">
                     <span class="bullet bg-gray-400 w-5px h-2px"></span>
                 </li>
-            
+
                 <li class="breadcrumb-item text-muted">
                     {{trans('Toolbar.Update_Training_Courses')}}
                 </li>
@@ -104,7 +104,7 @@ $details=$one_data->getTranslations('details');
                                 <!--begin::Input-->
                                 <input type="text" name="title_en"
                                        class="form-control mb-2  @error('title_en') is-invalid @enderror"
-                                       placeholder="{{trans('course.name')}}" 
+                                       placeholder="{{trans('course.name')}}"
                                        value="{{old('title_en',$title['en'])}}"/>
                                 <!--end::Input-->
                                 @error('title_en')
@@ -129,7 +129,7 @@ $details=$one_data->getTranslations('details');
                                 <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-                       
+
                             <div class="col-md-4">
                                 <!--begin::Label-->
                                 <label class="required form-label">{{trans('course.Duration')}}
@@ -148,25 +148,25 @@ $details=$one_data->getTranslations('details');
                         </div>
 
                         <div class="mb-10 fv-row row">
-                           
+
                             <div class="col-md-4">
-                                
+
                                 <label
                                     class="required fs-6 fw-semibold mb-2">{{trans('trainingCenter.To_date')}}</label>
                                 <input
                                     class="form-control form-control-solid @error('from_date') is-invalid @enderror"
-                                    value="{{old('from_date',$one_data->from_date)}}" name="from_date" 
+                                    value="{{old('from_date',$one_data->from_date)}}" name="from_date"
                                     placeholder="Pick date rage" id="from_date"/>
                                 @error('from_date')
                                 <div
                                     class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
                                 @enderror
-                           
-                           
+
+
                         </div>
-                          
+
                             <div class="col-md-4">
-                                
+
                                     <label
                                         class="required fs-6 fw-semibold mb-2">{{trans('trainingCenter.From_date')}}</label>
                                     <input
@@ -177,11 +177,11 @@ $details=$one_data->getTranslations('details');
                                     <div
                                         class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
                                     @enderror
-                               
-                               
+
+
                             </div>
-                            
-                          
+
+
                             <div class="col-md-4">
                                 <!--begin::Label-->
                                 <label class="required form-label">{{trans('course.Capacity')}}
@@ -221,17 +221,17 @@ $details=$one_data->getTranslations('details');
                                 @endforeach
                                 </select>
 
-                           
-                            </div> 
 
-                           
+                            </div>
+
+
                             <div class="col-md-4">
                                 <!--begin::Label-->
-                                <label class=" required form-label">{{trans('dash_site.location')}}
+                                <label class=" required form-label">{{trans('course.location')}}
                                     <span class="text-muted fs-7">"{{trans('forms.lable_ar')}}"</span>
                                 </label>
-                    
-                           
+
+
                                 <!--begin::Select2-->
                                 <select class="form-select mb-2 @error('location_id') is-invalid @enderror"
                                         onchange="/*set_status()*/"
@@ -259,12 +259,12 @@ $details=$one_data->getTranslations('details');
                                 <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-                        
+
                         </div>
                         <div class="mb-10 fv-row row">
                             <div class="col-md-6 english">
                                 <!--begin::Label-->
-                                <label class="form-label">{{trans('dash_site.details')}}
+                                <label class="form-label">{{trans('course.details')}}
                                     <span class="text-muted fs-7">"{{trans('forms.lable_en')}}"</span>
                                 </label>
                                 <!--end::Label-->
@@ -279,12 +279,12 @@ $details=$one_data->getTranslations('details');
                             </div>
                             <div class="col-md-6 arabic">
                                 <!--begin::Label-->
-                                <label class="form-label">{{trans('dash_site.details')}}
+                                <label class="form-label">{{trans('course.details')}}
                                     <span class="text-muted fs-7">"{{trans('forms.lable_ar')}}"</span>
                                 </label>
                                 <!--end::Label-->
                             {{--                                        <input type="hidden" id="details_ar" name="details_ar" >--}}
-    
+
                             <!--begin::Editor-->
                                 <textarea id="details_ar" name="details_ar"
                                           class="min-h-200px mb-2 @error('details_ar') is-invalid @enderror">{{old('details_ar',$details['ar'])}}</textarea>

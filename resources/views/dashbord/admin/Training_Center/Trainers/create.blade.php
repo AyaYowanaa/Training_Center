@@ -147,12 +147,7 @@
                             </div>
 
                             <!--end::Image input-->
-                            <!--begin::Description-->
-                            <div class="text-muted fs-7">Set the category thumbnail image. Only *.png, *.jpg
-                                and
-                                *.jpeg image files are accepted
-                            </div>
-                            <!--end::Description-->
+
                         </div>
 
                         @error('image')
@@ -318,10 +313,7 @@
                             <label class="form-label">{{trans('trainingCenter.Documents/Files')}}</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="file" multiple
-                                   class="form-control mb-2"
-                                   name=""
-                                   accept=".png, .jpg, .jpeg" placeholder="Meta tag name"/>
+                            <input type="file" multiple class="form-control mb-2" name="files[]" accept=".png, .jpg, .jpeg,.pdf" placeholder="Meta tag name"/>
                             <!--end::Input-->
 
                         </div>

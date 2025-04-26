@@ -23,8 +23,8 @@ return new class extends Migration {
             });
         }
 /******************************************************************* */
-        if (!Schema::hasTable('main_setting')) {
-            Schema::create('main_setting', function (Blueprint $table) {
+        if (!Schema::hasTable('tc_main_setting')) {
+            Schema::create('tc_main_setting', function (Blueprint $table) {
                 $table->increments('id');
 
                 $table->text('title');
@@ -36,8 +36,8 @@ return new class extends Migration {
             });
         }
 /*********************************************************************** */
-        if (!Schema::hasTable('type_setting')) {
-            Schema::create('type_setting', function (Blueprint $table) {
+        if (!Schema::hasTable('tc_type_setting')) {
+            Schema::create('tc_type_setting', function (Blueprint $table) {
                 $table->increments('id');
                 $table->text('title');
                 $table->smallInteger('code')->unique();
@@ -77,8 +77,8 @@ if (!Schema::hasTable('district')) {
     public function down(): void
     {
         Schema::dropIfExists('countries');
-        Schema::dropIfExists('main_setting');
-        Schema::dropIfExists('type_setting');
+        Schema::dropIfExists('tc_main_setting');
+        Schema::dropIfExists('tc_type_setting');
         Schema::dropIfExists('city');
         Schema::dropIfExists('district');
 

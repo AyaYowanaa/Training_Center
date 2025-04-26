@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Paginator::useBootstrapFive();
-      /*  Lang::handleMissingKeysUsing(function ($key) {
+        Lang::handleMissingKeysUsing(function ($key) {
 
             if (strpos($key, 'flasher') !== false) {
                 return $key;
@@ -54,7 +54,7 @@ class AppServiceProvider extends ServiceProvider
 
             // Return the key as the translation (optional)
             return $key;
-        });*/
+        });
 
     }
 }

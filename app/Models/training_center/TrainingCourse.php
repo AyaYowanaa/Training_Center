@@ -11,7 +11,7 @@ class TrainingCourse extends Model
 {
     use HasFactory, HasTranslations;
 
-    protected $table = 'training_courses';
+    protected $table = 'tc_training_courses';
     protected $fillable = ['details', 'title', 'from_date', 'to_date', 'location_id','duration','fee','effort','courses_id','capacity'];
     public $translatable = ['details', 'title'];
 

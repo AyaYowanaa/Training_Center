@@ -6,7 +6,7 @@
         <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
             <!--begin::Title-->
             <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                Add User</h1>
+                {{trans('Toolbar.usersUpdate')}}</h1>
             <!--end::Title-->
             <!--begin::Breadcrumb-->
             <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -25,8 +25,8 @@
                     <span class="bullet bg-gray-400 w-5px h-2px"></span>
                 </li>
                 <li class="breadcrumb-item text-muted">
-                    <a href="{{ route('admin.UserManagement.users.create') }}"
-                       class="text-muted text-hover-primary">{{trans('users.create')}}</a>
+                    <a href="#"
+                       class="text-muted text-hover-primary">{{trans('Toolbar.usersUpdate')}}</a>
                 </li>
 
 
@@ -45,8 +45,8 @@
                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                        <path
-                                           d="M17.6 4L9.6 12L17.6 20H13.6L6.3 12.7C5.9 12.3 5.9 11.7 6.3 11.3L13.6 4H17.6Z"
-                                           fill="currentColor"/>
+                                               d="M17.6 4L9.6 12L17.6 20H13.6L6.3 12.7C5.9 12.3 5.9 11.7 6.3 11.3L13.6 4H17.6Z"
+                                               fill="currentColor"/>
                                    </svg>
                                 </span>
                     <!--end::Svg Icon-->
@@ -60,8 +60,6 @@
 @endsection
 
 @section('content')
-
-
 
     <!--begin::Content container-->
     <div id="kt_app_content_container" class="app-container container-xxl">
@@ -79,8 +77,8 @@
               class="form d-flex flex-column flex-lg-row" enctype="multipart/form-data">
             <input type="hidden" name="_method" value="PATCH"/>
             <input type="hidden" name="id" value="{{$user_data->id}}"/>
-        @csrf
-        <!--begin::Aside column-->
+            @csrf
+            <!--begin::Aside column-->
             <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
 
 
@@ -102,14 +100,14 @@
                             }</style>
 
                         <div
-                            class="image-input image-input-empty image-input-outline image-input-placeholder mb-3"
-                            data-kt-image-input="true">
+                                class="image-input image-input-empty image-input-outline image-input-placeholder mb-3"
+                                data-kt-image-input="true">
                             <div class="image-input-wrapper w-150px h-150px"
                                  style="background-image:url({{ asset($user_data->image) }})"></div>
                             <label
-                                class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                data-kt-image-input-action="change" data-bs-toggle="tooltip"
-                                title="Change avatar">
+                                    class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                    data-kt-image-input-action="change" data-bs-toggle="tooltip"
+                                    title="Change avatar">
                                 <i class="fa fa-pencil ">
                                     <span class="path1"></span>
                                     <span class="path2"></span>
@@ -120,9 +118,9 @@
                             </label>
 
                             <span
-                                class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                data-kt-image-input-action="cancel" data-bs-toggle="tooltip"
-                                title="Cancel image">
+                                    class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                    data-kt-image-input-action="cancel" data-bs-toggle="tooltip"
+                                    title="Cancel image">
 															<i class="ki-duotone ki-cross fs-2">
 																<span class="path1"></span>
 																<span class="path2"></span>
@@ -130,9 +128,9 @@
 														</span>
 
                             <span
-                                class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                data-kt-image-input-action="remove" data-bs-toggle="tooltip"
-                                title="Remove image">
+                                    class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                    data-kt-image-input-action="remove" data-bs-toggle="tooltip"
+                                    title="Remove image">
 															<i class="ki-duotone ki-cross fs-2">
 																<span class="path1"></span>
 																<span class="path2"></span>
@@ -185,63 +183,63 @@
                                        placeholder=" Phone " value="{{ old('phone',$user_data->phone) }}"/>
                             </div>
                         </div>
-                     <div  class="row">
+                        <div class="row">
 
-                         <div class="mb-10 fv-row col">
-                             <!--begin::Label-->
-                             <label class="required fs-6 fw-semibold mb-2">{{trans('user.status')}}
-                             </label>
+                            <div class="mb-10 fv-row col">
+                                <!--begin::Label-->
+                                <label class="required fs-6 fw-semibold mb-2">{{trans('users.status')}}
+                                </label>
 
-                             <!--end::Label-->
-                             <!--begin::Select2-->
-                             <select class="form-select mb-2 @error('status') is-invalid @enderror"
-                                     onchange="/*set_status()*/"
-                                     data-control="select2" data-hide-search="true"
-                                     data-placeholder="Select an option"
-                                     id="status" name="status">
-                                 <?php
-                                 $status_array = array('0' => 'NotActive', '1' => 'Active')
-                                 ?>
-                                 <option></option>
-                                 @foreach($status_array as $key=>$value)
-                                     <option value="{{ $key }}" <?php if ($key == old('status', $user_data->status)) {
-                                         echo 'selected';
-                                     } ?>>{{ $value }}</option>
-                                 @endforeach
-                             </select>
-                             <!--end::Select2-->
-                             @error('status')
-                             <div
-                                 class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
-                             @enderror
-                         </div>
-{{--
-                         <div class="mb-10 fv-row col">
-                             <!--begin::Label-->
-                             <label
-                                 class="required fs-6 fw-semibold mb-2">{{trans('user.roles')}}</label>
-                             <!--end::Label-->
+                                <!--end::Label-->
+                                <!--begin::Select2-->
+                                <select class="form-select mb-2 @error('status') is-invalid @enderror"
+                                        onchange="/*set_status()*/"
+                                        data-control="select2" data-hide-search="true"
+                                        data-placeholder="Select an option"
+                                        id="status" name="status">
+                                        <?php
+                                        $status_array = array('0' => 'NotActive', '1' => 'Active')
+                                        ?>
+                                    <option></option>
+                                    @foreach($status_array as $key=>$value)
+                                        <option value="{{ $key }}" <?php if ($key == old('status', $user_data->status)) {
+                                            echo 'selected';
+                                        } ?>>{{ $value }}</option>
+                                    @endforeach
+                                </select>
+                                <!--end::Select2-->
+                                @error('status')
+                                <div
+                                        class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            {{--
+                                                     <div class="mb-10 fv-row col">
+                                                         <!--begin::Label-->
+                                                         <label
+                                                             class="required fs-6 fw-semibold mb-2">{{trans('users.roles')}}</label>
+                                                         <!--end::Label-->
 
-                             <select class="form-select mb-2 @error('roles') is-invalid @enderror"
-                                     data-control="select2" data-hide-search="false"
-                                     data-placeholder="Select an option"
-                                     id="roles" name="roles">
+                                                         <select class="form-select mb-2 @error('roles') is-invalid @enderror"
+                                                                 data-control="select2" data-hide-search="false"
+                                                                 data-placeholder="Select an option"
+                                                                 id="roles" name="roles">
 
-                                 <option></option>
-                                 @foreach($roles as $row)
-                                     <option value="{{ $row->id }}" @if($row->id == old('roles', $user_data->group_name))
-                                         {{'selected'}}
-                                         @endif>{{ $row->title }}</option>
-                                 @endforeach
-                             </select>
+                                                             <option></option>
+                                                             @foreach($roles as $row)
+                                                                 <option value="{{ $row->id }}" @if($row->id == old('roles', $user_data->group_name))
+                                                                     {{'selected'}}
+                                                                     @endif>{{ $row->title }}</option>
+                                                             @endforeach
+                                                         </select>
 
-                             @error('roles')
-                             <div
-                                 class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
-                             @enderror
-                         </div>
---}}
-                     </div>
+                                                         @error('roles')
+                                                         <div
+                                                             class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
+                                                         @enderror
+                                                     </div>
+                            --}}
+                        </div>
 
 
                         <!--end::Input group-->
@@ -261,7 +259,7 @@
                         <span class="indicator-label">Save</span>
                         <span class="indicator-progress">Please wait...
 													<span
-                                                        class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                                            class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                     </button>
                     <!--end::Button-->
                 </div>

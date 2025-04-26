@@ -6,7 +6,7 @@
         <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
             <!--begin::Title-->
             <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                {{trans('about.create')}}</h1>
+                {{trans('TC_Setting.createsetting')}}</h1>
             <!--end::Title-->
             <!--begin::Breadcrumb-->
             <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -18,7 +18,7 @@
                 <li class="breadcrumb-item">
                     <span class="bullet bg-gray-400 w-5px h-2px"></span>
                 </li>
-              
+
                 <li class="breadcrumb-item text-muted">
                     {{trans('Toolbar.setting')}}
                 </li>
@@ -68,7 +68,7 @@
 
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">{{trans('Hr_setting.Add')}}</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">{{trans('TC_Setting.Add')}}</h5>
                     </div>
                     <!--begin::Formmmmm-->
 
@@ -77,7 +77,7 @@
 
                             {{-- {{dd($type)}} --}}
                             <div class="row">
-                                <label class="required form-label">{{trans('Hr_setting.Type')}}</label>
+                                <label class="required form-label">{{trans('TC_Setting.Type')}}</label>
 
                                 <!--begin::Select2-->
                                 <select class="form-select mb-2 @error('type_code') is-invalid @enderror"
@@ -94,21 +94,21 @@
                                 <!--end::Select2-->
                             </div>
                             <div class="row">
-                                <label class="required form-label">{{trans('Hr_setting.Title')}}(<span
+                                <label class="required form-label">{{trans('TC_Setting.NameSetting')}}(<span
                                         class="text-gray-600">{{trans('forms.lable_en')}}</span>)</label>
 
                                 <input type="text" name="title_en" class="form-control mb-2"
                                        placeholder="title" value="" required autocomplete/>
                             </div>
                             <div class="row">
-                                <label class="required form-label">{{trans('Hr_setting.Title')}}(<span
+                                <label class="required form-label">{{trans('TC_Setting.NameSetting')}}(<span
                                         class="text-gray-600">{{trans('forms.lable_ar')}}</span>)</label>
 
                                 <input type="text" name="title_ar" class="form-control mb-2"
                                        placeholder="العنـــوان" value="" required autocomplete/>
                             </div>
                             <div class="row">
-                                <label class="required form-label">{{trans('Hr_setting.Status')}}</label>
+                                <label class="required form-label">{{trans('TC_Setting.Status')}}</label>
 
                                 <!--begin::Select2-->
                                 <select class="form-select mb-2 @error('status') is-invalid @enderror"
@@ -177,11 +177,11 @@
                     <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                         <th class="min-w-250px">#</th>
 
-                        <th class="min-w-200px">{{trans('Hr_setting.Title')}}</th>
-                        <th class="min-w-200px">{{trans('Hr_setting.Type')}}</th>
-                        <th class="min-w-200px">{{trans('Hr_setting.Status')}}</th>
+                        <th class="min-w-200px">{{trans('TC_Setting.NameSetting')}}</th>
+                        <th class="min-w-200px">{{trans('TC_Setting.Type')}}</th>
+                        <th class="min-w-200px">{{trans('TC_Setting.Status')}}</th>
 
-                        <th class="text-end min-w-70px">{{trans('Hr_setting.Action')}}</th>
+                        <th class="text-end min-w-70px">{{trans('TC_Setting.Action')}}</th>
                     </tr>
                     <!--end::Table row-->
                     </thead>
@@ -250,7 +250,7 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel">
-                                            {{trans('Hr_setting.Update')}}</h5>
+                                            {{trans('TC_Setting.Update')}}</h5>
                                     </div>
 
 
@@ -262,7 +262,7 @@
                                                 $title=$x->getTranslations('title'); //return local lang
                                             @endphp
                                             <div class="row">
-                                                <label class="required form-label">{{trans('Hr_setting.Type')}}</label>
+                                                <label class="required form-label">{{trans('TC_Setting.Type')}}</label>
 
                                                 <!--begin::Select2-->
                                                 <select
@@ -285,7 +285,7 @@
                                             </div>
                                             <div class="row">
                                                 <label
-                                                    class="required form-label">{{trans('Hr_setting.Title')}}
+                                                    class="required form-label">{{trans('TC_Setting.NameSetting')}}
                                                     (<span
                                                         class="text-gray-600">{{trans('forms.lable_en')}}</span>)</label>
 
@@ -295,7 +295,7 @@
                                             </div>
                                             <div class="row">
                                                 <label
-                                                    class="required form-label">{{trans('Hr_setting.Title')}}
+                                                    class="required form-label">{{trans('TC_Setting.NameSetting')}}
                                                     (<span
                                                         class="text-gray-600">{{trans('forms.lable_ar')}}</span>)</label>
 
@@ -304,7 +304,7 @@
                                                        required autocomplete/>
                                             </div>
                                             <div class="row">
-                                                <label class="required form-label">{{trans('Hr_setting.Status')}}(<span
+                                                <label class="required form-label">{{trans('TC_Setting.Status')}}(<span
                                                         class="text-gray-600">{{trans('forms.lable_en')}}</span>)</label>
 
                                                 <!--begin::Select2-->
@@ -318,7 +318,7 @@
                                                         ?>
                                                         <option></option>
                                                         @foreach($select_array as $key=> $value)
-                                                        <option value="{{ $key }}" 
+                                                        <option value="{{ $key }}"
                                                         {{ old('status', $x->status) == $key ? 'selected' : '' }}>
                                                         {{ $value }}
                                                       </option>

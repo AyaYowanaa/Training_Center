@@ -14,18 +14,18 @@ return new class extends Migration
     public function up()
     {
 
-        
-            if (!Schema::hasTable('expenses')) {
 
-                Schema::create('expenses', function (Blueprint $table) {
+            if (!Schema::hasTable('tc_expenses')) {
+
+                Schema::create('tc_expenses', function (Blueprint $table) {
                     $table->id();
                     $table->json('name')->nullable();
-                    
+
                     $table->timestamps();
                     $table->softDeletes();
                 });
             }
-      
+
     }
 
     /**
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('expenses');
+        Schema::dropIfExists('tc_expenses');
     }
 };

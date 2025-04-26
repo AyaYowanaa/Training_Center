@@ -6,7 +6,7 @@
         <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
             <!--begin::Title-->
             <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                {{trans('about.create')}}</h1>
+                {{trans('TC_Setting.create')}}</h1>
             <!--end::Title-->
             <!--begin::Breadcrumb-->
             <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -15,7 +15,7 @@
                     <a href="{{ route('admin.dashboard') }}" class="text-muted text-hover-primary">
                         {{trans('Toolbar.home')}}</a>
                 </li>
-      
+
                 <li class="breadcrumb-item">
                     <span class="bullet bg-gray-400 w-5px h-2px"></span>
                 </li>
@@ -69,7 +69,7 @@
 
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">{{trans('Hr_setting.Add')}}</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">{{trans('TC_Setting.Add')}}</h5>
                     </div>
                     <!--begin::Formmmmm-->
 
@@ -78,21 +78,21 @@
 
 
                             <div class="row">
-                                <label class="required form-label">{{trans('Hr_setting.Name')}}(<span
+                                <label class="required form-label">{{trans('TC_Setting.NameSetting')}}(<span
                                         class="text-gray-600">{{trans('forms.lable_en')}}</span>)</label>
 
                                 <input type="text" name="name_en" class="form-control mb-2"
                                        placeholder="name" value="" required autocomplete/>
                             </div>
                             <div class="row">
-                                <label class="required form-label">{{trans('Hr_setting.Name')}}(<span
+                                <label class="required form-label">{{trans('TC_Setting.NameSetting')}}(<span
                                         class="text-gray-600">{{trans('forms.lable_ar')}}</span>)</label>
 
                                 <input type="text" name="name_ar" class="form-control mb-2"
                                        placeholder="الاسم " value="" required autocomplete/>
                             </div>
                             <div class="row">
-                                <label class="required form-label">{{trans('Hr_setting.Code')}}(<span
+                                <label class="required form-label">{{trans('TC_Setting.Code')}}(<span
                                         class="text-gray-600">{{trans('forms.lable_en')}}</span>)</label>
 
                                 <input type="text" name="code" class="form-control mb-2"
@@ -152,9 +152,9 @@
                     <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                         <th class="min-w-250px">#</th>
 
-                        <th class="min-w-250px">{{trans('Hr_setting.Name')}}</th>
-                        <th class="min-w-250px">{{trans('Hr_setting.Code')}}</th>
-                        <th class="text-end min-w-70px">{{trans('Hr_setting.Action')}}</th>
+                        <th class="min-w-250px">{{trans('TC_Setting.NameSetting')}}</th>
+                        <th class="min-w-250px">{{trans('TC_Setting.Code')}}</th>
+                        <th class="text-end min-w-70px">{{trans('TC_Setting.Action')}}</th>
                     </tr>
                     <!--end::Table row-->
                     </thead>
@@ -216,7 +216,7 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel">
-                                            {{trans('Hr_setting.Update')}}</h5>
+                                            {{trans('TC_Setting.Update')}}</h5>
                                     </div>
 
 
@@ -229,7 +229,7 @@
                                             @endphp
                                             <div class="row">
                                                 <label
-                                                    class="required form-label">{{trans('Hr_setting.Name')}}
+                                                    class="required form-label">{{trans('TC_Setting.NameSetting')}}
                                                     (<span
                                                         class="text-gray-600">{{trans('forms.lable_en')}}</span>)</label>
 
@@ -239,7 +239,7 @@
                                             </div>
                                             <div class="row">
                                                 <label
-                                                    class="required form-label">{{trans('Hr_setting.Name')}}
+                                                    class="required form-label">{{trans('TC_Setting.NameSetting')}}
                                                     (<span
                                                         class="text-gray-600">{{trans('forms.lable_ar')}}</span>)</label>
 
@@ -249,7 +249,7 @@
                                             </div>
                                             <div class="row">
                                                 <label
-                                                    class="required form-label">{{trans('Hr_setting.Code')}}
+                                                    class="required form-label">{{trans('TC_Setting.Code')}}
                                                 </label>
 
                                                 <input type="text" name="code" class="form-control mb-2"

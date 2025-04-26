@@ -19,7 +19,7 @@
                 <li class="breadcrumb-item">
                     <span class="bullet bg-gray-400 w-5px h-2px"></span>
                 </li>
-              
+
                 <li class="breadcrumb-item text-muted">
                     <a href="{{ route('admin.Settings.Instructor.index') }}"
                        class="text-muted text-hover-primary"> {{trans('Toolbar.TrainingCenter')}}</a>
@@ -79,10 +79,11 @@
             </div>
         @endif
         <form id="StorForm" class="form d-flex flex-column flex-lg-row "
-        action="{{route('admin.Settings.Instructor.update',$one_data->id)}}" method="post" enctype="multipart/form-data">
-  @csrf
-  @method('PATCH')
-  <input type="hidden" name="id" value="{{$one_data->id}}">
+              action="{{route('admin.Settings.Instructor.update',$one_data->id)}}" method="post"
+              enctype="multipart/form-data">
+            @csrf
+            @method('PATCH')
+            <input type="hidden" name="id" value="{{$one_data->id}}">
             <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
                 <!--begin::Thumbnail settings-->
                 <div class="card card-flush py-4">
@@ -148,12 +149,6 @@
                             </div>
 
                             <!--end::Image input-->
-                            <!--begin::Description-->
-                            <div class="text-muted fs-7">Set the category thumbnail image. Only *.png, *.jpg
-                                and
-                                *.jpeg image files are accepted
-                            </div>
-                            <!--end::Description-->
                         </div>
 
                         @error('image')
@@ -171,7 +166,7 @@
                                 <!--begin::Label-->
                                 <label
                                     class="required fs-6 fw-semibold mb-2">{{trans('trainingCenter.Data')}}</label>
-                             
+
                             </div>
                             <!--end::Col-->
                             <!--begin::Col-->
@@ -180,31 +175,47 @@
                                 <label
                                     class="fs-6 fw-semibold mb-2">{{trans('trainingCenter.Specialization')}}</label>
                                 <!--end::Label-->
-                                 <!--begin::Select2-->
-                                 <select class="form-select mb-2 @error('specialization_id') is-invalid @enderror"
-                                 onchange="/*set_status()*/"
-                                 data-control="select2" data-hide-search="false"
-                             data-placeholder="Select an option" data-allow-clear="true"
-                                 id="specialization_id" name="specialization_id">
+                                <!--begin::Select2-->
+                                <select class="form-select mb-2 @error('specialization_id') is-invalid @enderror"
+                                        onchange="/*set_status()*/"
+                                        data-control="select2" data-hide-search="false"
+                                        data-placeholder="Select an option" data-allow-clear="true"
+                                        id="specialization_id" name="specialization_id">
 
-                             <option value=" ">{{trans('maindata.Select')}}</option>
-                          
-                         </select>
-                         <!--end::Select2-->
-                               
+                                    <option value=" ">{{trans('maindata.Select')}}</option>
+
+                                </select>
+                                <!--end::Select2-->
+
                             </div>
                             <!--end::Col-->
+                            <div class="">
+                                <!--begin::Label-->
+                                <label class="required form-label">{{trans('trainingCenter.Email')}}
+
+                                </label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" name="email"
+                                       class="form-control mb-2  @error('email') is-invalid @enderror"
+                                       placeholder="" value="{{old('email',$one_data->email)}}"/>
+                                <!--end::Input-->
+                                @error('email')
+                                <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
                         </div>
 
                     </div>
                 </div>
             </div>
             <!--end::Aside column-->
-            <?php
-            $name=$one_data->getTranslations('name');
-            
-            ?>       
-            <!--begin::Main column-->
+                <?php
+                $name = $one_data->getTranslations('name');
+
+                ?>
+                <!--begin::Main column-->
             <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
                 <!--begin::General options-->
                 <div class="card card-flush py-4">
@@ -219,97 +230,80 @@
                     <div class="card-body pt-0">
                         <!--begin::Input group-->
                         <div class="row">
-                        <div class="col-md-6">
-                            <!--begin::Label-->
-                            <label class="required form-label">{{trans('trainingCenter.Name')}}
-                                <span class="text-muted fs-7">"{{trans('forms.lable_en')}}"</span>
+                            <div class="col-md-6">
+                                <!--begin::Label-->
+                                <label class="required form-label">{{trans('trainingCenter.Name')}}
+                                    <span class="text-muted fs-7">"{{trans('forms.lable_en')}}"</span>
 
-                            </label>
-                            <!--end::Label-->
-                            <!--begin::Input-->
-                            <input type="text" name="name_en"
-                                   class="form-control mb-2  @error('name_en') is-invalid @enderror"
-                                   placeholder="name in English" value="{{old('name_en',$name['en'])}}"/>
-                            <!--end::Input-->
-                            @error('name_en')
-                            <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
-                            @enderror
+                                </label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" name="name_en"
+                                       class="form-control mb-2  @error('name_en') is-invalid @enderror"
+                                       placeholder="name in English" value="{{old('name_en',$name['en'])}}"/>
+                                <!--end::Input-->
+                                @error('name_en')
+                                <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <!--end::Input group-->
+
+                            <!--begin::Input group-->
+                            <div class="col-md-6">
+                                <!--begin::Label-->
+                                <label class="required form-label">{{trans('trainingCenter.Name')}}
+                                    <span class="text-muted fs-7">"{{trans('forms.lable_ar')}}"</span>
+
+                                </label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" name="name_ar"
+                                       class="form-control mb-2  @error('name_ar') is-invalid @enderror"
+                                       placeholder="name in Arabic" value="{{old('name_ar',$name['ar'])}}"/>
+                                <!--end::Input-->
+                                @error('name_ar')
+                                <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <!--end::Input group-->
+                            <!--begin::Input group-->
                         </div>
-                        <!--end::Input group-->
-                       
-                        <!--begin::Input group-->
-                        <div class="col-md-6">
-                            <!--begin::Label-->
-                            <label class="required form-label">{{trans('trainingCenter.Name')}}
-                                <span class="text-muted fs-7">"{{trans('forms.lable_ar')}}"</span>
 
-                            </label>
-                            <!--end::Label-->
-                            <!--begin::Input-->
-                            <input type="text" name="name_ar"
-                                   class="form-control mb-2  @error('name_ar') is-invalid @enderror"
-                                   placeholder="name in Arabic"  value="{{old('name_ar',$name['ar'])}}"/>
-                            <!--end::Input-->
-                            @error('name_ar')
-                            <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
-                            @enderror
+                        <div class="row">
+
+
+                            <div class="col-md-6">
+                                <!--begin::Label-->
+                                <label class="required form-label">{{trans('trainingCenter.code')}}
+                                </label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" name="code"
+                                       class="form-control mb-2  @error('code') is-invalid @enderror"
+                                       placeholder="{{trans('trainingCenter.code')}}"
+                                       value="{{old('code',$one_data->code)}}"/>
+                                <!--end::Input-->
+                                @error('code')
+                                <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-md-6">
+                                <!--begin::Label-->
+                                <label class="required form-label">{{trans('trainingCenter.phone')}}
+
+                                </label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" name="phone"
+                                       class="form-control mb-2  @error('phone') is-invalid @enderror"
+                                       placeholder="" value="{{old('phone',$one_data->phone)}}"/>
+                                <!--end::Input-->
+                                @error('phone')
+                                <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
                         </div>
-                        <!--end::Input group-->
-                        <!--begin::Input group-->
-                    </div>
 
-                    <div class="row">
-
-
-                        <div class="col-md-6">
-                            <!--begin::Label-->
-                            <label class="required form-label">{{trans('trainingCenter.code')}}
-                            </label>
-                            <!--end::Label-->
-                            <!--begin::Input-->
-                            <input type="text" name="code"
-                                   class="form-control mb-2  @error('code') is-invalid @enderror"
-                                   placeholder="{{trans('trainingCenter.code')}}" 
-                                   value="{{old('code',$one_data->code)}}"/>
-                            <!--end::Input-->
-                            @error('code')
-                            <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="col-md-6">
-                            <!--begin::Label-->
-                            <label class="required form-label">{{trans('trainingCenter.phone')}}
-
-                            </label>
-                            <!--end::Label-->
-                            <!--begin::Input-->
-                            <input type="text" name="phone"
-                                   class="form-control mb-2  @error('phone') is-invalid @enderror"
-                                   placeholder=""  value="{{old('phone',$one_data->phone)}}"/>
-                            <!--end::Input-->
-                            @error('phone')
-                            <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="row">
-
-                        <div class="col-md-6">
-                            <!--begin::Label-->
-                            <label class="required form-label">{{trans('trainingCenter.Email')}}
-
-                            </label>
-                            <!--end::Label-->
-                            <!--begin::Input-->
-                            <input type="text" name="email"
-                                   class="form-control mb-2  @error('email') is-invalid @enderror"
-                                   placeholder=""  value="{{old('email',$one_data->email)}}"/>
-                            <!--end::Input-->
-                            @error('email')
-                            <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
                     </div>
                     <!--end::Card header-->
                 </div>
@@ -331,16 +325,93 @@
                             <label class="form-label">{{trans('trainingCenter.Documents/Files')}}</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="file" multiple
-                                   class="form-control mb-2"
-                                   name=""
-                                   accept=".png, .jpg, .jpeg" placeholder="Meta tag name"/>
+                            <input type="file" multiple class="form-control mb-2" name="files[]"
+                                   accept=".png, .jpg, .jpeg ,.pdf" placeholder="Meta tag name"/>
                             <!--end::Input-->
-                          
-                        </div>
-                      
-                        <div class="previews"></div>
 
+                        </div>
+
+                        <div class="previews"></div>
+                        <div class="row g-6 g-xl-9 mb-6 mb-xl-9">
+                            @if(isset($one_data->files)&&(!empty($one_data->files)))
+                                @foreach($one_data->files as $file)
+                                    @if(isImageIfile($file->file_url))
+                                        @php $file_url_dark=$file_url=$file->file_url @endphp
+                                    @else
+                                        @php $file_url=getDefultImageIfile($file->file_url);
+                                        $file_url_dark=$file_url['imagedark'];
+                                        $file_url=$file_url['image'];
+                                        @endphp
+                                    @endif
+
+                                    <div class="col-md-6 col-lg-4 col-xl-3">
+                                        <!--begin::Card-->
+                                        <div class="card h-100 ">
+                                            <!--begin::Card body-->
+                                            <div
+                                                class="card-body d-flex justify-content-center text-center flex-column p-8">
+                                                <!--begin::Name-->
+                                                <a href="{{$file->file_url}}"
+                                                   class="text-gray-800 text-hover-primary d-flex flex-column">
+                                                    <!--begin::Image-->
+                                                    <div class="symbol symbol-75px mb-5">
+                                                        <img src="{{$file_url}}" class="theme-light-show" alt="">
+                                                        <img src="{{$file_url_dark}}" class="theme-dark-show" alt="">
+
+                                                    </div>
+                                                    <!--end::Image-->
+
+                                                    <!--begin::Title-->
+                                                    <div class="fs-5 fw-bold mb-2">
+                                                        Finance
+                                                    </div>
+                                                    <!--end::Title-->
+                                                </a>
+                                                <!--end::Name-->
+
+                                                <!--begin::Description-->
+                                               {{-- <div class="fs-7 fw-semibold text-gray-500">
+                                                    7 files
+                                                </div>--}}
+                                                <div class="card-toolbar">
+                                                    <a href="{{route('admin.Settings.Instructor.destroy_file',$file->id)}}"
+                                                       class="btn btn-icon btn-sm btn-active-color-primary"
+                                                       data-kt-card-action="remove"
+                                                       data-kt-card-confirm="true"
+                                                       data-kt-card-confirm-message="{{trans('forms.delete_quetion')}}"
+                                                       data-kt-card-confirm-ButtonText="{{trans('forms.delete_btn')}}"
+                                                       data-bs-toggle="tooltip" title="Remove card"
+                                                       data-bs-dismiss="click">
+                                                        <i class="fas fa-trash  text-danger"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0)"
+                                                       class="btn btn-icon btn-sm btn-active-color-primary"
+                                                       onclick="$('#FilePreview').show();$('#FilePreview').attr('src','{{$file->file_url}}')"
+                                                       data-bs-toggle="tooltip" title="{{trans('forms.preview')}}"
+                                                       data-bs-dismiss="click">
+                                                        <i class="fas fa-eye  text-info"></i>
+                                                    </a>
+                                                    <a href="{{$file->file_url}}" download
+                                                       class="btn btn-icon btn-sm btn-active-color-primary"
+                                                       data-bs-toggle="tooltip" title="{{trans('forms.preview')}}"
+                                                       data-bs-dismiss="click">
+                                                        <i class="fas fa-download  text-warning"></i>
+                                                    </a>
+                                                </div>
+
+                                                <!--end::Description-->
+                                            </div>
+                                            <!--end::Card body-->
+                                        </div>
+                                        <!--end::Card-->
+                                    </div>
+                                @endforeach
+                            @endif
+                            <iframe id="FilePreview" src="" style="width: 100%; display: none" height="800px" >
+
+                            </iframe>
+
+                        </div>
                     </div>
                     <!--end::Card header-->
                 </div>
@@ -348,7 +419,7 @@
 
                 <div class="d-flex justify-content-end">
                     <!--begin::Button-->
-                <!--    <button type="reset" class="btn btn-light me-5">{{trans('forms.cancel_btn')}}</button>
+                    <!--    <button type="reset" class="btn btn-light me-5">{{trans('forms.cancel_btn')}}</button>
                 -->
                     <!--end::Button-->
                     <!--begin::Button-->
@@ -368,12 +439,10 @@
 @endsection
 @section('js')
 
-
     <script src="{{asset('assets/plugins/custom/ckeditor/ckeditor-classic.bundle.js')}}"></script>
 
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
     {!! JsValidator::formRequest('App\Http\Requests\training_center\Trainers\UpdateRequest','#StorForm'); !!}
 
-  
 @endsection
 

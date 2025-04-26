@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin\Training_Center;
 use App\Http\Controllers\Controller;
 use App\Models\training_center\Trainer;
 use App\Models\training_center\Course;
+use App\Models\training_center\Trainer_Files;
+use Exception;
 use Illuminate\Http\Request;
 use App\Http\Requests\training_center\Trainers\StoreRequest;
 use App\Http\Requests\training_center\Trainers\UpdateRequest;
@@ -14,6 +16,7 @@ use Yajra\DataTables\DataTables;
 class TrainerController extends Controller
 {
     protected $upload_folder = 'Instructors';
+
     public function index(Request $request)
     {
 
@@ -22,7 +25,7 @@ class TrainerController extends Controller
             return Datatables::of($allData)
                 ->editColumn('name', function ($row) {
                     return $row->name;
-                }) 
+                })
                 ->editColumn('courses_id', function ($row) {
                     return $row->coursesData?->name ?? '—';
                 })
@@ -50,7 +53,7 @@ class TrainerController extends Controller
                                address="' . trans('forms.edite_btn') . '" class="menu-link px-3"
                                >' . trans('forms.edite_btn') . '</a>
                         </div>
-                   		
+
                         <div class="menu-item px-3">
                                 <a href="javascript:void(0)" data-kt-table-details="details_row" data-url="' . route('admin.Settings.Instructor.load_details', $row->id) . '"
                                            address="' . trans('forms.details') . '" class="menu-link px-3"
@@ -77,37 +80,60 @@ class TrainerController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {    $data['one_data']= new Trainer();
-        $data['courses']= Course::all();
-        return view('dashbord.admin.Training_Center.Trainers.create'
-        , $data);
+    {
+        $data['one_data'] = new Trainer();
+        $data['courses'] = Course::all();
+        return view('dashbord.admin.Training_Center.Trainers.create', $data);
 
     }
+
     public function show_load($id)
     {
         $data['one_data'] = Trainer::findOrFail($id);
 
         return view('dashbord.admin.Training_Center.Trainers.load_details', $data);
     }
+
     /**
      * Store a newly created resource in storage.
      */
     public function store(StoreRequest $request)
     {
 
-       try {
-     
+        try {
+
             $insert_data = $request->all();
             $insert_data['name'] = ['en' => $request->name_en, 'ar' => $request->name_ar];
             if ($request->hasFile('image')) {
                 $file = $request->file('image');
-
                 $dataX = $this->saveImage($file, $this->upload_folder);
                 $insert_data['image'] = $dataX;
-
             }
+
             $inserted_data = Trainer::create($insert_data);
             $insert_id = $inserted_data->id;
+
+            if ($request->hasFile('files')) {
+                $images = [];
+                foreach ($request->file('files') as $image) {
+                    if ($this->isImage($image)) {
+                        $dataX = $this->saveImage($image, $this->upload_folder);
+                        $images[] = [
+                            'trainer_id' => $insert_id,
+                            'file' => $dataX,
+                        ];
+                    } else {
+                        $dataX = $this->upload_file($image, $this->upload_folder);
+                        $images[] = [
+                            'trainer_id' => $insert_id,
+                            'file' => $dataX,
+                        ];
+                    }
+
+                }
+                Trainer_Files::insert($images);
+//                dd($insert_data, $blog_images);
+            }
             toastr()->addSuccess(trans('forms.success'));
             return redirect()->route('admin.Settings.Instructor.index');
         } catch (\Exception $e) {
@@ -119,8 +145,8 @@ class TrainerController extends Controller
     public function edit($id)
     {
         $data['one_data'] = Trainer::findOrFail($id);
-        $data['courses']= Course::all();
-        return view('dashbord.admin.Training_Center.Trainers.edit',$data);
+        $data['courses'] = Course::all();
+        return view('dashbord.admin.Training_Center.Trainers.edit', $data);
 
     }
 
@@ -135,12 +161,31 @@ class TrainerController extends Controller
             $update_data['name'] = ['en' => $request->name_en, 'ar' => $request->name_ar];
             if ($request->hasFile('image')) {
                 $file = $request->file('image');
-
                 $dataX = $this->saveImage($file, $this->upload_folder);
                 $update_data['image'] = $dataX;
-
             }
             $data->update($update_data);
+
+            if ($request->hasFile('files')) {
+                $images = [];
+                foreach ($request->file('files') as $image) {
+                    if ($this->isImage($image)) {
+                        $dataX = $this->saveImage($image, $this->upload_folder);
+                        $images[] = [
+                            'trainer_id' => $request->id,
+                            'file' => $dataX,
+                        ];
+                    } else {
+                        $dataX = $this->upload_file($image, $this->upload_folder);
+                        $images[] = [
+                            'trainer_id' => $request->id,
+                            'file' => $dataX,
+                        ];
+                    }
+
+                }
+                Trainer_Files::insert($images);
+            }
             toastr()->addSuccess(trans('forms.success'));
             return redirect()->route('admin.Settings.Instructor.index');
         } catch (\Exception $e) {
@@ -161,6 +206,23 @@ class TrainerController extends Controller
             toastr()->error(trans('forms.Delete'));
             return response()->json(['message' => trans('forms.Delete')], 200);
         } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+
+        }
+    }
+    public function destroy_file($id)
+    {
+        try {
+            $delete_data = Trainer_Files::find($id);
+            $this->deleteImage($delete_data->file);
+
+            $delete_data->delete();
+            toastr()->error(trans('forms.Delete'));
+
+            /*            return redirect()->back();*/
+            return response()->json(['message' => 'Image deleted successfully.'], 200);
+        } catch (\Exception $e) {
+            /*            return redirect()->back()->withErrors(['error' => $e->getMessage()]);*/
             return response()->json(['error' => $e->getMessage()], 500);
 
         }

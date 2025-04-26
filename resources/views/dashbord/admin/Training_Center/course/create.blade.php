@@ -7,7 +7,7 @@
         <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
             <!--begin::Title-->
             <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                {{trans('course.create')}}</h1>
+                {{trans('TC_Setting.courseCreate')}}</h1>
             <!--end::Title-->
             <!--begin::Breadcrumb-->
             <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -20,7 +20,7 @@
                     <span class="bullet bg-gray-400 w-5px h-2px"></span>
                 </li>
                 <li class="breadcrumb-item text-muted">
-                    {{trans('Toolbar.finance')}}
+                    {{trans('Toolbar.setting')}}
                 </li>
                 <li class="breadcrumb-item">
                     <span class="bullet bg-gray-400 w-5px h-2px"></span>
@@ -33,7 +33,7 @@
                     <span class="bullet bg-gray-400 w-5px h-2px"></span>
                 </li>
                 <li class="breadcrumb-item text-muted">
-                    {{trans('Toolbar.accountCreate')}}
+                    {{trans('Toolbar.courseCreate')}}
                 </li>
 
 
@@ -94,7 +94,7 @@
                     <!--begin::Card header-->
                     <div class="card-header">
                         <div class="card-title">
-                            <h2>{{trans('course.mainData')}}</h2>
+                            <h2>{{trans('TC_Setting.mainData')}}</h2>
                         </div>
                     </div>
                     <!--end::Card header-->
@@ -104,14 +104,14 @@
                         <div class="mb-10 fv-row row">
                             <div class="col-md-6">
                                 <!--begin::Label-->
-                                <label class="required form-label">{{trans('course.name')}}
+                                <label class="required form-label">{{trans('TC_Setting.name_cat')}}
                                     <span class="text-muted fs-7">"{{trans('forms.lable_en')}}"</span>
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
                                 <input type="text" name="name[en]"
                                        class="form-control mb-2  @error('name[en]') is-invalid @enderror"
-                                       placeholder="{{trans('course.name')}}" value="{{old('name[en]')}}"/>
+                                       placeholder="{{trans('TC_Setting.name_cat')}}" value="{{old('name[en]')}}"/>
                                 <!--end::Input-->
                                 @error('name[en]')
                                 <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
@@ -120,7 +120,7 @@
 
                             <div class="col-md-6">
                                 <!--begin::Label-->
-                                <label class="required form-label">{{trans('course.name')}}
+                                <label class="required form-label">{{trans('TC_Setting.name_cat')}}
                                     <span class="text-muted fs-7">"{{trans('forms.lable_ar')}}"</span>
 
                                 </label>
@@ -128,7 +128,7 @@
                                 <!--begin::Input-->
                                 <input type="text" name="name[ar]"
                                        class="form-control mb-2  @error('name[ar]') is-invalid @enderror"
-                                       placeholder="{{trans('course.name')}}" value="{{old('name[ar]')}}"/>
+                                       placeholder="{{trans('TC_Setting.name_cat')}}" value="{{old('name[ar]')}}"/>
                                 <!--end::Input-->
                                 @error('name[ar]')
                                 <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
@@ -139,13 +139,13 @@
                         <div class="mb-10 fv-row row">
                             <div class="col-md-4">
                                 <!--begin::Label-->
-                                <label class="required form-label">{{trans('course.code')}}
+                                <label class="required form-label">{{trans('TC_Setting.code')}}
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
                                 <input type="text" name="code"
                                        class="form-control mb-2  @error('code') is-invalid @enderror"
-                                       placeholder="{{trans('course.code')}}" value="{{old('code')}}"/>
+                                       placeholder="{{trans('TC_Setting.code')}}" value="{{old('code')}}"/>
                                 <!--end::Input-->
                                 @error('code')
                                 <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
@@ -155,14 +155,14 @@
                             {{--
                                                         <div class="col-md-4">
                                                             <!--begin::Label-->
-                                                            <label class="required form-label">{{trans('course.account_num')}}
+                                                            <label class="required form-label">{{trans('TC_Setting.account_num')}}
 
                                                             </label>
                                                             <!--end::Label-->
                                                             <!--begin::Input-->
                                                             <input type="text" name="account_num"
                                                                    class="form-control mb-2  @error('account_num') is-invalid @enderror"
-                                                                   placeholder="{{trans('course.account_num')}}" value="{{old('account_num')}}"/>
+                                                                   placeholder="{{trans('TC_Setting.account_num')}}" value="{{old('account_num')}}"/>
                                                             <!--end::Input-->
                                                             @error('account_num')
                                                             <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
@@ -171,7 +171,7 @@
                             --}}
                             <div class="col-md-4">
                                 <!--begin::Label-->
-                                <label class="required form-label">{{trans('course.account_type')}}
+                                <label class="required form-label">{{trans('TC_Setting.course_type')}}
 
                                 </label>
                                 <!--end::Label-->
@@ -179,12 +179,12 @@
                                 <select name="account_type"
                                         class="form-control mb-2  @error('account_type') is-invalid @enderror"
                                         data-control="select2" data-placeholder="{{trans('forms.Select')}}">
-                                    <option value="0"> {{trans('course.account_type')}}</option>
+                                    <option value="0"> {{trans('TC_Setting.course_type')}}</option>
                                     @php
-                                        $accounts_type=['main'=>trans('course.main'),'program'=>trans('course.program'),'general'=>trans('course.general')];
+                                        $courses_type=['main'=>trans('TC_Setting.main'),'program'=>trans('TC_Setting.program'),'general'=>trans('TC_Setting.general')];
                                     @endphp
-                                    @foreach($accounts_type as $account_type=>$text)
-                                        <option value="{{$account_type}}">{{$text}}</option>
+                                    @foreach($courses_type as $course_type=>$text)
+                                        <option value="{{$course_type}}">{{$text}}</option>
                                     @endforeach
                                 </select>
                                 <!--end::Input-->
@@ -194,16 +194,16 @@
                             </div>
                             <div class="col-md-4">
                                 <!--begin::Label-->
-                                <label class="required form-label">{{trans('course.parent_id')}}
+                                <label class="required form-label">{{trans('TC_Setting.parent_id')}}
 
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
                                 <select name="parent_id" class="form-control mb-2  @error('parent_id') is-invalid @enderror"
                                         data-control="select2" data-placeholder="{{trans('forms.Select')}}">
-                                    <option value="0"> {{trans('course.parent')}}</option>
-                                    @foreach($accounts as $account)
-                                        <option value="{{$account->id}}">{{$account->name}}</option>
+                                    <option value="0"> {{trans('TC_Setting.parent')}}</option>
+                                    @foreach($courses as $course)
+                                        <option value="{{$course->id}}">{{$course->name}}</option>
                                     @endforeach
                                 </select>
                                 <!--end::Input-->

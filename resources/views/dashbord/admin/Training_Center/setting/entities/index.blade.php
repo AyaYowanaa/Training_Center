@@ -6,7 +6,7 @@
         <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
             <!--begin::Title-->
             <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                {{trans('about.create')}}</h1>
+                {{trans('TC_Setting.createEntities')}}</h1>
             <!--end::Title-->
             <!--begin::Breadcrumb-->
             <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -75,7 +75,7 @@
 
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">{{trans('Entities.Add')}}</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">{{trans('TC_Setting.Add')}}</h5>
                     </div>
                     <!--begin::Formmmmm-->
 
@@ -85,7 +85,7 @@
 
                             <div class="row">
                                 <label
-                                    class="required form-label">{{trans('Entities.Name')}}
+                                    class="required form-label">{{trans('TC_Setting.NameEntities')}}
                                     (<span
                                         class="text-gray-600">{{trans('forms.lable_en')}}</span>)</label>
 
@@ -93,19 +93,19 @@
                                        placeholder="Name" value=""
                                        {{-- value="{{$name['en']?? '-'}}---}}
                                        required autocomplete/>
-                        
-                        
+
+
                                 <label
-                                    class="required form-label">{{trans('Entities.Name')}}
+                                    class="required form-label">{{trans('TC_Setting.NameEntities')}}
                                     (<span
                                         class="text-gray-600">{{trans('forms.lable_ar')}}</span>)</label>
 
                                 <input type="text" name="name_ar" class="form-control mb-2"
                                        placeholder="name" value=""
                                        required autocomplete/>
-                                      
+
                                        <label
-                                       class="required form-label">{{trans('Entities.address')}}
+                                       class="required form-label">{{trans('TC_Setting.address')}}
                                        (<span
                                            class="text-gray-600">{{trans('forms.lable_en')}}</span>)</label>
 
@@ -113,9 +113,9 @@
                                           placeholder="Address" value=""
                                           {{-- value="{{$name['en']?? '-'}}---}}
                                           required autocomplete/>
-                           
+
                                        <label
-                                       class="required form-label">{{trans('Entities.Address')}}
+                                       class="required form-label">{{trans('TC_Setting.Address')}}
                                        (<span
                                            class="text-gray-600">{{trans('forms.lable_ar')}}</span>)</label>
 
@@ -123,22 +123,22 @@
                                           placeholder="العنوان" value=""
                                           required autocomplete/>
                                           <label
-                                          class="required form-label">{{trans('Entities.Email')}}
+                                          class="required form-label">{{trans('TC_Setting.Email')}}
                                          </label>
                                           <input type="text" name="email" class="form-control mb-2"
                                           placeholder="example@yahoo.com" value=""
                                           required autocomplete/>
                                           <label
-                                          class="required form-label">{{trans('Entities.Phone')}}
+                                          class="required form-label">{{trans('TC_Setting.Phone')}}
                                          </label>
                                           <input type="text" name="phone" class="form-control mb-2"
                                           placeholder="" value=""
                                           required autocomplete/>
-                           
+
                              </div>
-                            
-                        
-                        
+
+
+
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -192,8 +192,8 @@
                     <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                         <th class="min-w-250px">#</th>
 
-                        <th class="min-w-250px">{{trans('Entities.Name')}}</th>
-                        <th class="text-end min-w-70px">{{trans('Entities.Action')}}</th>
+                        <th class="min-w-250px">{{trans('TC_Setting.NameEntities')}}</th>
+                        <th class="text-end min-w-70px">{{trans('TC_Setting.Action')}}</th>
                     </tr>
                     <!--end::Table row-->
                     </thead>
@@ -203,21 +203,21 @@
                     <!--begin::Table row-->
                     @php
                         $i=1;
-                      
+
 
                     @endphp
 
                     @foreach  ($obj as $x)
-                    <?php $name = json_decode($x->name, true); 
+                    <?php $name = json_decode($x->name, true);
                     $address = json_decode($x->address, true);?>
 
                         <tr>
                           <td>{{$i++}}</td>
-              {{--        <td>{{ $x->name[app()->getLocale()] ?? '-' }}</td>  
-              {{--            <td>{{ json_decode($x->name, true)['en'] ?? '-' }}</td>  
+              {{--        <td>{{ $x->name[app()->getLocale()] ?? '-' }}</td>
+              {{--            <td>{{ json_decode($x->name, true)['en'] ?? '-' }}</td>
                          <td>{{ $name['en'] ?? '-' }}</td> --}}
                           <td>{{$x->name}}</td>
-                        
+
 
                             <!--begin::Action=-->
 
@@ -262,7 +262,7 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel">
-                                            {{trans('Entities.Update')}}</h5>
+                                            {{trans('TC_Setting.Update')}}</h5>
                                     </div>
 
 
@@ -273,15 +273,15 @@
                                         {{--     @php
                                                 $name=optional($x->getTranslations('name')); //return local lang
                                             @endphp --}}
-                                           <?php 
+                                           <?php
                                          $name=optional($x->getTranslations('name'));
                                          $address=optional($x->getTranslations('address'));
                                          /* $name = optinal(json_decode($x->name, true)); */ ?>
-                                       
+
 
                                             <div class="row">
                                                 <label
-                                                    class="required form-label">{{trans('Entities.Name')}}
+                                                    class="required form-label">{{trans('TC_Setting.NameEntities')}}
                                                     (<span
                                                         class="text-gray-600">{{trans('forms.lable_en')}}</span>)</label>
 
@@ -289,50 +289,50 @@
                                                        placeholder="Name" value="{{$name['en']}}"
                                                        {{-- value="{{$name['en']?? '-'}}---}}
                                                        required autocomplete/>
-                                        
-                                        
+
+
                                                 <label
-                                                    class="required form-label">{{trans('Entities.Name')}}
+                                                    class="required form-label">{{trans('TC_Setting.NameEntities')}}
                                                     (<span
                                                         class="text-gray-600">{{trans('forms.lable_ar')}}</span>)</label>
 
                                                 <input type="text" name="name_ar" class="form-control mb-2"
                                                        placeholder="name" value="{{$name['ar']}}"
                                                        required autocomplete/>
-                                                      
+
                                                        <label
-                                                       class="required form-label">{{trans('Entities.address')}}
+                                                       class="required form-label">{{trans('TC_Setting.address')}}
                                                        (<span
                                                            class="text-gray-600">{{trans('forms.lable_en')}}</span>)</label>
-   
+
                                                    <input type="text" name="address_en" class="form-control mb-2"
                                                           placeholder="Address" value="{{$address['en']}}"
                                                           {{-- value="{{$name['en']?? '-'}}---}}
                                                           required autocomplete/>
-                                           
+
                                                        <label
-                                                       class="required form-label">{{trans('Entities.address')}}
+                                                       class="required form-label">{{trans('TC_Setting.address')}}
                                                        (<span
                                                            class="text-gray-600">{{trans('forms.lable_ar')}}</span>)</label>
-   
+
                                                    <input type="text" name="address_ar" class="form-control mb-2"
                                                           placeholder="العنوان" value="{{$address['ar']}}"
                                                           required autocomplete/>
                                                           <label
-                                                          class="required form-label">{{trans('Entities.Email')}}
+                                                          class="required form-label">{{trans('TC_Setting.Email')}}
                                                          </label>
                                                           <input type="text" name="email" class="form-control mb-2"
                                                           placeholder="example@yahoo.com" value="{{$x->email}}"
                                                           required autocomplete/>
                                                           <label
-                                                          class="required form-label">{{trans('Entities.Phone')}}
+                                                          class="required form-label">{{trans('TC_Setting.Phone')}}
                                                          </label>
                                                           <input type="text" name="phone" class="form-control mb-2"
                                                           placeholder=""  value="{{$x->phone}}"
                                                           required autocomplete/>
-                                           
+
                                              </div>
-                                            
+
 
                                             <!--end::Button-->
 

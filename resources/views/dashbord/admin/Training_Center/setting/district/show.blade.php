@@ -10,7 +10,7 @@
                 {{csrf_field()}}
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">{{trans('settings.Add_district_name')}}</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">{{trans('TC_Setting.Add_district_name')}}</h5>
                     </div>
                     <!--begin::Formmmmm-->
 
@@ -18,7 +18,7 @@
                         <div class="container-fluid">
 
                             <div class="row">
-                                <label class="required form-label">{{trans('settings.City_Name')}}</label>
+                                <label class="required form-label">{{trans('TC_Setting.City_Name')}}</label>
 
                                 <!--begin::Select2-->
                                 <select class="form-select mb-2 "
@@ -35,14 +35,14 @@
                                 <!--end::Select2-->
                             </div>
                             <div class="row">
-                                <label class="required form-label">{{trans('settings.district_name')}}(<span
+                                <label class="required form-label">{{trans('TC_Setting.district_name')}}(<span
                                         class="text-gray-600">{{trans('forms.lable_en')}}</span>)</label>
 
                                 <input type="text" name="name_en" class="form-control mb-2"
                                        placeholder="district_name" value=""/>
                             </div>
                             <div class="row">
-                                <label class="required form-label">{{trans('settings.district_name')}} (<span
+                                <label class="required form-label">{{trans('TC_Setting.district_name')}} (<span
                                         class="text-gray-600">{{trans('forms.lable_ar')}}</span>)</label>
 
                                 <input type="text" name="name_ar" class="form-control mb-2"
@@ -56,12 +56,12 @@
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">
-                                <span class="indicator-label">{{trans('settings.Save_Changes')}}</span>
+                                <span class="indicator-label">{{trans('TC_Setting.Save_Changes')}}</span>
                                 <span class="indicator-progress">Please wait...
             <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                             </button>
                             <button type="button" class="btn btn-secondary"
-                                    data-bs-dismiss="modal">{{trans('settings.Close')}}</button>
+                                    data-bs-dismiss="modal">{{trans('TC_Setting.Close')}}</button>
 
                         </div>
 
@@ -89,7 +89,7 @@
                 <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                     <!--begin::Title-->
                     <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                        {{trans('settings.district_name')}} </h1>
+                        {{trans('TC_Setting.district_name')}} </h1>
                     <!--end::Title-->
                     <!--begin::Breadcrumb-->
                     <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -112,7 +112,7 @@
                         </li>
                         <!--end::Item-->
                         <!--begin::Item-->
-                        <li class="breadcrumb-item text-muted">{{trans('settings.district_name')}}</li>
+                        <li class="breadcrumb-item text-muted">{{trans('TC_Setting.district_name')}}</li>
                         <!--end::Item-->
                     </ul>
                     <!--end::Breadcrumb-->
@@ -145,7 +145,7 @@
                             <!------ button model  ---------->
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal">
-                                {{trans('settings.Add')}}
+                                {{trans('TC_Setting.Add')}}
                             </button>
                             <!--end::Add customer-->
                         </div>
@@ -161,9 +161,9 @@
 
                             <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                                 <th class="min-w-250px">#</th>
-                                <th class="min-w-250px">{{trans('settings.district_name')}}</th>
-                                <th class="min-w-250px">{{trans('settings.City_Name')}}</th>
-                                <th class="text-end min-w-70px">{{trans('settings.Actions')}}</th>
+                                <th class="min-w-250px">{{trans('TC_Setting.district_name')}}</th>
+                                <th class="min-w-250px">{{trans('TC_Setting.City_Name')}}</th>
+                                <th class="text-end min-w-70px">{{trans('TC_Setting.Actions')}}</th>
                             </tr>
                             <!--end::Table row-->
                             </thead>
@@ -186,7 +186,7 @@
                                     <td class="text-end">
                                         <a href="#" class="btn btn-sm btn-light btn-active-light-primary"
                                            data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                        {{trans('settings.Actions')}}
+                                        {{trans('TC_Setting.Actions')}}
                                         <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
                                             <span class="svg-icon svg-icon-5 m-0">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -209,14 +209,14 @@
                                             <div class="menu-item px-3">
                                                 <a href="{{route('admin.setting.district.edit',$x->id)}}"
                                                    data-bs-toggle="modal" data-bs-target="#exampleModal{{$x->id}}"
-                                                   class="menu-link px-3">{{trans('settings.Edit')}}</a>
+                                                   class="menu-link px-3">{{trans('TC_Setting.Edit')}}</a>
                                             </div>
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
                                                 <a href="{{route('admin.setting.district.delete',$x->id)}}"
                                                    class="menu-link px-3"
-                                                   data-kt-ecommerce-category-filter="delete_row">{{trans('settings.Delete')}}</a>
+                                                   data-kt-ecommerce-category-filter="delete_row">{{trans('TC_Setting.Delete')}}</a>
                                             </div>
                                             <!--end::Menu item-->
                                         </div>
@@ -247,7 +247,7 @@
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title"
-                                                    id="exampleModalLabel">{{trans('settings.update_district_name')}}</h5>
+                                                    id="exampleModalLabel">{{trans('TC_Setting.update_district_name')}}</h5>
                                             </div>
                                             <!--begin::Formmmmm-->
 
@@ -260,7 +260,7 @@
 
 
                                                     <div class="row">
-                                                        <label class="required form-label">{{trans('settings.City_Name')}}</label>
+                                                        <label class="required form-label">{{trans('TC_Setting.City_Name')}}</label>
 
                                                         <!--begin::Select2-->
                                                         <select class="form-select mb-2 "
@@ -287,7 +287,7 @@
                                                     </div>
                                                     <div class="row">
                                                         <label
-                                                            class="required form-label">{{trans('settings.district_name')}}</label>
+                                                            class="required form-label">{{trans('TC_Setting.district_name')}}</label>
 
                                                         <input type="text" name="name_ar" class="form-control mb-2"
                                                                placeholder="نوع المجموعه" value="{{$name['ar']}}"/>
@@ -301,12 +301,12 @@
                                                 <div class="modal-footer">
                                                     <button type="submit" class="btn btn-primary">
                                                     <span
-                                                        class="indicator-label">{{trans('settings.Save_Changes')}}</span>
+                                                        class="indicator-label">{{trans('TC_Setting.Save_Changes')}}</span>
                                                         <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                                     </button>
                                                     <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">{{trans('settings.Close')}}</button>
+                                                            data-bs-dismiss="modal">{{trans('TC_Setting.Close')}}</button>
 
                                                 </div>
 

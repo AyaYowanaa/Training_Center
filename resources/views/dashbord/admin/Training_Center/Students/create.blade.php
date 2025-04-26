@@ -7,7 +7,7 @@
         <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
             <!--begin::Title-->
             <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                {{trans('trainingCenter.create')}}</h1>
+                {{trans('trainingCenter.StudentCreate')}}</h1>
             <!--end::Title-->
             <!--begin::Breadcrumb-->
             <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -19,7 +19,7 @@
                 <li class="breadcrumb-item">
                     <span class="bullet bg-gray-400 w-5px h-2px"></span>
                 </li>
-              
+
                 <li class="breadcrumb-item text-muted">
                     <a href="{{ route('admin.Settings.Student.index') }}"
                        class="text-muted text-hover-primary"> {{trans('Toolbar.TrainingCenter')}}</a>
@@ -99,14 +99,14 @@
                         <div class="mb-10 fv-row row">
                             <div class="col-md-4">
                                 <!--begin::Label-->
-                                <label class="required form-label">{{trans('trainingCenter.name')}}
+                                <label class="required form-label">{{trans('trainingCenter.NameStudent')}}
                                     <span class="text-muted fs-7">"{{trans('forms.lable_en')}}"</span>
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
                                 <input type="text" name="name_en"
                                        class="form-control mb-2  @error('name_en') is-invalid @enderror"
-                                       placeholder="{{trans('trainingCenter.name')}}" value=""/>
+                                       placeholder="{{trans('trainingCenter.NameStudent')}}" value=""/>
                                 <!--end::Input-->
                                 @error('name_en')
                                 <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
@@ -115,7 +115,7 @@
 
                             <div class="col-md-4">
                                 <!--begin::Label-->
-                                <label class="required form-label">{{trans('trainingCenter.name')}}
+                                <label class="required form-label">{{trans('trainingCenter.NameStudent')}}
                                     <span class="text-muted fs-7">"{{trans('forms.lable_ar')}}"</span>
 
                                 </label>
@@ -123,13 +123,13 @@
                                 <!--begin::Input-->
                                 <input type="text" name="name_ar"
                                        class="form-control mb-2  @error('name_ar') is-invalid @enderror"
-                                       placeholder="{{trans('trainingCenter.name')}}" value=""/>
+                                       placeholder="{{trans('trainingCenter.NameStudent')}}" value=""/>
                                 <!--end::Input-->
                                 @error('name_ar')
                                 <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-         
+
                             <div class="col-md-4">
                                 <!--begin::Label-->
                                 <label class="required form-label">{{trans('trainingCenter.code')}}
@@ -162,7 +162,7 @@
                                 <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-                        
+
                             <div class="col-md-4">
                                 <!--begin::Label-->
                                 <label class="required form-label">{{trans('trainingCenter.Email')}}
@@ -199,14 +199,14 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <label class="form-label">{{trans('trainingCenter.Grades')}}</label>
-    
+
                                     <!--begin::Select2-->
                                     <select class="form-select mb-2 @error('grades_id') is-invalid @enderror"
                                             onchange="/*set_status()*/"
                                             data-control="select2" data-hide-search="false"
                                           data-placeholder="Select an option" data-allow-clear="true"
                                             id="grades_id" name="grades_id">
-    
+
                                         <option value=" ">{{trans('maindata.Select')}}</option>
                                      {{--    @foreach($grades as $row)
                                         <option value="{{ $row->id }}">{{ $row->name}}</option>
@@ -215,7 +215,7 @@
                                     <!--end::Select2-->
                                 </div>
                               {{--   <div class="col-md-4">
-                             
+
                                         <label class="required form-label">{{trans('trainingCenter.Bulk_Import')}}</label>
                                         <select class="form-select mb-2 @error('bulk_import') is-invalid @enderror"
                                                 data-control="select2" data-hide-search="false"
@@ -225,14 +225,14 @@
                                       <option value="1">Yes</option>
                                       </select>
                                 </div> --}}
-                          
+
                             </div>
 
                         </div>
 
                     </div>
                     <!--end::Card header-->
-            
+
                 <!--end::General options-->
 
 
@@ -256,10 +256,10 @@
 
 @endsection
 @section('js')
-  
+
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
     {!! JsValidator::formRequest('App\Http\Requests\training_center\Students\StoreRequest','#StorForm'); !!}
 
- 
+
 @endsection
 

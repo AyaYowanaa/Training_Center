@@ -7,7 +7,7 @@
         <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
             <!--begin::Title-->
             <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                {{trans('trainingCenter.create')}}</h1>
+                {{trans('trainingCenter.createCourseFees')}}</h1>
             <!--end::Title-->
             <!--begin::Breadcrumb-->
             <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -19,7 +19,7 @@
                 <li class="breadcrumb-item">
                     <span class="bullet bg-gray-400 w-5px h-2px"></span>
                 </li>
-              
+
                 <li class="breadcrumb-item text-muted">
                     <a href="{{ route('admin.Settings.CoursesFees.index') }}"
                        class="text-muted text-hover-primary"> {{trans('Toolbar.TrainingCenter')}}</a>
@@ -96,12 +96,12 @@
                     <!--begin::Card body-->
                     <div class="card-body pt-0">
                         <!--begin::Input group-->
-                      
-                      
-                      
+
+
+
                         <div class="mb-10 fv-row row">
-                  
-                            
+
+
 
                             <div class="col-md-4">
                                 <!--begin::Label-->
@@ -117,12 +117,12 @@
                                 <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-                    
 
-                  
-                         
-                        
-                        
+
+
+
+
+
                             <div class="col-md-4">
                                 <label class="form-label">{{trans('trainingCenter.Courses')}}</label>
 
@@ -161,13 +161,13 @@
 
 
                             </div>
-                          
+
 
                         </div>
 
                     </div>
                     <!--end::Card header-->
-            
+
                 <!--end::General options-->
 
 
@@ -191,9 +191,9 @@
 
 @endsection
 @section('js')
-  
+
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
 
- 
+
 @endsection
 
