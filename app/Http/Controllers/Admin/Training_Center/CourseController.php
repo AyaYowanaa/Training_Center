@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 
 use App\Http\Requests\training_center\course\StoreRequest;
 use App\Http\Requests\training_center\course\UpdateRequest;
-use App\Models\Finance\Accounts_type;
 use App\Models\training_center\Course;
 use Exception;
 use Illuminate\Http\Request;
@@ -88,7 +87,7 @@ class CourseController extends Controller
     public function load_roots()
     {
         $courses = Course::whereIsRoot()->get();
-        return response()->json($this->formataccounts($courses));
+        return response()->json($this->formatcourses($courses));
     }
 
     public function load_child(Request $request)
@@ -96,12 +95,12 @@ class CourseController extends Controller
         $parent = Course::find($request->id);
         if ($parent) {
             $children = $parent->children()->get();
-            return response()->json($this->formataccounts($children));
+            return response()->json($this->formatcourses($children));
         }
         return response()->json([]);
     }
 
-    private function formataccounts($courses)
+    private function formatcourses($courses)
     {
         return $courses->map(function ($category) {
             if ($category->children()->exists()) {

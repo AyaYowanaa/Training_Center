@@ -49,7 +49,7 @@ class UpdateRequest extends FormRequest
                 function ($attribute, $value, $fail) {
                     // إذا كانت قيمة `parent_id` ليست صفرًا، تحقق من وجودها في جدول `tc_courses`
                     if ($value != 0 && !DB::table('tc_courses')->where('id', $value)->exists()) {
-                        $fail(trans('forms.account_not_exite'));
+                        $fail(trans('forms.course_not_exite'));
                     }
                 },
             ],

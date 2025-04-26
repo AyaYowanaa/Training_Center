@@ -17,7 +17,8 @@ class entitySettingController extends Controller
     {
 
         $obj=Entity::all();
-        return view('dashbord.admin.Training_center.setting.entities.index',compact('obj'));
+        return view('dashbord.admin.Training_Center.setting.entities.index',compact('obj'));
+
     }
 
    

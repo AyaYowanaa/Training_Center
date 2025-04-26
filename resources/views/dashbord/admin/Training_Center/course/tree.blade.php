@@ -7,8 +7,8 @@
 @section('toolbar')
     <!--begin::Toolbar container-->
     <div id="kt_app_toolbar_container" class="app-container container-xxl d-flex flex-stack">
-        <!--begin::Page title-->
-        <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+         <!--begin::Page title-->
+         <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
             <!--begin::Title-->
             <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
                 {{trans('TC_Setting.create')}}</h1>
@@ -23,14 +23,10 @@
                 <li class="breadcrumb-item">
                     <span class="bullet bg-gray-400 w-5px h-2px"></span>
                 </li>
+           
+            
                 <li class="breadcrumb-item text-muted">
-                    {{trans('Toolbar.site')}}
-                </li>
-                <li class="breadcrumb-item">
-                    <span class="bullet bg-gray-400 w-5px h-2px"></span>
-                </li>
-                <li class="breadcrumb-item text-muted">
-                    {{trans('Toolbar.course')}}
+                    {{trans('Toolbar.Courses')}}
                 </li>
 
 
@@ -102,7 +98,7 @@
 
 
                              @if($category->children->isNotEmpty())
-                                 @include('dashbord.admin.Finance.accounts.children', ['children' => $category->children])
+                                 @include('dashbord.admin.Finance.courses.children', ['children' => $category->children])
                              @endif
                          </li>
                      @endforeach

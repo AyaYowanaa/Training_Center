@@ -4,30 +4,30 @@ namespace App\Http\Controllers\Admin\Training_Center;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\training_center\CourseFees;
+use App\Models\training_center\Instructors_Courses;
+use App\Models\training_center\Trainer;
 use App\Models\training_center\TrainingCourse;
 use App\Models\setting\Expenses;
-/* use App\Http\Requests\training_center\CourseFees\StoreRequest;
-use App\Http\Requests\training_center\CourseFees\UpdateRequest; */
-
+use App\Http\Requests\training_center\Instructors_Courses\StoreRequest;
+use App\Http\Requests\training_center\Instructors_Courses\UpdateRequest;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
 
-class CoursesFeesController extends Controller
+class Instructors_CoursesController extends Controller
 {
   
     public function index(Request $request)
     {
 
         if ($request->ajax()) {
-            $allData = CourseFees::select('*');
+            $allData = Instructors_Courses::select('*');
             return Datatables::of($allData)
                 
                 ->editColumn('courses_id', function ($row) {
                     return $row->coursesData?->title ?? '—';
                 })
-                ->editColumn('expenses_id', function ($row) {
-                    return $row->expensesData?->name ?? '—';
+                ->editColumn('trainer_id', function ($row) {
+                    return $row->trainerData?->name ?? '—';
                 })
                 ->addColumn('action', function ($row) {
                     return '<a href="#" class="btn btn-sm btn-light btn-active-light-primary"
@@ -49,18 +49,14 @@ class CoursesFeesController extends Controller
                  </a>
                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
                         <div class="menu-item px-3">
-                             <a href="' . route('admin.Settings.CourseCosts.edit', $row->id) . '"
+                             <a href="' . route('admin.Settings.Instructors_Courses.edit', $row->id) . '"
                                address="' . trans('forms.edite_btn') . '" class="menu-link px-3"
                                >' . trans('forms.edite_btn') . '</a>
                         </div>
                    		
+                       
                         <div class="menu-item px-3">
-                                <a href="javascript:void(0)" data-kt-table-details="details_row" data-url="' . route('admin.Settings.CourseCosts.load_details', $row->id) . '"
-                                           address="' . trans('forms.details') . '" class="menu-link px-3"
-                                         data-bs-toggle="modal" data-bs-target="#kt_modal_1"  >' . trans('forms.details') . '</a>
-                        </div>
-                        <div class="menu-item px-3">
-                                <a href="' . route('admin.Settings.CourseCosts.destroy', $row->id) . '" data-kt-table-delete="delete_row"
+                                <a href="' . route('admin.Settings.Instructors_Courses.destroy', $row->id) . '" data-kt-table-delete="delete_row"
                                            address="' . trans('forms.delete_btn') . '" class="menu-link px-3"
                                            >' . trans('forms.delete_btn') . '</a>
                         </div>
@@ -74,41 +70,39 @@ class CoursesFeesController extends Controller
                 ->make(true);
         }
 
-        return view('dashbord.admin.Training_Center.CourseFees.index');
+        return view('dashbord.admin.Training_Center.Instructors_Courses.index');
     }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
-    {    $data['one_data']= new CourseFees();
+    {    $data['one_data']= new Instructors_Courses();
          $data['courses']= TrainingCourse::all();
-         $data['expenses']= Expenses::all();
-        return view('dashbord.admin.Training_Center.CourseFees.create'
+         $data['trainers'] = Trainer::all();
+        return view('dashbord.admin.Training_Center.Instructors_Courses.create'
         , $data);
 
     }
     public function show_load($id)
     {
-        $data['one_data'] = CourseFees::findOrFail($id);
-        $data['expenses'] = Expenses::all();
+        $data['one_data'] = Instructors_Courses::findOrFail($id);
         $data['courses'] = TrainingCourse::all();
-        return view('dashbord.admin.Training_Center.CourseFees.load_details', $data);
+        return view('dashbord.admin.Training_Center.Instructors_Courses.load_details', $data);
     }
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
 
         try {
-          //  dd($request->input('courses_id'));
 
             $insert_data = $request->all();
-            $inserted_data = CourseFees::create($insert_data);
+            $inserted_data = Instructors_Courses::create($insert_data);
             $insert_id = $inserted_data->id;
             toastr()->addSuccess(trans('forms.success'));
-            return redirect()->route('admin.Settings.CourseCosts.index');
+            return redirect()->route('admin.Settings.Instructors_Courses.index');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
@@ -117,24 +111,25 @@ class CoursesFeesController extends Controller
 
     public function edit($id)
     {
-        $data['one_data'] = CourseFees::findOrFail($id);
+        $data['one_data'] = Instructors_Courses::findOrFail($id);
         $data['courses']= TrainingCourse::all();
-        $data['expenses']= Expenses::all();
-        return view('dashbord.admin.Training_Center.CourseFees.edit',$data);
+        $data['trainers'] = Trainer::all();
+
+        return view('dashbord.admin.Training_Center.Instructors_Courses.edit',$data);
 
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
         try {
-            $data = CourseFees::findOrFail($id);
+            $data = Instructors_Courses::findOrFail($id);
             $update_data = $request->all();
             $data->update($update_data);
             toastr()->addSuccess(trans('forms.success'));
-            return redirect()->route('admin.Settings.CourseCosts.index');
+            return redirect()->route('admin.Settings.Instructors_Courses.index');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
@@ -149,7 +144,7 @@ class CoursesFeesController extends Controller
        
         try {
 
-            $one_data = CourseFees::find($id);
+            $one_data = Instructors_Courses::find($id);
 
             $one_data->delete();
             toastr()->error(trans('forms.Delete'));

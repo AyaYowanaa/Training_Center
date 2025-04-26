@@ -26,9 +26,9 @@ class StoreRequest extends FormRequest
         return [
             'name.ar' => 'required|unique:tc_courses,name->ar',
             'name.en' => 'required|unique:tc_courses,name->en',
-//            'account_num' => 'required|numeric|min:0|unique:tc_courses,account_num',
+//            'course_num' => 'required|numeric|min:0|unique:tc_courses,course_num',
             'code' => 'required|numeric|min:0|unique:tc_courses,code',
-            'account_type' => ['required', 'in:general,program,main'],
+            'course_type' => ['required', 'in:general,program,main'],
             'parent_id' => [
                 'nullable',
                 'integer',
@@ -36,7 +36,7 @@ class StoreRequest extends FormRequest
                 function ($attribute, $value, $fail) {
                     // إذا كانت قيمة `parent_id` ليست صفرًا، تحقق من وجودها في جدول `tc_courses`
                     if ($value != 0 && !DB::table('tc_courses')->where('id', $value)->exists()) {
-                        $fail(trans('forms.account_not_exite'));
+                        $fail(trans('forms.course_not_exite'));
                     }
                 },
             ],
@@ -48,7 +48,7 @@ class StoreRequest extends FormRequest
         return [
             'name.ar' => 'required|unique:tc_courses,name->ar',
             'name.en' => 'required|unique:tc_courses,name->en',
-            'account_num' => 'required|numeric|min:0|unique:tc_courses,account_num',
+            'course_num' => 'required|numeric|min:0|unique:tc_courses,course_num',
             'code' => 'required|numeric|min:0|unique:tc_courses,code',
             'parent_id' => 'nullable|exists:tc_courses,id',
 

@@ -8,15 +8,14 @@
     <!--begin::Logo-->
     <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
         <!--begin::Logo image-->
-        @if(app()->getLocale() =='ar')
+           @if(app()->getLocale() =='ar')
             <!--begin::Logo image-->
-            <a href="{{route('admin.dashboard')}}">
-                <img alt="Logo"
-                     src="{{asset((!empty($mainData->image)) ? $mainData->image : 'assets/media/logos/logowhite-ar.webp')}}"
-                     class="h-50px app-sidebar-logo-default"/>
-            </a>
-        @else
-            <!--begin::Logo image-->
+                <a href="{{route('admin.dashboard')}}">
+                    <img alt="Logo"
+                         src="{{asset((!empty($mainData->image)) ? $mainData->image : 'assets/media/logos/logowhite-ar.webp')}}"
+                         class="h-50px app-sidebar-logo-default"/>
+                </a> @else
+        <!--begin::Logo image-->
             <a href="{{route('admin.dashboard')}}">
                 <img alt="Logo"
                      src="{{asset((!empty($mainData->image)) ? $mainData->image : 'assets/media/logos/logowhiteen.webp')}}"
@@ -56,10 +55,10 @@
             <div class="menu menu-column menu-rounded menu-sub-indention fw-semibold px-3"
                  id="#kt_app_sidebar_menu" data-kt-menu="true" data-kt-menu-expand="false">
 
-                {{--user--}}
-                {{--            @if(auth()->user()->hasRole('Super-Admin')||(auth()->user()->canAny(['list_user','list_roles'])))--}}
+            {{--user--}}
+            {{--            @if(auth()->user()->hasRole('Super-Admin')||(auth()->user()->canAny(['list_user','list_roles'])))--}}
 
-                <!--begin:Menu item-->
+            <!--begin:Menu item-->
                 <div class="menu-item pt-5">
                     <!--begin:Menu content-->
                     <div class="menu-content">
@@ -89,10 +88,10 @@
                     <!--end:Menu link-->
                 </div>
 
-                {{--            @if(auth()->user()->hasRole('Super-Admin')||(auth()->user()->canAny(['list_city','list_district'])))--}}
+            {{--            @if(auth()->user()->hasRole('Super-Admin')||(auth()->user()->canAny(['list_city','list_district'])))--}}
 
-                {{--store management--}}
-                <!--begin:Menu item-->
+            {{--store management--}}
+            <!--begin:Menu item-->
                 <div class="menu-item pt-5">
                     <!--begin:Menu content-->
                     <div class="menu-content">
@@ -221,7 +220,7 @@
                 <!--end:Menu item-->
 
 
-                {{--            @endif--}}
+            {{--            @endif--}}
 
                 {{--site management--}}
                 <!--begin:Menu item-->
@@ -306,13 +305,13 @@
 
 
                         </span>
-                    </a>
-                    <!--end:Menu link-->
-                </div>
-                <div class="menu-item">
-                    <!--begin:Menu link-->
-                    <a class="menu-link   @if (in_array(optional(explode('.', Route::currentRouteName()))[2], array('CoursesFees'))) {{'active'}} @endif"
-                       href="{{ route('admin.Settings.CoursesFees.index') }}">
+    </a>
+    <!--end:Menu link-->
+</div>
+<div class="menu-item">
+    <!--begin:Menu link-->
+    <a class="menu-link   @if (in_array(optional(explode('.', Route::currentRouteName()))[2], array('CourseCosts'))) {{'active'}} @endif"
+       href="{{ route('admin.Settings.CourseCosts.index') }}">
        <span class="menu-icon">
         <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
         <span class="svg-icon svg-icon-2">
@@ -332,19 +331,52 @@
                       fill="currentColor"/>
             </svg>
         </span>
-           <!--end::Svg Icon-->
+        <!--end::Svg Icon-->
     </span>
-                        <!--end::Svg Icon--></span>
-                        <span class="menu-title">{{trans('sidebar.CoursesFees')}}
+                                    <!--end::Svg Icon--></span>
+        <span class="menu-title">{{trans('sidebar.CourseCosts')}}
 
 
                         </span>
-                    </a>
-                    <!--end:Menu link-->
-                </div>
-                <!--end:Menu item-->
+    </a>
+    <!--end:Menu link-->
+</div>
+<!--end:Menu item-->
+<div class="menu-item">
+    <!--begin:Menu link-->
+    <a class="menu-link   @if (in_array(optional(explode('.', Route::currentRouteName()))[2], array('Instructors_Courses'))) {{'active'}} @endif"
+       href="{{ route('admin.Settings.Instructors_Courses.index') }}">
+       <span class="menu-icon">
+        <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
+        <span class="svg-icon svg-icon-2">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path
+                        d="M11.2929 2.70711C11.6834 2.31658 12.3166 2.31658 12.7071 2.70711L15.2929 5.29289C15.6834 5.68342 15.6834 6.31658 15.2929 6.70711L12.7071 9.29289C12.3166 9.68342 11.6834 9.68342 11.2929 9.29289L8.70711 6.70711C8.31658 6.31658 8.31658 5.68342 8.70711 5.29289L11.2929 2.70711Z"
+                        fill="currentColor"/>
+                <path
+                        d="M11.2929 14.7071C11.6834 14.3166 12.3166 14.3166 12.7071 14.7071L15.2929 17.2929C15.6834 17.6834 15.6834 18.3166 15.2929 18.7071L12.7071 21.2929C12.3166 21.6834 11.6834 21.6834 11.2929 21.2929L8.70711 18.7071C8.31658 18.3166 8.31658 17.6834 8.70711 17.2929L11.2929 14.7071Z"
+                        fill="currentColor"/>
+                <path opacity="0.3"
+                      d="M5.29289 8.70711C5.68342 8.31658 6.31658 8.31658 6.70711 8.70711L9.29289 11.2929C9.68342 11.6834 9.68342 12.3166 9.29289 12.7071L6.70711 15.2929C6.31658 15.6834 5.68342 15.6834 5.29289 15.2929L2.70711 12.7071C2.31658 12.3166 2.31658 11.6834 2.70711 11.2929L5.29289 8.70711Z"
+                      fill="currentColor"/>
+                <path opacity="0.3"
+                      d="M17.2929 8.70711C17.6834 8.31658 18.3166 8.31658 18.7071 8.70711L21.2929 11.2929C21.6834 11.6834 21.6834 12.3166 21.2929 12.7071L18.7071 15.2929C18.3166 15.6834 17.6834 15.6834 17.2929 15.2929L14.7071 12.7071C14.3166 12.3166 14.3166 11.6834 14.7071 11.2929L17.2929 8.70711Z"
+                      fill="currentColor"/>
+            </svg>
+        </span>
+        <!--end::Svg Icon-->
+    </span>
+                                    <!--end::Svg Icon--></span>
+        <span class="menu-title">{{trans('sidebar.Instructors_Courses')}}
 
-                <!--begin:Menu item-->
+
+                        </span>
+    </a>
+    <!--end:Menu link-->
+</div>
+<!--end:Menu item-->
+            <!--begin:Menu item-->
                 <div class="menu-item pt-5">
                     <!--begin:Menu content-->
                     <div class="menu-content">

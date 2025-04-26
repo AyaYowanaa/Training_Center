@@ -6,7 +6,7 @@
         <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
             <!--begin::Title-->
             <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                {{trans('dash_site.CourseFees')}}</h1>
+                {{trans('dash_site.create')}}</h1>
             <!--end::Title-->
             <!--begin::Breadcrumb-->
             <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -15,12 +15,12 @@
                     <a href="{{ route('admin.dashboard') }}" class="text-muted text-hover-primary">
                         {{trans('Toolbar.home')}}</a>
                 </li>
-
+         
                 <li class="breadcrumb-item">
                     <span class="bullet bg-gray-400 w-5px h-2px"></span>
                 </li>
                 <li class="breadcrumb-item text-muted">
-                    {{trans('Toolbar.CourseCosts')}}
+                    {{trans('Toolbar.Instructors_Courses')}}
                 </li>
 
 
@@ -31,7 +31,7 @@
         <div class="d-flex align-items-center gap-2 gap-lg-3">
             <!--begin::Filter menu-->
             <div class="d-flex">
-                <a href="{{route('admin.Settings.CourseCosts.create')}}"
+                <a href="{{route('admin.Settings.Instructors_Courses.create')}}"
                    class="btn btn-icon btn-sm btn-success flex-shrink-0 ms-4">
                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
                     <span class="svg-icon svg-icon-2">
@@ -73,8 +73,8 @@
                     <tr class="fw-semibold fs-6 text-gray-800">
                         <th>{{trans('trainingCenter.ID')}}</th>
                         <th>{{trans('trainingCenter.Course')}}</th>
-                        <th>{{trans('trainingCenter.Expenses')}}</th>
-                        <th>{{trans('trainingCenter.Amount')}}</th>
+                        <th>{{trans('trainingCenter.Trainer')}}</th>
+               
                         <th>{{trans('forms.Action')}}</th>
                     </tr>
                     </thead>
@@ -132,12 +132,11 @@
                     dom: "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
                         "<'row'<'col-sm-12'tr>>" +
                         "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-                    ajax: "{{route('admin.Settings.CourseCosts.index')}}",
+                    ajax: "{{route('admin.Settings.Instructors_Courses.index')}}",
                     columns: [
                         {data: 'id', name: 'id'},
                         {data: 'courses_id', name: 'courses_id'},
-                        {data: 'expenses_id', name: 'expenses_id'},
-                        {data: 'amount', name: 'amount'},
+                        {data: 'trainer_id', name: 'trainer_id'},
                         {data: 'action', name: 'action', orderable: false},
                     ],
                     order: [[0, 'desc']],
@@ -184,7 +183,7 @@
                         }
                     }).then(function (result) {
                         if (result.value) {
-
+                       
                             Swal.fire({
                                 imageUrl: 'https://media.tenor.com/C7KormPGIwQAAAAi/epic-loading.gif',
                                 imageWidth: 200,
