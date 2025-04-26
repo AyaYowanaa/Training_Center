@@ -190,7 +190,7 @@
 
                                     <option value=" ">{{trans('maindata.Select')}}</option>
                                     @foreach($courses as $row)
-                                    <option value="{{ $row->id }}">{{ $row->name}}</option>
+                                    <option value="{{ $row->id }}">{{ $row->title}}</option>
                                 @endforeach
                                 </select>
                                 <!--end::Select2-->

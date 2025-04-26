@@ -19,14 +19,7 @@
                 <li class="breadcrumb-item">
                     <span class="bullet bg-gray-400 w-5px h-2px"></span>
                 </li>
-              
-                <li class="breadcrumb-item text-muted">
-                    <a href="{{ route('admin.Settings.Instructor.index') }}"
-                       class="text-muted text-hover-primary"> {{trans('Toolbar.TrainingCenter')}}</a>
-                </li>
-                <li class="breadcrumb-item">
-                    <span class="bullet bg-gray-400 w-5px h-2px"></span>
-                </li>
+           
                 <li class="breadcrumb-item text-muted">
                     {{trans('Toolbar.Instructor_Update')}}
                 </li>

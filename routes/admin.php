@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\Training_Center\Settings\MainSettingController;
 use App\Http\Controllers\Admin\Training_Center\Settings\TypeSettingController;
 use App\Http\Controllers\Admin\Training_Center\Settings\EntitySettingController;
 use App\Http\Controllers\Admin\Training_Center\Settings\ExpensesController;
+use App\Http\Controllers\Admin\Training_Center\CoursesFeesController;
+use App\Http\Controllers\Admin\Training_Center\Instructors_CoursesController;
 use App\Http\Controllers\Admin\Training_Center\StudentController;
 use App\Http\Controllers\Admin\Training_Center\TrainerController;
 use App\Http\Controllers\Admin\Site\BlogController;
@@ -113,7 +115,13 @@ Route::group(
            // Route::get('Instructor/delete/{id}', [TrainerController::class, 'delete'])->name('Instructor.delete');
             Route::get('Instructor/show_load/{id}', [TrainerController::class, 'show_load'])->name('Instructor.load_details');
 
-
+            /*********************************** Course Fees ******************************** */
+            Route::resource('CourseCosts', CoursesFeesController::class);
+            Route::get('CourseCosts/show_load/{id}', [CoursesFeesController::class, 'show_load'])->name('CourseCosts.load_details');
+            /*********************************** Instructors_Courses ******************************** */
+            Route::resource('Instructors_Courses', Instructors_CoursesController::class);
+          //  Route::get('Instructors_Courses/show_load/{id}', [Instructors_CoursesController::class, 'show_load'])->name('Instructors_Courses.load_details');
+          
             /****************************************************************************** */
             Route::resource('district', DistrictController::class);
             Route::get('district/delete/{id}', [DistrictController::class, 'delete'])->name('district.delete');

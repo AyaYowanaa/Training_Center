@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models\training_center;
-
+use App\Models\training_center\TrainingCourse;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Translatable\HasTranslations;
@@ -24,7 +24,7 @@ class Students extends Model
 
     public function coursesData()
     {
-        return $this->belongsTo(Course::class, 'courses_id');
+        return $this->belongsTo(TrainingCourse::class, 'courses_id');
     }
 
 }
