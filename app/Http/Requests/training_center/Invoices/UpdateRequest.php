@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\training_center\training_courses;
+namespace App\Http\Requests\training_center\Invoices;
 
 use DB;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,13 +24,13 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'title_ar' => 'required|unique:training_courses,title->ar',
-            'title_en' => 'required|unique:training_courses,title->en',
-          //  'courses_id' => 'required|exists:tc_courses,id',
-            'capacity'=>'required|numeric|min:1',
-            'fee'=>'required|numeric|min:1',
-           // 'location_id'=>'required|exists:locations,id',
-
+ 
+  
+            'courses_id' => 'required',
+            'student_id' => 'required',
+        
+        
+        
         ];
     }
 

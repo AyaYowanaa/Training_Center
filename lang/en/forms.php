@@ -18,4 +18,9 @@
   'edite_btn' => 'edite_btn',
   'Action' => 'Action',
   'Loading' => 'Loading',
+  'success' => 'success',
+  'details' => 'details',
+  'Payment Status' => 'Payment Status',
+  'Completed' => 'Completed',
+  'Pending' => 'Pending',
 );

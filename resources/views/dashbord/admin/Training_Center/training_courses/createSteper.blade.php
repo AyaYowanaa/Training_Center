@@ -200,7 +200,7 @@
 
                                 <div class="col-md-4">
                                     <!--begin::Label-->
-                                    <label class="required form-label">{{trans('course.Courses')}}
+                                    <label class="form-label">{{trans('course.Courses')}}
                                         <span class="text-muted fs-7">"{{trans('forms.lable_ar')}}"</span>
 
                                     </label>
@@ -223,7 +223,7 @@
 
                                 <div class="col-md-4">
                                     <!--begin::Label-->
-                                    <label class=" required form-label">{{trans('course.location')}}
+                                    <label class="form-label">{{trans('course.location')}}
                                         <span class="text-muted fs-7">"{{trans('forms.lable_ar')}}"</span>
                                     </label>
 

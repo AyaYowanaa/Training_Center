@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tc_courses_fees', function (Blueprint $table) {
+        Schema::create('tc_instructors_courses', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('courses_id');
-            $table->unsignedInteger('expenses_id');
-            $table->decimal('amount', 10, 2)->default(0);
+            $table->unsignedInteger('trainer_id');
             $table->timestamps();
-
+      
         });
     }
 
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('courses_fees');
+        Schema::dropIfExists('tc_instructors_courses');
     }
 };

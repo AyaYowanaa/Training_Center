@@ -22,4 +22,10 @@
   'Expenses' => 'Expenses',
   'Amount' => 'Amount',
   'createCourseFees' => 'createCourseFees',
+  'Trainer' => 'Trainer',
+  'Student' => 'Student',
+  'Update_Training_Courses' => 'Update_Training_Courses',
+  'To_date' => 'To_date',
+  'From_date' => 'From_date',
+  'Date' => 'Date',
 );

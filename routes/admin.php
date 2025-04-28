@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\Training_Center\CoursesFeesController;
 use App\Http\Controllers\Admin\Training_Center\Instructors_CoursesController;
 use App\Http\Controllers\Admin\Training_Center\StudentController;
 use App\Http\Controllers\Admin\Training_Center\TrainerController;
+use App\Http\Controllers\Admin\Training_Center\InvoiceController;
 use App\Http\Controllers\Admin\Site\BlogController;
 use App\Http\Controllers\Admin\Site\ContactController;
 use App\Http\Controllers\Admin\Site\EventController;
@@ -122,6 +123,8 @@ Route::group(
             /*********************************** Instructors_Courses ******************************** */
             Route::resource('Instructors_Courses', Instructors_CoursesController::class);
           //  Route::get('Instructors_Courses/show_load/{id}', [Instructors_CoursesController::class, 'show_load'])->name('Instructors_Courses.load_details');
+            /*********************************** Invoice_student ******************************** */
+             Route::resource('Invoice', InvoiceController::class);
 
             /****************************************************************************** */
             Route::resource('district', DistrictController::class);

@@ -8,7 +8,7 @@ use App\Models\training_center\Trainer;
 class Instructors_Courses extends Model
 {
 
-    protected $table = 'instructors_courses';
+    protected $table = 'tc_instructors_courses';
 
     protected $fillable = [
         'courses_id',

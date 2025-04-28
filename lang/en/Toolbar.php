@@ -17,4 +17,9 @@
   'TrainingCourses' => 'TrainingCourses',
   'CoursesFees' => 'CoursesFees',
   'CourseFees' => 'CourseFees',
+  'Instructors_Courses' => 'Instructors_Courses',
+  'Create_Training_Courses' => 'Create_Training_Courses',
+  'Invoices' => 'Invoices',
+  'Update_Training_Courses' => 'Update_Training_Courses',
+  'Update_Invoices' => 'Update_Invoices',
 );
