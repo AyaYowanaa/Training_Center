@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\Training_Center\Instructors_CoursesController;
 use App\Http\Controllers\Admin\Training_Center\StudentController;
 use App\Http\Controllers\Admin\Training_Center\TrainerController;
 use App\Http\Controllers\Admin\Training_Center\InvoiceController;
+use App\Http\Controllers\Admin\Training_Center\Course_registrationController;
 use App\Http\Controllers\Admin\Site\BlogController;
 use App\Http\Controllers\Admin\Site\ContactController;
 use App\Http\Controllers\Admin\Site\EventController;
@@ -77,6 +78,11 @@ Route::group(
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
         /*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Training Center @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
+        Route::group(['prefix' => 'TrainingCenter', 'as' => 'TrainingCenter.'], function () {
+
+         /*********************************** Invoice_student ******************************** */
+          Route::resource('Invoice', InvoiceController::class);
+           });
         Route::group(['prefix' => 'Settings', 'as' => 'Settings.'], function () {
 
             /********************************typesetting******************************/
@@ -123,8 +129,9 @@ Route::group(
             /*********************************** Instructors_Courses ******************************** */
             Route::resource('Instructors_Courses', Instructors_CoursesController::class);
           //  Route::get('Instructors_Courses/show_load/{id}', [Instructors_CoursesController::class, 'show_load'])->name('Instructors_Courses.load_details');
-            /*********************************** Invoice_student ******************************** */
-             Route::resource('Invoice', InvoiceController::class);
+      
+            /*********************************** Course registeration ******************************** */
+             Route::resource('Course_registration', Course_registrationController::class);
 
             /****************************************************************************** */
             Route::resource('district', DistrictController::class);

@@ -6,27 +6,29 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\training_center\Students;
 use App\Models\training_center\TrainingCourse;
-use App\Models\training_center\Invoice_student;
-use  App\Http\Requests\training_center\Invoices\StoreRequest;
-use  App\Http\Requests\training_center\Invoices\UpdateRequest;
+
+use App\Models\setting\Expenses;
+/* use App\Http\Requests\training_center\CourseFees\StoreRequest;
+use App\Http\Requests\training_center\CourseFees\UpdateRequest; */
+
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
 
-class InvoiceController extends Controller
+class CoursesFeesController extends Controller
 {
   
     public function index(Request $request)
     {
 
         if ($request->ajax()) {
-            $allData = Invoice_student::select('*');
+            $allData = CourseFees::select('*');
             return Datatables::of($allData)
                 
                 ->editColumn('courses_id', function ($row) {
                     return $row->coursesData?->title ?? '—';
                 })
                 ->editColumn('student_id', function ($row) {
-                    return $row->studentData?->name ?? '—';
+                    return $row->studentsData?->name ?? '—';
                 })
                 ->addColumn('action', function ($row) {
                     return '<a href="#" class="btn btn-sm btn-light btn-active-light-primary"
@@ -48,14 +50,18 @@ class InvoiceController extends Controller
                  </a>
                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
                         <div class="menu-item px-3">
-                             <a href="' . route('admin.TrainingCenter.Invoice.edit', $row->id) . '"
+                             <a href="' . route('admin.Settings.CourseCosts.edit', $row->id) . '"
                                address="' . trans('forms.edite_btn') . '" class="menu-link px-3"
                                >' . trans('forms.edite_btn') . '</a>
                         </div>
                    		
-                       
                         <div class="menu-item px-3">
-                                <a href="' . route('admin.TrainingCenter.Invoice.destroy', $row->id) . '" data-kt-table-delete="delete_row"
+                                <a href="javascript:void(0)" data-kt-table-details="details_row" data-url="' . route('admin.Settings.CourseCosts.load_details', $row->id) . '"
+                                           address="' . trans('forms.details') . '" class="menu-link px-3"
+                                         data-bs-toggle="modal" data-bs-target="#kt_modal_1"  >' . trans('forms.details') . '</a>
+                        </div>
+                        <div class="menu-item px-3">
+                                <a href="' . route('admin.Settings.CourseCosts.destroy', $row->id) . '" data-kt-table-delete="delete_row"
                                            address="' . trans('forms.delete_btn') . '" class="menu-link px-3"
                                            >' . trans('forms.delete_btn') . '</a>
                         </div>
@@ -69,40 +75,41 @@ class InvoiceController extends Controller
                 ->make(true);
         }
 
-        return view('dashbord.admin.Training_Center.Invoice_student.index');
+        return view('dashbord.admin.Training_Center.CourseFees.index');
     }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
-    {    $data['one_data']= new Invoice_student();
+    {    $data['one_data']= new CourseFees();
          $data['courses']= TrainingCourse::all();
-         $data['students'] = Students::all();
-        return view('dashbord.admin.Training_Center.Invoice_student.create'
+         $data['expenses']= Expenses::all();
+        return view('dashbord.admin.Training_Center.CourseFees.create'
         , $data);
 
     }
     public function show_load($id)
     {
-        $data['one_data'] = Invoice_student::findOrFail($id);
+        $data['one_data'] = CourseFees::findOrFail($id);
+        $data['expenses'] = Expenses::all();
         $data['courses'] = TrainingCourse::all();
-        $data['students'] = Students::all();
-        return view('dashbord.admin.Training_Center.Invoice_student.load_details', $data);
+        return view('dashbord.admin.Training_Center.CourseFees.load_details', $data);
     }
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreRequest $request)
+    public function store(Request $request)
     {
 
         try {
+          //  dd($request->input('courses_id'));
 
             $insert_data = $request->all();
-            $inserted_data = Invoice_student::create($insert_data);
+            $inserted_data = CourseFees::create($insert_data);
             $insert_id = $inserted_data->id;
             toastr()->addSuccess(trans('forms.success'));
-            return redirect()->route('admin.TrainingCenter.Invoice.index');
+            return redirect()->route('admin.Settings.CourseCosts.index');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
@@ -111,25 +118,24 @@ class InvoiceController extends Controller
 
     public function edit($id)
     {
-        $data['one_data'] = Invoice_student::findOrFail($id);
-        $data['students'] = Students::all();
-        $data['courses'] = TrainingCourse::all();
-
-        return view('dashbord.admin.Training_Center.Invoice_student.edit',$data);
+        $data['one_data'] = CourseFees::findOrFail($id);
+        $data['courses']= TrainingCourse::all();
+        $data['expenses']= Expenses::all();
+        return view('dashbord.admin.Training_Center.CourseFees.edit',$data);
 
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRequest $request, $id)
+    public function update(Request $request, $id)
     {
         try {
-            $data = Invoice_student::findOrFail($id);
+            $data = CourseFees::findOrFail($id);
             $update_data = $request->all();
             $data->update($update_data);
             toastr()->addSuccess(trans('forms.success'));
-            return redirect()->route('admin.TrainingCenter.Invoice.index');
+            return redirect()->route('admin.Settings.CourseCosts.index');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
@@ -144,7 +150,7 @@ class InvoiceController extends Controller
        
         try {
 
-            $one_data = Invoice_student::find($id);
+            $one_data = CourseFees::find($id);
 
             $one_data->delete();
             toastr()->error(trans('forms.Delete'));

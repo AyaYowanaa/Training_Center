@@ -27,4 +27,9 @@ class Students extends Model
         return $this->belongsTo(TrainingCourse::class, 'courses_id');
     }
 
+    public function registeredCourses()
+    {
+    return $this->belongsToMany(TrainingCourse::class, 
+    'tc_student_registration_course', 'student_id', 'courses_id');
+    }
 }

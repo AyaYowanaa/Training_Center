@@ -33,7 +33,7 @@
         <div class="d-flex align-items-center gap-2 gap-lg-3">
             <!--begin::Filter menu-->
             <div class="d-flex">
-                <a href="{{route('admin.Settings.Invoice.index')}}"
+                <a href="{{route('admin.TrainingCenter.Invoice.index')}}"
                    class="btn btn-icon btn-sm btn-primary flex-shrink-0 ms-4">
 
                     <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/keenthemes/keen/docs/core/html/src/media/icons/duotune/arrows/arr054.svg-->
@@ -73,7 +73,7 @@
             </div>
         @endif
         <form id="StorForm" class="form d-flex flex-column flex-lg-row "
-              action="{{route('admin.Settings.Invoice.update',$one_data->id)}}" method="post" enctype="multipart/form-data">
+              action="{{route('admin.TrainingCenter.Invoice.update',$one_data->id)}}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
             <input type="hidden" name="id" value="{{$one_data->id}}">
