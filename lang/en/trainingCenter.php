@@ -26,4 +26,9 @@
   'attribute' => 'attribute',
   'value' => 'value',
   'Data' => 'Data',
+  'Student' => 'Student',
+  'Update_Training_Courses' => 'Update_Training_Courses',
+  'To_date' => 'To_date',
+  'From_date' => 'From_date',
+  'Date' => 'Date',
 );

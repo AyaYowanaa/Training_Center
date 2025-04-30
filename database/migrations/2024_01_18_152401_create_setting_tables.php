@@ -26,7 +26,6 @@ return new class extends Migration {
         if (!Schema::hasTable('tc_main_setting')) {
             Schema::create('tc_main_setting', function (Blueprint $table) {
                 $table->increments('id');
-
                 $table->text('title');
                 $table->integer('type_id_fk')->unsigned();
                 $table->integer('type_code')->unsigned();

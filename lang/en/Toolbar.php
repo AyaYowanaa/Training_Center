@@ -22,4 +22,7 @@
   'Create_Training_Courses' => 'Create_Training_Courses',
   'Courses' => 'Courses',
   'Instructor_Update' => 'Instructor_Update',
+  'Invoices' => 'Invoices',
+  'Update_Training_Courses' => 'Update_Training_Courses',
+  'Update_Invoices' => 'Update_Invoices',
 );

@@ -21,4 +21,7 @@
   'details' => 'details',
   'success' => 'success',
   'preview' => 'preview',
+  'Payment Status' => 'Payment Status',
+  'Completed' => 'Completed',
+  'Pending' => 'Pending',
 );
