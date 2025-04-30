@@ -23,9 +23,9 @@ class type_settingRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name_ar' => 'required|unique:hr_type_setting,title->ar',
-            'name_en' => 'required|unique:hr_type_setting,title->en',
-            'code' => 'required|unique:hr_type_setting,code',
+            'name_ar' => 'required|unique:tc_type_setting,title->ar',
+            'name_en' => 'required|unique:tc_type_setting,title->en',
+            'code' => 'required|unique:tc_type_setting,code',
         ];
     }
 }

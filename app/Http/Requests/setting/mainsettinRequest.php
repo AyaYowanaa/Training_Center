@@ -23,8 +23,8 @@ class mainsettinRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title_ar' => 'required|unique:hr_main_setting,title->ar,'.$this->id,
-            'title_en' => 'required|unique:hr_main_setting,title->en,'.$this->id,
+            'title_ar' => 'required|unique:tc_main_setting,title->ar,'.$this->id,
+            'title_en' => 'required|unique:tc_main_setting,title->en,'.$this->id,
             'type_code' => 'required',
             'status' => 'required',
         ];

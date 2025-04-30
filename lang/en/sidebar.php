@@ -27,4 +27,6 @@
   'partner' => 'partner',
   'statistics' => 'statistics',
   'advantages' => 'advantages',
+  'CourseCosts' => 'CourseCosts',
+  'Instructors_Courses' => 'Instructors_Courses',
 );

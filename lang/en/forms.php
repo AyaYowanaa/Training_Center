@@ -18,4 +18,7 @@
   'edite_btn' => 'edite_btn',
   'Action' => 'Action',
   'Loading' => 'Loading',
+  'details' => 'details',
+  'success' => 'success',
+  'preview' => 'preview',
 );

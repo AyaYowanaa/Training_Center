@@ -102,7 +102,7 @@
                             <th class="text-center">{{trans('TC_Setting.ID')}}</th>
                             <th class="text-center">{{trans('TC_Setting.code')}}</th>
                             <th class="text-center">{{trans('TC_Setting.name_cat')}}</th>
-{{--                            <th class="text-center">{{trans('TC_Setting.account_type')}}</th>--}}
+{{--                            <th class="text-center">{{trans('TC_Setting.course_type')}}</th>--}}
                             <th class="text-center">{{trans('TC_Setting.parant')}}</th>
                             <th class="text-center">{{trans('TC_Setting.Action')}}</th>
                         </tr>
@@ -181,7 +181,7 @@
                         {data: 'id', name: 'id'},
                         {data: 'code', name: 'code'},
                         {data: 'name', name: 'name'},
-                        // {data: 'account_type', name: 'account_type'},
+                        // {data: 'course_type', name: 'course_type'},
                         {data: 'parent', name: 'parent'},
                         {data: 'action', name: 'action', orderable: false},
                     ],
