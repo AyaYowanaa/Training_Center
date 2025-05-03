@@ -77,8 +77,9 @@ class InvoiceController extends Controller
      */
     public function create()
     {    $data['one_data']= new Invoice_student();
-         $data['courses']= TrainingCourse::all();
-         $data['students'] = Students::all();
+        // $data['courses']= TrainingCourse::all();
+       //  $data['students'] = Students::all();
+       $data['students']  = Students::whereHas('registeredCourses')->get();
         return view('dashbord.admin.Training_Center.Invoice_student.create'
         , $data);
 
@@ -86,7 +87,7 @@ class InvoiceController extends Controller
     public function show_load($id)
     {
         $data['one_data'] = Invoice_student::findOrFail($id);
-        $data['courses'] = TrainingCourse::all();
+     //   $data['courses'] = TrainingCourse::all();
         $data['students'] = Students::all();
         return view('dashbord.admin.Training_Center.Invoice_student.load_details', $data);
     }
@@ -112,9 +113,8 @@ class InvoiceController extends Controller
     public function edit($id)
     {
         $data['one_data'] = Invoice_student::findOrFail($id);
-        $data['students'] = Students::all();
-        $data['courses'] = TrainingCourse::all();
-
+        $data['students'] = Students::whereHas('registeredCourses')->get();
+     // $data['courses'] = TrainingCourse::all();
         return view('dashbord.admin.Training_Center.Invoice_student.edit',$data);
 
     }
@@ -154,6 +154,15 @@ class InvoiceController extends Controller
 
         }
     }
+
+    public function getStudentCourses($id)
+{
+
+    /*  $student = Students::with('registeredCourses')->findOrFail($id);
+     return response()->json($student->registeredCourses);
+    */
+     $student = Students::findOrFail($id);
+     return response()->json($student->registeredCourses()->get());}
 
 
 }

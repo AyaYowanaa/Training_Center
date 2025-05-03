@@ -14,7 +14,7 @@ use App\Http\Requests\training_center\CourseFees\UpdateRequest; */
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
 
-class CoursesFeesController extends Controller
+class Course_registrationController extends Controller
 {
   
     public function index(Request $request)

@@ -80,8 +80,12 @@ Route::group(
         /*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Training Center @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
         Route::group(['prefix' => 'TrainingCenter', 'as' => 'TrainingCenter.'], function () {
 
+
+
          /*********************************** Invoice_student ******************************** */
           Route::resource('Invoice', InvoiceController::class);
+          Route::get('/get_inrolled_student/{id}', [InvoiceController::class, 'getStudentCourses']);
+
            });
         Route::group(['prefix' => 'Settings', 'as' => 'Settings.'], function () {
 

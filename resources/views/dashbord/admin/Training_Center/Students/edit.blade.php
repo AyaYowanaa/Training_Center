@@ -185,7 +185,7 @@ $name=$one_data->getTranslations('name');
                                 <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="col-md-4">
+                          {{--   <div class="col-md-4">
                                 <label class="required form-label">{{trans('trainingCenter.Courses')}}</label>
 
                                 <!--begin::Select2-->
@@ -200,11 +200,11 @@ $name=$one_data->getTranslations('name');
                                     <option value="{{ $row->id }}">{{ $row->title}}</option>
                                 @endforeach
                                 </select>
-                                <!--end::Select2-->
-                            </div>
+                                
+                            </div> --}}
                             </div>
                             <div class="row">
-                                <div class="col-md-4">
+                              {{--   <div class="col-md-4">
                                     <label class="required form-label">{{trans('trainingCenter.Grades')}}</label>
 
                                     <!--begin::Select2-->
@@ -215,12 +215,12 @@ $name=$one_data->getTranslations('name');
                                             id="grades_id" name="grades_id">
 
                                         <option value=" ">{{trans('maindata.Select')}}</option>
-                                     {{--    @foreach($grades as $row)
+                                        @foreach($grades as $row)
                                         <option value="{{ $row->id }}">{{ $row->name}}</option>
-                                    @endforeach --}}
+                                    @endforeach 
                                     </select>
-                                    <!--end::Select2-->
-                                </div>
+                               
+                                </div> --}}
                             </div>
 
                         </div>

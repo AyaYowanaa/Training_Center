@@ -93,30 +93,14 @@
                       
                         <div class="mb-10 fv-row row">
                   
-                            <div class="col-md-4">
-                                <label class="form-label">{{trans('trainingCenter.Courses')}}</label>
-
-                                <!--begin::Select2-->
-                                <select class="form-select mb-2 @error('courses_id') is-invalid @enderror"
-                                        onchange="/*set_status()*/"
-                                        data-control="select2" data-hide-search="false"
-                                    data-placeholder="Select an option" data-allow-clear="true"
-                                        id="courses_id" name="courses_id">
-
-                                    <option value=" ">{{trans('maindata.Select')}}</option>
-                                    @foreach($courses as $row)
-                                    <option value="{{ $row->id }}">{{ $row->title}}</option>
-                                @endforeach
-                                </select>
-                                <!--end::Select2-->
-                            </div>
+                         
 
                             <div class="col-md-4">
                                 <label class="form-label">{{trans('trainingCenter.Student')}}</label>
 
                                 <!--begin::Select2-->
-                                <select class="form-select mb-2 @error('student_id') is-invalid @enderror"
-                                        onchange="/*set_status()*/"
+                              {{--   <select class="form-select mb-2 @error('student_id') is-invalid @enderror"
+                                        "
                                         data-control="select2" data-hide-search="false"
                                     data-placeholder="Select an option" data-allow-clear="true"
                                         id="student_id" name="student_id">
@@ -125,6 +109,34 @@
                                     @foreach($students as $row)
                                     <option value="{{ $row->id }}">{{ $row->name}}</option>
                                 @endforeach
+                                </select> --}}
+                                <!--end::Select2-->
+                                <select name="student_id" 
+                                select class="form-select mb-2"
+                                        data-control="select2" data-hide-search="false"
+                                    data-placeholder="Select an option" data-allow-clear="true"
+                                         id="studentSelect">
+                                    <option value="">-- اختر طالب --</option>
+                                    @foreach($students as $student)
+                                        <option value="{{ $student->id }}">{{ $student->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">{{trans('trainingCenter.Courses')}}</label>
+
+                                <!--begin::Select2-->
+                                <select class="form-select mb-2 @error('courses_id') is-invalid @enderror"
+                                        onchange="/*set_status()*/"
+                                        data-control="select2" data-hide-search="false"
+                                    data-placeholder="Select an option" data-allow-clear="true"
+                                    id="courseSelect" name="courses_id">
+
+                                   {{--  <option value=" ">{{trans('maindata.Select')}}</option>
+                                    @foreach($courses as $row)
+                                    <option value="{{ $row->id }}">{{ $row->title}}</option> 
+                                @endforeach--}}
+                                <option value="">اختر طالب أولاً</option>
                                 </select>
                                 <!--end::Select2-->
                             </div>
@@ -217,28 +229,47 @@
     var KTAppaccountSave = function () {
 
         const initDaterangepicker = () => {
-
             $("#date").daterangepicker({
-                    singleDatePicker: true,
-                    showDropdowns: true,
-                    minYear: 2025,
-                    maxYear: parseInt(moment().format("YYYY"), 12)
+                singleDatePicker: true,
+                showDropdowns: true,
+                minYear: 2025,
+                maxYear: parseInt(moment().format("YYYY"), 12)
+            });
+        };
+
+        const initStudentCourseSelect = () => {
+            $('#studentSelect').on('change', function () {
+                var studentId = $(this).val();
+
+                if (studentId) {
+                    $.ajax({
+                        url: '/admin/TrainingCenter/get_inrolled_student/' + studentId,
+                        type: 'GET',
+                        success: function (courses) {
+                            $('#courseSelect').empty().append('<option value="">-- اختر كورس --</option>');
+                            courses.forEach(function(course) {
+                                $('#courseSelect').append('<option value="' + course.id + '">' + course.title + '</option>');
+                            });
+                        }
+                    });
+                } else {
+                    $('#courseSelect').empty().append('<option value="">-- اختر كورس --</option>');
                 }
-            );
-        }
+            });
+        };
+
         return {
-                init: function () {
-                    // Init forms
-                    initDaterangepicker();
-           
-                    initckeditor();
-                }
-            };
-        }();
-        // On document ready
-        KTUtil.onDOMContentLoaded(function () {
-            KTAppaccountSave.init();
-        });
-    </script>
+            init: function () {
+                initDaterangepicker();
+                initStudentCourseSelect(); // ← هنا بنشغله أول ما الصفحة تجهز
+            }
+        };
+    }();
+
+    KTUtil.onDOMContentLoaded(function () {
+        KTAppaccountSave.init();
+    });
+</script>
+
 @endsection
 
