@@ -27,6 +27,7 @@ return new class extends Migration
                 $table->decimal('fee', 19, 2)->nullable();
                 $table->integer('courses_id')->unsigned()->nullable();
                 $table->integer('capacity')->default(0)->nullable();
+                $table->integer('code')->default(0)->nullable();
                 $table->timestamps();
             });
         }
