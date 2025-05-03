@@ -378,7 +378,7 @@
 <div class="menu-item">
     <!--begin:Menu link-->
     <a class="menu-link   @if (in_array(optional(explode('.', Route::currentRouteName()))[2], array('Invoice'))) {{'active'}} @endif"
-       href="{{ route('admin.TrainingCenter.Invoice.index') }}">
+      {{-- href="{{ route('admin.TrainingCenter.Invoice.index') }}"--}}>
        <span class="menu-icon">
         <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
         <span class="svg-icon svg-icon-2">
