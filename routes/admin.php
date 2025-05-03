@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Training_Center\CourseController;
+use App\Http\Controllers\Admin\Training_Center\CourseRegistrationController;
 use App\Http\Controllers\Admin\Training_Center\Settings\CityController;
 use App\Http\Controllers\Admin\Training_Center\Settings\DistrictController;
 use App\Http\Controllers\Admin\Training_Center\Settings\MainSettingController;
@@ -11,6 +12,8 @@ use App\Http\Controllers\Admin\Training_Center\CoursesFeesController;
 use App\Http\Controllers\Admin\Training_Center\Instructors_CoursesController;
 use App\Http\Controllers\Admin\Training_Center\StudentController;
 use App\Http\Controllers\Admin\Training_Center\TrainerController;
+use App\Http\Controllers\Admin\Training_Center\InvoiceController;
+use App\Http\Controllers\Admin\Training_Center\Course_registrationController;
 use App\Http\Controllers\Admin\Site\BlogController;
 use App\Http\Controllers\Admin\Site\ContactController;
 use App\Http\Controllers\Admin\Site\EventController;
@@ -76,6 +79,15 @@ Route::group(
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
         /*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Training Center @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
+        Route::group(['prefix' => 'TrainingCenter', 'as' => 'TrainingCenter.'], function () {
+            Route::post('getEntity', [\App\Http\Controllers\Admin\Training_Center\MainController::class, 'getEntity'])->name('getEntity');
+            Route::post('getTrainingCourse', [\App\Http\Controllers\Admin\Training_Center\MainController::class, 'getTrainingCourse'])->name('getTrainingCourse');
+            Route::get('CourseRegistration/getStudent', [CourseRegistrationController::class, 'getStudent'])->name('CourseRegistration.getStudent');
+            Route::resource('CourseRegistration', CourseRegistrationController::class);
+
+            /*********************************** Invoice_student ******************************** */
+            Route::resource('Invoice', InvoiceController::class);
+        });
         Route::group(['prefix' => 'Settings', 'as' => 'Settings.'], function () {
 
             /********************************typesetting******************************/
@@ -118,13 +130,13 @@ Route::group(
 
             /*********************************** Course Fees ******************************** */
             Route::resource('CourseCosts', CoursesFeesController::class);
-           /* Route::get('CourseCosts/show_load/{id}', [CoursesFeesController::class, 'show_load'])->name('CourseCosts.load_details');*/
-            Route::resource('CoursesFees', CoursesFeesController::class);
-            Route::get('CoursesFees/show_load/{id}', [CoursesFeesController::class, 'show_load'])->name('CoursesFees.load_details');
-
+            Route::get('CourseCosts/show_load/{id}', [CoursesFeesController::class, 'show_load'])->name('CourseCosts.load_details');
             /*********************************** Instructors_Courses ******************************** */
             Route::resource('Instructors_Courses', Instructors_CoursesController::class);
             //  Route::get('Instructors_Courses/show_load/{id}', [Instructors_CoursesController::class, 'show_load'])->name('Instructors_Courses.load_details');
+
+            /*********************************** Course registeration ******************************** */
+            Route::resource('Course_registration', Course_registrationController::class);
 
             /****************************************************************************** */
             Route::resource('district', DistrictController::class);
@@ -236,3 +248,4 @@ Route::group(
     ], function () {
     require __DIR__ . '/adminauth.php';
 });
+
