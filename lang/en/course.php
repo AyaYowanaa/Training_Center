@@ -23,6 +23,7 @@
   'To_date' => 'To_date',
   'From_date' => 'From_date',
   'Submit' => 'Submit',
+
   'Duration' => 'Duration',
   'duration' => 'duration',
 );

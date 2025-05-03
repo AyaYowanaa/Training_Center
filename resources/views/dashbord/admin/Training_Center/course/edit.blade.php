@@ -178,26 +178,26 @@
                             --}}
                             <div class="col-md-4">
                                 <!--begin::Label-->
-                                <label class="required form-label">{{trans('account.account_type')}}
+                                <label class="required form-label">{{trans('account.course_type')}}
 
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <select name="account_type"
-                                        class="form-control mb-2  @error('account_type') is-invalid @enderror"
+                                <select name="course_type"
+                                        class="form-control mb-2  @error('course_type') is-invalid @enderror"
                                         data-control="select2" data-placeholder="{{trans('forms.Select')}}">
-                                    <option value="0"> {{trans('account.account_type')}}</option>
+                                    <option value="0"> {{trans('account.course_type')}}</option>
                                     @php
                                         $accounts_type=['main'=>trans('TC_Setting.main'),'program'=>trans('TC_Setting.program'),'general'=>trans('TC_Setting.general')];
                                     @endphp
-                                    @foreach($accounts_type as $account_type=>$text)
-                                        <option value="{{$account_type}}" @if($one_data->account_type==$account_type)
+                                    @foreach($accounts_type as $course_type=>$text)
+                                        <option value="{{$course_type}}" @if($one_data->course_type==$course_type)
                                             {{'selected'}}
                                             @endif>{{$text}}</option>
                                     @endforeach
                                 </select>
                                 <!--end::Input-->
-                                @error('account_type')
+                                @error('course_type')
                                 <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>

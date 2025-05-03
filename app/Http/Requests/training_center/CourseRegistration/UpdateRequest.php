@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Requests\setting;
+namespace App\Http\Requests\training_center\training_courses;
 
+use DB;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class type_settingRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -20,12 +21,15 @@ class type_settingRequest extends FormRequest
      *
      * @return array<string, ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
+    public function rules()
     {
         return [
-            'name_ar' => 'required|unique:tc_type_setting,title->ar',
-            'name_en' => 'required|unique:tc_type_setting,title->en',
-            'code' => 'required|unique:tc_type_setting,code',
+            'title.ar' => 'required|unique:tc_courses,title->ar'.$this->id,
+            'title.en' => 'required|unique:tc_courses,title->en'.$this->id,
+
+        
         ];
     }
+
+    
 }

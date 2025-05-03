@@ -32,4 +32,5 @@
   'courseCreate' => 'courseCreate',
   'course_type' => 'course_type',
   'details' => 'details',
+  'Update' => 'Update',
 );

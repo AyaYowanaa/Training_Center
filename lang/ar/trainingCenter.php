@@ -22,4 +22,8 @@
   'Expenses' => 'Expenses',
   'Amount' => 'Amount',
   'createCourseFees' => 'createCourseFees',
+  'Trainer' => 'Trainer',
+  'attribute' => 'attribute',
+  'value' => 'value',
+  'Data' => 'Data',
 );

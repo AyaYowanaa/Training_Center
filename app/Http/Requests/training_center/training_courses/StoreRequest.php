@@ -24,12 +24,13 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'title_ar' => 'required|unique:training_courses,title->ar',
-            'title_en' => 'required|unique:training_courses,title->en',
-          //  'courses_id' => 'required|exists:tc_courses,id',
+            'title_ar' => 'required|unique:tc_training_courses,title->ar',
+            'title_en' => 'required|unique:tc_training_courses,title->en',
+            'courses_id' => 'required|exists:tc_courses,id',
             'capacity'=>'required|numeric|min:1',
             'fee'=>'required|numeric|min:1',
-           // 'location_id'=>'required|exists:locations,id',
+            'location_id'=>'required|exists:tc_main_setting,id',
+
 
         ];
     }

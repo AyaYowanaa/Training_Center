@@ -176,8 +176,8 @@
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <select name="account_type"
-                                        class="form-control mb-2  @error('account_type') is-invalid @enderror"
+                                <select name="course_type"
+                                        class="form-control mb-2  @error('course_type') is-invalid @enderror"
                                         data-control="select2" data-placeholder="{{trans('forms.Select')}}">
                                     <option value="0"> {{trans('TC_Setting.course_type')}}</option>
                                     @php
@@ -188,7 +188,7 @@
                                     @endforeach
                                 </select>
                                 <!--end::Input-->
-                                @error('account_type')
+                                @error('course_type')
                                 <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>

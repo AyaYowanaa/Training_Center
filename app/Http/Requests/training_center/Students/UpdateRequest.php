@@ -24,10 +24,10 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name_en' => 'required|unique:students,name->en,'.$this->id,
-            'name_ar' => 'required|unique:students,name->ar,'.$this->id,
+            'name_en' => 'required|unique:tc_students,name->en,'.$this->id,
+            'name_ar' => 'required|unique:tc_students,name->ar,'.$this->id,
             'phone' => 'required|numeric',
-            'email' => 'required|email|unique:students,email,'.$this->id,
+            'email' => 'required|email|unique:tc_students,email,'.$this->id,
         
         ];
     }

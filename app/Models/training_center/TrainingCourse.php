@@ -12,11 +12,20 @@ class TrainingCourse extends Model
     use HasFactory, HasTranslations;
 
     protected $table = 'tc_training_courses';
-    protected $fillable = ['details', 'title', 'from_date', 'to_date', 'location_id','duration','fee','effort','courses_id','capacity'];
+    protected $fillable = ['details','code', 'title', 'from_date', 'to_date', 'location_id','duration','fee','effort','courses_id','capacity'];
     public $translatable = ['details', 'title'];
 
     public $timestamps = true;
+    protected static function boot()
+    {
+        parent::boot();
 
+        static::creating(function ($model) {
+            $lastNum = static::orderByDesc('code')->value('code');
+            $newNum = $lastNum ? ((int) $lastNum) + 1 : 1;
+            $model->code = $newNum;
+        });
+    }
     /* public function images()
     {
         return $this->hasMany(SiteEventImage::class, 'event_id');

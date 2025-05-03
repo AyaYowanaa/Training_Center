@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Training_Center\CourseController;
+use App\Http\Controllers\Admin\Training_Center\CourseRegistrationController;
 use App\Http\Controllers\Admin\Training_Center\Settings\CityController;
 use App\Http\Controllers\Admin\Training_Center\Settings\DistrictController;
 use App\Http\Controllers\Admin\Training_Center\Settings\MainSettingController;
@@ -79,6 +80,10 @@ Route::group(
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
         /*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Training Center @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
         Route::group(['prefix' => 'TrainingCenter', 'as' => 'TrainingCenter.'], function () {
+            Route::post('getEntity', [\App\Http\Controllers\Admin\Training_Center\MainController::class, 'getEntity'])->name('getEntity');
+            Route::post('getTrainingCourse', [\App\Http\Controllers\Admin\Training_Center\MainController::class, 'getTrainingCourse'])->name('getTrainingCourse');
+            Route::get('CourseRegistration/getStudent', [CourseRegistrationController::class, 'getStudent'])->name('CourseRegistration.getStudent');
+            Route::resource('CourseRegistration', CourseRegistrationController::class);
 
 
 
@@ -87,6 +92,9 @@ Route::group(
           Route::get('/get_inrolled_student/{id}', [InvoiceController::class, 'getStudentCourses']);
 
            });
+            /*********************************** Invoice_student ******************************** */
+            Route::resource('Invoice', InvoiceController::class);
+        });
         Route::group(['prefix' => 'Settings', 'as' => 'Settings.'], function () {
 
             /********************************typesetting******************************/
@@ -118,12 +126,12 @@ Route::group(
             Route::get('Expenses/delete/{id}', [ExpensesController::class, 'delete'])->name('Expenses.delete');
             /*********************************** Students ************************************* */
             Route::resource('Student', StudentController::class);
-           // Route::get('Student/delete/{id}', [StudentController::class, 'delete'])->name('Student.delete');
+            // Route::get('Student/delete/{id}', [StudentController::class, 'delete'])->name('Student.delete');
             Route::get('Student/show_load/{id}', [StudentController::class, 'show_load'])->name('Student.load_details');
 
             /*********************************** instructors ************************************* */
             Route::resource('Instructor', TrainerController::class);
-           // Route::get('Instructor/delete/{id}', [TrainerController::class, 'delete'])->name('Instructor.delete');
+            // Route::get('Instructor/delete/{id}', [TrainerController::class, 'delete'])->name('Instructor.delete');
             Route::get('Instructor/show_load/{id}', [TrainerController::class, 'show_load'])->name('Instructor.load_details');
             Route::get('Instructor/destroy_file/{id}', [TrainerController::class, 'destroy_file'])->name('Instructor.destroy_file');
 
@@ -132,10 +140,10 @@ Route::group(
             Route::get('CourseCosts/show_load/{id}', [CoursesFeesController::class, 'show_load'])->name('CourseCosts.load_details');
             /*********************************** Instructors_Courses ******************************** */
             Route::resource('Instructors_Courses', Instructors_CoursesController::class);
-          //  Route::get('Instructors_Courses/show_load/{id}', [Instructors_CoursesController::class, 'show_load'])->name('Instructors_Courses.load_details');
-      
+            //  Route::get('Instructors_Courses/show_load/{id}', [Instructors_CoursesController::class, 'show_load'])->name('Instructors_Courses.load_details');
+
             /*********************************** Course registeration ******************************** */
-             Route::resource('Course_registration', Course_registrationController::class);
+            Route::resource('Course_registration', Course_registrationController::class);
 
             /****************************************************************************** */
             Route::resource('district', DistrictController::class);
@@ -149,7 +157,7 @@ Route::group(
 
             Route::resource('training_courses', TrainingCourseController::class);
             Route::get('training_courses/show_load/{id}', [TrainingCourseController::class, 'show_load'])->name('training_courses.load_details');
-           // Route::get('training_courses/delete/{id}', [TrainingCourseController::class, 'delete'])->name('training_courses.delete');
+            // Route::get('training_courses/delete/{id}', [TrainingCourseController::class, 'delete'])->name('training_courses.delete');
 
         });
         /************************** MAINDATA *****************************/
@@ -247,3 +255,4 @@ Route::group(
     ], function () {
     require __DIR__ . '/adminauth.php';
 });
+
