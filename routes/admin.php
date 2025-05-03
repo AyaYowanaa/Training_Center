@@ -92,9 +92,7 @@ Route::group(
           Route::get('/get_inrolled_student/{id}', [InvoiceController::class, 'getStudentCourses']);
 
            });
-            /*********************************** Invoice_student ******************************** */
-            Route::resource('Invoice', InvoiceController::class);
-        });
+/*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/        
         Route::group(['prefix' => 'Settings', 'as' => 'Settings.'], function () {
 
             /********************************typesetting******************************/
