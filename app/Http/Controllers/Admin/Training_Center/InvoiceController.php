@@ -3,25 +3,23 @@
 namespace App\Http\Controllers\Admin\Training_Center;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\training_center\Invoices\StoreRequest;
+use App\Http\Requests\training_center\Invoices\UpdateRequest;
+use App\Models\training_center\Invoice_student;
 use App\Models\training_center\Students;
 use App\Models\training_center\TrainingCourse;
-use App\Models\training_center\Invoice_student;
-use  App\Http\Requests\training_center\Invoices\StoreRequest;
-use  App\Http\Requests\training_center\Invoices\UpdateRequest;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
 class InvoiceController extends Controller
 {
-  
+
     public function index(Request $request)
     {
 
         if ($request->ajax()) {
             $allData = Invoice_student::select('*');
             return Datatables::of($allData)
-                
                 ->editColumn('courses_id', function ($row) {
                     return $row->coursesData?->title ?? '—';
                 })
@@ -52,8 +50,8 @@ class InvoiceController extends Controller
                                address="' . trans('forms.edite_btn') . '" class="menu-link px-3"
                                >' . trans('forms.edite_btn') . '</a>
                         </div>
-                   		
-                       
+
+
                         <div class="menu-item px-3">
                                 <a href="' . route('admin.TrainingCenter.Invoice.destroy', $row->id) . '" data-kt-table-delete="delete_row"
                                            address="' . trans('forms.delete_btn') . '" class="menu-link px-3"
@@ -76,21 +74,24 @@ class InvoiceController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {    $data['one_data']= new Invoice_student();
+    {
+        $data['one_data'] = new Invoice_student();
         // $data['courses']= TrainingCourse::all();
-       //  $data['students'] = Students::all();
-       $data['students']  = Students::whereHas('registeredCourses')->get();
+        //  $data['students'] = Students::all();
+        $data['students'] = Students::whereHas('registeredCourses')->get();
         return view('dashbord.admin.Training_Center.Invoice_student.create'
-        , $data);
+            , $data);
 
     }
+
     public function show_load($id)
     {
         $data['one_data'] = Invoice_student::findOrFail($id);
-     //   $data['courses'] = TrainingCourse::all();
+        //   $data['courses'] = TrainingCourse::all();
         $data['students'] = Students::all();
         return view('dashbord.admin.Training_Center.Invoice_student.load_details', $data);
     }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -114,8 +115,8 @@ class InvoiceController extends Controller
     {
         $data['one_data'] = Invoice_student::findOrFail($id);
         $data['students'] = Students::whereHas('registeredCourses')->get();
-     // $data['courses'] = TrainingCourse::all();
-        return view('dashbord.admin.Training_Center.Invoice_student.edit',$data);
+        // $data['courses'] = TrainingCourse::all();
+        return view('dashbord.admin.Training_Center.Invoice_student.edit', $data);
 
     }
 
@@ -140,8 +141,8 @@ class InvoiceController extends Controller
      */
     public function destroy($id)
     {
-       
-       
+
+
         try {
 
             $one_data = Invoice_student::find($id);
@@ -156,13 +157,27 @@ class InvoiceController extends Controller
     }
 
     public function getStudentCourses($id)
-{
+    {
 
-    /*  $student = Students::with('registeredCourses')->findOrFail($id);
-     return response()->json($student->registeredCourses);
-    */
-     $student = Students::findOrFail($id);
-     return response()->json($student->registeredCourses()->get());}
+        /*  $student = Students::with('registeredCourses')->findOrFail($id);
+         return response()->json($student->registeredCourses);
+        */
+        $student = Students::findOrFail($id);
+        return response()->json($student->registeredCourses()->get());
+    }
 
+    function getStudentFees(Request $request)
+    {
+
+        $student_id = $request->student_id;
+        $course_id = $request->course_id;
+        $courseFees = TrainingCourse::find($course_id)->fee;
+        $paid = Invoice_student::where(['student_id' => $student_id, 'courses_id' => $course_id])->sum('amount');
+        $remain = $courseFees - $paid;
+
+        return response()->json(['remain' => $remain, 'courseFees' => $courseFees, 'paid' => $paid]);
+
+
+    }
 
 }

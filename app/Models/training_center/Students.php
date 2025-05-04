@@ -18,19 +18,19 @@ class Students extends Model
         'name',
         'phone',
         'email',
-        'courses_id',
+        'course_id',
         'grades_id',
         'bulk_import',
     ];
 
     public function coursesData()
     {
-        return $this->belongsTo(TrainingCourse::class, 'courses_id');
+        return $this->belongsTo(TrainingCourse::class, 'course_id');
     }
 
     public function registeredCourses()
     {
     return $this->belongsToMany(TrainingCourse::class,
-    'tc_student_registration_course', 'student_id', 'courses_id');
+    'tc_student_registration_course', 'student_id', 'course_id');
     }
 }
