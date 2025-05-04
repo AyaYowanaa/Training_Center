@@ -22,7 +22,7 @@
               
                
                 <li class="breadcrumb-item text-muted">
-                    {{trans('Toolbar.Update_Invoices')}}
+                    {{trans('Toolbar.Entity_Invoices')}}
                 </li>
 
 
@@ -33,7 +33,7 @@
         <div class="d-flex align-items-center gap-2 gap-lg-3">
             <!--begin::Filter menu-->
             <div class="d-flex">
-                <a href="{{route('admin.TrainingCenter.Invoice.index')}}"
+                <a href="{{route('admin.TrainingCenter.Invoice_Entity.index')}}"
                    class="btn btn-icon btn-sm btn-primary flex-shrink-0 ms-4">
 
                     <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/keenthemes/keen/docs/core/html/src/media/icons/duotune/arrows/arr054.svg-->
@@ -73,10 +73,9 @@
             </div>
         @endif
         <form id="StorForm" class="form d-flex flex-column flex-lg-row "
-              action="{{route('admin.TrainingCenter.Invoice.update',$one_data->id)}}" method="post" enctype="multipart/form-data">
+              action="{{route('admin.TrainingCenter.Invoice_Entity.store')}}" method="post" enctype="multipart/form-data">
             @csrf
-            @method('PATCH')
-            <input type="hidden" name="id" value="{{$one_data->id}}">
+
             <!--begin::Main column-->
             <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
                 <!--begin::General options-->
@@ -92,10 +91,29 @@
                     <div class="card-body pt-0">
                         <!--begin::Input group-->
                       
-                      
-                      
                         <div class="mb-10 fv-row row">
                   
+                         
+                            <div class="col-md-4">
+                                <label class="form-label">{{trans('trainingCenter.Entity')}}</label>
+
+                                <!--begin::Select2-->
+                                <select class="form-select mb-2 @error('courses_id') is-invalid @enderror"
+                                        onchange="/*set_status()*/"
+                                        data-control="select2" data-hide-search="false"
+                                    data-placeholder="Select an option" data-allow-clear="true"
+                                    id="entity_id" name="entity_id">
+
+                                    <option value=" ">{{trans('maindata.Select')}}</option>
+                                    @foreach($entities as $row)
+                                    <option value="{{ $row->id }}">{{ $row->name}}</option> 
+                                @endforeach
+                                <option value=""></option>
+                                </select>
+                                <!--end::Select2-->
+                            </div>
+
+                      
                             <div class="col-md-4">
                                 <label class="form-label">{{trans('trainingCenter.Courses')}}</label>
 
@@ -104,30 +122,13 @@
                                         onchange="/*set_status()*/"
                                         data-control="select2" data-hide-search="false"
                                     data-placeholder="Select an option" data-allow-clear="true"
-                                        id="courses_id" name="courses_id">
+                                    id="courses_id" name="courses_id">
 
                                     <option value=" ">{{trans('maindata.Select')}}</option>
                                     @foreach($courses as $row)
-                                    <option value="{{ $row->id }}">{{ $row->title}}</option>
+                                    <option value="{{ $row->id }}">{{ $row->title}}</option> 
                                 @endforeach
-                                </select>
-                                <!--end::Select2-->
-                            </div>
-
-                            <div class="col-md-4">
-                                <label class="form-label">{{trans('trainingCenter.Student')}}</label>
-
-                                <!--begin::Select2-->
-                                <select class="form-select mb-2 @error('student_id') is-invalid @enderror"
-                                        onchange="/*set_status()*/"
-                                        data-control="select2" data-hide-search="false"
-                                    data-placeholder="Select an option" data-allow-clear="true"
-                                        id="student_id" name="student_id">
-
-                                    <option value=" ">{{trans('maindata.Select')}}</option>
-                                    @foreach($students as $row)
-                                    <option value="{{ $row->id }}">{{ $row->name}}</option>
-                                @endforeach
+                                <option value=""></option>
                                 </select>
                                 <!--end::Select2-->
                             </div>
@@ -137,7 +138,7 @@
                                     class="required fs-6 fw-semibold mb-2">{{trans('trainingCenter.Date')}}</label>
                                 <input
                                     class="form-control form-control-solid @error('date') is-invalid @enderror"
-                                    value="{{old('date',$one_data->date)}}" name="date"
+                                    value="" name="date"
                                     placeholder="Pick date range" id="date"/>
                                 @error('date')
                                 <div
@@ -175,7 +176,7 @@
                                 <!--begin::Input-->
                                 <input type="text" name="amount"
                                        class="form-control mb-2  @error('amount') is-invalid @enderror"
-                                       placeholder="{{trans('trainingCenter.Amount')}}" value="{{old('amount',$one_data->amount)}}"/>
+                                       placeholder="{{trans('trainingCenter.Amount')}}" value="{{old('amount')}}"/>
                                 <!--end::Input-->
                                 @error('amount')
                                 <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
@@ -214,34 +215,33 @@
 @section('js')
   
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
-{{--     {!! JsValidator::formRequest('App\Http\Requests\training_center\Instructors_Courses\StoreRequest','#StorForm'); !!}
- --}}
+     {!! JsValidator::formRequest('App\Http\Requests\training_center\Invoice_Entity\StoreRequest','#StorForm'); !!}
+ 
  <script>
     var KTAppaccountSave = function () {
 
         const initDaterangepicker = () => {
-
             $("#date").daterangepicker({
-                    singleDatePicker: true,
-                    showDropdowns: true,
-                    minYear: 2025,
-                    maxYear: parseInt(moment().format("YYYY"), 12)
-                }
-            );
-        }
+                singleDatePicker: true,
+                showDropdowns: true,
+                minYear: 2025,
+                maxYear: parseInt(moment().format("YYYY"), 12)
+            });
+        };
+
+       
         return {
-                init: function () {
-                    // Init forms
-                    initDaterangepicker();
-           
-                    initckeditor();
-                }
-            };
-        }();
-        // On document ready
-        KTUtil.onDOMContentLoaded(function () {
-            KTAppaccountSave.init();
-        });
-    </script>
+            init: function () {
+                initDaterangepicker();
+               // initStudentCourseSelect(); // ←   
+            }
+        };
+    }();
+
+    KTUtil.onDOMContentLoaded(function () {
+        KTAppaccountSave.init();
+    });
+</script>
+
 @endsection
 

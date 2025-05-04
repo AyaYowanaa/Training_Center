@@ -160,7 +160,7 @@
                           <div class="row">
                         
                             <div class="col-md-4">
-                                <label class="form-label">{{trans('trainingCenter.Student')}}</label> 
+                                <label class="form-label">{{trans('trainingCenter.Status')}}</label> 
                             <select class="form-select mb-2 @error('status') is-invalid @enderror"
                             data-control="select2" data-hide-search="false"
                             data-placeholder="Select an option" data-allow-clear="true"
@@ -223,8 +223,8 @@
 @section('js')
   
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
-{{--     {!! JsValidator::formRequest('App\Http\Requests\training_center\Instructors_Courses\StoreRequest','#StorForm'); !!}
- --}}
+    {!! JsValidator::formRequest('App\Http\Requests\training_center\Invoices\StoreRequest','#StorForm'); !!}
+ 
  <script>
     var KTAppaccountSave = function () {
 
