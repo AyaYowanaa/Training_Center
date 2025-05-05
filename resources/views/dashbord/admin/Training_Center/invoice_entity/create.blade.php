@@ -22,7 +22,7 @@
 
 
                 <li class="breadcrumb-item text-muted">
-                    {{trans('Toolbar.Invoice_Entity')}}</a>
+                    {{trans('Toolbar.Add_Entity_Invoice')}}</a>
                 </li>
 
 
@@ -73,9 +73,10 @@
             </div>
         @endif
         <form id="StorForm" class="form d-flex flex-column flex-lg-row "
-              action="{{route('admin.TrainingCenter.Invoice_Entity.store')}}" method="post" enctype="multipart/form-data">
+              action="{{route('admin.TrainingCenter.Invoice_Entity.update',$one_data->id)}}" method="post" enctype="multipart/form-data">
             @csrf
-
+            @method('PATCH')
+            <input type="hidden" name="id" value="{{$one_data->id}}">
             <!--begin::Main column-->
             <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
                 <!--begin::General options-->

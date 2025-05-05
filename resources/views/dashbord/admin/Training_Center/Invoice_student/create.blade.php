@@ -22,7 +22,7 @@
 
 
                 <li class="breadcrumb-item text-muted">
-                    {{trans('Toolbar.Invoices')}}
+                    {{trans('Toolbar.Add_Invoices')}}
                 </li>
 
 

@@ -111,8 +111,8 @@ class InvoiceEntityController extends Controller
     public function edit($id)
     {
         $data['one_data'] = Invoice_entity::findOrFail($id);
-        $data['students'] = Students::whereHas('registeredCourses')->get();
-     // $data['courses'] = TrainingCourse::all();
+        $data['courses'] = TrainingCourse::all(); 
+        $data['entities'] = Entity::all(); 
         return view('dashbord.admin.Training_Center.invoice_entity.edit',$data);
 
     }
@@ -153,14 +153,12 @@ class InvoiceEntityController extends Controller
         }
     }
 
-    public function getStudentCourses($id)
+ /*    public function getStudentCourses($id)
 {
 
-    /*  $student = Students::with('registeredCourses')->findOrFail($id);
-     return response()->json($student->registeredCourses);
-    */
+    
      $student = Students::findOrFail($id);
-     return response()->json($student->registeredCourses()->get());}
+     return response()->json($student->registeredCourses()->get());} */
 
      
     function getEntityFees(Request $request)
