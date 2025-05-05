@@ -100,11 +100,11 @@
                                 <label class="form-label">{{trans('trainingCenter.Courses')}}</label>
 
                                 <!--begin::Select2-->
-                                <select class="form-select mb-2 @error('courses_id') is-invalid @enderror"
+                                <select class="form-select mb-2 @error('course_id') is-invalid @enderror"
                                         onchange="/*set_status()*/"
                                         data-control="select2" data-hide-search="false"
                                     data-placeholder="Select an option" data-allow-clear="true"
-                                        id="courses_id" name="courses_id">
+                                        id="course_id" name="course_id">
 
                                     <option value=" ">{{trans('maindata.Select')}}</option>
                                     @foreach($courses as $row)

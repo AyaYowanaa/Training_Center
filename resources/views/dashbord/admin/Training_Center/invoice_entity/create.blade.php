@@ -19,10 +19,10 @@
                 <li class="breadcrumb-item">
                     <span class="bullet bg-gray-400 w-5px h-2px"></span>
                 </li>
-              
-               
+
+
                 <li class="breadcrumb-item text-muted">
-                    {{trans('Toolbar.Entity_Invoices')}}
+                    {{trans('Toolbar.Invoice_Entity')}}</a>
                 </li>
 
 
@@ -90,45 +90,28 @@
                     <!--begin::Card body-->
                     <div class="card-body pt-0">
                         <!--begin::Input group-->
-                      
+
                         <div class="mb-10 fv-row row">
-                  
-                         
+
+
                             <div class="col-md-4">
                                 <label class="form-label">{{trans('trainingCenter.Entity')}}</label>
-
-                                <!--begin::Select2-->
-                                <select class="form-select mb-2 @error('courses_id') is-invalid @enderror"
-                                        onchange="/*set_status()*/"
-                                        data-control="select2" data-hide-search="false"
-                                    data-placeholder="Select an option" data-allow-clear="true"
-                                    id="entity_id" name="entity_id">
-
-                                    <option value=" ">{{trans('maindata.Select')}}</option>
-                                    @foreach($entities as $row)
-                                    <option value="{{ $row->id }}">{{ $row->name}}</option> 
-                                @endforeach
-                                <option value=""></option>
+                                <select name="entity_id" class="form-select mb-2" data-control="select2"
+                                        data-hide-search="false"
+                                        data-placeholder="Select an option" data-allow-clear="true"
+                                        id="entitySelect">
+                                 
                                 </select>
-                                <!--end::Select2-->
                             </div>
-
-                      
                             <div class="col-md-4">
                                 <label class="form-label">{{trans('trainingCenter.Courses')}}</label>
 
                                 <!--begin::Select2-->
-                                <select class="form-select mb-2 @error('courses_id') is-invalid @enderror"
-                                        onchange="/*set_status()*/"
+                                <select class="form-select mb-2 @error('course_id') is-invalid @enderror"
                                         data-control="select2" data-hide-search="false"
-                                    data-placeholder="Select an option" data-allow-clear="true"
-                                    id="courses_id" name="courses_id">
-
-                                    <option value=" ">{{trans('maindata.Select')}}</option>
-                                    @foreach($courses as $row)
-                                    <option value="{{ $row->id }}">{{ $row->title}}</option> 
-                                @endforeach
-                                <option value=""></option>
+                                        data-placeholder="Select an option" data-allow-clear="true"
+                                        id="courseSelect" name="course_id">
+  
                                 </select>
                                 <!--end::Select2-->
                             </div>
@@ -148,33 +131,50 @@
 
                             </div>
 
-                            </div>
-                          <div class="row">
-                        
+                        </div>
+                        <div class="row">
+
                             <div class="col-md-4">
-                                <label class="form-label">{{trans('trainingCenter.Status')}}</label> 
-                            <select class="form-select mb-2 @error('status') is-invalid @enderror"
-                            data-control="select2" data-hide-search="false"
-                            data-placeholder="Select an option" data-allow-clear="true"
-                            id="status" name="status">
-                            
-                            <option value="">{{ __('forms.Select') }}</option>
-                            <option value="completed" {{ old('status') == 'completed' ? 'selected' : '' }}>{{ __('forms.Completed') }}</option>
-                            <option value="pending" {{ old('status') == 'pending' ? 'selected' : '' }}>{{ __('forms.Pending') }}</option>
-                        </select>
-                        
-                        @error('status')
-                        <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
-                        @enderror
+                                <label class="form-label">{{trans('trainingCenter.Status')}}</label>
+                                <select class="form-select mb-2 @error('status') is-invalid @enderror"
+                                        data-control="select2" data-hide-search="false"
+                                        data-placeholder="Select an option" data-allow-clear="true"
+                                        id="status" name="status">
+
+                                    <option value="">{{ __('forms.Select') }}</option>
+                                    <option
+                                        value="completed" {{ old('status') == 'completed' ? 'selected' : '' }}>{{ __('forms.Completed') }}</option>
+                                    <option
+                                        value="pending" {{ old('status') == 'pending' ? 'selected' : '' }}>{{ __('forms.Pending') }}</option>
+                                </select>
+
+                                @error('status')
+                                <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
-                            
+
+                            <div class="col-md-4">
+                                <!--begin::Label-->
+                                <label class="required form-label">{{trans('trainingCenter.TotalAmount')}}
+                                </label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" name="total_amount" id="total_amount" readonly
+                                       class="form-control mb-2  @error('total_amount') is-invalid @enderror"
+                                       placeholder="{{trans('trainingCenter.TotalAmount')}}"
+                                       value="{{old('total_amount')}}"/>
+                                <!--end::Input-->
+                                @error('total_amount')
+                                <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
                             <div class="col-md-4">
                                 <!--begin::Label-->
                                 <label class="required form-label">{{trans('trainingCenter.Amount')}}
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" name="amount"
+                                <input type="text" name="amount" id="amount"
                                        class="form-control mb-2  @error('amount') is-invalid @enderror"
                                        placeholder="{{trans('trainingCenter.Amount')}}" value="{{old('amount')}}"/>
                                 <!--end::Input-->
@@ -182,14 +182,14 @@
                                 <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-                        
-                        </div>
 
                         </div>
 
                     </div>
-                    <!--end::Card header-->
-            
+
+                </div>
+                <!--end::Card header-->
+
                 <!--end::General options-->
 
 
@@ -213,35 +213,178 @@
 
 @endsection
 @section('js')
-  
+
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
      {!! JsValidator::formRequest('App\Http\Requests\training_center\Invoice_Entity\StoreRequest','#StorForm'); !!}
- 
- <script>
-    var KTAppaccountSave = function () {
+     
+    <script>
+        var KTAppaccountSave = function () {
+            var remain = 0;
+            const initDaterangepicker = () => {
+                $("#date").daterangepicker({
+                    singleDatePicker: true,
+                    showDropdowns: true,
+                    minYear: 2025,
+                    maxYear: parseInt(moment().format("YYYY"), 12)
+                });
+            };
+            const changeAmount = () => {
+                $('#amount').on('change', function () {
+                    if (this.value > remain) {
+                        Swal.fire({
+                            text: '{{trans('trainingCenter.outRangeAmount')}}',
+                            icon: "error",
+                            buttonsStyling: false,
+                            confirmButtonText: "{{trans('forms.error_occurred')}}",
+                            customClass: {
+                                confirmButton: "btn fw-bold btn-primary",
+                            }
+                        });
+                        this.value = remain;
+                    }
+                });
+            };
+            const changeEntitySelect = () => {
+                $('#entitySelect').on('change', function () {
+                    $('#courseSelect').val(null).trigger('change');
+                    $('#total_amount').val(0);
+                });
+            };
+            const changeCourseSelect = () => {
+                $('#courseSelect').on('change', function () {
+                    var course = $('#courseSelect').val();
+                    var student = $('#entitySelect').val();
+                    if (course && student) {
+                        $.ajax({
+                            url: '{{route('admin.TrainingCenter.Invoice.getEntityFees')}}',
+                            method: 'POST',
+                            data: {course_id: course, entity_id: student},
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Include CSRF token
+                            },
+                            success: function (response) {
+                                remain = response.remain;
+                                $('#total_amount').val(remain);
 
-        const initDaterangepicker = () => {
-            $("#date").daterangepicker({
-                singleDatePicker: true,
-                showDropdowns: true,
-                minYear: 2025,
-                maxYear: parseInt(moment().format("YYYY"), 12)
-            });
-        };
 
-       
-        return {
-            init: function () {
-                initDaterangepicker();
-               // initStudentCourseSelect(); // ←   
-            }
-        };
-    }();
+                            },
+                            error: function (xhr) {
+                                // blockUI.release();
 
-    KTUtil.onDOMContentLoaded(function () {
-        KTAppaccountSave.init();
-    });
-</script>
+                                if (xhr.status === 422) { // Laravel validation error
+
+                                    var errors = xhr.responseJSON.errors;
+                                    // Iterate over the errors and add error feedback to corresponding fields
+                                    $.each(errors, function (field, messages) {
+                                        // Find the input (or select) by its name attribute
+                                        var $input = $('[name="' + field + '"]');
+                                        // Add the is-invalid class
+                                        $input.addClass('is-invalid');
+                                        // Create an error message container
+                                        var $error = $('<div class="invalid-feedback"></div>').text(messages[0]);
+                                        // Append the error after the input element (or its parent, depending on your markup)
+                                        $input.after($error);
+                                    });
+                                } else {
+                                    // Handle other errors
+                                    toastr.error('An error occurred. Please try again.');
+                                    Swal.fire({
+                                        text: xhr.error,
+                                        icon: "error",
+                                        buttonsStyling: false,
+                                        confirmButtonText: "{{trans('forms.error_occurred')}}",
+                                        customClass: {
+                                            confirmButton: "btn fw-bold btn-primary",
+                                        }
+                                    });
+                                }
+                            }
+                        });
+                    }
+                });
+            };
+            const initEntityCourseSelect = () => {
+                $('#courseSelect').select2({
+                    ajax: {
+                        url: '{{ route('admin.TrainingCenter.getTrainingCourseEntity') }}',
+                        type: "post",
+                        dataType: 'json',
+                        delay: 250,
+                        data: function (params) {
+                            return {
+                                search: params.term,// search term
+                                page: params.page || 1,
+                                entity_id: $('#entitySelect').val()
+                            };
+                        }, processResults: function (data, params) {
+                            params.page = params.page || 1;
+                            var mappedData = $.map(data.data, function (item) {
+                                return {id: item.id, text: item.text};
+                            });
+                            return {
+                                results: mappedData,
+                                pagination: {
+                                    more: (params.page * 10) < data.total
+                                }
+
+                            };
+                        },
+                        cache: true
+                    },
+                    placeholder: 'select a course',
+                    minimumInputLength: 0
+                });
+
+
+            };
+             const initEntitySelect = () => {
+                $('#entitySelect').select2({
+                    ajax: {
+                        url: '{{ route('admin.TrainingCenter.getEntity') }}',
+                        type: "post",
+                        dataType: 'json',
+                        delay: 250,
+                        data: function (params) {
+                            return {
+                                search: params.term,// search term
+                                page: params.page || 1
+                            };
+                        }, processResults: function (data, params) {
+                            params.page = params.page || 1;
+                            var mappedData = $.map(data.data, function (item) {
+                                return {id: item.id, text: item.title};
+                            });
+                            return {
+                                results: mappedData,
+                                pagination: {
+                                    more: (params.page * 10) < data.total
+                                }
+
+                            };
+                        },
+                        cache: true
+                    },
+                    placeholder: 'Select an option',
+                    minimumInputLength: 0
+                });
+            }; 
+
+            return {
+                init: function () {
+                    initDaterangepicker();
+                    initEntityCourseSelect(); // ← هنا بنشغله أول ما الصفحة تجهز
+                    changeEntitySelect();
+                   initEntitySelect();
+                    changeCourseSelect();
+                    changeAmount();
+                }
+            };
+        }();
+
+        KTUtil.onDOMContentLoaded(function () {
+            KTAppaccountSave.init();
+        });
+    </script>
 
 @endsection
 

@@ -20,7 +20,7 @@ class InvoiceController extends Controller
         if ($request->ajax()) {
             $allData = Invoice_student::select('*');
             return Datatables::of($allData)
-                ->editColumn('courses_id', function ($row) {
+                ->editColumn('course_id', function ($row) {
                     return $row->coursesData?->title ?? '—';
                 })
                 ->editColumn('student_id', function ($row) {
@@ -172,7 +172,7 @@ class InvoiceController extends Controller
         $student_id = $request->student_id;
         $course_id = $request->course_id;
         $courseFees = TrainingCourse::find($course_id)->fee;
-        $paid = Invoice_student::where(['student_id' => $student_id, 'courses_id' => $course_id])->sum('amount');
+        $paid = Invoice_student::where(['student_id' => $student_id, 'course_id' => $course_id])->sum('amount');
         $remain = $courseFees - $paid;
 
         return response()->json(['remain' => $remain, 'courseFees' => $courseFees, 'paid' => $paid]);

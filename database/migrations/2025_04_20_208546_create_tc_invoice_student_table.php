@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('tc_invoice_student', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('student_id')->nullable();
-            $table->integer('courses_id')->nullable();
+            $table->integer('course_id')->nullable();
             $table->decimal('amount', 10, 2)->nullable();
             $table->enum('payment_method',
              ['cash', 'bank transfer', 'credit card'])->nullable();

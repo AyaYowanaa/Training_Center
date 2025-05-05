@@ -26,7 +26,7 @@ class StoreRequest extends FormRequest
         return [
         
 
-            'courses_id' => 'required',
+           // 'course_id' => 'required',
             'student_id' => 'required',
         
         ];

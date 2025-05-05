@@ -22,7 +22,7 @@ class InvoiceEntityController extends Controller
             $allData = Invoice_entity::select('*');
             return Datatables::of($allData)
                 
-                ->editColumn('courses_id', function ($row) {
+                ->editColumn('course_id', function ($row) {
                     return $row->coursesData?->title ?? '—';
                 })
                 ->editColumn('entity_id', function ($row) {
@@ -162,5 +162,20 @@ class InvoiceEntityController extends Controller
      $student = Students::findOrFail($id);
      return response()->json($student->registeredCourses()->get());}
 
+     
+    function getEntityFees(Request $request)
+    {
+
+        $entity_id = $request->entity_id;
+        $course_id = $request->course_id;
+        $courseFees = TrainingCourse::find($course_id)->fee;
+        $paid = Invoice_entity::where(['entity_id' => $entity_id, 'course_id' => $course_id])
+        ->sum('amount');
+        $remain = $courseFees - $paid;
+
+        return response()->json(['remain' => $remain, 'courseFees' => $courseFees, 'paid' => $paid]);
+
+
+    }
 
 }

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tc_student_registration_course', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('student_id')->nullable();
-            $table->unsignedBigInteger('courses_id')->nullable();
+            $table->unsignedBigInteger('course_id')->nullable();
             $table->unsignedBigInteger('entity_id')->nullable();
             $table->integer('num')->nullable();
             $table->timestamps();

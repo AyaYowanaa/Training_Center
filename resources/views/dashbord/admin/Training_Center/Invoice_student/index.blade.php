@@ -72,8 +72,8 @@
                     <thead>
                     <tr class="fw-semibold fs-6 text-gray-800">
                         <th>{{trans('trainingCenter.ID')}}</th>
-                        <th>{{trans('trainingCenter.Course')}}</th>
                         <th>{{trans('trainingCenter.Student')}}</th>
+                        <th>{{trans('trainingCenter.Course')}}</th>
                         <th>{{trans('trainingCenter.Amount')}}</th>
                         <th>{{trans('forms.Action')}}</th>
                     </tr>
@@ -135,8 +135,9 @@
                     ajax: "{{route('admin.TrainingCenter.Invoice.index')}}",
                     columns: [
                         {data: 'id', name: 'id'},
-                        {data: 'courses_id', name: 'courses_id'},
+                      
                         {data: 'student_id', name: 'student_id'},
+                        {data: 'course_id', name: 'course_id'},
                         {data: 'amount', name: 'amount'},
                         {data: 'action', name: 'action', orderable: false},
                     ],

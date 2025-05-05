@@ -87,6 +87,8 @@ Route::group(
             Route::post('getStudent', [\App\Http\Controllers\Admin\Training_Center\MainController::class, 'getStudent'])->name('getStudent');
             Route::get('CourseRegistration/getStudent', [CourseRegistrationController::class, 'getStudent'])->name('CourseRegistration.getStudent');
             Route::resource('CourseRegistration', CourseRegistrationController::class);
+            Route::post('getEntity', [\App\Http\Controllers\Admin\Training_Center\MainController::class, 'getEntity'])->name('getEntity');
+            Route::post('getTrainingCourseEntity', [\App\Http\Controllers\Admin\Training_Center\MainController::class, 'getTrainingCourseEntity'])->name('getTrainingCourseEntity');
 
 
 
@@ -96,6 +98,7 @@ Route::group(
           Route::post('Invoice/getStudentFees', [InvoiceController::class, 'getStudentFees'])->name('Invoice.getStudentFees');
 
           Route::resource('Invoice_Entity', InvoiceEntityController::class);
+          Route::post('Invoice/getEntityFees', [InvoiceEntityController::class, 'getEntityFees'])->name('Invoice.getEntityFees');
 
            });
 /*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
