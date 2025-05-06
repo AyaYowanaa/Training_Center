@@ -7,7 +7,7 @@
         <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
             <!--begin::Title-->
             <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                {{trans('trainingCenter.create')}}</h1>
+                {{trans('Invoice.create')}}</h1>
             <!--end::Title-->
             <!--begin::Breadcrumb-->
             <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -83,7 +83,7 @@
                     <!--begin::Card header-->
                     <div class="card-header">
                         <div class="card-title">
-                            <h2>{{trans('trainingCenter.mainData')}}</h2>
+                            <h2>{{trans('Invoice.mainData')}}</h2>
                         </div>
                     </div>
                     <!--end::Card header-->
@@ -95,7 +95,7 @@
 
 
                             <div class="col-md-4">
-                                <label class="form-label">{{trans('trainingCenter.Student')}}</label>
+                                <label class="form-label">{{trans('Invoice.Student')}}</label>
                                 <select name="student_id" class="form-select mb-2" data-control="select2"
                                         data-hide-search="false"
                                         data-placeholder="Select an option" data-allow-clear="true"
@@ -107,7 +107,7 @@
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label">{{trans('trainingCenter.Courses')}}</label>
+                                <label class="form-label">{{trans('Invoice.Courses')}}</label>
 
                                 <!--begin::Select2-->
                                 <select class="form-select mb-2 @error('course_id') is-invalid @enderror"
@@ -126,7 +126,7 @@
                             <div class="col-md-4">
 
                                 <label
-                                    class="required fs-6 fw-semibold mb-2">{{trans('trainingCenter.Date')}}</label>
+                                    class="required fs-6 fw-semibold mb-2">{{trans('Invoice.Date')}}</label>
                                 <input
                                     class="form-control form-control-solid @error('date') is-invalid @enderror"
                                     value="" name="date"
@@ -143,7 +143,7 @@
                         <div class="row">
 
                             <div class="col-md-4">
-                                <label class="form-label">{{trans('trainingCenter.Status')}}</label>
+                                <label class="form-label">{{trans('Invoice.Status')}}</label>
                                 <select class="form-select mb-2 @error('status') is-invalid @enderror"
                                         data-control="select2" data-hide-search="false"
                                         data-placeholder="Select an option" data-allow-clear="true"
@@ -163,13 +163,13 @@
 
                             <div class="col-md-4">
                                 <!--begin::Label-->
-                                <label class="required form-label">{{trans('trainingCenter.TotalAmount')}}
+                                <label class="required form-label">{{trans('Invoice.TotalAmount')}}
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
                                 <input type="text" name="total_amount" id="total_amount" readonly
                                        class="form-control mb-2  @error('total_amount') is-invalid @enderror"
-                                       placeholder="{{trans('trainingCenter.TotalAmount')}}"
+                                       placeholder="{{trans('Invoice.TotalAmount')}}"
                                        value="{{old('total_amount')}}"/>
                                 <!--end::Input-->
                                 @error('total_amount')
@@ -178,13 +178,13 @@
                             </div>
                             <div class="col-md-4">
                                 <!--begin::Label-->
-                                <label class="required form-label">{{trans('trainingCenter.Amount')}}
+                                <label class="required form-label">{{trans('Invoice.Amount')}}
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
                                 <input type="text" name="amount" id="amount"
                                        class="form-control mb-2  @error('amount') is-invalid @enderror"
-                                       placeholder="{{trans('trainingCenter.Amount')}}" value="{{old('amount')}}"/>
+                                       placeholder="{{trans('Invoice.Amount')}}" value="{{old('amount')}}"/>
                                 <!--end::Input-->
                                 @error('amount')
                                 <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
@@ -224,7 +224,7 @@
 
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
      {!! JsValidator::formRequest('App\Http\Requests\training_center\Invoices\StoreRequest','#StorForm'); !!}
-     
+
     <script>
         var KTAppaccountSave = function () {
             var remain = 0;
@@ -240,7 +240,7 @@
                 $('#amount').on('change', function () {
                     if (this.value > remain) {
                         Swal.fire({
-                            text: '{{trans('trainingCenter.outRangeAmount')}}',
+                            text: '{{trans('Invoice.outRangeAmount')}}',
                             icon: "error",
                             buttonsStyling: false,
                             confirmButtonText: "{{trans('forms.error_occurred')}}",
