@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\training_center\Invoices;
+namespace App\Http\Requests\training_center\Invoice_Entity;
 
 use DB;
 use Illuminate\Contracts\Validation\ValidationRule;
@@ -26,8 +26,8 @@ class StoreRequest extends FormRequest
         return [
         
 
-           // 'course_id' => 'required',
-            'student_id' => 'required',
+          //  'course_id' => 'required',
+            'amount' => 'required',
         
         ];
     }
