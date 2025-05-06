@@ -25,4 +25,5 @@
   'Invoices' => 'Invoices',
   'Update_Training_Courses' => 'Update_Training_Courses',
   'Update_Invoices' => 'Update_Invoices',
+  'CourseRegistration' => 'CourseRegistration',
 );

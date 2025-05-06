@@ -85,6 +85,9 @@ Route::group(
             Route::post('getTrainingCourseStudent', [\App\Http\Controllers\Admin\Training_Center\MainController::class, 'getTrainingCourseStudent'])->name('getTrainingCourseStudent');
             Route::post('getStudent', [\App\Http\Controllers\Admin\Training_Center\MainController::class, 'getStudent'])->name('getStudent');
             Route::get('CourseRegistration/getStudent', [CourseRegistrationController::class, 'getStudent'])->name('CourseRegistration.getStudent');
+            Route::get('CourseRegistration/getCourseStudent', [CourseRegistrationController::class, 'getCourseStudent'])->name('CourseRegistration.getCourseStudent');
+            Route::post('CourseRegistration/storeStudent', [CourseRegistrationController::class, 'storeStudent'])->name('CourseRegistration.storeStudent');
+            Route::delete('CourseRegistration/deleteStudent', [CourseRegistrationController::class, 'deleteStudent'])->name('CourseRegistration.deleteStudent');
             Route::resource('CourseRegistration', CourseRegistrationController::class);
 
 

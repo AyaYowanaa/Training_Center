@@ -26,9 +26,10 @@ class StoreRequest extends FormRequest
         return [
 
             'course_id' => 'required|exists:tc_courses,id',
+            'student_id' => 'required|exists:tc_students,id',
             'entity_id'=>'sometime|exists:tc_entities,id',
-            'student_id' => 'required|array',
-            'student_id.*' => 'exists:tc_students,id',
+            'student_ids' => 'sometime|array',
+            'student_ids.*' => 'exists:tc_students,id',
         ];
     }
 
