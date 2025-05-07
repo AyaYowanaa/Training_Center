@@ -15,7 +15,7 @@
                     <a href="{{ route('admin.dashboard') }}" class="text-muted text-hover-primary">
                         {{trans('Toolbar.home')}}</a>
                 </li>
-         
+
                 <li class="breadcrumb-item">
                     <span class="bullet bg-gray-400 w-5px h-2px"></span>
                 </li>
@@ -184,7 +184,7 @@
                         }
                     }).then(function (result) {
                         if (result.value) {
-                       
+
                             Swal.fire({
                                 imageUrl: 'https://media.tenor.com/C7KormPGIwQAAAAi/epic-loading.gif',
                                 imageWidth: 200,
