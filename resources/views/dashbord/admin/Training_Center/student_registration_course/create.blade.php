@@ -198,19 +198,15 @@
                 <!--end::General options-->
 
 
-                <div class="d-flex justify-content-end">
-                    <!--begin::Button-->
+              <!--  <div class="d-flex justify-content-end">
                     <button type="reset" class="btn btn-light me-5">{{trans('forms.cancel_btn')}}</button>
-                    <!--end::Button-->
-                    <!--begin::Button-->
                     <button type="submit" id="" class="btn btn-primary">
                         <span class="indicator-label">{{trans('forms.save_btn')}}</span>
                         <span class="indicator-progress">Please wait...
 													<span
                                                         class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                     </button>
-                    <!--end::Button-->
-                </div>
+                </div>-->
             </div>
             <!--end::Main column-->
         </form>
