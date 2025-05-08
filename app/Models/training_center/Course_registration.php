@@ -59,13 +59,11 @@ class Course_registration extends Model
     {
         DB::beginTransaction();
         try {
-            // اجلب آخر رقم مسجل
             $lastNum = self::orderByDesc('num')->value('num') ?? 0;
 
             $dataToInsert = [];
 
             foreach ($studentIds as $studentId) {
-                // تأكد أن الطالب غير مسجل مسبقًا
                 $exists = self::where('course_id', $courseId)
                     ->where('student_id', $studentId)
                     ->exists();
@@ -80,7 +78,6 @@ class Course_registration extends Model
                 }
             }
 
-            // نفذ الإدخال دفعة واحدة
             if (!empty($dataToInsert)) {
                 self::insert($dataToInsert);
             }
@@ -97,12 +94,10 @@ class Course_registration extends Model
     {
         DB::beginTransaction();
         try {
-            // اجلب آخر رقم مسجل
             $lastNum = self::orderByDesc('num')->value('num') ?? 0;
 
             $dataToInsert = [];
 
-            // تأكد أن الطالب غير مسجل مسبقًا
             $exists = self::where('course_id', $courseId)
                 ->where('student_id', $studentId)
                 ->exists();
@@ -116,7 +111,6 @@ class Course_registration extends Model
                 ];
             }
 
-            // نفذ الإدخال دفعة واحدة
             if (!empty($dataToInsert)) {
                 self::insert($dataToInsert);
             }

@@ -29,4 +29,5 @@
   'Add_Invoices' => 'Add_Invoices',
   'Add_Entity_Invoice' => 'Add_Entity_Invoice',
   'Update_Entity_Invoice' => 'Update_Entity_Invoice',
+  'AttendanceStudents' => 'AttendanceStudents',
 );

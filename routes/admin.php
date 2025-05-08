@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Training_Center\AttendanceStudentsController;
 use App\Http\Controllers\Admin\Training_Center\CourseController;
 use App\Http\Controllers\Admin\Training_Center\CourseRegistrationController;
 use App\Http\Controllers\Admin\Training_Center\Settings\CityController;
@@ -94,8 +95,15 @@ Route::group(
             Route::post('getTrainingCourseEntity', [\App\Http\Controllers\Admin\Training_Center\MainController::class, 'getTrainingCourseEntity'])->name('getTrainingCourseEntity');
 
 
+            Route::get('AttendanceStudents/getStudent', [AttendanceStudentsController::class, 'getStudent'])->name('AttendanceStudents.getStudent');
+            Route::get('AttendanceStudents/getCourseStudent', [AttendanceStudentsController::class, 'getCourseStudent'])->name('AttendanceStudents.getCourseStudent');
+//            Route::post('AttendanceStudents/storeStudent', [AttendanceStudentsController::class, 'store'])->name('AttendanceStudents.storeStudent');
+            Route::delete('AttendanceStudents/deleteStudent', [AttendanceStudentsController::class, 'deleteStudent'])->name('AttendanceStudents.deleteStudent');
+            Route::resource('AttendanceStudents', AttendanceStudentsController::class);
 
-         /*********************************** Invoice_student ******************************** */
+
+
+            /*********************************** Invoice_student ******************************** */
           Route::resource('Invoice', InvoiceController::class);
           Route::get('/get_inrolled_student/{id}', [InvoiceController::class, 'getStudentCourses']);
           Route::post('Invoice/getStudentFees', [InvoiceController::class, 'getStudentFees'])->name('Invoice.getStudentFees');
