@@ -7,7 +7,7 @@
         <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
             <!--begin::Title-->
             <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                {{trans('trainingCenter.create')}}</h1>
+                {{trans('Invoice.create')}}</h1>
             <!--end::Title-->
             <!--begin::Breadcrumb-->
             <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -22,7 +22,7 @@
 
 
                 <li class="breadcrumb-item text-muted">
-                    {{trans('Toolbar.Update_Entity_Invoice')}}</a>
+                    {{trans('Toolbar.Add_Entity_Invoice')}}</a>
                 </li>
 
 
@@ -73,9 +73,10 @@
             </div>
         @endif
         <form id="StorForm" class="form d-flex flex-column flex-lg-row "
-              action="{{route('admin.TrainingCenter.Invoice_Entity.store')}}" method="post" enctype="multipart/form-data">
+              action="{{route('admin.TrainingCenter.Invoice_Entity.update',$one_data->id)}}" method="post" enctype="multipart/form-data">
             @csrf
-
+            @method('PATCH')
+            <input type="hidden" name="id" value="{{$one_data->id}}">
             <!--begin::Main column-->
             <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
                 <!--begin::General options-->
@@ -83,7 +84,7 @@
                     <!--begin::Card header-->
                     <div class="card-header">
                         <div class="card-title">
-                            <h2>{{trans('trainingCenter.mainData')}}</h2>
+                            <h2>{{trans('Invoice.mainData')}}</h2>
                         </div>
                     </div>
                     <!--end::Card header-->
@@ -95,33 +96,33 @@
 
 
                             <div class="col-md-4">
-                                <label class="form-label">{{trans('trainingCenter.Entity')}}</label>
+                                <label class="form-label">{{trans('Invoice.Entity')}}</label>
                                 <select name="entity_id" class="form-select mb-2" data-control="select2"
                                         data-hide-search="false"
                                         data-placeholder="Select an option" data-allow-clear="true"
                                         id="entitySelect">
-                                 
+
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label">{{trans('trainingCenter.Courses')}}</label>
+                                <label class="form-label">{{trans('Invoice.Courses')}}</label>
 
                                 <!--begin::Select2-->
                                 <select class="form-select mb-2 @error('course_id') is-invalid @enderror"
                                         data-control="select2" data-hide-search="false"
                                         data-placeholder="Select an option" data-allow-clear="true"
                                         id="courseSelect" name="course_id">
-  
+
                                 </select>
                                 <!--end::Select2-->
                             </div>
                             <div class="col-md-4">
 
                                 <label
-                                    class="required fs-6 fw-semibold mb-2">{{trans('trainingCenter.Date')}}</label>
+                                    class="required fs-6 fw-semibold mb-2">{{trans('Invoice.Date')}}</label>
                                 <input
                                     class="form-control form-control-solid @error('date') is-invalid @enderror"
-                                    value="{{old('date',$one_data->date)}}" name="date"
+                                    value="" name="date"
                                     placeholder="Pick date range" id="date"/>
                                 @error('date')
                                 <div
@@ -135,7 +136,7 @@
                         <div class="row">
 
                             <div class="col-md-4">
-                                <label class="form-label">{{trans('trainingCenter.Status')}}</label>
+                                <label class="form-label">{{trans('Invoice.Status')}}</label>
                                 <select class="form-select mb-2 @error('status') is-invalid @enderror"
                                         data-control="select2" data-hide-search="false"
                                         data-placeholder="Select an option" data-allow-clear="true"
@@ -155,13 +156,13 @@
 
                             <div class="col-md-4">
                                 <!--begin::Label-->
-                                <label class="required form-label">{{trans('trainingCenter.TotalAmount')}}
+                                <label class="required form-label">{{trans('Invoice.TotalAmount')}}
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
                                 <input type="text" name="total_amount" id="total_amount" readonly
                                        class="form-control mb-2  @error('total_amount') is-invalid @enderror"
-                                       placeholder="{{trans('trainingCenter.TotalAmount')}}"
+                                       placeholder="{{trans('Invoice.TotalAmount')}}"
                                        value="{{old('total_amount')}}"/>
                                 <!--end::Input-->
                                 @error('total_amount')
@@ -170,14 +171,13 @@
                             </div>
                             <div class="col-md-4">
                                 <!--begin::Label-->
-                                <label class="required form-label">{{trans('trainingCenter.Amount')}}
+                                <label class="required form-label">{{trans('Invoice.Amount')}}
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
                                 <input type="text" name="amount" id="amount"
                                        class="form-control mb-2  @error('amount') is-invalid @enderror"
-                                       placeholder="{{trans('trainingCenter.Amount')}}"
-                                       value="{{old('amount',$one_data->amount)}}"/>
+                                       placeholder="{{trans('Invoice.Amount')}}" value="{{old('amount')}}"/>
                                 <!--end::Input-->
                                 @error('amount')
                                 <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
@@ -216,8 +216,8 @@
 @section('js')
 
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
-     {!! JsValidator::formRequest('App\Http\Requests\training_center\Invoice_Entity\UpdateRequest','#StorForm'); !!}
-     
+     {!! JsValidator::formRequest('App\Http\Requests\training_center\Invoice_Entity\StoreRequest','#StorForm'); !!}
+
     <script>
         var KTAppaccountSave = function () {
             var remain = 0;
@@ -233,7 +233,7 @@
                 $('#amount').on('change', function () {
                     if (this.value > remain) {
                         Swal.fire({
-                            text: '{{trans('trainingCenter.outRangeAmount')}}',
+                            text: '{{trans('Invoice.outRangeAmount')}}',
                             icon: "error",
                             buttonsStyling: false,
                             confirmButtonText: "{{trans('forms.error_occurred')}}",
@@ -368,7 +368,7 @@
                     placeholder: 'Select an option',
                     minimumInputLength: 0
                 });
-            }; 
+            };
 
             return {
                 init: function () {

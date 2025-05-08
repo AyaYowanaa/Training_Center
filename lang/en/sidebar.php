@@ -29,4 +29,8 @@
   'advantages' => 'advantages',
   'CourseCosts' => 'CourseCosts',
   'Instructors_Courses' => 'Instructors_Courses',
+  'CourseRegistration' => 'CourseRegistration',
+  'Invoice' => 'Invoice',
+  'Entity_Invoices' => 'Entity_Invoices',
+  'AttendanceStudents' => 'AttendanceStudents',
 );

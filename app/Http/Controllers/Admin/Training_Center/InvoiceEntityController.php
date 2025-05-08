@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Training_Center;
 
 use App\Http\Controllers\Controller;
+use App\Models\training_center\Course_registration;
 use Illuminate\Http\Request;
 use App\Models\training_center\TrainingCourse;
 use App\Models\training_center\Invoice_entity;
@@ -14,14 +15,14 @@ use Yajra\DataTables\DataTables;
 
 class InvoiceEntityController extends Controller
 {
-  
+
     public function index(Request $request)
     {
 
         if ($request->ajax()) {
             $allData = Invoice_entity::select('*');
             return Datatables::of($allData)
-                
+
                 ->editColumn('course_id', function ($row) {
                     return $row->coursesData?->title ?? '—';
                 })
@@ -52,8 +53,8 @@ class InvoiceEntityController extends Controller
                                address="' . trans('forms.edite_btn') . '" class="menu-link px-3"
                                >' . trans('forms.edite_btn') . '</a>
                         </div>
-                   		
-                       
+
+
                         <div class="menu-item px-3">
                                 <a href="' . route('admin.TrainingCenter.Invoice_Entity.destroy', $row->id) . '" data-kt-table-delete="delete_row"
                                            address="' . trans('forms.delete_btn') . '" class="menu-link px-3"
@@ -77,8 +78,8 @@ class InvoiceEntityController extends Controller
      */
     public function create()
     {    $data['one_data']= new Invoice_entity();
-       $data['courses'] = TrainingCourse::all(); 
-       $data['entities'] = Entity::all(); 
+       $data['courses'] = TrainingCourse::all();
+       $data['entities'] = Entity::all();
         return view('dashbord.admin.Training_Center.invoice_entity.create'
         , $data);
 
@@ -86,7 +87,7 @@ class InvoiceEntityController extends Controller
     public function show_load($id)
     {
         $data['one_data'] = Invoice_entity::findOrFail($id);
-        $data['courses'] = TrainingCourse::all();    
+        $data['courses'] = TrainingCourse::all();
         return view('dashbord.admin.Training_Center.invoice_entity.load_details', $data);
     }
     /**
@@ -111,8 +112,8 @@ class InvoiceEntityController extends Controller
     public function edit($id)
     {
         $data['one_data'] = Invoice_entity::findOrFail($id);
-        $data['courses'] = TrainingCourse::all(); 
-        $data['entities'] = Entity::all(); 
+        $data['courses'] = TrainingCourse::all();
+        $data['entities'] = Entity::all();
         return view('dashbord.admin.Training_Center.invoice_entity.edit',$data);
 
     }
@@ -138,8 +139,8 @@ class InvoiceEntityController extends Controller
      */
     public function destroy($id)
     {
-       
-       
+
+
         try {
 
             $one_data = Invoice_entity::find($id);
@@ -156,20 +157,22 @@ class InvoiceEntityController extends Controller
  /*    public function getStudentCourses($id)
 {
 
-    
+
      $student = Students::findOrFail($id);
      return response()->json($student->registeredCourses()->get());} */
 
-     
+
     function getEntityFees(Request $request)
     {
 
         $entity_id = $request->entity_id;
         $course_id = $request->course_id;
+        $countIDs = Course_registration::select('course_id')->where('entity_id', $entity_id)->count();
+
         $courseFees = TrainingCourse::find($course_id)->fee;
         $paid = Invoice_entity::where(['entity_id' => $entity_id, 'course_id' => $course_id])
         ->sum('amount');
-        $remain = $courseFees - $paid;
+        $remain = ($courseFees *$countIDs) - $paid;
 
         return response()->json(['remain' => $remain, 'courseFees' => $courseFees, 'paid' => $paid]);
 

@@ -153,4 +153,5 @@
   'images' => 'images',
   'nullable' => 'nullable',
   'illuminate\\_validation\\_closure_validation_rule' => 'illuminate\\_validation\\_closure_validation_rule',
+  'sometime' => 'sometime',
 );

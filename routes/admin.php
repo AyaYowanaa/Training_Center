@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Training_Center\AttendanceStudentsController;
 use App\Http\Controllers\Admin\Training_Center\CourseController;
 use App\Http\Controllers\Admin\Training_Center\CourseRegistrationController;
 use App\Http\Controllers\Admin\Training_Center\Settings\CityController;
@@ -87,13 +88,23 @@ Route::group(
             Route::post('getTrainingCourseStudent', [\App\Http\Controllers\Admin\Training_Center\MainController::class, 'getTrainingCourseStudent'])->name('getTrainingCourseStudent');
             Route::post('getStudent', [\App\Http\Controllers\Admin\Training_Center\MainController::class, 'getStudent'])->name('getStudent');
             Route::get('CourseRegistration/getStudent', [CourseRegistrationController::class, 'getStudent'])->name('CourseRegistration.getStudent');
+            Route::get('CourseRegistration/getCourseStudent', [CourseRegistrationController::class, 'getCourseStudent'])->name('CourseRegistration.getCourseStudent');
+            Route::post('CourseRegistration/storeStudent', [CourseRegistrationController::class, 'storeStudent'])->name('CourseRegistration.storeStudent');
+            Route::delete('CourseRegistration/deleteStudent', [CourseRegistrationController::class, 'deleteStudent'])->name('CourseRegistration.deleteStudent');
             Route::resource('CourseRegistration', CourseRegistrationController::class);
             Route::post('getEntity', [\App\Http\Controllers\Admin\Training_Center\MainController::class, 'getEntity'])->name('getEntity');
             Route::post('getTrainingCourseEntity', [\App\Http\Controllers\Admin\Training_Center\MainController::class, 'getTrainingCourseEntity'])->name('getTrainingCourseEntity');
 
 
+            Route::get('AttendanceStudents/getStudent', [AttendanceStudentsController::class, 'getStudent'])->name('AttendanceStudents.getStudent');
+            Route::get('AttendanceStudents/getCourseStudent', [AttendanceStudentsController::class, 'getCourseStudent'])->name('AttendanceStudents.getCourseStudent');
+//            Route::post('AttendanceStudents/storeStudent', [AttendanceStudentsController::class, 'store'])->name('AttendanceStudents.storeStudent');
+            Route::delete('AttendanceStudents/deleteStudent', [AttendanceStudentsController::class, 'deleteStudent'])->name('AttendanceStudents.deleteStudent');
+            Route::resource('AttendanceStudents', AttendanceStudentsController::class);
 
-         /*********************************** Invoice_student ******************************** */
+
+
+            /*********************************** Invoice_student ******************************** */
           Route::resource('Invoice', InvoiceController::class);
           Route::get('/get_inrolled_student/{id}', [InvoiceController::class, 'getStudentCourses']);
           Route::post('Invoice/getStudentFees', [InvoiceController::class, 'getStudentFees'])->name('Invoice.getStudentFees');

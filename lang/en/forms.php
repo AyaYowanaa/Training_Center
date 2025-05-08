@@ -24,4 +24,6 @@
   'Payment Status' => 'Payment Status',
   'Completed' => 'Completed',
   'Pending' => 'Pending',
+  'delete' => 'delete',
+  'error_occurred' => 'error_occurred',
 );

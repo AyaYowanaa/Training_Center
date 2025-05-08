@@ -7,7 +7,10 @@ use App\Http\Requests\training_center\CourseRegistration\StoreRequest;
 use App\Models\training_center\Course_registration;
 use App\Models\training_center\Students;
 use DB;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Yajra\DataTables\DataTables;
 
 class CourseRegistrationController extends Controller
@@ -64,7 +67,7 @@ class CourseRegistrationController extends Controller
 
             Course_registration::registerStudents(
                 $request->course_id,
-                $request->student_id,
+                $request->student_ids,
                 $request->input('entity_id')
             );
 
@@ -72,6 +75,39 @@ class CourseRegistrationController extends Controller
             return redirect()->route('admin.Settings.training_courses.index');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
+
+    public function storeStudent(Request $request)
+    {
+//        dd($request->all());
+        $validator = Validator::make($request->all(), [
+            'course_id' => [
+                'required',
+                Rule::exists('tc_courses', 'id')
+
+            ], 'student_id' => [
+                'required',
+                Rule::exists('tc_students', 'id')
+
+            ],
+        ]);
+        if ($validator->fails()) {
+            // If the request is AJAX, return JSON with status code 422
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 422);
+        }
+        try {
+            Course_registration::registerStudent(
+                $request->course_id,
+                $request->student_id,
+                $request->input('entity_id')
+            );
+            return response()->json(['message' => trans('forms.success')], 200);
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+
         }
     }
 
@@ -112,21 +148,20 @@ class CourseRegistrationController extends Controller
     {
 
 //        if ($request->ajax()) {
-        $allData = Students::select('*');
+        $course_id = $request->input('course_id');
+        $entity_id = $request->input('entity_id');
+
+        $listStudentIDs = Course_registration::select('student_id')->where('course_id', $course_id);
+        if ($entity_id) {
+            $listStudentIDs->where('entity_id', $entity_id);
+        }
+        $listStudentIDs->get()->pluck('student_id')->toArray();
+
+        $allData = Students::select('*')->whereNotIn('id', $listStudentIDs);
         return Datatables::of($allData)
             ->editColumn('name', function ($row) {
                 return $row->name;
             })
-            /*->addColumn('action', function ($row) {
-                return '<a href="#" class="btn btn-sm btn-icon btn-success">
-<i class="ki-duotone ki-plus-square fs-2">
-<span class="path1"></span>
-<span class="path2"></span>
-<span class="path3"></span>
-</i></i>
-</a>';
-            })*/
-
             ->addColumn('action', function ($row) {
                 return '<a href="#" class="btn btn-sm btn-icon btn-success btn-add-student"
                 data-id="' . $row->id . '"
@@ -145,4 +180,51 @@ class CourseRegistrationController extends Controller
 //        }
     }
 
+    public function getCourseStudent(Request $request)
+    {
+
+//        if ($request->ajax()) {
+        $course_id = $request->input('course_id');
+        $entity_id = $request->input('entity_id');
+        $allData = Course_registration::select('*')->where('course_id', $course_id);
+        if ($entity_id) {
+            $allData->where('entity_id', $entity_id);
+        }
+        return Datatables::of($allData)
+            ->editColumn('name', function ($row) {
+                return optional($row->studentData)->name;
+            })->editColumn('entity', function ($row) {
+                return optional($row->entityData)->name;
+            })->editColumn('code', function ($row) {
+                return optional($row->studentData)->code;
+            })
+            ->addColumn('action', function ($row) {
+                return '<a href="#" class="btn btn-sm btn-icon btn-danger btn-remove-student"
+                data-id="' . $row->id . '">
+                <i class="ki-duotone ki-trash-square fs-1 ">
+ <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></i>
+            </a>';
+            })
+            ->rawColumns(['action'])
+            ->make(true);
+//        }
+    }
+
+    public function deleteStudent(Request $request)
+    {
+        try {
+            $id = $request->id;
+
+            Course_registration::destroy($id);
+
+            return response()->json(['message' => 'Record is deleted successfully.'], 200);
+            //return redirect()->back();
+
+            // return redirect()->route('admin.Products.Settings.Units.index');
+        } catch (Exception $e) {
+            /*            return redirect()->back()->withErrors(['error' => $e->getMessage()]);*/
+            return response()->json(['error' => $e->getMessage()], 500);
+
+        }
+    }
 }

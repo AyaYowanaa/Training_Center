@@ -22,7 +22,7 @@
 
 
                 <li class="breadcrumb-item text-muted">
-                    {{trans('Toolbar.CourseRegistration')}}
+                    {{trans('Toolbar.AttendanceStudents')}}
                 </li>
 
 
@@ -33,7 +33,8 @@
         <div class="d-flex align-items-center gap-2 gap-lg-3">
             <!--begin::Filter menu-->
             <div class="d-flex">
-                <a href="{{route('admin.TrainingCenter.CourseRegistration.index')}}"
+{{--
+                <a href="{{route('admin.TrainingCenter.AttendanceStudents.index')}}"
                    class="btn btn-icon btn-sm btn-primary flex-shrink-0 ms-4">
 
                     <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/keenthemes/keen/docs/core/html/src/media/icons/duotune/arrows/arr054.svg-->
@@ -47,6 +48,7 @@
                                 </span>
                     <!--end::Svg Icon-->
                 </a>
+--}}
             </div>
             <!--end::Filter menu-->
             <!--begin::Secondary button-->
@@ -73,7 +75,7 @@
             </div>
         @endif
         <form id="StorForm" class="form d-flex flex-column flex-lg-row "
-              action="{{route('admin.TrainingCenter.CourseRegistration.store')}}" method="post"
+              action="{{route('admin.TrainingCenter.AttendanceStudents.store')}}" method="post"
               enctype="multipart/form-data">
             @csrf
 
@@ -149,11 +151,9 @@
                                            id="data">
                                         <thead>
                                         <tr class="fw-semibold fs-6 text-gray-800">
-                                            {{--                                        <th>{{trans('trainingCenter.ID')}}</th>--}}
                                             <th>{{trans('trainingCenter.NameStudent')}}</th>
                                             <th>{{trans('trainingCenter.code')}}</th>
-                                            <th>{{trans('trainingCenter.phone')}}</th>
-                                            {{--                                        <th>{{trans('trainingCenter.email')}}</th>--}}
+                                            <th>{{trans('trainingCenter.entity')}}</th>
                                             <th>{{trans('forms.Action')}}</th>
                                         </tr>
                                         </thead>
@@ -198,15 +198,19 @@
                 <!--end::General options-->
 
 
-              <!--  <div class="d-flex justify-content-end">
+                <div class="d-flex justify-content-end">
+                    <!--begin::Button-->
                     <button type="reset" class="btn btn-light me-5">{{trans('forms.cancel_btn')}}</button>
+                    <!--end::Button-->
+                    <!--begin::Button-->
                     <button type="submit" id="" class="btn btn-primary">
                         <span class="indicator-label">{{trans('forms.save_btn')}}</span>
                         <span class="indicator-progress">Please wait...
 													<span
                                                         class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                     </button>
-                </div>-->
+                    <!--end::Button-->
+                </div>
             </div>
             <!--end::Main column-->
         </form>
@@ -216,7 +220,7 @@
 @section('js')
 
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
-    {!! JsValidator::formRequest('App\Http\Requests\training_center\CourseRegistration\StoreRequest','#StorForm'); !!}
+    {!! JsValidator::formRequest('App\Http\Requests\training_center\AttendanceStudents\StoreAttendanceStudentsRequest','#StorForm'); !!}
     <script>
         var KTAppaccountSave = function () {
             var table;
@@ -242,19 +246,16 @@
                         "<'row'<'col-sm-12'tr>>" +
                         "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
                     ajax: {
-                        url: "{{route('admin.TrainingCenter.CourseRegistration.getStudent')}}",
+                        url: "{{route('admin.TrainingCenter.AttendanceStudents.getStudent')}}",
                         data: function (d) {
                             d.entity_id = $('#entity_id').val();
                             d.course_id = $('#course_id').val();
                         }
                     },
-                    {{--                    ajax: "{{route('admin.TrainingCenter.CourseRegistration.getStudent')}}",--}}
                     columns: [
-                        // {data: 'id', name: 'id'},
-                        {data: 'name', name: 'name'},
-                        {data: 'code', name: 'code'},
-                        {data: 'phone', name: 'phone'},
-                        // {data: 'email', name: 'email'},
+                        {data: 'name', name: 'name', orderable: false},
+                        {data: 'code', name: 'code', orderable: false},
+                        {data: 'entity', name: 'entity', orderable: false},
                         {data: 'action', name: 'action', orderable: false},
                     ],
                     order: [[0, 'desc']],
@@ -277,19 +278,17 @@
                         "<'row'<'col-sm-12'tr>>" +
                         "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
                     ajax: {
-                        url: "{{route('admin.TrainingCenter.CourseRegistration.getCourseStudent')}}",
+                        url: "{{route('admin.TrainingCenter.AttendanceStudents.getCourseStudent')}}",
                         data: function (d) {
                             d.entity_id = $('#entity_id').val();
                             d.course_id = $('#course_id').val();
                         }
                     },
-                    {{--                    ajax: "{{route('admin.TrainingCenter.CourseRegistration.getStudent')}}",--}}
+                    {{--                    ajax: "{{route('admin.TrainingCenter.AttendanceStudents.getStudent')}}",--}}
                     columns: [
-                        // {data: 'id', name: 'id'},
                         {data: 'name', name: 'name', orderable: false},
                         {data: 'code', name: 'code', orderable: false},
                         {data: 'entity', name: 'entity', orderable: false},
-                        // {data: 'email', name: 'email'},
                         {data: 'action', name: 'action', orderable: false},
                     ],
 
@@ -310,8 +309,9 @@
                     e.preventDefault();
 
                     var courseId = $('#course_id').val();
-                    var entityId = $('#entity_id').val();
-                    var studentId = $(this).data('id');
+                    // var entityId = $('#entity_id').val();
+                    var studentId = $(this).data('student_id');
+                    var entityId = $(this).data('entity_id');
                     var studentName = $(this).data('name');
                     var studentCode = $(this).data('code');
                     var studentPhone = $(this).data('phone');
@@ -355,7 +355,7 @@
                     $('#tableStudent tbody').append(newRow);
                 */
                     $.ajax({
-                        url: '{{route('admin.TrainingCenter.CourseRegistration.storeStudent')}}',
+                        url: '{{route('admin.TrainingCenter.AttendanceStudents.store')}}',
                         method: 'POST',
                         data: {
                             course_id: courseId,
@@ -430,7 +430,7 @@
                     var Id = $(this).data('id');
 
                     $.ajax({
-                        url: '{{route('admin.TrainingCenter.CourseRegistration.deleteStudent')}}',
+                        url: '{{route('admin.TrainingCenter.AttendanceStudents.deleteStudent')}}',
                         method: 'delete',
                         data: {
                             id: Id

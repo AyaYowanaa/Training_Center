@@ -31,4 +31,8 @@
   'To_date' => 'To_date',
   'From_date' => 'From_date',
   'Date' => 'Date',
+  'entity' => 'entity',
+  'studentCount' => 'studentCount',
+  'Entity' => 'Entity',
+  'This student is already added' => 'This student is already added',
 );

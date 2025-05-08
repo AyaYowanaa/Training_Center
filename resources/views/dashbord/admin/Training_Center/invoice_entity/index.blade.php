@@ -15,7 +15,7 @@
                     <a href="{{ route('admin.dashboard') }}" class="text-muted text-hover-primary">
                         {{trans('Toolbar.home')}}</a>
                 </li>
-         
+
                 <li class="breadcrumb-item">
                     <span class="bullet bg-gray-400 w-5px h-2px"></span>
                 </li>
@@ -71,11 +71,11 @@
                        id="data">
                     <thead>
                     <tr class="fw-semibold fs-6 text-gray-800">
-                        <th>{{trans('trainingCenter.ID')}}</th>
-                        <th>{{trans('trainingCenter.Entity')}}</th>
-                        <th>{{trans('trainingCenter.Course')}}</th>
-                        
-                        <th>{{trans('trainingCenter.Amount')}}</th>
+                        <th>{{trans('Invoice.ID')}}</th>
+                        <th>{{trans('Invoice.Entity')}}</th>
+                        <th>{{trans('Invoice.Course')}}</th>
+
+                        <th>{{trans('Invoice.Amount')}}</th>
                         <th>{{trans('forms.Action')}}</th>
                     </tr>
                     </thead>
@@ -138,7 +138,7 @@
                         {data: 'id', name: 'id'},
                         {data: 'entity_id', name: 'entity_id'},
                         {data: 'course_id', name: 'course_id'},
-                     
+
                         {data: 'amount', name: 'amount'},
                         {data: 'action', name: 'action', orderable: false},
                     ],
@@ -186,7 +186,7 @@
                         }
                     }).then(function (result) {
                         if (result.value) {
-                       
+
                             Swal.fire({
                                 imageUrl: 'https://media.tenor.com/C7KormPGIwQAAAAi/epic-loading.gif',
                                 imageWidth: 200,
