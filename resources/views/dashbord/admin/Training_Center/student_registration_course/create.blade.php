@@ -105,7 +105,7 @@
                                         data-placeholder="Select an option" data-allow-clear="true"
                                         id="course_id" name="course_id">
 
-{{--                                    <option value=" ">{{trans('maindata.Select')}}</option>--}}
+                                    {{--                                    <option value=" ">{{trans('maindata.Select')}}</option>--}}
                                     {{-- @foreach($courses as $row)
                                          <option value="{{ $row->id }}">{{ $row->title}}</option>
                                      @endforeach--}}
@@ -126,7 +126,7 @@
                                         data-placeholder="Select an option" data-allow-clear="true"
                                         id="entity_id" name="entity_id">
 
-{{--                                    <option value=" ">{{trans('maindata.Select')}}</option>--}}
+                                    {{--                                    <option value=" ">{{trans('maindata.Select')}}</option>--}}
                                     {{--@foreach($trainers as $row)
                                         <option value="{{ $row->id }}">{{ $row->name}}</option>
                                     @endforeach--}}
@@ -142,45 +142,51 @@
                         </div>
 
                         <div class="mb-10 fv-row row">
-                            <div class="col">
-                                <table class="table align-middle table-row-dashed fs-6 gy-3"
-                                       id="data">
-                                    <thead>
-                                    <tr class="fw-semibold fs-6 text-gray-800">
-                                        {{--                                        <th>{{trans('trainingCenter.ID')}}</th>--}}
-                                        <th>{{trans('trainingCenter.NameStudent')}}</th>
-                                        <th>{{trans('trainingCenter.code')}}</th>
-                                        <th>{{trans('trainingCenter.phone')}}</th>
-                                        {{--                                        <th>{{trans('trainingCenter.email')}}</th>--}}
-                                        <th>{{trans('forms.Action')}}</th>
-                                    </tr>
-                                    </thead>
-                                </table>
-                            </div>
-                            <div class="col">
-                                <div class="py-5">
-                                    <div class="table-responsive">
-                                        <table class="table table-row-dashed table-row-gray-300 gy-7 {{ $errors->has('student_id') ? 'is-invalid' : '' }}" id="tableStudent">
-                                            <thead>
-                                            <tr class="fw-semibold fs-6 text-gray-800">
-                                                <th>{{trans('trainingCenter.NameStudent')}}</th>
-                                                <th>{{trans('trainingCenter.code')}}</th>
-                                                <th>{{trans('trainingCenter.phone')}}</th>
-                                                <th>{{trans('forms.Action')}}</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            </tbody>
-                                            <tfoot>
-                                            <tr>
-                                                <th colspan="4">  @error('student_id')
-                                                    <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
-                                                    @enderror</th>
-                                            </tr>
-                                            </tfoot>
-                                        </table>
-                                    </div>
+                            <div class="col" id="kt_block_ui">
+                                <div class="table-responsive">
+
+                                    <table class="table align-middle table-row-dashed fs-6 gy-3"
+                                           id="data">
+                                        <thead>
+                                        <tr class="fw-semibold fs-6 text-gray-800">
+                                            {{--                                        <th>{{trans('trainingCenter.ID')}}</th>--}}
+                                            <th>{{trans('trainingCenter.NameStudent')}}</th>
+                                            <th>{{trans('trainingCenter.code')}}</th>
+                                            <th>{{trans('trainingCenter.phone')}}</th>
+                                            {{--                                        <th>{{trans('trainingCenter.email')}}</th>--}}
+                                            <th>{{trans('forms.Action')}}</th>
+                                        </tr>
+                                        </thead>
+                                    </table>
+
                                 </div>
+                            </div>
+                            <div class="col" id="kt_block_ui2">
+                                <div class="table-responsive">
+                                    <table
+                                        class="table align-middle table-row-dashed fs-6 gy-3 {{ $errors->has('student_id') ? 'is-invalid' : '' }}"
+                                        id="tableStudent">
+                                        <thead>
+                                        <tr class="fw-semibold fs-6 text-gray-800">
+                                            <th>{{trans('trainingCenter.NameStudent')}}</th>
+                                            <th>{{trans('trainingCenter.code')}}</th>
+                                            <th>{{trans('trainingCenter.entity')}}</th>
+                                            <th>{{trans('forms.Action')}}</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                        <tfoot>
+                                        <tr>
+                                            <th colspan="4">  @error('student_id')
+                                                <div
+                                                    class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
+                                                @enderror</th>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+
 
                             </div>
                         </div>
@@ -192,19 +198,15 @@
                 <!--end::General options-->
 
 
-                <div class="d-flex justify-content-end">
-                    <!--begin::Button-->
+              <!--  <div class="d-flex justify-content-end">
                     <button type="reset" class="btn btn-light me-5">{{trans('forms.cancel_btn')}}</button>
-                    <!--end::Button-->
-                    <!--begin::Button-->
                     <button type="submit" id="" class="btn btn-primary">
                         <span class="indicator-label">{{trans('forms.save_btn')}}</span>
                         <span class="indicator-progress">Please wait...
 													<span
                                                         class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                     </button>
-                    <!--end::Button-->
-                </div>
+                </div>-->
             </div>
             <!--end::Main column-->
         </form>
@@ -214,13 +216,22 @@
 @section('js')
 
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
-        {!! JsValidator::formRequest('App\Http\Requests\training_center\CourseRegistration\StoreRequest','#StorForm'); !!}
+    {!! JsValidator::formRequest('App\Http\Requests\training_center\CourseRegistration\StoreRequest','#StorForm'); !!}
     <script>
         var KTAppaccountSave = function () {
             var table;
             var dt;
-            var filterPayment;
+            var tableS;
+            var dtS;
+            var target = document.querySelector("#kt_block_ui");
 
+            var blockUI = new KTBlockUI(target, {
+                message: '<div class="blockui-message"><span class="spinner-border text-primary"></span> {{trans('forms.Loading')}}...</div>',
+            });    var target2 = document.querySelector("#kt_block_ui2");
+
+            var blockUI2 = new KTBlockUI(target2, {
+                message: '<div class="blockui-message"><span class="spinner-border text-primary"></span> {{trans('forms.Loading')}}...</div>',
+            });
             // Private functions
             var initDatatable = function () {
                 dt = $('#data').DataTable({
@@ -257,6 +268,40 @@
                     KTMenu.createInstances();
                 });
             }
+            var initDatatableStudent = function () {
+                dtS = $('#tableStudent').DataTable({
+                    searchDelay: 500,
+                    processing: true,
+                    serverSide: true,
+                    dom: "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                    ajax: {
+                        url: "{{route('admin.TrainingCenter.CourseRegistration.getCourseStudent')}}",
+                        data: function (d) {
+                            d.entity_id = $('#entity_id').val();
+                            d.course_id = $('#course_id').val();
+                        }
+                    },
+                    {{--                    ajax: "{{route('admin.TrainingCenter.CourseRegistration.getStudent')}}",--}}
+                    columns: [
+                        // {data: 'id', name: 'id'},
+                        {data: 'name', name: 'name', orderable: false},
+                        {data: 'code', name: 'code', orderable: false},
+                        {data: 'entity', name: 'entity', orderable: false},
+                        // {data: 'email', name: 'email'},
+                        {data: 'action', name: 'action', orderable: false},
+                    ],
+
+                });
+
+                tableS = dtS.$;
+
+                // Re-init functions on every table re-draw -- more info: https://datatables.net/reference/event/draw
+                dtS.on('draw', function () {
+                    KTMenu.createInstances();
+                });
+            }
 
             var initAddStudent = function () {
                 KTUtil.on(document.body, '.btn-add-student', 'click', function (e) {
@@ -264,6 +309,8 @@
                     // $(document).on('click', '.btn-add-student', function (e) {
                     e.preventDefault();
 
+                    var courseId = $('#course_id').val();
+                    var entityId = $('#entity_id').val();
                     var studentId = $(this).data('id');
                     var studentName = $(this).data('name');
                     var studentCode = $(this).data('code');
@@ -293,10 +340,10 @@
                         return;
                     }
 
-                    var newRow = `
+                    /*var newRow = `
             <tr>
                 <td>${studentName}
-                    <input type="hidden" name="student_id[]" value="${studentId}">
+                    <input type="hidden" name="student_ids[]" value="${studentId}">
                 </td>
                 <td>${studentCode}</td>
                 <td>${studentPhone}</td>
@@ -306,6 +353,72 @@
             </tr>
         `;
                     $('#tableStudent tbody').append(newRow);
+                */
+                    $.ajax({
+                        url: '{{route('admin.TrainingCenter.CourseRegistration.storeStudent')}}',
+                        method: 'POST',
+                        data: {
+                            course_id: courseId,
+                            entity_id: entityId,
+                            student_id: studentId
+                        },
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Include CSRF token
+                        },
+                        beforeSend: function () {
+                            blockUI.block();
+
+                        },
+                        success: function (response) {
+                            blockUI.release();
+                            toastr.options = {
+                                "closeButton": true,
+                                "debug": false,
+                                "newestOnTop": false,
+                                "progressBar": false,
+                                "positionClass": "toastr-top-center",
+                                "preventDuplicates": false,
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "5000",
+                                "extendedTimeOut": "1000",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                            };
+
+                            toastr.success("", "{{trans('forms.success')}}");
+                            dt.draw();
+                            dtS.draw();
+                        },
+                        error: function (xhr) {
+                            blockUI.release();
+
+                            if (xhr.status === 422) { // Laravel validation error
+
+                                var errors = xhr.responseJSON.errors;
+                                // Iterate over the errors and add error feedback to corresponding fields
+                                $.each(errors, function (field, messages) {
+
+                                });
+                            } else {
+                                // Handle other errors
+                                toastr.error('An error occurred. Please try again.');
+                                Swal.fire({
+                                    text: xhr.error,
+                                    icon: "error",
+                                    buttonsStyling: false,
+                                    confirmButtonText: "{{trans('forms.error_occurred')}}",
+                                    customClass: {
+                                        confirmButton: "btn fw-bold btn-primary",
+                                    }
+                                });
+                            }
+                        }
+                    });
+
+
                 });
 
 
@@ -313,7 +426,71 @@
             var initRemoveStudent = function () {
                 KTUtil.on(document.body, '.btn-remove-student', 'click', function (e) {
                     e.preventDefault();
-                    $(this).closest('tr').remove();
+                    // $(this).closest('tr').remove();
+                    var Id = $(this).data('id');
+
+                    $.ajax({
+                        url: '{{route('admin.TrainingCenter.CourseRegistration.deleteStudent')}}',
+                        method: 'delete',
+                        data: {
+                            id: Id
+                        },
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Include CSRF token
+                        },
+                        beforeSend: function () {
+                            blockUI2.block();
+
+                        },
+                        success: function (response) {
+                            blockUI2.release();
+                            toastr.options = {
+                                "closeButton": true,
+                                "debug": false,
+                                "newestOnTop": false,
+                                "progressBar": false,
+                                "positionClass": "toastr-top-center",
+                                "preventDuplicates": false,
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "5000",
+                                "extendedTimeOut": "1000",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                            };
+                            toastr.success("", "{{trans('forms.Delete')}}");
+                            dt.draw();
+                            dtS.draw();
+                        },
+                        error: function (xhr) {
+                            blockUI2.release();
+
+                            if (xhr.status === 422) { // Laravel validation error
+
+                                var errors = xhr.responseJSON.errors;
+                                // Iterate over the errors and add error feedback to corresponding fields
+                                $.each(errors, function (field, messages) {
+
+                                });
+                            } else {
+                                // Handle other errors
+                                toastr.error('An error occurred. Please try again.');
+                                Swal.fire({
+                                    text: xhr.error,
+                                    icon: "error",
+                                    buttonsStyling: false,
+                                    confirmButtonText: "{{trans('forms.error_occurred')}}",
+                                    customClass: {
+                                        confirmButton: "btn fw-bold btn-primary",
+                                    }
+                                });
+                            }
+                        }
+                    });
+
+
                 });
             }
             var initSelectCource = function () {
@@ -386,7 +563,17 @@
                     $('#select2-dropdown').empty().trigger('change');
                 });
             }
-
+            const changeCourseSelect = () => {
+                $('#course_id').on('change', function () {
+                    dt.draw();
+                    dtS.draw();
+                });
+            };  const changeEntitySelect = () => {
+                $('#entity_id').on('change', function () {
+                    dt.draw();
+                    dtS.draw();
+                });
+            };
             // Public methods
             return {
                 init: function () {
@@ -395,7 +582,9 @@
                     initDatatable();
                     initRemoveStudent();
                     initAddStudent();
-
+                    initDatatableStudent();
+                    changeCourseSelect();
+                    changeEntitySelect();
                 }
             };
         }();

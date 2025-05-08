@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\Training_Center\Instructors_CoursesController;
 use App\Http\Controllers\Admin\Training_Center\StudentController;
 use App\Http\Controllers\Admin\Training_Center\TrainerController;
 use App\Http\Controllers\Admin\Training_Center\InvoiceController;
+use App\Http\Controllers\Admin\Training_Center\InvoiceEntityController;
 use App\Http\Controllers\Admin\Training_Center\Course_registrationController;
 use App\Http\Controllers\Admin\Site\BlogController;
 use App\Http\Controllers\Admin\Site\ContactController;
@@ -82,12 +83,28 @@ Route::group(
         Route::group(['prefix' => 'TrainingCenter', 'as' => 'TrainingCenter.'], function () {
             Route::post('getEntity', [\App\Http\Controllers\Admin\Training_Center\MainController::class, 'getEntity'])->name('getEntity');
             Route::post('getTrainingCourse', [\App\Http\Controllers\Admin\Training_Center\MainController::class, 'getTrainingCourse'])->name('getTrainingCourse');
+            Route::post('getTrainingCourseStudent', [\App\Http\Controllers\Admin\Training_Center\MainController::class, 'getTrainingCourseStudent'])->name('getTrainingCourseStudent');
+            Route::post('getStudent', [\App\Http\Controllers\Admin\Training_Center\MainController::class, 'getStudent'])->name('getStudent');
             Route::get('CourseRegistration/getStudent', [CourseRegistrationController::class, 'getStudent'])->name('CourseRegistration.getStudent');
+            Route::get('CourseRegistration/getCourseStudent', [CourseRegistrationController::class, 'getCourseStudent'])->name('CourseRegistration.getCourseStudent');
+            Route::post('CourseRegistration/storeStudent', [CourseRegistrationController::class, 'storeStudent'])->name('CourseRegistration.storeStudent');
+            Route::delete('CourseRegistration/deleteStudent', [CourseRegistrationController::class, 'deleteStudent'])->name('CourseRegistration.deleteStudent');
             Route::resource('CourseRegistration', CourseRegistrationController::class);
+            Route::post('getEntity', [\App\Http\Controllers\Admin\Training_Center\MainController::class, 'getEntity'])->name('getEntity');
+            Route::post('getTrainingCourseEntity', [\App\Http\Controllers\Admin\Training_Center\MainController::class, 'getTrainingCourseEntity'])->name('getTrainingCourseEntity');
 
-            /*********************************** Invoice_student ******************************** */
-            Route::resource('Invoice', InvoiceController::class);
-        });
+
+
+         /*********************************** Invoice_student ******************************** */
+          Route::resource('Invoice', InvoiceController::class);
+          Route::get('/get_inrolled_student/{id}', [InvoiceController::class, 'getStudentCourses']);
+          Route::post('Invoice/getStudentFees', [InvoiceController::class, 'getStudentFees'])->name('Invoice.getStudentFees');
+
+          Route::resource('Invoice_Entity', InvoiceEntityController::class);
+          Route::post('Invoice/getEntityFees', [InvoiceEntityController::class, 'getEntityFees'])->name('Invoice.getEntityFees');
+
+           });
+/*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
         Route::group(['prefix' => 'Settings', 'as' => 'Settings.'], function () {
 
             /********************************typesetting******************************/

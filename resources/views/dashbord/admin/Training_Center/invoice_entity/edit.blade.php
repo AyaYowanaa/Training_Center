@@ -22,7 +22,7 @@
 
 
                 <li class="breadcrumb-item text-muted">
-                    {{trans('Toolbar.Add_Invoices')}}
+                    {{trans('Toolbar.Add_Entity_Invoice')}}</a>
                 </li>
 
 
@@ -33,7 +33,7 @@
         <div class="d-flex align-items-center gap-2 gap-lg-3">
             <!--begin::Filter menu-->
             <div class="d-flex">
-                <a href="{{route('admin.TrainingCenter.Invoice.index')}}"
+                <a href="{{route('admin.TrainingCenter.Invoice_Entity.index')}}"
                    class="btn btn-icon btn-sm btn-primary flex-shrink-0 ms-4">
 
                     <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/keenthemes/keen/docs/core/html/src/media/icons/duotune/arrows/arr054.svg-->
@@ -73,9 +73,10 @@
             </div>
         @endif
         <form id="StorForm" class="form d-flex flex-column flex-lg-row "
-              action="{{route('admin.TrainingCenter.Invoice.store')}}" method="post" enctype="multipart/form-data">
+              action="{{route('admin.TrainingCenter.Invoice_Entity.update',$one_data->id)}}" method="post" enctype="multipart/form-data">
             @csrf
-
+            @method('PATCH')
+            <input type="hidden" name="id" value="{{$one_data->id}}">
             <!--begin::Main column-->
             <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
                 <!--begin::General options-->
@@ -95,15 +96,12 @@
 
 
                             <div class="col-md-4">
-                                <label class="form-label">{{trans('Invoice.Student')}}</label>
-                                <select name="student_id" class="form-select mb-2" data-control="select2"
+                                <label class="form-label">{{trans('Invoice.Entity')}}</label>
+                                <select name="entity_id" class="form-select mb-2" data-control="select2"
                                         data-hide-search="false"
                                         data-placeholder="Select an option" data-allow-clear="true"
-                                        id="studentSelect">
-                                    {{-- <option value="">-- اختر طالب --</option>
-                                     @foreach($students as $student)
-                                         <option value="{{ $student->id }}">{{ $student->name }}</option>
-                                     @endforeach--}}
+                                        id="entitySelect">
+
                                 </select>
                             </div>
                             <div class="col-md-4">
@@ -115,11 +113,6 @@
                                         data-placeholder="Select an option" data-allow-clear="true"
                                         id="courseSelect" name="course_id">
 
-                                    {{--  <option value=" ">{{trans('maindata.Select')}}</option>
-                                     @foreach($courses as $row)
-                                     <option value="{{ $row->id }}">{{ $row->title}}</option>
-                                 @endforeach--}}
-                                    {{--                                <option value="">اختر طالب أولاً</option>--}}
                                 </select>
                                 <!--end::Select2-->
                             </div>
@@ -223,7 +216,7 @@
 @section('js')
 
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
-     {!! JsValidator::formRequest('App\Http\Requests\training_center\Invoices\StoreRequest','#StorForm'); !!}
+     {!! JsValidator::formRequest('App\Http\Requests\training_center\Invoice_Entity\StoreRequest','#StorForm'); !!}
 
     <script>
         var KTAppaccountSave = function () {
@@ -252,8 +245,8 @@
                     }
                 });
             };
-            const changeStudentSelect = () => {
-                $('#studentSelect').on('change', function () {
+            const changeEntitySelect = () => {
+                $('#entitySelect').on('change', function () {
                     $('#courseSelect').val(null).trigger('change');
                     $('#total_amount').val(0);
                 });
@@ -261,12 +254,12 @@
             const changeCourseSelect = () => {
                 $('#courseSelect').on('change', function () {
                     var course = $('#courseSelect').val();
-                    var student = $('#studentSelect').val();
+                    var student = $('#entitySelect').val();
                     if (course && student) {
                         $.ajax({
-                            url: '{{route('admin.TrainingCenter.Invoice.getStudentFees')}}',
+                            url: '{{route('admin.TrainingCenter.Invoice.getEntityFees')}}',
                             method: 'POST',
-                            data: {course_id: course, student_id: student},
+                            data: {course_id: course, entity_id: student},
                             headers: {
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Include CSRF token
                             },
@@ -311,10 +304,10 @@
                     }
                 });
             };
-            const initStudentCourseSelect = () => {
+            const initEntityCourseSelect = () => {
                 $('#courseSelect').select2({
                     ajax: {
-                        url: '{{ route('admin.TrainingCenter.getTrainingCourseStudent') }}',
+                        url: '{{ route('admin.TrainingCenter.getTrainingCourseEntity') }}',
                         type: "post",
                         dataType: 'json',
                         delay: 250,
@@ -322,7 +315,7 @@
                             return {
                                 search: params.term,// search term
                                 page: params.page || 1,
-                                student_id: $('#studentSelect').val()
+                                entity_id: $('#entitySelect').val()
                             };
                         }, processResults: function (data, params) {
                             params.page = params.page || 1;
@@ -339,16 +332,16 @@
                         },
                         cache: true
                     },
-                    placeholder: 'اختر طالب أولاً',
+                    placeholder: 'select a course',
                     minimumInputLength: 0
                 });
 
 
             };
-            const initStudentSelect = () => {
-                $('#studentSelect').select2({
+             const initEntitySelect = () => {
+                $('#entitySelect').select2({
                     ajax: {
-                        url: '{{ route('admin.TrainingCenter.getStudent') }}',
+                        url: '{{ route('admin.TrainingCenter.getEntity') }}',
                         type: "post",
                         dataType: 'json',
                         delay: 250,
@@ -360,7 +353,7 @@
                         }, processResults: function (data, params) {
                             params.page = params.page || 1;
                             var mappedData = $.map(data.data, function (item) {
-                                return {id: item.id, text: item.text};
+                                return {id: item.id, text: item.title};
                             });
                             return {
                                 results: mappedData,
@@ -380,9 +373,9 @@
             return {
                 init: function () {
                     initDaterangepicker();
-                    initStudentCourseSelect(); // ← هنا بنشغله أول ما الصفحة تجهز
-                    changeStudentSelect();
-                    initStudentSelect();
+                    initEntityCourseSelect(); // ← هنا بنشغله أول ما الصفحة تجهز
+                    changeEntitySelect();
+                   initEntitySelect();
                     changeCourseSelect();
                     changeAmount();
                 }

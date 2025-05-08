@@ -5,17 +5,17 @@ namespace App\Models\training_center;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\training_center\TrainingCourse;
-use App\Models\training_center\Students; 
+use App\Models\setting\Entity; 
 
-class Invoice_student extends Model
+class Invoice_entity extends Model
 {
     use HasFactory;
 
-    protected $table = 'tc_invoice_student';
+    protected $table = 'tc_invoice_entities';
     public $timestamps = true;
 
     protected $fillable = [
-        'student_id',
+        'entity_id',
         'course_id',
         'amount',
         'payment_method',
@@ -25,9 +25,9 @@ class Invoice_student extends Model
     ];
 
 
-    public function studentData()
+    public function entityData()
     {
-        return $this->belongsTo(Students::class, 'student_id');
+        return $this->belongsTo(Entity::class, 'entity_id');
     }
 
     
