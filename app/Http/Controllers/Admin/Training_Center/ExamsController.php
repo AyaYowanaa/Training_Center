@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Admin\Training_Center;
 use App\Http\Controllers\Controller;
 use App\Models\training_center\Training_Courses;
 use App\Models\training_center\Exams;
+use App\Models\training_center\Exam_Questions;
+
 use Exception;
 use Illuminate\Http\Request;
-/* use App\Http\Requests\training_center\Trainers\StoreRequest;
-use App\Http\Requests\training_center\Trainers\UpdateRequest; */
+ use App\Http\Requests\training_center\Exams\StoreRequest;
+use App\Http\Requests\training_center\Exams\UpdateRequest; 
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
 
@@ -21,8 +23,8 @@ class ExamsController extends Controller
             $allData = Exams::select('*');
             return Datatables::of($allData)
               
-                ->editColumn('courses_id', function ($row) {
-                    return $row->coursesData?->name ?? '—';
+                ->editColumn('course_id', function ($row) {
+                    return $row->coursesData?->title ?? '—';
                 })
                 ->addColumn('action', function ($row) {
                     return '<a href="#" class="btn btn-sm btn-light btn-active-light-primary"
@@ -45,13 +47,13 @@ class ExamsController extends Controller
                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
                         <div class="menu-item px-3">
                              <a href="' . route('admin.TrainingCenter.Exams.edit', $row->id) . '"
-                               address="' . trans('forms.edite_btn') . '" class="menu-link px-3"
+                               address="' . trans('forms.edit') . '" class="menu-link px-3"
                                >' . trans('forms.edite_btn') . '</a>
                         </div>
                            <div class="menu-item px-3">
                              <a href="' . route('admin.TrainingCenter.Exams.questions', $row->id) . '"
-                               address="' . trans('forms.edite_btn') . '" class="menu-link px-3"
-                               >' . trans('forms.edite_btn') . '</a>
+                               address="' . trans('fexam.questions') . '" class="menu-link px-3"
+                               >' . trans('exam.questions') . '</a>
                         </div>
                     
                         <div class="menu-item px-3">
@@ -80,12 +82,12 @@ class ExamsController extends Controller
 
     }
 
-    public function show_load($id)
+  /*   public function show_load($id)
     {
         $data['one_data'] = Trainer::findOrFail($id);
 
         return view('dashbord.admin.Training_Center.Trainers.load_details', $data);
-    }
+    } */
 
     /**
      * Store a newly created resource in storage.
@@ -110,15 +112,13 @@ class ExamsController extends Controller
 
     public function edit($id)
     {
-        $data['one_data'] = Trainer::findOrFail($id);
-       // $data['courses'] = Course::all();
-        return view('dashbord.admin.Training_Center.Trainers.edit', $data);
+        $data['one_data'] = Exams::findOrFail($id);
+        return view('dashbord.admin.Training_Center.Exams.edit', $data);
 
     }
     public function add_question($id)
     {
         $data['one_data'] = Exams::findOrFail($id);
-        $data['courses'] = Training_Courses::all();
         return view('dashbord.admin.Training_Center.Exams.load_add_question', $data);
 
     }
@@ -133,38 +133,12 @@ class ExamsController extends Controller
     public function update(UpdateRequest $request, $id)
     {
         try {
-            $data = Trainer::find($request->id);
+            $data = Exams::find($request->id);
             $update_data = $request->all();
-            $update_data['name'] = ['en' => $request->name_en, 'ar' => $request->name_ar];
-            if ($request->hasFile('image')) {
-                $file = $request->file('image');
-                $dataX = $this->saveImage($file, $this->upload_folder);
-                $update_data['image'] = $dataX;
-            }
             $data->update($update_data);
-
-            if ($request->hasFile('files')) {
-                $images = [];
-                foreach ($request->file('files') as $image) {
-                    if ($this->isImage($image)) {
-                        $dataX = $this->saveImage($image, $this->upload_folder);
-                        $images[] = [
-                            'trainer_id' => $request->id,
-                            'file' => $dataX,
-                        ];
-                    } else {
-                        $dataX = $this->upload_file($image, $this->upload_folder);
-                        $images[] = [
-                            'trainer_id' => $request->id,
-                            'file' => $dataX,
-                        ];
-                    }
-
-                }
-                Trainer_Files::insert($images);
-            }
-            toastr()->addSuccess(trans('forms.success'));
-            return redirect()->route('admin.Settings.Instructor.index');
+        
+        toastr()->addSuccess(trans('forms.success'));
+        return redirect()->route('admin.TrainingCenter.Exams.index');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
@@ -177,8 +151,7 @@ class ExamsController extends Controller
     {
         try {
 
-            $one_data = Trainer::find($id);
-
+            $one_data = Exams::find($id);
             $one_data->delete();
             toastr()->error(trans('forms.Delete'));
             return response()->json(['message' => trans('forms.Delete')], 200);
@@ -187,22 +160,33 @@ class ExamsController extends Controller
 
         }
     }
-    public function destroy_file($id)
+
+
+    public function getQuestions(Request $request)
     {
-        try {
-            $delete_data = Trainer_Files::find($id);
-            $this->deleteImage($delete_data->file);
 
-            $delete_data->delete();
-            toastr()->error(trans('forms.Delete'));
 
-            /*            return redirect()->back();*/
-            return response()->json(['message' => 'Image deleted successfully.'], 200);
-        } catch (\Exception $e) {
-            /*            return redirect()->back()->withErrors(['error' => $e->getMessage()]);*/
-            return response()->json(['error' => $e->getMessage()], 500);
+        $exam_id = $request->input('exam_id');
+        $allData = Exam_Questions::select('*')->where('exam_id', $exam_id);
+     
+        return Datatables::of($allData)
+           /* ->editColumn('q_text', function ($row) {
+                return $row->q_answer;
+            })->editColumn('q_answer', function ($row) {
+                return $row->q_answer;
+            })->editColumn('mark', function ($row) {
+                return optional($row->studentData)->code;
+            })*/
+            ->addColumn('action', function ($row) {
+                return '<a href="#" class="btn btn-sm btn-icon btn-danger btn-remove-student"
+                data-id="' . $row->id . '">
+                <i class="ki-duotone ki-trash-square fs-1 ">
+            <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></i>
+            </a>';
+            })
+            ->rawColumns(['action'])
+            ->make(true);
 
-        }
     }
 
 

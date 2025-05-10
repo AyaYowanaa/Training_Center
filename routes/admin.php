@@ -111,6 +111,8 @@ Route::group(
 
           Route::resource('Invoice_Entity', InvoiceEntityController::class);
           Route::post('Invoice/getEntityFees', [InvoiceEntityController::class, 'getEntityFees'])->name('Invoice.getEntityFees');
+          Route::get('Exams/getQuestions', [ExamsController::class, 'getQuestions'])->name('Exams.getQuestions');
+          Route::get('Exams/questions/{id}', [ExamsController::class, 'questions'])->name('Exams.questions');
 
           Route::resource('Exams', ExamsController::class);
 

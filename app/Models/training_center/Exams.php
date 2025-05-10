@@ -4,7 +4,6 @@ namespace App\Models\training_center;
 use App\Models\training_center\TrainingCourse;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Translatable\HasTranslations;
 class Exams extends Model
 {
     use HasFactory;
@@ -16,7 +15,7 @@ class Exams extends Model
         'name',
         'course_id',
         'full_mark',
-        'success_mark',
+        'pass_mark',
         'date',
         'duration',
     ];

@@ -98,7 +98,7 @@
                                 <!--begin::Input-->
                                 <input type="text" name="name"
                                        class="form-control mb-2  @error('name') is-invalid @enderror"
-                                       placeholder="{{trans('trainingCenter.Name')}}" value=""/>
+                                       placeholder="{{trans('trainingCenter.Name')}}" value="{{old('name')}}"/>
                                 <!--end::Input-->
                                 @error('name')
                                 <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
@@ -111,99 +111,76 @@
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" name="date"
-                                       class="form-control mb-2  @error('code') is-invalid @enderror"
-                                       placeholder="{{trans('trainingCenter.Pic')}}" value="{{old('code')}}"/>
+                                <input type="text" name="date" id="date"
+                                       class="form-control mb-2  @error('date') is-invalid @enderror"
+                                       placeholder="{{trans('trainingCenter.date')}}" value="{{old('date')}}"/>
                                 <!--end::Input-->
-                                @error('code')
+                                @error('date')
+                                <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-md-4">
+                                <!--begin::Label-->
+                                <label class="required form-label">{{trans('trainingCenter.Duration(minutes)')}}
+                                </label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" name="duration"
+                                       class="form-control mb-2  @error('duration') is-invalid @enderror"
+                                       placeholder="{{trans('trainingCenter.duration')}}" value="{{old('duration')}}"/>
+                                <!--end::Input-->
+                                @error('duration')
                                 <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                     </div>
 
                     <div class="row">
-                            <div class="col-md-4">
-                                <!--begin::Label-->
-                                <label class="required form-label">{{trans('trainingCenter.phone')}}
-
-                                </label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="text" name="phone"
-                                       class="form-control mb-2  @error('phone') is-invalid @enderror"
-                                       placeholder="" value=""/>
-                                <!--end::Input-->
-                                @error('phone')
-                                <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="col-md-4">
-                                <!--begin::Label-->
-                                <label class="required form-label">{{trans('trainingCenter.Email')}}
-
-                                </label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="text" name="email"
-                                       class="form-control mb-2  @error('email') is-invalid @enderror"
-                                       placeholder="" value=""/>
-                                <!--end::Input-->
-                                @error('email')
-                                <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                           {{--  <div class="col-md-4">
-                                <label class="form-label">{{trans('trainingCenter.Courses')}}</label>
-
-                             
-                                <select class="form-select mb-2 @error('courses_id') is-invalid @enderror"
-                                        onchange="/*set_status()*/"
-                                        data-control="select2" data-hide-search="false"
+                        <div class="col-md-4">
+                            <label class="form-label">{{trans('trainingCenter.Course')}}</label>
+                            <select class="form-select mb-2 @error('course_id') is-invalid @enderror"
+                                    onchange=""
+                                    data-control="select2" data-hide-search="false"
                                     data-placeholder="Select an option" data-allow-clear="true"
-                                        id="courses_id" name="courses_id">
+                                    id="course_id" name="course_id">
 
-                                    <option value=" ">{{trans('maindata.Select')}}</option>
-                                    @foreach($courses as $row)
-                                    <option value="{{ $row->id }}">{{ $row->title}}</option>
-                                @endforeach
-                                </select>
-                               
-                            </div> --}}
+                                <option value=" ">{{trans('maindata.Select')}}</option>
+                            </select>
+                        </div> 
+                            <div class="col-md-4">
+                                <!--begin::Label-->
+                                <label class="required form-label">{{trans('trainingCenter.Full_Mark]')}}
+
+                                </label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="number" name="full_mark"
+                                       class="form-control mb-2  @error('full_mark') is-invalid @enderror"
+                                       placeholder="" value="" min="0"/>
+                                <!--end::Input-->
+                                @error('full_mark')
+                                <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
-                            <div class="row">
-                                {{-- <div class="col-md-4">
-                                    <label class="form-label">{{trans('trainingCenter.Grades')}}</label>
+                            <div class="col-md-4">
+                                <!--begin::Label-->
+                                <label class="required form-label">{{trans('trainingCenter.Pass_Mark]')}}
 
-                                  
-                                    <select class="form-select mb-2 @error('grades_id') is-invalid @enderror"
-                                            onchange="/*set_status()*/"
-                                            data-control="select2" data-hide-search="false"
-                                          data-placeholder="Select an option" data-allow-clear="true"
-                                            id="grades_id" name="grades_id">
-
-                                        <option value=" ">{{trans('maindata.Select')}}</option>
-                                     @foreach($grades as $row)
-                                        <option value="{{ $row->id }}">{{ $row->name}}</option>
-                                    @endforeach 
-                                    </select>
-                                </div> --}}
-                                    <!--end::Select2-->
-                               
-                              {{--   <div class="col-md-4">
-
-                                        <label class="required form-label">{{trans('trainingCenter.Bulk_Import')}}</label>
-                                        <select class="form-select mb-2 @error('bulk_import') is-invalid @enderror"
-                                                data-control="select2" data-hide-search="false"
-                                            data-placeholder="Select an option" data-allow-clear="true"
-                                                id="bulk_import" name="bulk_import">
-                                      <option value="0">No</option>
-                                      <option value="1">Yes</option>
-                                      </select>
-                                </div> --}}
-
+                                </label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="number" name="pass_mark"
+                                       class="form-control mb-2  @error('pass_mark') is-invalid @enderror"
+                                       placeholder="" value="" min="0"/>
+                                <!--end::Input-->
+                                @error('pass_mark')
+                                <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
-
+                       
+                         
+                            </div>
+                            
                         </div>
 
                     </div>
@@ -234,7 +211,67 @@
 @section('js')
 
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
-    {!! JsValidator::formRequest('App\Http\Requests\training_center\Students\StoreRequest','#StorForm'); !!}
+     {!! JsValidator::formRequest('App\Http\Requests\training_center\Exams\StoreRequest','#StorForm'); !!}
+     <script>
+        var KTAppaccountSave = function () {
+            var remain = 0;
+            const initDaterangepicker = () => {
+                $("#date").daterangepicker({
+                    singleDatePicker: true,
+                    showDropdowns: true,
+                    minYear: 2025,
+                    maxYear: parseInt(moment().format("YYYY"), 12)
+                });
+            };
+            var initSelectCource = function () {
+                $('#course_id').select2({
+                    ajax: {
+                        url: '{{ route('admin.TrainingCenter.getTrainingCourse') }}',
+                        type: "post",
+                        dataType: 'json',
+                        delay: 250,
+                        data: function (params) {
+                            return {
+                                search: params.term,// search term
+                                page: params.page || 1
+                            };
+                        }, processResults: function (data, params) {
+                            params.page = params.page || 1;
+                            var mappedData = $.map(data.data, function (item) {
+                                return {id: item.id, text: item.name};
+                            });
+                            return {
+                                results: mappedData,
+                                pagination: {
+                                    more: (params.page * 10) < data.total
+                                }
+
+                            };
+                        },
+                        cache: true
+                    },
+                    placeholder: 'Select an option',
+                    minimumInputLength: 0
+                });
+
+                $('#search-input').on('keyup', function () {
+                    $('#select2-dropdown').empty().trigger('change');
+                });
+            }
+     
+
+            return {
+                init: function () {
+                    initDaterangepicker();
+                    initSelectCource();
+                }
+            };
+        }();
+
+        KTUtil.onDOMContentLoaded(function () {
+            KTAppaccountSave.init();
+        });
+    </script>
 
 
 @endsection

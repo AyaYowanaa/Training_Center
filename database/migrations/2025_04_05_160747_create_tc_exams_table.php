@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('date')->nullable();
             $table->string('name');
             $table->string('full_mark')->nullable();
-            $table->string('success_mark')->nullable();
+            $table->string('pass_mark')->nullable();
             $table->unsignedBigInteger('course_id')->nullable();
             $table->string('duration')->nullable();
 

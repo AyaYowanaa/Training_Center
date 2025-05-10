@@ -137,16 +137,17 @@
                     ajax: {
                         url: "{{route('admin.TrainingCenter.Exams.getQuestions')}}",
                         data: function (d) {
-                            d.exam_id = $('#exam_id').val();
+                            // d.exam_id = $('#exam_id').val();
+                            d.exam_id = {{$one_data->id}};
+
                         }
                     },
                     
                     columns: [
                         {data: 'id', name: 'id'},
-                        {data: 'name', name: 'name'},
-                        {data: 'course_id', name: 'course_id'},
-                        {data: 'duration', name: 'duration'},
-                        {data: 'date', name: 'date'},
+                        {data: 'q_text', name: 'q_text'},
+                        {data: 'q_answer', name: 'q_answer'},
+                        {data: 'mark', name: 'mark'},
                         {data: 'action', name: 'action', orderable: false},
                     ],
                     order: [[0, 'desc']],
