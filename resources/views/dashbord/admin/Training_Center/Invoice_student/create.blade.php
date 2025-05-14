@@ -93,6 +93,21 @@
 
                         <div class="mb-10 fv-row row">
 
+                            <div class="col-md-4">
+
+                                <label
+                                    class="required fs-6 fw-semibold mb-2">{{trans('Invoice.Date')}}</label>
+                                <input
+                                    class="form-control form-control-solid @error('date') is-invalid @enderror"
+                                    value="" name="date"
+                                    placeholder="Pick date range" id="date"/>
+                                @error('date')
+                                <div
+                                    class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
+                                @enderror
+
+
+                            </div>
 
                             <div class="col-md-4">
                                 <label class="form-label">{{trans('Invoice.Student')}}</label>
@@ -123,60 +138,44 @@
                                 </select>
                                 <!--end::Select2-->
                             </div>
-                            <div class="col-md-4">
-
-                                <label
-                                    class="required fs-6 fw-semibold mb-2">{{trans('Invoice.Date')}}</label>
-                                <input
-                                    class="form-control form-control-solid @error('date') is-invalid @enderror"
-                                    value="" name="date"
-                                    placeholder="Pick date range" id="date"/>
-                                @error('date')
-                                <div
-                                    class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
-                                @enderror
-
-
-                            </div>
 
                         </div>
                         <div class="row">
 
                             <div class="col-md-4">
-                                <label class="form-label">{{trans('Invoice.Status')}}</label>
-                                <select class="form-select mb-2 @error('status') is-invalid @enderror"
+                                <label class="form-label">{{trans('Invoice.invoice_type')}}</label>
+                                <select class="form-select mb-2 @error('invoice_type') is-invalid @enderror"
                                         data-control="select2" data-hide-search="false"
                                         data-placeholder="Select an option" data-allow-clear="true"
-                                        id="status" name="status">
+                                        id="invoice_type" name="invoice_type">
 
                                     <option value="">{{ __('forms.Select') }}</option>
                                     <option
-                                        value="completed" {{ old('status') == 'completed' ? 'selected' : '' }}>{{ __('forms.Completed') }}</option>
+                                        value="completed" {{ old('invoice_type') == 'completed' ? 'selected' : '' }}>{{ __('Invoice.Completed') }}</option>
                                     <option
-                                        value="pending" {{ old('status') == 'pending' ? 'selected' : '' }}>{{ __('forms.Pending') }}</option>
+                                        value="credit" {{ old('invoice_type') == 'credit' ? 'selected' : '' }}>{{ __('Invoice.credit') }}</option>
                                 </select>
 
-                                @error('status')
+                                @error('invoice_type')
                                 <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <!--begin::Label-->
                                 <label class="required form-label">{{trans('Invoice.TotalAmount')}}
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" name="total_amount" id="total_amount" readonly
-                                       class="form-control mb-2  @error('total_amount') is-invalid @enderror"
+                                <input type="text" name="balance" id="balance" readonly
+                                       class="form-control mb-2  @error('balance') is-invalid @enderror"
                                        placeholder="{{trans('Invoice.TotalAmount')}}"
-                                       value="{{old('total_amount')}}"/>
+                                       value="{{old('balance')}}"/>
                                 <!--end::Input-->
-                                @error('total_amount')
+                                @error('balance')
                                 <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <!--begin::Label-->
                                 <label class="required form-label">{{trans('Invoice.Amount')}}
                                 </label>
@@ -189,6 +188,15 @@
                                 @error('amount')
                                 <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
                                 @enderror
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">{{trans('Invoice.payment_method')}}</label>
+                                <select name="payment_method" class="form-select mb-2" data-control="select2"
+                                        data-hide-search="false"
+                                        data-placeholder="Select an option" data-allow-clear="true"
+                                        id="paymentSelect">
+
+                                </select>
                             </div>
 
                         </div>
@@ -238,24 +246,39 @@
             };
             const changeAmount = () => {
                 $('#amount').on('change', function () {
-                    if (this.value > remain) {
-                        Swal.fire({
-                            text: '{{trans('Invoice.outRangeAmount')}}',
-                            icon: "error",
-                            buttonsStyling: false,
-                            confirmButtonText: "{{trans('forms.error_occurred')}}",
-                            customClass: {
-                                confirmButton: "btn fw-bold btn-primary",
-                            }
-                        });
-                        this.value = remain;
-                    }
+                    var invoice_type=$('#invoice_type').val();
+                    if (invoice_type==='credit') {
+                        if (this.value > remain) {
+                            Swal.fire({
+                                text: '{{trans('Invoice.outRangeAmount')}}',
+                                icon: "error",
+                                buttonsStyling: false,
+                                confirmButtonText: "{{trans('forms.error_occurred')}}",
+                                customClass: {
+                                    confirmButton: "btn fw-bold btn-primary",
+                                }
+                            });
+                            this.value = remain;
+                        }
+                    }else {
+                        if (this.value != remain) {
+                            Swal.fire({
+                                text: '{{trans('Invoice.AmountMustEqualBalance')}}',
+                                icon: "warning",
+                                buttonsStyling: false,
+                                confirmButtonText: "{{trans('forms.done')}}",
+                                customClass: {
+                                    confirmButton: "btn fw-bold btn-warning",
+                                }
+                            });
+                            this.value = remain;
+                        }                    }
                 });
             };
             const changeStudentSelect = () => {
                 $('#studentSelect').on('change', function () {
                     $('#courseSelect').val(null).trigger('change');
-                    $('#total_amount').val(0);
+                    $('#balance').val(0);
                 });
             };
             const changeCourseSelect = () => {
@@ -272,7 +295,7 @@
                             },
                             success: function (response) {
                                 remain = response.remain;
-                                $('#total_amount').val(remain);
+                                $('#balance').val(remain);
 
 
                             },
@@ -375,6 +398,36 @@
                     placeholder: 'Select an option',
                     minimumInputLength: 0
                 });
+            };const initPaymentSelect = () => {
+                $('#paymentSelect').select2({
+                    ajax: {
+                        url: '{{ route('admin.TrainingCenter.getPayment') }}',
+                        type: "post",
+                        dataType: 'json',
+                        delay: 250,
+                        data: function (params) {
+                            return {
+                                search: params.term,// search term
+                                page: params.page || 1
+                            };
+                        }, processResults: function (data, params) {
+                            params.page = params.page || 1;
+                            var mappedData = $.map(data.data, function (item) {
+                                return {id: item.id, text: item.text};
+                            });
+                            return {
+                                results: mappedData,
+                                pagination: {
+                                    more: (params.page * 10) < data.total
+                                }
+
+                            };
+                        },
+                        cache: true
+                    },
+                    placeholder: 'Select an option',
+                    minimumInputLength: 0
+                });
             };
 
             return {
@@ -383,6 +436,7 @@
                     initStudentCourseSelect(); // ← هنا بنشغله أول ما الصفحة تجهز
                     changeStudentSelect();
                     initStudentSelect();
+                    initPaymentSelect();
                     changeCourseSelect();
                     changeAmount();
                 }

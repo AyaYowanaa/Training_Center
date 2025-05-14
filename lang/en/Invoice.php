@@ -11,4 +11,10 @@
   'TotalAmount' => 'TotalAmount',
   'outRangeAmount' => 'outRangeAmount',
   'Entity' => 'Entity',
+  'invoice_type' => 'invoice_type',
+  'Completed' => 'Completed',
+  'Pending' => 'Pending',
+  'AmountMustEqualBalance' => 'AmountMustEqualBalance',
+  'payment_method' => 'payment_method',
+  'credit' => 'credit',
 );

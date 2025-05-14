@@ -21,7 +21,7 @@
                 </li>
 
                 <li class="breadcrumb-item text-muted">
-                    <a href="{{ route('admin.Settings.Student.index') }}"
+                    <a href="{{ route('admin.TrainingCenter.Student.index') }}"
                        class="text-muted text-hover-primary"> {{trans('Toolbar.TrainingCenter')}}</a>
                 </li>
                 <li class="breadcrumb-item">
@@ -39,7 +39,7 @@
         <div class="d-flex align-items-center gap-2 gap-lg-3">
             <!--begin::Filter menu-->
             <div class="d-flex">
-                <a href="{{route('admin.Settings.Student.index')}}"
+                <a href="{{route('admin.TrainingCenter.Student.index')}}"
                    class="btn btn-icon btn-sm btn-primary flex-shrink-0 ms-4">
 
                     <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/keenthemes/keen/docs/core/html/src/media/icons/duotune/arrows/arr054.svg-->
@@ -79,7 +79,7 @@
             </div>
         @endif
         <form id="StorForm" class="form d-flex flex-column flex-lg-row "
-              action="{{route('admin.Settings.Student.update',$one_data->id)}}" method="post" enctype="multipart/form-data">
+              action="{{route('admin.TrainingCenter.Student.update',$one_data->id)}}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
             <input type="hidden" name="id" value="{{$one_data->id}}">
@@ -200,7 +200,7 @@ $name=$one_data->getTranslations('name');
                                     <option value="{{ $row->id }}">{{ $row->title}}</option>
                                 @endforeach
                                 </select>
-                                
+
                             </div> --}}
                             </div>
                             <div class="row">
@@ -217,9 +217,9 @@ $name=$one_data->getTranslations('name');
                                         <option value=" ">{{trans('maindata.Select')}}</option>
                                         @foreach($grades as $row)
                                         <option value="{{ $row->id }}">{{ $row->name}}</option>
-                                    @endforeach 
+                                    @endforeach
                                     </select>
-                               
+
                                 </div> --}}
                             </div>
 

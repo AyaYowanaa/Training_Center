@@ -26,4 +26,6 @@
   'Pending' => 'Pending',
   'delete' => 'delete',
   'error_occurred' => 'error_occurred',
+  'close' => 'close',
+  'done' => 'done',
 );

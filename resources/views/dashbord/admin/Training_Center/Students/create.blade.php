@@ -21,7 +21,7 @@
                 </li>
 
                 <li class="breadcrumb-item text-muted">
-                    <a href="{{ route('admin.Settings.Student.index') }}"
+                    <a href="{{ route('admin.TrainingCenter.Student.index') }}"
                        class="text-muted text-hover-primary"> {{trans('Toolbar.TrainingCenter')}}</a>
                 </li>
                 <li class="breadcrumb-item">
@@ -39,7 +39,7 @@
         <div class="d-flex align-items-center gap-2 gap-lg-3">
             <!--begin::Filter menu-->
             <div class="d-flex">
-                <a href="{{route('admin.Settings.Student.index')}}"
+                <a href="{{route('admin.TrainingCenter.Student.index')}}"
                    class="btn btn-icon btn-sm btn-primary flex-shrink-0 ms-4">
 
                     <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/keenthemes/keen/docs/core/html/src/media/icons/duotune/arrows/arr054.svg-->
@@ -79,7 +79,7 @@
             </div>
         @endif
         <form id="StorForm" class="form d-flex flex-column flex-lg-row "
-              action="{{route('admin.Settings.Student.store')}}" method="post" enctype="multipart/form-data">
+              action="{{route('admin.TrainingCenter.Student.store')}}" method="post" enctype="multipart/form-data">
             @csrf
 
             <!--begin::Main column-->
@@ -181,7 +181,7 @@
                            {{--  <div class="col-md-4">
                                 <label class="form-label">{{trans('trainingCenter.Courses')}}</label>
 
-                             
+
                                 <select class="form-select mb-2 @error('courses_id') is-invalid @enderror"
                                         onchange="/*set_status()*/"
                                         data-control="select2" data-hide-search="false"
@@ -193,14 +193,14 @@
                                     <option value="{{ $row->id }}">{{ $row->title}}</option>
                                 @endforeach
                                 </select>
-                               
+
                             </div> --}}
                             </div>
                             <div class="row">
                                 {{-- <div class="col-md-4">
                                     <label class="form-label">{{trans('trainingCenter.Grades')}}</label>
 
-                                  
+
                                     <select class="form-select mb-2 @error('grades_id') is-invalid @enderror"
                                             onchange="/*set_status()*/"
                                             data-control="select2" data-hide-search="false"
@@ -210,11 +210,11 @@
                                         <option value=" ">{{trans('maindata.Select')}}</option>
                                      @foreach($grades as $row)
                                         <option value="{{ $row->id }}">{{ $row->name}}</option>
-                                    @endforeach 
+                                    @endforeach
                                     </select>
                                 </div> --}}
                                     <!--end::Select2-->
-                               
+
                               {{--   <div class="col-md-4">
 
                                         <label class="required form-label">{{trans('trainingCenter.Bulk_Import')}}</label>
