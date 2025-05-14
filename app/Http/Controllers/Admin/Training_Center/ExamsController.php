@@ -161,7 +161,7 @@ class ExamsController extends Controller
         }
     }
 
-
+/************************************* Questions ************************************** */
     public function getQuestions(Request $request)
     {
 
@@ -189,5 +189,42 @@ class ExamsController extends Controller
 
     }
 
+
+    public function storeQuestion(Request $request)
+    {
+        
+      $validated = $request->validate([
+        'q_text' => 'required|string',
+        'q_choices' => 'required|array|min:2', 
+        'q_answer' => 'required|string',
+        'mark' => 'required|numeric',
+      ]);
+
+
+        try {
+
+            $insert_data = $request->all();
+            $inserted_data = Exam_Questions::create($insert_data);
+            $insert_id = $inserted_data->id;
+            
+            toastr()->addSuccess(trans('forms.success'));
+            return redirect()->route('admin.TrainingCenter.Exams.questions');
+        
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+
+
+
+    /* $question = new Exam_Questions();
+    $question->exam_id = $request->exam_id;
+    $question->q_text = $request->q_text;
+//  $question->q_choices = json_encode($request->q_choices, JSON_UNESCAPED_UNICODE);
+    $question->q_choices = $request->q_choices;    
+    $question->q_answer = $request->q_answer;
+    $question->mark = $request->mark;
+    $question->save(); */
+
+    }
 
 }

@@ -17,6 +17,7 @@ class Exam_Questions extends Model
         'q_answer',
         'q_text',
         'q_choices',
+        'q_type',
         
     ];
 
@@ -24,6 +25,8 @@ class Exam_Questions extends Model
     {
         return $this->belongsTo(Exams::class, 'exam_id');
     }
-
+protected $casts = [
+    'q_choices' => 'array',
+];
    
 }

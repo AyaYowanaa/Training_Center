@@ -28,31 +28,7 @@
             <!--end::Breadcrumb-->
         </div>
         <!--begin::Actions-->
-        <div class="d-flex align-items-center gap-2 gap-lg-3">
-            <!--begin::Filter menu-->
-            <div class="d-flex">
-                <a href="{{route('admin.TrainingCenter.Exams.create')}}"
-                   class="btn btn-icon btn-sm btn-success flex-shrink-0 ms-4">
-                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
-                    <span class="svg-icon svg-icon-2">
-													<svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                         xmlns="http://www.w3.org/2000/svg">
-														<rect opacity="0.5" x="11.364" y="20.364" width="16" height="2"
-                                                              rx="1" transform="rotate(-90 11.364 20.364)"
-                                                              fill="currentColor"/>
-														<rect x="4.36396" y="11.364" width="16" height="2" rx="1"
-                                                              fill="currentColor"/>
-													</svg>
-												</span>
-                    <!--end::Svg Icon-->
-                </a>
-            </div>
-            <!--end::Filter menu-->
-            <!--begin::Secondary button-->
-            <!--end::Secondary button-->
-            <!--begin::Primary button-->
-            <!--end::Primary button-->
-        </div>
+  
         <!--end::Actions-->
     </div>
     <!--end::Toolbar container-->
@@ -65,17 +41,98 @@
         <div class="card card-flush">
 
             <div class="card-body pt-0">
+<div class="mt-5">
 
+<form action="{{ route('admin.TrainingCenter.Exams.storeQuestions') }}" method="POST" class="mb-10">
+    @csrf
+    <input type="hidden" name="exam_id" value="{{ $one_data->id }}">
 
+    <div class="row g-4">
+        <!-- السؤال -->
+        <div class="col-md-6">
+            <label class="required form-label">{{ trans('exams.Name') }}</label>
+            <input type="text" name="q_text" class="form-control @error('q_text') is-invalid @enderror"
+                   placeholder="{{ trans('exams.Name') }}" value="{{ old('q_text') }}" />
+            @error('q_text')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <!-- نوع السؤال -->
+        <div class="col-md-6">
+            <label class="form-label fw-semibold">{{ trans('exams.Q_Type') }}</label>
+            <select name="q_type" class="form-select @error('q_type') is-invalid @enderror" required>
+                <option disabled {{ old('q_type') ? '' : 'selected' }}>
+                    {{ trans('exams.Choose_Type') }}
+                </option>
+                @foreach(['MCQ', 'True_False'] as $type)
+                    <option value="{{ $type }}" {{ old('q_type') == $type ? 'selected' : '' }}>
+                        {{ $type }}
+                    </option>
+                @endforeach
+            </select>
+            @error('q_type')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <!-- الاختيارات -->
+        <div class="col-md-12">
+            <label class="form-label">{{ trans('exams.Choices') }}</label>
+            <div id="choices-wrapper">
+                <div class="input-group mb-2">
+                    <input type="text" name="q_choices[]" class="form-control" required>
+                    <button type="button" class="btn btn-danger remove-choice">−</button>
+                </div>
+            </div>
+          <button type="button" class="btn btn-primary mt-3 d-inline-flex align-items-center gap-2" id="add-choice">
+    <i class="fas fa-circle-plus fa-sm"></i>
+    {{ trans('exams.Add_choice') }}
+          </button>
+
+        </div>
+
+        <!-- الدرجة -->
+        <div class="col-md-6">
+            <label class="required form-label">{{ trans('exams.Mark') }}</label>
+            <input type="text" name="mark" min="1" class="form-control @error('mark') is-invalid @enderror"
+                   placeholder="{{ trans('exams.mark') }}" value="{{ old('mark') }}" />
+            @error('mark')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <!-- الإجابة -->
+        <div class="col-md-6">
+            <label class="required form-label">{{ trans('exams.Q_Answer') }}</label>
+            <input type="text" name="q_answer" class="form-control @error('q_answer') is-invalid @enderror"
+                   placeholder="{{ trans('exams.Question_answer') }}" value="{{ old('q_answer') }}" />
+            @error('q_answer')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <!-- زر الإرسال -->
+        <div class="col-md-12 text-end">
+            <button type="submit" class="btn btn-success px-4">
+                <i class="fas fa-plus"></i> {{ trans('exams.Add') }}
+            </button>
+        </div>
+    </div>
+</form>
+</div>
+
+            
+
+<!--/********************************************************************************************** -->
                 <table class="table align-middle table-row-dashed fs-6 gy-3"
                        id="data">
                     <thead>
                     <tr class="fw-semibold fs-6 text-gray-800">
                         <th>{{trans('exams.ID')}}</th>
-                        <th>{{trans('exams.Name')}}</th>
-                        <th>{{trans('exams.Course')}}</th>
-                        <th>{{trans('exams.Duration')}}</th>
-                        <th>{{trans('exams.Date')}}</th>
+                        <th>{{trans('exams.Q_text')}}</th>
+                        <th>{{trans('exams.Q_answer')}}</th>
+                        <th>{{trans('exams.mark')}}</th>
                         <th>{{trans('forms.Action')}}</th>
                     </tr>
                     </thead>
@@ -314,4 +371,23 @@
             KTDatatablesServerSide.init();
         });
     </script>
+    <script>
+document.getElementById('add-choice').addEventListener('click', function () {
+    const wrapper = document.getElementById('choices-wrapper');
+    const div = document.createElement('div');
+    div.classList.add('input-group', 'mb-2');
+    div.innerHTML = `
+        <input type="text" name="q_choices[]" class="form-control" required>
+        <button type="button" class="btn btn-danger remove-choice">−</button>
+    `;
+    wrapper.appendChild(div);
+});
+
+document.addEventListener('click', function (e) {
+    if (e.target && e.target.classList.contains('remove-choice')) {
+        e.target.parentElement.remove();
+    }
+});
+</script>
+
 @endsection
