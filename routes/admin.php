@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\Training_Center\StudentController;
 use App\Http\Controllers\Admin\Training_Center\TrainerController;
 use App\Http\Controllers\Admin\Training_Center\InvoiceController;
 use App\Http\Controllers\Admin\Training_Center\InvoiceEntityController;
+use App\Http\Controllers\Admin\Training_Center\ExamsController;
 use App\Http\Controllers\Admin\Training_Center\Course_registrationController;
 use App\Http\Controllers\Admin\Site\BlogController;
 use App\Http\Controllers\Admin\Site\ContactController;
@@ -111,6 +112,11 @@ Route::group(
 
           Route::resource('Invoice_Entity', InvoiceEntityController::class);
           Route::post('Invoice/getEntityFees', [InvoiceEntityController::class, 'getEntityFees'])->name('Invoice.getEntityFees');
+          Route::get('Exams/getQuestions', [ExamsController::class, 'getQuestions'])->name('Exams.getQuestions');
+          Route::get('Exams/questions/{id}', [ExamsController::class, 'questions'])->name('Exams.questions');
+
+          Route::resource('Exams', ExamsController::class);
+
 
             /*********************************** Students ************************************* */
             Route::resource('Student', StudentController::class);

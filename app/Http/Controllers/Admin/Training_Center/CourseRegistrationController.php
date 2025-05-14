@@ -183,7 +183,7 @@ class CourseRegistrationController extends Controller
     public function getCourseStudent(Request $request)
     {
 
-//        if ($request->ajax()) {
+
         $course_id = $request->input('course_id');
         $entity_id = $request->input('entity_id');
         $allData = Course_registration::select('*')->where('course_id', $course_id);
@@ -202,12 +202,12 @@ class CourseRegistrationController extends Controller
                 return '<a href="#" class="btn btn-sm btn-icon btn-danger btn-remove-student"
                 data-id="' . $row->id . '">
                 <i class="ki-duotone ki-trash-square fs-1 ">
- <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></i>
+            <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></i>
             </a>';
             })
             ->rawColumns(['action'])
             ->make(true);
-//        }
+
     }
 
     public function deleteStudent(Request $request)
