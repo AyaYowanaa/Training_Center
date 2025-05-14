@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('q_answer')->nullable();
             $table->json('q_choices')->nullable();
             $table->string('mark')->nullable();
+            $table->enum('q_type', ['MCQ','True_False'])->nullable();
             $table->unsignedBigInteger('exam_id')->nullable();
 
             $table->timestamps();
