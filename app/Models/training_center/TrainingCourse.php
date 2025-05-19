@@ -2,6 +2,7 @@
 
 namespace App\Models\training_center;
 
+use App\Models\setting\MainSetting;
 use App\Models\Site\SiteEventImage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

@@ -236,7 +236,7 @@
                 <div class="menu-item">
                     <!--begin:Menu link-->
                     <a class="menu-link  @if (in_array(optional(explode('.', Route::currentRouteName()))[2], array('Student'))) {{'active'}} @endif"
-                       href="{{ route('admin.Settings.Student.index') }}">
+                       href="{{ route('admin.TrainingCenter.Student.index') }}">
        <span class="menu-icon"><!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/keenthemes/keen/docs/core/html/src/media/icons/duotune/general/gen067.svg-->
         <span class="svg-icon svg-icon-2"><svg width="26" height="28" viewBox="0 0 26 28" fill="none"
                                                xmlns="http://www.w3.org/2000/svg">
@@ -466,7 +466,7 @@
         </span>
         <!--end::Svg Icon-->
     </span>
-                                    <!--end::Svg Icon--></span>
+
         <span class="menu-title">{{trans('sidebar.Invoice')}}
 
 

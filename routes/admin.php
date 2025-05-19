@@ -87,6 +87,7 @@ Route::group(
             Route::post('getTrainingCourse', [\App\Http\Controllers\Admin\Training_Center\MainController::class, 'getTrainingCourse'])->name('getTrainingCourse');
             Route::post('getTrainingCourseStudent', [\App\Http\Controllers\Admin\Training_Center\MainController::class, 'getTrainingCourseStudent'])->name('getTrainingCourseStudent');
             Route::post('getStudent', [\App\Http\Controllers\Admin\Training_Center\MainController::class, 'getStudent'])->name('getStudent');
+            Route::post('getPayment', [\App\Http\Controllers\Admin\Training_Center\MainController::class, 'getPayment'])->name('getPayment');
             Route::get('CourseRegistration/getStudent', [CourseRegistrationController::class, 'getStudent'])->name('CourseRegistration.getStudent');
             Route::get('CourseRegistration/getCourseStudent', [CourseRegistrationController::class, 'getCourseStudent'])->name('CourseRegistration.getCourseStudent');
             Route::post('CourseRegistration/storeStudent', [CourseRegistrationController::class, 'storeStudent'])->name('CourseRegistration.storeStudent');
@@ -119,7 +120,12 @@ Route::group(
           Route::resource('Exams', ExamsController::class);
 
 
-           });
+            /*********************************** Students ************************************* */
+            Route::resource('Student', StudentController::class);
+            // Route::get('Student/delete/{id}', [StudentController::class, 'delete'])->name('Student.delete');
+            Route::get('Student/show_load/{id}', [StudentController::class, 'show_load'])->name('Student.load_details');
+
+        });
 /*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
         Route::group(['prefix' => 'Settings', 'as' => 'Settings.'], function () {
 
@@ -150,10 +156,6 @@ Route::group(
             /*********************************** Expenses ********************************************************* */
             Route::resource('Expenses', ExpensesController::class);
             Route::get('Expenses/delete/{id}', [ExpensesController::class, 'delete'])->name('Expenses.delete');
-            /*********************************** Students ************************************* */
-            Route::resource('Student', StudentController::class);
-            // Route::get('Student/delete/{id}', [StudentController::class, 'delete'])->name('Student.delete');
-            Route::get('Student/show_load/{id}', [StudentController::class, 'show_load'])->name('Student.load_details');
 
             /*********************************** instructors ************************************* */
             Route::resource('Instructor', TrainerController::class);

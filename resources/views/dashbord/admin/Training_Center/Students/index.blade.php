@@ -31,7 +31,7 @@
         <div class="d-flex align-items-center gap-2 gap-lg-3">
             <!--begin::Filter menu-->
             <div class="d-flex">
-                <a href="{{route('admin.Settings.Student.create')}}"
+                <a href="{{route('admin.TrainingCenter.Student.create')}}"
                    class="btn btn-icon btn-sm btn-success flex-shrink-0 ms-4">
                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
                     <span class="svg-icon svg-icon-2">
@@ -133,7 +133,7 @@
                     dom: "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
                         "<'row'<'col-sm-12'tr>>" +
                         "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-                    ajax: "{{route('admin.Settings.Student.index')}}",
+                    ajax: "{{route('admin.TrainingCenter.Student.index')}}",
                     columns: [
                         {data: 'id', name: 'id'},
                         {data: 'name', name: 'name'},
