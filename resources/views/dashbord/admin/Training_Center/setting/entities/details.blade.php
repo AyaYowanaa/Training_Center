@@ -6,7 +6,7 @@
         <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
             <!--begin::Title-->
             <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                {{trans('trainingCenter.StudentDetails')}}</h1>
+                {{trans('trainingCenter.EntiyDetails')}}</h1>
             <!--end::Title-->
             <!--begin::Breadcrumb-->
             <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -25,7 +25,7 @@
                     <span class="bullet bg-gray-400 w-5px h-2px"></span>
                 </li>
                 <li class="breadcrumb-item text-muted">
-                    <a href="{{ route('admin.TrainingCenter.Student.index') }}"
+                    <a href="{{ route('admin.Settings.Entity.index') }}"
                        class="text-muted text-hover-primary">{{trans('Toolbar.Students')}}</a>
                 </li>
                 <li class="breadcrumb-item">
@@ -43,7 +43,7 @@
         <div class="d-flex align-items-center gap-2 gap-lg-3">
             <!--begin::Filter menu-->
             <div class="d-flex">
-                <a href="{{route('admin.TrainingCenter.Student.index')}}"
+                <a href="{{route('admin.Settings.Entity.index')}}"
                    class="btn btn-icon btn-sm btn-primary flex-shrink-0 ms-4">
 
                     <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/keenthemes/keen/docs/core/html/src/media/icons/duotune/arrows/arr054.svg-->
@@ -75,13 +75,14 @@
     <div id="kt_app_content_container" class="app-container container-xxl">
         <!--begin::Navbar-->
         <div class="card card-flush mb-9" id="kt_user_profile_panel">
-
             <!--begin::Body-->
             <div class="card-body ">
                 <!--begin::Details-->
                 <div class="m-0">
                     <!--begin: Pic-->
+                    <div class="d-flex flex-stack align-items-end pb-4 ">
 
+                    </div>
                     <!--end::Pic-->
                     <!--begin::Info-->
                     <div class="d-flex flex-stack flex-wrap align-items-end">
@@ -113,12 +114,6 @@
                             <span
                                 class="fw-bold text-gray-600 fs-6 mb-2 d-block">{{$one_data->phone}}</span>
                             <!--end::Text-->
-                            <!--begin::Info-->
-                            <div class="d-flex align-items-center flex-wrap fw-semibold fs-7 pe-2">
-                                <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary">{{$one_data->email}}</a>
-                                <span class="bullet bullet-dot h-5px w-5px bg-gray-400 mx-3"></span>
-                            </div>
-                            <!--end::Info-->
                         </div>
                         <!--end::User-->
 
@@ -142,63 +137,25 @@
                 <!--begin:::Tab item-->
                 <li class="nav-item">
                     <a class="nav-link text-active-primary pb-4" data-bs-toggle="tab"
-                       href="#kt_customer_view_overview_events_and_logs_tab">{{trans('trainingCenter.StudentCourses')}}</a>
+                       href="#kt_customer_view_overview_events_and_logs_tab">{{trans('trainingCenter.EntiyCourses')}}</a>
                 </li>
                 <!--end:::Tab item-->
                 <!--begin:::Tab item-->
                 <li class="nav-item">
                     <a class="nav-link text-active-primary pb-4" data-bs-toggle="tab"
-                       href="#attendances">{{trans('trainingCenter.StudentAttendances')}}</a>
+                       href="#students">{{trans('trainingCenter.EntiyStudent')}}</a>
                 </li>
                 <!--end:::Tab item-->
-    <!--begin:::Tab item-->
+                <!--begin:::Tab item-->
                 <li class="nav-item">
                     <a class="nav-link text-active-primary pb-4" data-bs-toggle="tab"
-                       href="#invoice">{{trans('trainingCenter.StudentInvoice')}}</a>
+                       href="#attendances">{{trans('trainingCenter.EntiyAttendances')}}</a>
                 </li>
                 <!--end:::Tab item-->
-
                 <!--begin:::Tab item-->
-                <li class="nav-item ms-auto">
-                    <!--begin::Action menu-->
-                    <a href="#" class="btn btn-primary ps-7" data-kt-menu-trigger="click" data-kt-menu-attach="parent"
-                       data-kt-menu-placement="bottom-end">{{trans('forms.action')}}
-                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
-                        <span class="svg-icon svg-icon-2 me-0">
-														<svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                             xmlns="http://www.w3.org/2000/svg">
-															<path
-                                                                d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z"
-                                                                fill="currentColor"/>
-														</svg>
-													</span>
-                        <!--end::Svg Icon-->
-                    </a>
-                    <!--begin::Menu-->
-                    <div
-                        class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold py-4 w-250px fs-6"
-                        data-kt-menu="true">
-                        @if (auth()->user()->hasRole('Super-Admin') || ((auth()->user()->canAny(['edit']))&&auth()->user()->id==$one_data->add_by))
-                            <!--begin::Menu item-->
-                            <div class="menu-item px-5 my-1">
-                                <a href="{{route('admin.TrainingCenter.Student.edit', $one_data->id)}}"
-                                   class="menu-link px-5">{{trans('forms.edite_btn')}}</a>
-                            </div>
-                            <!--end::Menu item-->
-                        @endif
-                        @if (auth()->user()->hasRole('Super-Admin') || ((auth()->user()->canAny(['delete']))&&auth()->user()->id==$one_data->add_by))
-
-                            <!--begin::Menu item-->
-                            <div class="menu-item px-5">
-                                <a href="{{route('admin.TrainingCenter.Student.destroy', $one_data->id)}}"
-                                   class="menu-link text-danger px-5">{{trans('forms.delete_btn')}}</a>
-                            </div>
-                            <!--end::Menu item-->
-                        @endif
-
-                    </div>
-                    <!--end::Menu-->
-                    <!--end::Menu-->
+                <li class="nav-item">
+                    <a class="nav-link text-active-primary pb-4" data-bs-toggle="tab"
+                       href="#invoice">{{trans('trainingCenter.EntiyInvoice')}}</a>
                 </li>
                 <!--end:::Tab item-->
             </ul>
@@ -250,6 +207,34 @@
                                 <!--end::Col-->
                             </div>
                             <!--end::Input group-->
+                            <!--begin::Input group-->
+                            <div class="row mb-7">
+                                <!--begin::Label-->
+                                <label
+                                    class="col-lg-4 fw-semibold text-muted">{{trans('trainingCenter.phone')}}</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8">
+                                    <a href="#"
+                                       class="fw-semibold fs-6 text-gray-800 text-hover-primary">{{$one_data->phone}}</a>
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+                            <!--begin::Input group-->
+                            <div class="row mb-7">
+                                <!--begin::Label-->
+                                <label
+                                    class="col-lg-4 fw-semibold text-muted">{{trans('trainingCenter.address')}}</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8">
+                                    <a href="#"
+                                       class="fw-semibold fs-6 text-gray-800 text-hover-primary">{{$one_data->address}}</a>
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
 
                         </div>
                         <!--end::Card body-->
@@ -266,7 +251,7 @@
                         <div class="card-header border-0">
                             <!--begin::Card title-->
                             <div class="card-title">
-                                <h2 class="fw-bold mb-0">{{trans('trainingCenter.StudentCourses')}}</h2>
+                                <h2 class="fw-bold mb-0">{{trans('trainingCenter.EntiyCourses')}}</h2>
                             </div>
                             <!--end::Card title-->
 
@@ -282,7 +267,8 @@
                                         <!--begin::Table head-->
                                         <thead class="border-bottom border-gray-200 fs-7 fw-bold">
                                         <!--begin::Table row-->
-                                        <tr style="text-align: center" class="text-start text-muted text-uppercase gs-0">
+                                        <tr style="text-align: center"
+                                            class="text-start text-muted text-uppercase gs-0">
                                             <th style="text-align: center">{{trans('trainingCenter.training_title')}}</th>
                                             <th style="text-align: center">{{trans('trainingCenter.training_code')}}</th>
                                             <th style="text-align: center">{{trans('trainingCenter.coursesName')}}</th>
@@ -337,7 +323,7 @@
                     <!--end::Card-->
                 </div>
                 <!--end:::Tab pane-->
-                 <!--begin:::Tab pane-->
+                <!--begin:::Tab pane-->
                 <div class="tab-pane fade" id="attendances" role="tabpanel">
                     <!--begin::Card-->
                     <div class="card pt-4 mb-6 mb-xl-9">
@@ -345,7 +331,7 @@
                         <div class="card-header border-0">
                             <!--begin::Card title-->
                             <div class="card-title">
-                                <h2 class="fw-bold mb-0">{{trans('trainingCenter.StudentAttendances')}}</h2>
+                                <h2 class="fw-bold mb-0">{{trans('trainingCenter.EntiyAttendances')}}</h2>
                             </div>
                             <!--end::Card title-->
 
@@ -365,6 +351,7 @@
                                             class="text-start text-muted text-uppercase gs-0">
                                             <th style="text-align: center">{{trans('trainingCenter.training_title')}}</th>
                                             <th style="text-align: center">{{trans('trainingCenter.training_code')}}</th>
+                                            <th style="text-align: center">{{trans('trainingCenter.student_name')}}</th>
                                             <th style="text-align: center">{{trans('trainingCenter.date')}}</th>
                                             <th style="text-align: center">{{trans('trainingCenter.time')}}</th>
 
@@ -381,6 +368,7 @@
                                                 <tr>
                                                     <td style="text-align: center">{{optional($attendance->coursesData)->title}}</td>
                                                     <td style="text-align: center">{{optional($attendance->coursesData)->code}}</td>
+                                                    <td style="text-align: center">{{optional($attendance->studentData)->name}}</td>
                                                     <td style="text-align: center">{{formatDateDayDisplay($attendance->date)}}</td>
                                                     <td style="text-align: center">{{formatTimeForDisplay($attendance->time)}}</td>
                                                 </tr>
@@ -414,7 +402,7 @@
                     <!--end::Card-->
                 </div>
                 <!--end:::Tab pane-->
-       <!--begin:::Tab pane-->
+                <!--begin:::Tab pane-->
                 <div class="tab-pane fade" id="invoice" role="tabpanel">
                     <!--begin::Card-->
                     <div class="card pt-4 mb-6 mb-xl-9">
@@ -422,7 +410,7 @@
                         <div class="card-header border-0">
                             <!--begin::Card title-->
                             <div class="card-title">
-                                <h2 class="fw-bold mb-0">{{trans('trainingCenter.StudentInvoice')}}</h2>
+                                <h2 class="fw-bold mb-0">{{trans('trainingCenter.EntiyInvoice')}}</h2>
                             </div>
                             <!--end::Card title-->
 
@@ -445,8 +433,6 @@
                                             <th style="text-align: center">{{trans('trainingCenter.amount')}}</th>
                                             <th style="text-align: center">{{trans('trainingCenter.date')}}</th>
                                             <th style="text-align: center">{{trans('trainingCenter.paymentMethod')}}</th>
-
-
                                         </tr>
                                         <!--end::Table row-->
                                         </thead>
@@ -488,6 +474,74 @@
 
 
                         </div>
+
+                    </div>
+                    <!--end::Card-->
+                </div>
+                <!--end:::Tab pane-->  <!--begin:::Tab pane-->
+                <div class="tab-pane fade" id="students" role="tabpanel">
+                    <!--begin::Card-->
+                    <div class="card pt-4 mb-6 mb-xl-9">
+                        <!--begin::Card header-->
+                        <div class="card-header border-0">
+                            <!--begin::Card title-->
+                            <div class="card-title">
+                                <h2 class="fw-bold mb-0">{{trans('trainingCenter.EntiyStudent')}}</h2>
+                            </div>
+                            <!--end::Card title-->
+
+                        </div>
+                        <!--end::Card header-->
+                        <!--begin::Card body-->
+                        <div class="card-body pt-0">
+                            @if((isset($one_data->students)&&(!empty($one_data->students))))
+                                <div class="table-responsive border-bottom mb-9">
+                                    <!--begin::Table-->
+                                    <table class="table table-striped border rounded gy-5 gs-7  data-table"
+                                           id="kt_table_customers_inbody">
+                                        <!--begin::Table head-->
+                                        <thead class="border-bottom border-gray-200 fs-7 fw-bold">
+                                        <!--begin::Table row-->
+                                        <tr style="text-align: center"
+                                            class="text-start text-muted text-uppercase gs-0">
+                                            <th style="text-align: center">{{trans('trainingCenter.student_name')}}</th>
+                                            <th style="text-align: center">{{trans('trainingCenter.student_code')}}</th>
+                                            <th style="text-align: center">{{trans('trainingCenter.student_phone')}}</th>
+                                            <th style="text-align: center">{{trans('trainingCenter.student_email')}}</th>
+                                        </tr>
+                                        <!--end::Table row-->
+                                        </thead>
+                                        <!--end::Table head-->
+                                        <!--begin::Table body-->
+                                        <tbody class="fs-6 fw-semibold text-gray-600">
+                                        @if($one_data->students)
+                                            {{--                            {{dd($one_data->inbody)}}--}}
+                                            @foreach($one_data->students as $student)
+                                                <tr>
+                                                    <td style="text-align: center">{{$student->name}}</td>
+                                                    <td style="text-align: center">{{$student->code}}</td>
+                                                    <td style="text-align: center">{{$student->phone}}</td>
+                                                    <td style="text-align: center">{{$student->email}}</td>
+                                                </tr>
+                                            @endforeach
+                                        @else
+                                            <tr>
+                                                <td colspan="7"
+                                                    style="text-align: center">{{trans('messages.no_data')}}</td>
+                                            </tr>
+                                        @endif
+
+                                        </tbody>
+                                        <!--end::Table body-->
+                                    </table>
+
+                                </div>
+
+                            @endif
+
+
+                        </div>
+
 
                     </div>
                     <!--end::Card-->
