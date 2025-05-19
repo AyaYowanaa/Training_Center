@@ -177,13 +177,23 @@ class ExamsController extends Controller
             })->editColumn('mark', function ($row) {
                 return optional($row->studentData)->code;
             })*/
-            ->addColumn('action', function ($row) {
+          /*   ->addColumn('action', function ($row) {
                 return '<a href="#" class="btn btn-sm btn-icon btn-danger btn-remove-student"
                 data-id="' . $row->id . '">
                 <i class="ki-duotone ki-trash-square fs-1 ">
             <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></i>
             </a>';
-            })
+            }) */
+           ->addColumn('action', function ($row) {
+    $deleteUrl = route('admin.TrainingCenter.Exams.questions.delete', $row->id);
+    return '<a href="' . $deleteUrl . '" class="btn btn-sm btn-icon btn-danger"
+        data-kt-table-delete="delete_row">
+        <i class="ki-duotone ki-trash-square fs-1 ">
+            <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>
+        </i>
+    </a>';
+})
+
             ->rawColumns(['action'])
             ->make(true);
 
@@ -226,5 +236,18 @@ class ExamsController extends Controller
     $question->save(); */
 
     }
+  
+    public function deleteQuestion($id)
+{
+    $question = Exam_Questions::find($id);
+
+    if (!$question) {
+        return response()->json(['message' => 'السؤال غير موجود'], 404);
+    }
+
+    $question->delete();
+
+    return response()->json(['message' => 'تم حذف السؤال بنجاح']);
+}
 
 }

@@ -114,6 +114,7 @@ Route::group(
           Route::get('Exams/getQuestions', [ExamsController::class, 'getQuestions'])->name('Exams.getQuestions');
           Route::get('Exams/questions/{id}', [ExamsController::class, 'questions'])->name('Exams.questions');
           Route::post('Exams/questions/store', [ExamsController::class, 'storeQuestion'])->name('Exams.storeQuestions');
+          Route::delete('Exams/questions/{id}', [ExamsController::class, 'deleteQuestion'])->name('Exams.questions.delete');
 
           Route::resource('Exams', ExamsController::class);
 
