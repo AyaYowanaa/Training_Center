@@ -1,0 +1,17 @@
+<?php return array (
+  'Exams' => 'Exams',
+  'Name' => 'Name',
+  'Q_Type' => 'Q_Type',
+  'Choose_Type' => 'Choose_Type',
+  'Choices' => 'Choices',
+  'Add_choice' => 'Add_choice',
+  'Mark' => 'Mark',
+  'mark' => 'mark',
+  'Q_Answer' => 'Q_Answer',
+  'Question_answer' => 'Question_answer',
+  'Add' => 'Add',
+  'ID' => 'ID',
+  'Q_text' => 'Q_text',
+  'Q_answer' => 'Q_answer',
+  'details' => 'details',
+);

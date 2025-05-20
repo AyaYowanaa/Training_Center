@@ -28,4 +28,7 @@ return array (
   'preview' => 'preview',
   'save_btn' => 'save',
   'success' => 'success',
+  'close' => 'close',
+  'done' => 'done',
+  'edit' => 'edit',
 );

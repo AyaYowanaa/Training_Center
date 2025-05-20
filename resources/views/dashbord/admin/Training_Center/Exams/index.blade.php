@@ -6,7 +6,7 @@
         <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
             <!--begin::Title-->
             <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                {{trans('trainingCenter.Students')}}</h1>
+                {{trans('trainingCenter.Exams')}}</h1>
             <!--end::Title-->
             <!--begin::Breadcrumb-->
             <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -20,7 +20,7 @@
                     <span class="bullet bg-gray-400 w-5px h-2px"></span>
                 </li>
                 <li class="breadcrumb-item text-muted">
-                    {{trans('Toolbar.Students')}}
+                    {{trans('Toolbar.Exams')}}
                 </li>
 
 
@@ -31,7 +31,7 @@
         <div class="d-flex align-items-center gap-2 gap-lg-3">
             <!--begin::Filter menu-->
             <div class="d-flex">
-                <a href="{{route('admin.TrainingCenter.Student.create')}}"
+                <a href="{{route('admin.TrainingCenter.Exams.create')}}"
                    class="btn btn-icon btn-sm btn-success flex-shrink-0 ms-4">
                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
                     <span class="svg-icon svg-icon-2">
@@ -72,10 +72,10 @@
                     <thead>
                     <tr class="fw-semibold fs-6 text-gray-800">
                         <th>{{trans('trainingCenter.ID')}}</th>
-                        <th>{{trans('trainingCenter.NameStudent')}}</th>
-                        <th>{{trans('trainingCenter.code')}}</th>
-                        <th>{{trans('trainingCenter.phone')}}</th>
-                        <th>{{trans('trainingCenter.email')}}</th>
+                        <th>{{trans('trainingCenter.Name')}}</th>
+                        <th>{{trans('trainingCenter.Course')}}</th>
+                        <th>{{trans('trainingCenter.Duration')}}</th>
+                        <th>{{trans('trainingCenter.Date')}}</th>
                         <th>{{trans('forms.Action')}}</th>
                     </tr>
                     </thead>
@@ -133,13 +133,13 @@
                     dom: "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
                         "<'row'<'col-sm-12'tr>>" +
                         "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-                    ajax: "{{route('admin.TrainingCenter.Student.index')}}",
+                    ajax: "{{route('admin.TrainingCenter.Exams.index')}}",
                     columns: [
                         {data: 'id', name: 'id'},
                         {data: 'name', name: 'name'},
-                        {data: 'code', name: 'code'},
-                        {data: 'phone', name: 'phone'},
-                        {data: 'email', name: 'email'},
+                        {data: 'course_id', name: 'course_id'},
+                        {data: 'duration', name: 'duration'},
+                        {data: 'date', name: 'date'},
                         {data: 'action', name: 'action', orderable: false},
                     ],
                     order: [[0, 'desc']],

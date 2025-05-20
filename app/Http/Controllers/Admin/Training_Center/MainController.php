@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Training_Center;
 
 use App\Http\Controllers\Controller;
 use App\Models\setting\Entity;
+use App\Models\setting\paymentMethod;
 use App\Models\training_center\Course_registration;
 use App\Models\training_center\Students;
 use App\Models\training_center\TrainingCourse;
@@ -113,7 +114,7 @@ class MainController extends Controller
         }
         return response()->json(array('data' => $data, 'total' => $query->count()));
     }
-   
+
     public function getTrainingCourseEntity(Request $request)
     {
         $search = $request->input('search');
@@ -138,6 +139,28 @@ class MainController extends Controller
             // Set 'selected' to true or false based on some condition (example: $item->id === $selectedId)
             $item->selected = $item->id === $selectedId; // Adjust the condition as per your logic
             $item->text = $item->code .'-'. $item->title;
+        }
+        return response()->json(array('data' => $data, 'total' => $query->count()));
+    }
+    public function getPayment(Request $request)
+    {
+        $search = $request->input('search');
+        $selectedId = $request->input('selectedId');
+        $page = $request->input('page', 1);
+        $limit = 10;
+        $offset = ($page - 1) * $limit;
+        $query = paymentMethod::select('id', 'name');
+        if (!empty($search)) {
+            $query->where('name', 'like', '%' . $search . '%');
+        }
+
+        $data = $query->limit($limit)
+            ->offset($offset)
+            ->get();
+        foreach ($data as $item) {
+            // Set 'selected' to true or false based on some condition (example: $item->id === $selectedId)
+            $item->selected = $item->id === $selectedId; // Adjust the condition as per your logic
+            $item->text = $item->name;
         }
         return response()->json(array('data' => $data, 'total' => $query->count()));
     }

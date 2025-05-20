@@ -13,4 +13,10 @@ return array (
   'create' => 'create',
   'mainData' => 'Main Data',
   'outRangeAmount' => 'Out Range Amount',
+  'invoice_type' => 'invoice_type',
+  'Completed' => 'Completed',
+  'Pending' => 'Pending',
+  'AmountMustEqualBalance' => 'AmountMustEqualBalance',
+  'payment_method' => 'payment_method',
+  'credit' => 'credit',
 );

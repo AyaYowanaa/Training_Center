@@ -101,10 +101,11 @@
                                         data-hide-search="false"
                                         data-placeholder="Select an option" data-allow-clear="true"
                                         id="studentSelect">
-                                    {{-- <option value="">-- اختر طالب --</option>
-                                     @foreach($students as $student)
-                                         <option value="{{ $student->id }}">{{ $student->name }}</option>
-                                     @endforeach--}}
+                                        @if(old('student_id', $one_data->student_id ?? false))
+                                        <option value="{{ old('student_id', $one_data->student_id ?? '') }}" selected hidden>
+                                            {{ old('student_id', $one_data->studentData->name ?? '') }}
+                                        </option>
+                                    @endif
                                 </select>
                             </div>
                             <div class="col-md-4">
@@ -116,11 +117,13 @@
                                         data-placeholder="Select an option" data-allow-clear="true"
                                         id="courseSelect" name="course_id">
 
-                                    {{--  <option value=" ">{{trans('maindata.Select')}}</option>
-                                     @foreach($courses as $row)
-                                     <option value="{{ $row->id }}">{{ $row->title}}</option>
-                                 @endforeach--}}
-                                    {{--                                <option value="">اختر طالب أولاً</option>--}}
+                                        @if(old('course_id', $one_data->course_id ?? false))
+                                        <option value="{{ old('course_id', $one_data->course_id ?? '') }}" selected hidden>
+                                            {{ old('course_id', $one_data->coursesData->title ?? '') }}
+                                        </option>
+                                    @endif
+                                
+                                    <option value=" ">{{trans('maindata.Select')}}</option>
                                 </select>
                                 <!--end::Select2-->
                             </div>

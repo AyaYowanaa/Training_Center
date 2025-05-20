@@ -32,4 +32,10 @@ return array (
   'setting' => 'setting',
   'site' => 'site',
   'users' => 'users',
+  
+  'Student' => 'Student',
+  'StudentDetails' => 'StudentDetails',
+  'StudentUpdate' => 'StudentUpdate',
+  'Exams' => 'Exams',
+  'Create_Exams' => 'Create_Exams',
 );

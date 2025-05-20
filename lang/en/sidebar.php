@@ -35,4 +35,5 @@ return array (
   'videos' => 'videos',
   'web_site' => 'web site',
   'web_site_pages' => 'web site pages',
+  'Exams' => 'Exams',
 );

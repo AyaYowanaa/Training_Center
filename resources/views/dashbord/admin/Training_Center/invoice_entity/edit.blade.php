@@ -101,7 +101,13 @@
                                         data-hide-search="false"
                                         data-placeholder="Select an option" data-allow-clear="true"
                                         id="entitySelect">
-
+                                        @if(old('entity_id', $one_data->entity_id ?? false))
+                                    <option value="{{ old('entity_id', $one_data->entity_id ?? '') }}" selected hidden>
+                                        {{ old('entity_id', $one_data->entityData->name ?? '') }}
+                                    </option>
+                                @endif
+                            
+                                <option value=" ">{{trans('maindata.Select')}}</option>
                                 </select>
                             </div>
                             <div class="col-md-4">
@@ -112,7 +118,13 @@
                                         data-control="select2" data-hide-search="false"
                                         data-placeholder="Select an option" data-allow-clear="true"
                                         id="courseSelect" name="course_id">
-
+                                        @if(old('course_id', $one_data->course_id ?? false))
+                                        <option value="{{ old('course_id', $one_data->course_id ?? '') }}" selected hidden>
+                                            {{ old('course_id', $one_data->coursesData->title ?? '') }}
+                                        </option>
+                                    @endif
+                                
+                                    <option value=" ">{{trans('maindata.Select')}}</option>
                                 </select>
                                 <!--end::Select2-->
                             </div>
@@ -122,7 +134,7 @@
                                     class="required fs-6 fw-semibold mb-2">{{trans('Invoice.Date')}}</label>
                                 <input
                                     class="form-control form-control-solid @error('date') is-invalid @enderror"
-                                    value="" name="date"
+                                    value="{{old('date',$one_data->date)}}" name="date"
                                     placeholder="Pick date range" id="date"/>
                                 @error('date')
                                 <div
@@ -163,7 +175,7 @@
                                 <input type="text" name="total_amount" id="total_amount" readonly
                                        class="form-control mb-2  @error('total_amount') is-invalid @enderror"
                                        placeholder="{{trans('Invoice.TotalAmount')}}"
-                                       value="{{old('total_amount')}}"/>
+                                       value=""/>
                                 <!--end::Input-->
                                 @error('total_amount')
                                 <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
@@ -177,7 +189,8 @@
                                 <!--begin::Input-->
                                 <input type="text" name="amount" id="amount"
                                        class="form-control mb-2  @error('amount') is-invalid @enderror"
-                                       placeholder="{{trans('Invoice.Amount')}}" value="{{old('amount')}}"/>
+                                       placeholder="{{trans('Invoice.Amount')}}" 
+                                       value="{{old('amount',$one_data->amount)}}"/>
                                 <!--end::Input-->
                                 @error('amount')
                                 <div class="fv-plugins-message-container invalid-feedback">{{ $message }}</div>
