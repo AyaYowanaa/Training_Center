@@ -33,4 +33,6 @@
   'Student' => 'Student',
   'StudentDetails' => 'StudentDetails',
   'StudentUpdate' => 'StudentUpdate',
+  'Exams' => 'Exams',
+  'Create_Exams' => 'Create_Exams',
 );

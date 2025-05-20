@@ -60,4 +60,10 @@
   'student_phone' => 'student_phone',
   'student_email' => 'student_email',
   'address' => 'address',
+  'Exams' => 'Exams',
+  'Duration' => 'Duration',
+  'Duration(minutes)' => 'Duration(minutes)',
+  'duration' => 'duration',
+  'Full_Mark]' => 'Full_Mark]',
+  'Pass_Mark]' => 'Pass_Mark]',
 );

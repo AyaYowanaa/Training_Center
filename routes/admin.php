@@ -1,37 +1,36 @@
 <?php
 
-use App\Http\Controllers\Admin\Training_Center\AttendanceStudentsController;
-use App\Http\Controllers\Admin\Training_Center\CourseController;
-use App\Http\Controllers\Admin\Training_Center\CourseRegistrationController;
-use App\Http\Controllers\Admin\Training_Center\Settings\CityController;
-use App\Http\Controllers\Admin\Training_Center\Settings\DistrictController;
-use App\Http\Controllers\Admin\Training_Center\Settings\MainSettingController;
-use App\Http\Controllers\Admin\Training_Center\Settings\TypeSettingController;
-use App\Http\Controllers\Admin\Training_Center\Settings\EntitySettingController;
-use App\Http\Controllers\Admin\Training_Center\Settings\ExpensesController;
-use App\Http\Controllers\Admin\Training_Center\CoursesFeesController;
-use App\Http\Controllers\Admin\Training_Center\Instructors_CoursesController;
-use App\Http\Controllers\Admin\Training_Center\StudentController;
-use App\Http\Controllers\Admin\Training_Center\TrainerController;
-use App\Http\Controllers\Admin\Training_Center\InvoiceController;
-use App\Http\Controllers\Admin\Training_Center\InvoiceEntityController;
-use App\Http\Controllers\Admin\Training_Center\ExamsController;
-use App\Http\Controllers\Admin\Training_Center\Course_registrationController;
+use App\Http\Controllers\Admin\Site\BannerController;
 use App\Http\Controllers\Admin\Site\BlogController;
 use App\Http\Controllers\Admin\Site\ContactController;
 use App\Http\Controllers\Admin\Site\EventController;
-use App\Http\Controllers\Admin\Site\ProjectController;
 use App\Http\Controllers\Admin\Site\GalleryController;
 use App\Http\Controllers\Admin\Site\MaindataController;
-use App\Http\Controllers\Admin\Site\StaffController;
-use App\Http\Controllers\Admin\Site\VideosController;
+use App\Http\Controllers\Admin\Site\ProjectController;
+use App\Http\Controllers\Admin\Site\SiteAdvantageController;
 use App\Http\Controllers\Admin\Site\SiteFeedbackController;
 use App\Http\Controllers\Admin\Site\SitePartenersController;
-use App\Http\Controllers\Admin\Site\SiteStatisticsController;
-use App\Http\Controllers\Admin\Site\SiteAdvantageController;
 use App\Http\Controllers\Admin\Site\SitePolicesController;
-use App\Http\Controllers\Admin\Site\BannerController;
-
+use App\Http\Controllers\Admin\Site\SiteStatisticsController;
+use App\Http\Controllers\Admin\Site\StaffController;
+use App\Http\Controllers\Admin\Site\VideosController;
+use App\Http\Controllers\Admin\Training_Center\AttendanceStudentsController;
+use App\Http\Controllers\Admin\Training_Center\Course_registrationController;
+use App\Http\Controllers\Admin\Training_Center\CourseController;
+use App\Http\Controllers\Admin\Training_Center\CourseRegistrationController;
+use App\Http\Controllers\Admin\Training_Center\CoursesFeesController;
+use App\Http\Controllers\Admin\Training_Center\ExamsController;
+use App\Http\Controllers\Admin\Training_Center\Instructors_CoursesController;
+use App\Http\Controllers\Admin\Training_Center\InvoiceController;
+use App\Http\Controllers\Admin\Training_Center\InvoiceEntityController;
+use App\Http\Controllers\Admin\Training_Center\Settings\CityController;
+use App\Http\Controllers\Admin\Training_Center\Settings\DistrictController;
+use App\Http\Controllers\Admin\Training_Center\Settings\EntitySettingController;
+use App\Http\Controllers\Admin\Training_Center\Settings\ExpensesController;
+use App\Http\Controllers\Admin\Training_Center\Settings\MainSettingController;
+use App\Http\Controllers\Admin\Training_Center\Settings\TypeSettingController;
+use App\Http\Controllers\Admin\Training_Center\StudentController;
+use App\Http\Controllers\Admin\Training_Center\TrainerController;
 use App\Http\Controllers\Admin\Training_Center\TrainingCourseController;
 use App\Http\Controllers\Admin\Users\PermissionsController;
 use App\Http\Controllers\Admin\Users\ProfileController;
@@ -81,7 +80,7 @@ Route::group(
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-        /*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Training Center @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
+        /************************************ Training Center ********************************* */
         Route::group(['prefix' => 'TrainingCenter', 'as' => 'TrainingCenter.'], function () {
             Route::post('getEntity', [\App\Http\Controllers\Admin\Training_Center\MainController::class, 'getEntity'])->name('getEntity');
             Route::post('getTrainingCourse', [\App\Http\Controllers\Admin\Training_Center\MainController::class, 'getTrainingCourse'])->name('getTrainingCourse');
@@ -102,40 +101,28 @@ Route::group(
 //            Route::post('AttendanceStudents/storeStudent', [AttendanceStudentsController::class, 'store'])->name('AttendanceStudents.storeStudent');
             Route::delete('AttendanceStudents/deleteStudent', [AttendanceStudentsController::class, 'deleteStudent'])->name('AttendanceStudents.deleteStudent');
             Route::resource('AttendanceStudents', AttendanceStudentsController::class);
-
-
-
             /*********************************** Invoice_student ******************************** */
-          Route::resource('Invoice', InvoiceController::class);
-          Route::get('/get_inrolled_student/{id}', [InvoiceController::class, 'getStudentCourses']);
-          Route::post('Invoice/getStudentFees', [InvoiceController::class, 'getStudentFees'])->name('Invoice.getStudentFees');
-
-          Route::resource('Invoice_Entity', InvoiceEntityController::class);
-          Route::post('Invoice/getEntityFees', [InvoiceEntityController::class, 'getEntityFees'])->name('Invoice.getEntityFees');
-          Route::get('Exams/getQuestions', [ExamsController::class, 'getQuestions'])->name('Exams.getQuestions');
-          Route::get('Exams/questions/{id}', [ExamsController::class, 'questions'])->name('Exams.questions');
-          Route::post('Exams/questions/store', [ExamsController::class, 'storeQuestion'])->name('Exams.storeQuestions');
-
-          Route::resource('Exams', ExamsController::class);
-
-
+            Route::resource('Invoice', InvoiceController::class);
+            Route::get('/get_inrolled_student/{id}', [InvoiceController::class, 'getStudentCourses']);
+            Route::post('Invoice/getStudentFees', [InvoiceController::class, 'getStudentFees'])->name('Invoice.getStudentFees');
+            Route::resource('Invoice_Entity', InvoiceEntityController::class);
+            Route::post('Invoice/getEntityFees', [InvoiceEntityController::class, 'getEntityFees'])->name('Invoice.getEntityFees');
+            Route::get('Exams/getQuestions', [ExamsController::class, 'getQuestions'])->name('Exams.getQuestions');
+            Route::get('Exams/questions/{id}', [ExamsController::class, 'questions'])->name('Exams.questions');
+            Route::post('Exams/questions/store', [ExamsController::class, 'storeQuestion'])->name('Exams.storeQuestions');
+            Route::resource('Exams', ExamsController::class);
             /*********************************** Students ************************************* */
             Route::resource('Student', StudentController::class);
             // Route::get('Student/delete/{id}', [StudentController::class, 'delete'])->name('Student.delete');
             Route::get('Student/show_load/{id}', [StudentController::class, 'show_load'])->name('Student.load_details');
-
         });
-/*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
         Route::group(['prefix' => 'Settings', 'as' => 'Settings.'], function () {
-
             /********************************typesetting******************************/
             Route::resource('typesetting', TypeSettingController::class);
             Route::get('typesetting/delete/{id}', [TypeSettingController::class, 'delete'])->name('typesetting.delete');
-
             /********************************mainsetting******************************/
             Route::resource('mainsetting', MainSettingController::class);
             Route::get('mainsetting/delete/{id}', [MainSettingController::class, 'delete'])->name('mainsetting.delete');
-
             /********************************************************************************************** */
             Route::get('course/tree', [CourseController::class, 'tree'])->name('course.tree');
             Route::get('course/load_child', [CourseController::class, 'load_child'])->name('course.load_child');
@@ -143,32 +130,25 @@ Route::group(
             Route::get('course/load_edit', [CourseController::class, 'load_edit'])->name('course.load_edit');
             Route::post('course/import_accounts', [CourseController::class, 'import_accounts'])->name('course.import_accounts');
             Route::resource('course', CourseController::class);
-
-
             Route::resource('district', DistrictController::class);
             Route::get('district/delete/{id}', [DistrictController::class, 'delete'])->name('district.delete');
-
             /*********************************Entity *********************************************************** */
             Route::resource('Entity', EntitySettingController::class);
             Route::get('Entity/delete/{id}', [EntitySettingController::class, 'delete'])->name('Entity.delete');
-
             /*********************************** Expenses ********************************************************* */
             Route::resource('Expenses', ExpensesController::class);
             Route::get('Expenses/delete/{id}', [ExpensesController::class, 'delete'])->name('Expenses.delete');
-
             /*********************************** instructors ************************************* */
             Route::resource('Instructor', TrainerController::class);
             // Route::get('Instructor/delete/{id}', [TrainerController::class, 'delete'])->name('Instructor.delete');
             Route::get('Instructor/show_load/{id}', [TrainerController::class, 'show_load'])->name('Instructor.load_details');
             Route::get('Instructor/destroy_file/{id}', [TrainerController::class, 'destroy_file'])->name('Instructor.destroy_file');
-
             /*********************************** Course Fees ******************************** */
             Route::resource('CourseCosts', CoursesFeesController::class);
             Route::get('CourseCosts/show_load/{id}', [CoursesFeesController::class, 'show_load'])->name('CourseCosts.load_details');
             /*********************************** Instructors_Courses ******************************** */
             Route::resource('Instructors_Courses', Instructors_CoursesController::class);
             //  Route::get('Instructors_Courses/show_load/{id}', [Instructors_CoursesController::class, 'show_load'])->name('Instructors_Courses.load_details');
-
             /*********************************** Course registeration ******************************** */
             Route::resource('Course_registration', Course_registrationController::class);
 
@@ -264,16 +244,10 @@ Route::group(
             /************************** rolls *****************************/
             Route::resource('roles', RolesController::class);
             Route::get('roles/load_edit', [RolesController::class, 'load_edit'])->name('roles.load_edit');
-
             Route::get('roles/permission/{id}', [RolesController::class, 'get_permission'])->name('roles.permission');
             Route::get('roles/delete/{id}', [RolesController::class, 'delete'])->name('roles.delete');
-
         });
-
-
     });
-
-
 });
 Route::group(
     [
