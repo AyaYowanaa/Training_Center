@@ -1,5 +1,7 @@
-<?php return array (
-  'CourseFees' => 'CourseFees',
-  'details' => 'details',
+<?php
+
+return array (
+  'CourseFees' => 'Course Fees',
   'create' => 'create',
+  'details' => 'details',
 );

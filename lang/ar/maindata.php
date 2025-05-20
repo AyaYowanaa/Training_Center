@@ -1,3 +1,5 @@
-<?php return array (
-  'Select' => 'Select',
+<?php
+
+return array (
+  'Select' => 'إختر',
 );

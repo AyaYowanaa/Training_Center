@@ -1,14 +1,16 @@
-<?php return array (
-  'ID' => 'ID',
-  'Student' => 'Student',
-  'Course' => 'Course',
+<?php
+
+return array (
   'Amount' => 'Amount',
-  'create' => 'create',
-  'mainData' => 'mainData',
+  'Course' => 'Course',
   'Courses' => 'Courses',
   'Date' => 'Date',
-  'Status' => 'Status',
-  'TotalAmount' => 'TotalAmount',
-  'outRangeAmount' => 'outRangeAmount',
   'Entity' => 'Entity',
+  'ID' => 'ID',
+  'Status' => 'Status',
+  'Student' => 'Student',
+  'TotalAmount' => 'Total Amount',
+  'create' => 'create',
+  'mainData' => 'Main Data',
+  'outRangeAmount' => 'Out Range Amount',
 );
