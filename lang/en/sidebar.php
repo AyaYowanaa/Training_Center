@@ -33,4 +33,5 @@
   'Invoice' => 'Invoice',
   'Entity_Invoices' => 'Entity_Invoices',
   'AttendanceStudents' => 'AttendanceStudents',
+  'Exams' => 'Exams',
 );
