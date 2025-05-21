@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\Training_Center\TrainerController;
 use App\Http\Controllers\Admin\Training_Center\InvoiceController;
 use App\Http\Controllers\Admin\Training_Center\InvoiceEntityController;
 use App\Http\Controllers\Admin\Training_Center\ExamsController;
+use App\Http\Controllers\Admin\Training_Center\EvaluationController;
 use App\Http\Controllers\Admin\Training_Center\Course_registrationController;
 use App\Http\Controllers\Admin\Site\BlogController;
 use App\Http\Controllers\Admin\Site\ContactController;
@@ -112,13 +113,19 @@ Route::group(
 
           Route::resource('Invoice_Entity', InvoiceEntityController::class);
           Route::post('Invoice/getEntityFees', [InvoiceEntityController::class, 'getEntityFees'])->name('Invoice.getEntityFees');
+        
+        /*************************************************************************************** */  
           Route::get('Exams/getQuestions', [ExamsController::class, 'getQuestions'])->name('Exams.getQuestions');
           Route::get('Exams/questions/{id}', [ExamsController::class, 'questions'])->name('Exams.questions');
           Route::post('Exams/questions/store', [ExamsController::class, 'storeQuestion'])->name('Exams.storeQuestions');
           Route::delete('Exams/questions/{id}', [ExamsController::class, 'deleteQuestion'])->name('Exams.questions.delete');
-
           Route::resource('Exams', ExamsController::class);
 
+          Route::resource('Evaluation', EvaluationController::class);
+          Route::get('Evaluation/getQuestions', [EvaluationController::class, 'getQuestions'])->name('Evaluation.getQuestions');
+          Route::get('Evaluation/questions/{id}', [EvaluationController::class, 'questions'])->name('Evaluation.questions');
+          Route::post('Evaluation/questions/store', [EvaluationController::class, 'storeQuestion'])->name('Evaluation.storeQuestions');
+          Route::delete('Evaluation/questions/{id}', [EvaluationController::class, 'deleteQuestion'])->name('Evaluation.questions.delete');
 
             /*********************************** Students ************************************* */
             Route::resource('Student', StudentController::class);

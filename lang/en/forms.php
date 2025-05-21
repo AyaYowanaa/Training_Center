@@ -28,4 +28,5 @@
   'error_occurred' => 'error_occurred',
   'close' => 'close',
   'done' => 'done',
+  'edit' => 'edit',
 );

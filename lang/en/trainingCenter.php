@@ -60,4 +60,7 @@
   'student_phone' => 'student_phone',
   'student_email' => 'student_email',
   'address' => 'address',
+  'CourseEvaluation' => 'CourseEvaluation',
+  'Duration' => 'Duration',
+  'Evaluation' => 'Evaluation',
 );
