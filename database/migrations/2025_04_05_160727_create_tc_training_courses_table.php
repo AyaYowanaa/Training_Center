@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable('tc_training_courses')) {
 
+        if (!Schema::hasTable('tc_training_courses')) {
+            
             Schema::create('tc_training_courses', function (Blueprint $table) {
                 $table->id();
                 $table->text('title')->nullable();

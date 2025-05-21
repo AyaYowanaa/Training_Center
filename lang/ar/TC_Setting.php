@@ -31,7 +31,7 @@ return array (
   'mainData' => 'البيانات الرئيسية',
   'name_cat' => 'الاسم',
   'parant' => 'الفرعي',
-  'parent' => 'parent',
+  'parent' => 'متفرع من',
   'parent_id' => 'المتفرع من',
   'program' => 'البرنامج',
   'title' => 'العنوان',

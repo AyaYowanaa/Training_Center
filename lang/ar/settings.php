@@ -1,4 +1,6 @@
-<?php return array (
-  'Save Changes' => 'Save Changes',
-  'Close' => 'Close',
+<?php
+
+return array (
+  'Close' => 'إغلاق',
+  'Save Changes' => 'حفظ التغييرات',
 );
