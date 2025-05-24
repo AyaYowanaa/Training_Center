@@ -27,6 +27,7 @@ class TrainingCourse extends Model
             $model->code = $newNum;
         });
     }
+
     /* public function images()
     {
         return $this->hasMany(SiteEventImage::class, 'event_id');

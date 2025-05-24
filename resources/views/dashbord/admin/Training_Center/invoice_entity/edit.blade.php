@@ -102,11 +102,11 @@
                                         data-placeholder="Select an option" data-allow-clear="true"
                                         id="entitySelect">
                                         @if(old('entity_id', $one_data->entity_id ?? false))
-                                    <option value="{{ old('entity_id', $one_data->entity_id ?? '') }}" selected hidden>
+                                    <option value="{{ old('entity_id', $one_data->entity_id ?? '') }}" selected >
                                         {{ old('entity_id', $one_data->entityData->name ?? '') }}
                                     </option>
                                 @endif
-                            
+
                                 <option value=" ">{{trans('maindata.Select')}}</option>
                                 </select>
                             </div>
@@ -119,11 +119,11 @@
                                         data-placeholder="Select an option" data-allow-clear="true"
                                         id="courseSelect" name="course_id">
                                         @if(old('course_id', $one_data->course_id ?? false))
-                                        <option value="{{ old('course_id', $one_data->course_id ?? '') }}" selected hidden>
+                                        <option value="{{ old('course_id', $one_data->course_id ?? '') }}" selected >
                                             {{ old('course_id', $one_data->coursesData->title ?? '') }}
                                         </option>
                                     @endif
-                                
+
                                     <option value=" ">{{trans('maindata.Select')}}</option>
                                 </select>
                                 <!--end::Select2-->
@@ -156,9 +156,9 @@
 
                                     <option value="">{{ __('forms.Select') }}</option>
                                     <option
-                                        value="completed" {{ old('status') == 'completed' ? 'selected' : '' }}>{{ __('forms.Completed') }}</option>
+                                        value="completed" {{ old('status',$one_data->status) == 'completed' ? 'selected' : '' }}>{{ __('forms.Completed') }}</option>
                                     <option
-                                        value="pending" {{ old('status') == 'pending' ? 'selected' : '' }}>{{ __('forms.Pending') }}</option>
+                                        value="pending" {{ old('status',$one_data->status) == 'pending' ? 'selected' : '' }}>{{ __('forms.Pending') }}</option>
                                 </select>
 
                                 @error('status')
@@ -189,7 +189,7 @@
                                 <!--begin::Input-->
                                 <input type="text" name="amount" id="amount"
                                        class="form-control mb-2  @error('amount') is-invalid @enderror"
-                                       placeholder="{{trans('Invoice.Amount')}}" 
+                                       placeholder="{{trans('Invoice.Amount')}}"
                                        value="{{old('amount',$one_data->amount)}}"/>
                                 <!--end::Input-->
                                 @error('amount')
