@@ -1,6 +1,4 @@
-<?php
-
-return array (
+<?php return array (
   'AttendanceStudents' => 'Attendance Students',
   'CourseCosts' => 'Course Costs',
   'CourseRegistration' => 'Course Registration',
@@ -36,4 +34,5 @@ return array (
   'web_site' => 'web site',
   'web_site_pages' => 'web site pages',
   'Exams' => 'Exams',
+  'Evaluation' => 'Evaluation',
 );

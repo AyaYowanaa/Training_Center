@@ -124,6 +124,7 @@ Route::group(
           Route::delete('Evaluation/questions/{id}', [EvaluationController::class, 'deleteQuestion'])->name('Evaluation.questions.delete');
 
             Route::resource('Invoice', InvoiceController::class);
+            Route::get('Invoice/show_load/{id}', [InvoiceController::class, 'show_load'])->name('Invoice.load_details');
             Route::get('/get_inrolled_student/{id}', [InvoiceController::class, 'getStudentCourses']);
             Route::post('Invoice/getStudentFees', [InvoiceController::class, 'getStudentFees'])->name('Invoice.getStudentFees');
             Route::get('Invoice/show_load/{id}', [InvoiceController::class, 'show_load'])->name('Invoice.load_details');
