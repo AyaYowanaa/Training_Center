@@ -66,4 +66,8 @@
   'duration' => 'duration',
   'Full_Mark]' => 'Full_Mark]',
   'Pass_Mark]' => 'Pass_Mark]',
+  'Fees' => 'Fees',
+  'From_Date' => 'From_Date',
+  'To_Date' => 'To_Date',
+  'Capacity' => 'Capacity',
 );

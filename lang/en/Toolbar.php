@@ -35,4 +35,5 @@
   'StudentUpdate' => 'StudentUpdate',
   'Exams' => 'Exams',
   'Create_Exams' => 'Create_Exams',
+  'accountEdit' => 'accountEdit',
 );

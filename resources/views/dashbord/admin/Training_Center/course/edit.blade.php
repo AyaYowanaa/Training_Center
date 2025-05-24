@@ -213,9 +213,6 @@
                                         data-control="select2" data-placeholder="{{trans('forms.Select')}}">
                                     <option value="0"> {{trans('TC_Setting.parent')}}</option>
 
-                                @foreach($accounts as $account)
-                                        <option value="{{$account->id}}" @if($one_data->parent_id==$account->id ) {{'selected'}} @endif>{{$account->name}}</option>
-                                    @endforeach
                                 </select>
                                 <!--end::Input-->
                                 @error('parent_id')

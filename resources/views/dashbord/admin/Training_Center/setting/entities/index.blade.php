@@ -219,7 +219,20 @@
 
 
                             <!--begin::Action=-->
-
+                            <td class="text-end">
+                                <a class="btn btn-icon btn-active-light-warning w-30px h-30px me-3"
+                                   href="{{route('admin.Settings.Entity.edit', $x->id)}}" data-bs-toggle="modal" data-bs-target="#exampleModal{{$x->id}}">
+{{--                                    <i class="ki-duotone ki-setting-3 fs-3"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>--}}
+                                    <i class="ki-duotone ki-notepad-edit"><span class="path1"></span><span class="path2"></span></i>
+                                </a>
+                                 <a class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" href="{{route('admin.Settings.Entity.show', $x->id)}}">
+                                     <i class="ki-duotone ki-eye"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                                 </a>
+                                <a class="btn btn-icon btn-active-light-danger w-30px h-30px" href="{{route('admin.Settings.Entity.delete', $x->id)}}">
+                                    <i class="ki-duotone ki-trash fs-3"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
+                                </a>
+                            </td>
+{{--
                             <td class="text-end">
 
                                 <div class="btn-group" role="group" aria-label="Basic example">
@@ -240,6 +253,7 @@
 
                                 </div>
                             </td>
+--}}
                             <!--end::Action=-->
                         </tr>
 
