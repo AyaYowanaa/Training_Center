@@ -1,3 +1,5 @@
-<?php return array (
-  'forms' => 'forms',
+<?php
+
+return array (
+  'forms' => 'الاستمارات',
 );

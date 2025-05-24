@@ -67,7 +67,7 @@ class TrainingCourseController extends Controller
      */
     public function create()
     {
-        $data['location_id'] = MainSetting::all();  //::where('type', '105')->get();
+        $data['location_id'] = MainSetting::where('type_id_fk', '6')->get();  //::where('type', '105')->get();
         $data['courses'] = Course::all();
 
         return view('dashbord.admin.Training_Center.training_courses.createSteper',$data);
