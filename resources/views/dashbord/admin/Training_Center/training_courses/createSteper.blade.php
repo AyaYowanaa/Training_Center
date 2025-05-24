@@ -185,7 +185,6 @@
                                     <!--begin::Label-->
                                     <label class="required form-label">{{trans('course.Capacity')}}
                                         <span class="text-muted fs-7">"{{trans('forms.lable_ar')}}"</span>
-
                                     </label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
@@ -213,7 +212,7 @@
 
                                         <option value=" ">{{trans('maindata.Select')}}</option>
                                         @foreach($courses as $row)
-                                            <option value="{{ $row->id }}">{{ $row->name}}</option>
+                                            <option value="{{ $row->id }}"  >{{ $row->name}}</option>
                                         @endforeach
                                     </select>
 

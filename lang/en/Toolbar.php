@@ -1,6 +1,4 @@
-<?php
-
-return array (
+<?php return array (
   'Add_Entity_Invoice' => 'Add Entity Invoice',
   'Add_Invoices' => 'Add Invoices',
   'AttendanceStudents' => 'Attendance Students',
@@ -32,7 +30,6 @@ return array (
   'setting' => 'setting',
   'site' => 'site',
   'users' => 'users',
-  
   'Student' => 'Student',
   'StudentDetails' => 'StudentDetails',
   'StudentUpdate' => 'StudentUpdate',
@@ -40,4 +37,9 @@ return array (
   'Evaluation' => 'Evaluation',
   'Create_Evaluation' => 'Create_Evaluation',
   'Update_Evaluation' => 'Update_Evaluation',
+  'Create_Exams' => 'Create_Exams',
+  'accountEdit' => 'accountEdit',
+  'Update_Exams' => 'Update_Exams',
+  'Update_Instructors_Courses' => 'Update_Instructors_Courses',
+  'Update_CourseFees' => 'Update_CourseFees',
 );

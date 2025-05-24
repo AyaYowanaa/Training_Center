@@ -1,6 +1,4 @@
-<?php
-
-return array (
+<?php return array (
   'Action' => 'Action',
   'Add' => 'Add',
   'Address' => 'Address',
@@ -35,4 +33,5 @@ return array (
   'parent_id' => 'parent id',
   'program' => 'program',
   'title' => 'title',
+  'edit' => 'edit',
 );

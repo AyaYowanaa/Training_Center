@@ -167,8 +167,8 @@
                 KTUtil.on(document.body, '[data-kt-table-delete="delete_row"]', 'click', function (e) {
                     e.preventDefault();
                     // Select parent row
-                    const parent = e.target.closest('tr');
-                    var action = e.target.getAttribute('href'); // Use 'this' instead of 'e'
+                    const parent = e.target.closest('a').closest('tr');
+                    var action = e.target.closest('a').getAttribute('href'); // Use 'this' instead of 'e'
                     console.log('action', action)
                     // Get customer name
                     const customerName = parent.querySelectorAll('td')[1].innerText;
@@ -262,8 +262,9 @@
             var handleDetailsRows = function () {
 
                 KTUtil.on(document.body, '[data-kt-table-details="details_row"]', 'click', function (e) {
-                    var id = e.target.getAttribute('data-id');
-                    var action = e.target.getAttribute('data-url');
+                    var id = e.target.closest('a').getAttribute('data-id');
+                    var action = e.target.closest('a').getAttribute('data-url');
+                    console.log(action);
                     $.ajax({
                         type: 'get',
                         url: action,

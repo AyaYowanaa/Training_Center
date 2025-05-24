@@ -126,8 +126,10 @@ Route::group(
             Route::resource('Invoice', InvoiceController::class);
             Route::get('/get_inrolled_student/{id}', [InvoiceController::class, 'getStudentCourses']);
             Route::post('Invoice/getStudentFees', [InvoiceController::class, 'getStudentFees'])->name('Invoice.getStudentFees');
+            Route::get('Invoice/show_load/{id}', [InvoiceController::class, 'show_load'])->name('Invoice.load_details');
             Route::resource('Invoice_Entity', InvoiceEntityController::class);
             Route::post('Invoice/getEntityFees', [InvoiceEntityController::class, 'getEntityFees'])->name('Invoice.getEntityFees');
+            Route::get('Invoice_Entity/show_load/{id}', [InvoiceEntityController::class, 'show_load'])->name('Invoice_Entity.load_details');
             Route::get('Exams/getQuestions', [ExamsController::class, 'getQuestions'])->name('Exams.getQuestions');
             Route::get('Exams/questions/{id}', [ExamsController::class, 'questions'])->name('Exams.questions');
             Route::post('Exams/questions/store', [ExamsController::class, 'storeQuestion'])->name('Exams.storeQuestions');
@@ -160,10 +162,10 @@ Route::group(
             Route::resource('Expenses', ExpensesController::class);
             Route::get('Expenses/delete/{id}', [ExpensesController::class, 'delete'])->name('Expenses.delete');
             /*********************************** instructors ************************************* */
-            Route::resource('Instructor', TrainerController::class);
             // Route::get('Instructor/delete/{id}', [TrainerController::class, 'delete'])->name('Instructor.delete');
             Route::get('Instructor/show_load/{id}', [TrainerController::class, 'show_load'])->name('Instructor.load_details');
             Route::get('Instructor/destroy_file/{id}', [TrainerController::class, 'destroy_file'])->name('Instructor.destroy_file');
+            Route::resource('Instructor', TrainerController::class);
             /*********************************** Course Fees ******************************** */
             Route::resource('CourseCosts', CoursesFeesController::class);
             Route::get('CourseCosts/show_load/{id}', [CoursesFeesController::class, 'show_load'])->name('CourseCosts.load_details');

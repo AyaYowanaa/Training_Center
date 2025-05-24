@@ -35,6 +35,20 @@ class Students extends Model
 
         }
     }
+
+    protected static $numIncrement = 0001;
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($row) {
+            $lastnum = static::orderBy('code', 'desc')->first();
+            $lastnumCode = $lastnum ? (int) $lastnum->code : static::$numIncrement;
+
+            $row->code = ($lastnumCode + 1);
+
+        });
+    }
     public function coursesData()
     {
         return $this->belongsTo(TrainingCourse::class, 'course_id');

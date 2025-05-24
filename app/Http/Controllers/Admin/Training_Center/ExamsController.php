@@ -9,7 +9,7 @@ use App\Models\training_center\Exam_Questions;
 use Exception;
 use Illuminate\Http\Request;
  use App\Http\Requests\training_center\Exams\StoreRequest;
-use App\Http\Requests\training_center\Exams\UpdateRequest; 
+use App\Http\Requests\training_center\Exams\UpdateRequest;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
 
@@ -22,11 +22,32 @@ class ExamsController extends Controller
         if ($request->ajax()) {
             $allData = Exams::select('*');
             return Datatables::of($allData)
-              
+
                 ->editColumn('course_id', function ($row) {
                     return $row->coursesData?->title ?? '—';
                 })
                 ->addColumn('action', function ($row) {
+
+                    return ' <a class="btn btn-icon btn-active-light-warning w-30px h-30px me-3 "
+                                   href="' .  route('admin.TrainingCenter.Exams.edit', $row->id) . '"
+                               title="' . trans('forms.edite_btn') . '">
+                                    <i class="ki-duotone ki-notepad-edit fs-1"><span class="path1"></span><span class="path2"></span></i>
+                                </a>
+
+                                <a class="btn btn-icon btn-active-light-info  w-30px h-30px me-3 "
+                                   href="' . route('admin.TrainingCenter.Exams.questions', $row->id) . '" title="' . trans('fexam.questions') . '">
+                                        <i class="ki-duotone ki-question fs-1"><span class="path1"></span> <span class="path2"></span><span class="path3"></span></i>
+                                </a>
+                              <!--  <a class="btn btn-icon btn-active-light-info w-30px h-30px me-3 "
+                                href="javascript:void(0)" data-kt-table-details="details_row" data-url="' . route('admin.TrainingCenter.Exams.show', $row->id) . '"
+                                          data-bs-toggle="modal" data-bs-target="#kt_modal_1"  title="' . trans('forms.details') . '">
+                                     <i class="ki-duotone ki-information fs-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                                 </a>-->
+                                <a class="btn btn-icon btn-active-light-danger w-30px h-30px"
+                                 href="' . route('admin.TrainingCenter.Exams.destroy', $row->id) . '" data-kt-table-delete="delete_row"
+                                           title="' . trans('forms.delete_btn') . '">
+                                    <i class="ki-duotone ki-trash fs-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
+                                </a>';
                     return '<a href="#" class="btn btn-sm btn-light btn-active-light-primary"
                    data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end"> ' . trans('forms.action') . '
                    <span class="svg-icon svg-icon-5 m-0">
@@ -55,7 +76,7 @@ class ExamsController extends Controller
                                address="' . trans('fexam.questions') . '" class="menu-link px-3"
                                >' . trans('exam.questions') . '</a>
                         </div>
-                    
+
                         <div class="menu-item px-3">
                                 <a href="' . route('admin.TrainingCenter.Exams.destroy', $row->id) . '" data-kt-table-delete="delete_row"
                                            address="' . trans('forms.delete_btn') . '" class="menu-link px-3"
@@ -100,10 +121,10 @@ class ExamsController extends Controller
             $insert_data = $request->all();
             $inserted_data = Exams::create($insert_data);
             $insert_id = $inserted_data->id;
-            
+
             toastr()->addSuccess(trans('forms.success'));
             return redirect()->route('admin.TrainingCenter.Exams.index');
-        
+
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
@@ -136,7 +157,7 @@ class ExamsController extends Controller
             $data = Exams::find($request->id);
             $update_data = $request->all();
             $data->update($update_data);
-        
+
         toastr()->addSuccess(trans('forms.success'));
         return redirect()->route('admin.TrainingCenter.Exams.index');
         } catch (\Exception $e) {
@@ -168,7 +189,7 @@ class ExamsController extends Controller
 
         $exam_id = $request->input('exam_id');
         $allData = Exam_Questions::select('*')->where('exam_id', $exam_id);
-     
+
         return Datatables::of($allData)
            /* ->editColumn('q_text', function ($row) {
                 return $row->q_answer;
@@ -202,10 +223,10 @@ class ExamsController extends Controller
 
     public function storeQuestion(Request $request)
     {
-        
+
       $validated = $request->validate([
         'q_text' => 'required|string',
-        'q_choices' => 'required|array|min:2', 
+        'q_choices' => 'required|array|min:2',
         'q_answer' => 'required|string',
         'mark' => 'required|numeric',
       ]);
@@ -216,10 +237,10 @@ class ExamsController extends Controller
             $insert_data = $request->all();
             $inserted_data = Exam_Questions::create($insert_data);
             $insert_id = $inserted_data->id;
-            
+
             toastr()->addSuccess(trans('forms.success'));
             return redirect()->route('admin.TrainingCenter.Exams.questions');
-        
+
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
@@ -230,7 +251,7 @@ class ExamsController extends Controller
     $question->exam_id = $request->exam_id;
     $question->q_text = $request->q_text;
 //  $question->q_choices = json_encode($request->q_choices, JSON_UNESCAPED_UNICODE);
-    $question->q_choices = $request->q_choices;    
+    $question->q_choices = $request->q_choices;
     $question->q_answer = $request->q_answer;
     $question->mark = $request->mark;
     $question->save(); */
