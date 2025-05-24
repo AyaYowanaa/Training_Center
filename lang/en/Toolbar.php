@@ -32,7 +32,7 @@ return array (
   'setting' => 'setting',
   'site' => 'site',
   'users' => 'users',
-  
+
   'Student' => 'Student',
   'StudentDetails' => 'StudentDetails',
   'StudentUpdate' => 'StudentUpdate',
