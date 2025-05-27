@@ -39,4 +39,5 @@
   'Update_Exams' => 'Update_Exams',
   'Update_Instructors_Courses' => 'Update_Instructors_Courses',
   'Update_CourseFees' => 'Update_CourseFees',
+  'TrainingCourseDetails' => 'TrainingCourseDetails',
 );

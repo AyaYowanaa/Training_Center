@@ -1,6 +1,4 @@
-<?php
-
-return array (
+<?php return array (
   'Amount' => 'Amount',
   'Course' => 'Course',
   'Courses' => 'Courses',
@@ -68,4 +66,12 @@ return array (
   'duration' => 'duration',
   'Full_Mark]' => 'Full_Mark]',
   'Pass_Mark]' => 'Pass_Mark]',
+  'Fees' => 'Fees',
+  'From_Date' => 'From_Date',
+  'To_Date' => 'To_Date',
+  'Capacity' => 'Capacity',
+  'TrainingCourses' => 'TrainingCourses',
+  'TrainingCourse' => 'TrainingCourse',
+  'location' => 'location',
+  'AttendanceAll' => 'AttendanceAll',
 );

@@ -40,4 +40,26 @@ class TrainingCourse extends Model
     {
         return $this->belongsTo(MainSetting::class, 'location_id');
     }
+
+    public function students()
+    {
+        return $this->hasManyThrough(
+            Students::class,        // Target model (Course)
+            Course_registration::class,    // Intermediate model (Course_registration)
+            'course_id',                // Foreign key on Course_registration table
+            'id',                // Foreign key on Course table
+            'id',    // Local key on Students table
+            'student_id'          // Local key on Course_registration table
+        );
+    }
+    function invoice()
+    {
+        return $this->hasMany(Invoice_entity::class, 'course_id', 'id');
+    }
+
+    function attendances()
+    {
+        return $this->hasMany(AttendanceStudents::class, 'course_id', 'id');
+    }
+
 }
