@@ -34,10 +34,12 @@
   'StudentDetails' => 'StudentDetails',
   'StudentUpdate' => 'StudentUpdate',
   'Exams' => 'Exams',
+  'Evaluation' => 'Evaluation',
+  'Create_Evaluation' => 'Create_Evaluation',
+  'Update_Evaluation' => 'Update_Evaluation',
   'Create_Exams' => 'Create_Exams',
   'accountEdit' => 'accountEdit',
   'Update_Exams' => 'Update_Exams',
   'Update_Instructors_Courses' => 'Update_Instructors_Courses',
   'Update_CourseFees' => 'Update_CourseFees',
-  'TrainingCourseDetails' => 'TrainingCourseDetails',
 );

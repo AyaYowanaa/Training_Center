@@ -6,7 +6,7 @@
         <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
             <!--begin::Title-->
             <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                {{trans('exams.Exams')}}</h1>
+                {{trans('exams.Evaluation')}}</h1>
             <!--end::Title-->
             <!--begin::Breadcrumb-->
             <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -20,7 +20,7 @@
                     <span class="bullet bg-gray-400 w-5px h-2px"></span>
                 </li>
                 <li class="breadcrumb-item text-muted">
-                    {{trans('Toolbar.Exams')}}
+                    {{trans('Toolbar.Evaluation')}}
                 </li>
 
 
@@ -43,7 +43,7 @@
             <div class="card-body pt-0">
 <div class="mt-5">
 
-<form action="{{ route('admin.TrainingCenter.Exams.storeQuestions') }}" method="POST" class="mb-10">
+<form action="{{ route('admin.TrainingCenter.Evaluation.storeQuestions') }}" method="POST" class="mb-10">
     @csrf
     <input type="hidden" name="exam_id" value="{{ $one_data->id }}">
 
@@ -65,7 +65,7 @@
                 <option disabled {{ old('q_type') ? '' : 'selected' }}>
                     {{ trans('exams.Choose_Type') }}
                 </option>
-                @foreach(['MCQ', 'True_False'] as $type)
+                @foreach(['MCQ', 'True_False','Text'] as $type)
                     <option value="{{ $type }}" {{ old('q_type') == $type ? 'selected' : '' }}>
                         {{ $type }}
                     </option>
@@ -91,28 +91,6 @@
           </button>
 
         </div>
-
-        <!-- الدرجة -->
-        <div class="col-md-6">
-            <label class="required form-label">{{ trans('exams.Mark') }}</label>
-            <input type="text" name="mark" min="1" class="form-control @error('mark') is-invalid @enderror"
-                   placeholder="{{ trans('exams.mark') }}" value="{{ old('mark') }}" />
-            @error('mark')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
-
-        <!-- الإجابة -->
-        <div class="col-md-6">
-            <label class="required form-label">{{ trans('exams.Q_Answer') }}</label>
-            <input type="text" name="q_answer" class="form-control @error('q_answer') is-invalid @enderror"
-                   placeholder="{{ trans('exams.Question_answer') }}" value="{{ old('q_answer') }}" />
-            @error('q_answer')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
-
-        <!-- زر الإرسال -->
         <div class="col-md-12 text-end">
             <button type="submit" class="btn btn-success px-4">
                 <i class="fas fa-plus"></i> {{ trans('exams.Add') }}
@@ -132,7 +110,6 @@
                         <th>{{trans('exams.ID')}}</th>
                         <th>{{trans('exams.Q_text')}}</th>
                         <th>{{trans('exams.Q_answer')}}</th>
-                        <th>{{trans('exams.mark')}}</th>
                         <th>{{trans('forms.Action')}}</th>
                     </tr>
                     </thead>

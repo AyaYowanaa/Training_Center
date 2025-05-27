@@ -3,51 +3,30 @@
 namespace App\Http\Controllers\Admin\Training_Center;
 use App\Http\Controllers\Controller;
 use App\Models\training_center\Training_Courses;
-use App\Models\training_center\Exams;
-use App\Models\training_center\Exam_Questions;
+use App\Models\training_center\Evaluation;
+use App\Models\training_center\Evaluation_Questions;
 
 use Exception;
 use Illuminate\Http\Request;
- use App\Http\Requests\training_center\Exams\StoreRequest;
-use App\Http\Requests\training_center\Exams\UpdateRequest;
+/*  use App\Http\Requests\training_center\Evaluation\StoreRequest;
+use App\Http\Requests\training_center\Evaluation\UpdateRequest;  */
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
 
-class ExamsController extends Controller
+class EvaluationController extends Controller
 {
 
     public function index(Request $request)
     {
 
         if ($request->ajax()) {
-            $allData = Exams::select('*');
+            $allData = Evaluation::select('*');
             return Datatables::of($allData)
-
+              
                 ->editColumn('course_id', function ($row) {
                     return $row->coursesData?->title ?? '—';
                 })
                 ->addColumn('action', function ($row) {
-
-                    return ' <a class="btn btn-icon btn-active-light-warning w-30px h-30px me-3 "
-                                   href="' .  route('admin.TrainingCenter.Exams.edit', $row->id) . '"
-                               title="' . trans('forms.edite_btn') . '">
-                                    <i class="ki-duotone ki-notepad-edit fs-1"><span class="path1"></span><span class="path2"></span></i>
-                                </a>
-
-                                <a class="btn btn-icon btn-active-light-info  w-30px h-30px me-3 "
-                                   href="' . route('admin.TrainingCenter.Exams.questions', $row->id) . '" title="' . trans('fexam.questions') . '">
-                                        <i class="ki-duotone ki-question fs-1"><span class="path1"></span> <span class="path2"></span><span class="path3"></span></i>
-                                </a>
-                              <!--  <a class="btn btn-icon btn-active-light-info w-30px h-30px me-3 "
-                                href="javascript:void(0)" data-kt-table-details="details_row" data-url="' . route('admin.TrainingCenter.Exams.show', $row->id) . '"
-                                          data-bs-toggle="modal" data-bs-target="#kt_modal_1"  title="' . trans('forms.details') . '">
-                                     <i class="ki-duotone ki-information fs-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
-                                 </a>-->
-                                <a class="btn btn-icon btn-active-light-danger w-30px h-30px"
-                                 href="' . route('admin.TrainingCenter.Exams.destroy', $row->id) . '" data-kt-table-delete="delete_row"
-                                           title="' . trans('forms.delete_btn') . '">
-                                    <i class="ki-duotone ki-trash fs-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
-                                </a>';
                     return '<a href="#" class="btn btn-sm btn-light btn-active-light-primary"
                    data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end"> ' . trans('forms.action') . '
                    <span class="svg-icon svg-icon-5 m-0">
@@ -67,18 +46,18 @@ class ExamsController extends Controller
                  </a>
                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
                         <div class="menu-item px-3">
-                             <a href="' . route('admin.TrainingCenter.Exams.edit', $row->id) . '"
+                             <a href="' . route('admin.TrainingCenter.Evaluation.edit', $row->id) . '"
                                address="' . trans('forms.edit') . '" class="menu-link px-3"
                                >' . trans('forms.edite_btn') . '</a>
                         </div>
                            <div class="menu-item px-3">
-                             <a href="' . route('admin.TrainingCenter.Exams.questions', $row->id) . '"
+                             <a href="' . route('admin.TrainingCenter.Evaluation.questions', $row->id) . '"
                                address="' . trans('fexam.questions') . '" class="menu-link px-3"
                                >' . trans('exam.questions') . '</a>
                         </div>
-
+                    
                         <div class="menu-item px-3">
-                                <a href="' . route('admin.TrainingCenter.Exams.destroy', $row->id) . '" data-kt-table-delete="delete_row"
+                                <a href="' . route('admin.TrainingCenter.Evaluation.destroy', $row->id) . '" data-kt-table-delete="delete_row"
                                            address="' . trans('forms.delete_btn') . '" class="menu-link px-3"
                                            >' . trans('forms.delete_btn') . '</a>
                         </div>
@@ -91,7 +70,7 @@ class ExamsController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        return view('dashbord.admin.Training_Center.Exams.index');
+        return view('dashbord.admin.Training_Center.Evaluation.index');
     }
 
     /**
@@ -99,32 +78,32 @@ class ExamsController extends Controller
      */
     public function create()
     {
-        return view('dashbord.admin.Training_Center.Exams.create');
+        return view('dashbord.admin.Training_Center.Evaluation.create');
 
     }
 
   /*   public function show_load($id)
     {
-        $data['one_data'] = Trainer::findOrFail($id);
+        $data['one_data'] = Evaluation::findOrFail($id);
 
-        return view('dashbord.admin.Training_Center.Trainers.load_details', $data);
+        return view('dashbord.admin.Training_Center.Evaluation.load_details', $data);
     } */
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreRequest $request)
+    public function store(Request $request)
     {
 
         try {
 
             $insert_data = $request->all();
-            $inserted_data = Exams::create($insert_data);
+            $inserted_data = Evaluation::create($insert_data);
             $insert_id = $inserted_data->id;
-
+            
             toastr()->addSuccess(trans('forms.success'));
-            return redirect()->route('admin.TrainingCenter.Exams.index');
-
+            return redirect()->route('admin.TrainingCenter.Evaluation.index');
+        
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
@@ -133,33 +112,33 @@ class ExamsController extends Controller
 
     public function edit($id)
     {
-        $data['one_data'] = Exams::findOrFail($id);
-        return view('dashbord.admin.Training_Center.Exams.edit', $data);
+        $data['one_data'] = Evaluation::findOrFail($id);
+        return view('dashbord.admin.Training_Center.Evaluation.edit', $data);
 
     }
     public function add_question($id)
     {
-        $data['one_data'] = Exams::findOrFail($id);
-        return view('dashbord.admin.Training_Center.Exams.load_add_question', $data);
+        $data['one_data'] = Evaluation::findOrFail($id);
+        return view('dashbord.admin.Training_Center.Evaluation.load_add_question', $data);
 
     }
     public function questions($id)
     {
-        $data['one_data'] = Exams::findOrFail($id);
-        return view('dashbord.admin.Training_Center.Exams.questions.create', $data);
+        $data['one_data'] = Evaluation::findOrFail($id);
+        return view('dashbord.admin.Training_Center.Evaluation.questions.create', $data);
     }
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRequest $request, $id)
+    public function update(Request $request, $id)
     {
         try {
-            $data = Exams::find($request->id);
+            $data = Evaluation::find($request->id);
             $update_data = $request->all();
             $data->update($update_data);
-
+        
         toastr()->addSuccess(trans('forms.success'));
-        return redirect()->route('admin.TrainingCenter.Exams.index');
+        return redirect()->route('admin.TrainingCenter.Evaluation.index');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
@@ -172,7 +151,7 @@ class ExamsController extends Controller
     {
         try {
 
-            $one_data = Exams::find($id);
+            $one_data = Evaluation::find($id);
             $one_data->delete();
             toastr()->error(trans('forms.Delete'));
             return response()->json(['message' => trans('forms.Delete')], 200);
@@ -189,24 +168,11 @@ class ExamsController extends Controller
 
         $exam_id = $request->input('exam_id');
         $allData = Exam_Questions::select('*')->where('exam_id', $exam_id);
-
+     
         return Datatables::of($allData)
-           /* ->editColumn('q_text', function ($row) {
-                return $row->q_answer;
-            })->editColumn('q_answer', function ($row) {
-                return $row->q_answer;
-            })->editColumn('mark', function ($row) {
-                return optional($row->studentData)->code;
-            })*/
-          /*   ->addColumn('action', function ($row) {
-                return '<a href="#" class="btn btn-sm btn-icon btn-danger btn-remove-student"
-                data-id="' . $row->id . '">
-                <i class="ki-duotone ki-trash-square fs-1 ">
-            <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></i>
-            </a>';
-            }) */
+       
            ->addColumn('action', function ($row) {
-    $deleteUrl = route('admin.TrainingCenter.Exams.questions.delete', $row->id);
+    $deleteUrl = route('admin.TrainingCenter.Evaluation.questions.delete', $row->id);
     return '<a href="' . $deleteUrl . '" class="btn btn-sm btn-icon btn-danger"
         data-kt-table-delete="delete_row">
         <i class="ki-duotone ki-trash-square fs-1 ">
@@ -223,10 +189,10 @@ class ExamsController extends Controller
 
     public function storeQuestion(Request $request)
     {
-
+        
       $validated = $request->validate([
         'q_text' => 'required|string',
-        'q_choices' => 'required|array|min:2',
+        'q_choices' => 'required|array|min:2', 
         'q_answer' => 'required|string',
         'mark' => 'required|numeric',
       ]);
@@ -235,32 +201,21 @@ class ExamsController extends Controller
         try {
 
             $insert_data = $request->all();
-            $inserted_data = Exam_Questions::create($insert_data);
+            $inserted_data = Evaluation_Questions::create($insert_data);
             $insert_id = $inserted_data->id;
-
+            
             toastr()->addSuccess(trans('forms.success'));
-            return redirect()->route('admin.TrainingCenter.Exams.questions');
-
+            return redirect()->route('admin.TrainingCenter.Evaluation.questions');
+        
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
-
-
-
-    /* $question = new Exam_Questions();
-    $question->exam_id = $request->exam_id;
-    $question->q_text = $request->q_text;
-//  $question->q_choices = json_encode($request->q_choices, JSON_UNESCAPED_UNICODE);
-    $question->q_choices = $request->q_choices;
-    $question->q_answer = $request->q_answer;
-    $question->mark = $request->mark;
-    $question->save(); */
 
     }
   
     public function deleteQuestion($id)
 {
-    $question = Exam_Questions::find($id);
+    $question = Evaluation_Questions::find($id);
 
     if (!$question) {
         return response()->json(['message' => 'السؤال غير موجود'], 404);
