@@ -3,12 +3,15 @@
 namespace App\Models\training_center;
 use App\Models\training_center\TrainingCourse;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Translatable\HasTranslations;
-class Students extends Model
+use Illuminate\Support\Facades\Storage;
+
+class Students extends Authenticatable
 {
-    use SoftDeletes,HasTranslations,HasFactory;
+    use SoftDeletes, HasTranslations, HasFactory;
 
     protected $table = 'tc_students';
     public $translatable = ['name'];
@@ -16,25 +19,15 @@ class Students extends Model
     protected $fillable = [
         'code',
         'name',
+        'user_name',
+        'password',
         'phone',
         'email',
         'course_id',
         'grades_id',
         'bulk_import',
     ];
-    protected $appends = ['image_url'];
 
-    public function getImageUrlAttribute()
-    {
-        $value = $this->image;
-        if (!empty($value)) {
-            $image_path = Storage::disk('images')->url($value);
-            return asset((Storage::disk('images')->exists($value)) ? $image_path : 'assets/media/avatars/blank.png');
-        } else {
-            return asset('assets/media/avatars/blank.png');
-
-        }
-    }
 
     protected static $numIncrement = 0001;
     protected static function boot()
@@ -49,6 +42,20 @@ class Students extends Model
 
         });
     }
+
+    protected $appends = ['image_path'];
+
+    public function getImagePathAttribute()
+    {
+        $value = $this->image;
+        if (!empty($value)) {
+            $image_path = Storage::disk('images')->url($value);
+            return asset((Storage::disk('images')->exists($value)) ? $image_path : 'assets/media/avatars/blank.png');
+        } else {
+            return asset('assets/media/avatars/blank.png');
+
+        }
+    }
     public function coursesData()
     {
         return $this->belongsTo(TrainingCourse::class, 'course_id');
@@ -56,8 +63,12 @@ class Students extends Model
 
     public function registeredCourses()
     {
-    return $this->belongsToMany(TrainingCourse::class,
-    'tc_student_registration_course', 'student_id', 'course_id');
+        return $this->belongsToMany(
+            TrainingCourse::class,
+            'tc_student_registration_course',
+            'student_id',
+            'course_id'
+        );
     }
 
     public function Courses()

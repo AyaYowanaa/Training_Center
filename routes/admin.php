@@ -30,7 +30,6 @@ use App\Http\Controllers\Admin\Site\SiteFeedbackController;
 use App\Http\Controllers\Admin\Site\SitePartenersController;
 use App\Http\Controllers\Admin\Site\SitePolicesController;
 use App\Http\Controllers\Admin\Site\SiteStatisticsController;
-use App\Http\Controllers\Admin\Site\StaffController;
 use App\Http\Controllers\Admin\Site\VideosController;
 use App\Http\Controllers\Admin\Training_Center\TrainingCourseController;
 use App\Http\Controllers\Admin\Users\PermissionsController;
@@ -196,11 +195,7 @@ Route::group(
         /************************** About *****************************/
         Route::resource('about', \App\Http\Controllers\Admin\Site\AboutController::class);
         Route::get('about/show_load/{id}', [\App\Http\Controllers\Admin\Site\AboutController::class, 'show_load'])->name('about.load_details');
-        /************************** Staff *****************************/
-        Route::resource('staff', StaffController::class);
-
-        Route::get('staff/show_load/{id}', [StaffController::class, 'show_load'])->name('staff.load_details');
-        /************************** Contact Us *****************************/
+     /************************** Contact Us *****************************/
         Route::resource('contact', ContactController::class);
         Route::get('contact/delete/{id}', [ContactController::class, 'delete'])->name('contact.delete');
 
