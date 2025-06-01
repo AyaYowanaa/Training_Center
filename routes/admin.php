@@ -98,7 +98,7 @@ Route::group(
 
             Route::get('AttendanceStudents/getStudent', [AttendanceStudentsController::class, 'getStudent'])->name('AttendanceStudents.getStudent');
             Route::get('AttendanceStudents/getCourseStudent', [AttendanceStudentsController::class, 'getCourseStudent'])->name('AttendanceStudents.getCourseStudent');
-//            Route::post('AttendanceStudents/storeStudent', [AttendanceStudentsController::class, 'store'])->name('AttendanceStudents.storeStudent');
+            Route::post('AttendanceStudents/storeAll', [AttendanceStudentsController::class, 'storeAll'])->name('AttendanceStudents.storeAll');
             Route::delete('AttendanceStudents/deleteStudent', [AttendanceStudentsController::class, 'deleteStudent'])->name('AttendanceStudents.deleteStudent');
             Route::resource('AttendanceStudents', AttendanceStudentsController::class);
             /*********************************** Invoice_student ******************************** */
