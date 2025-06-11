@@ -12,7 +12,7 @@
             <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
 
                 <li class="breadcrumb-item text-muted">
-                    <a href="{{ route('student.dashboard') }}" class="text-muted text-hover-primary">
+                    <a href="{{ route('admin.dashboard') }}" class="text-muted text-hover-primary">
                         {{trans('Toolbar.home')}}</a>
                 </li>
                 <li class="breadcrumb-item">
@@ -24,7 +24,13 @@
                 <li class="breadcrumb-item">
                     <span class="bullet bg-gray-400 w-5px h-2px"></span>
                 </li>
-             
+                <li class="breadcrumb-item text-muted">
+                    <a href="{{ route('admin.TrainingCenter.Student.index') }}"
+                       class="text-muted text-hover-primary">{{trans('Toolbar.Students')}}</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <span class="bullet bg-gray-400 w-5px h-2px"></span>
+                </li>
                 <li class="breadcrumb-item text-muted">
                     {{trans('Toolbar.StudentDetails')}}
                 </li>
@@ -35,7 +41,29 @@
         </div>
         <!--begin::Actions-->
         <div class="d-flex align-items-center gap-2 gap-lg-3">
-  
+            <!--begin::Filter menu-->
+            <div class="d-flex">
+                <a href="{{route('admin.TrainingCenter.Student.index')}}"
+                   class="btn btn-icon btn-sm btn-primary flex-shrink-0 ms-4">
+
+                    <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/keenthemes/keen/docs/core/html/src/media/icons/duotune/arrows/arr054.svg-->
+                    <span class="svg-icon svg-icon-2">
+                                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                       <path
+                                           d="M17.6 4L9.6 12L17.6 20H13.6L6.3 12.7C5.9 12.3 5.9 11.7 6.3 11.3L13.6 4H17.6Z"
+                                           fill="currentColor"/>
+                                   </svg>
+                                </span>
+                    <!--end::Svg Icon-->
+                </a>
+            </div>
+            <!--end::Filter menu-->
+            <!--begin::Secondary button-->
+            <!--end::Secondary button-->
+            <!--begin::Primary button-->
+            <!--end::Primary button-->
+        </div>
         <!--end::Actions-->
 
     </div>
@@ -152,20 +180,20 @@
                         data-kt-menu="true">
                             <!--begin::Menu item-->
                             <div class="menu-item px-5 my-1">
-                               {{--  <a href="{{route('admin.TrainingCenter.Student.edit', $one_data->id)}}"
-                                   class="menu-link px-5">{{trans('forms.edite_btn')}}</a> --}}
+                                <a href="{{route('admin.TrainingCenter.Student.edit', $one_data->id)}}"
+                                   class="menu-link px-5">{{trans('forms.edite_btn')}}</a>
                             </div>
                             <!--end::Menu item-->
-                
+                      
+                      
 
                             <!--begin::Menu item-->
                             <div class="menu-item px-5">
-                            {{--     <a href="{{route('admin.TrainingCenter.Student.destroy', $one_data->id)}}"
-                                   class="menu-link text-danger px-5">{{trans('forms.delete_btn')}}</a> --}}
+                                <a href="{{route('admin.TrainingCenter.Student.destroy', $one_data->id)}}"
+                                   class="menu-link text-danger px-5">{{trans('forms.delete_btn')}}</a>
                             </div>
                             <!--end::Menu item-->
-                
-
+                       
                     </div>
                     <!--end::Menu-->
                     <!--end::Menu-->

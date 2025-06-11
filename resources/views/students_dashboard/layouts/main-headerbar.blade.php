@@ -260,7 +260,8 @@
                     <div class="cursor-pointer symbol symbol-35px symbol-md-40px"
                          data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent"
                          data-kt-menu-placement="bottom-end">
-                        <img src="{{ asset(!empty($mainData->image) ? $mainData->image : 'assets/media/logos/logowhite-ar.webp') }}" alt="user"/>
+                        <img src="{{ asset(!empty($mainData->image) ? $mainData->image : 'assets/media/logos/logowhite-ar.webp') }}"
+                        style="width: 100px; height: 40px;" alt="user"/>
                     </div>
                     <!--begin::User account menu-->
                     <div
@@ -271,7 +272,8 @@
                             <div class="menu-content d-flex align-items-center px-3">
                                 <!--begin::Avatar-->
                                 <div class="symbol symbol-50px me-5">
-                                    <img alt="Logo" src="{{ asset(!empty($mainData->image) ? $mainData->image : 'assets/media/logos/logowhite-ar.webp') }}"/>
+                                    <img alt="Logo"
+                                     style="width: 100px; height: 40px;" src="{{ asset(!empty($mainData->image) ? $mainData->image : 'assets/media/logos/logowhite-ar.webp') }}"/>
                                 </div>
                                 <!--end::Avatar-->
                                 <!--begin::Username-->
