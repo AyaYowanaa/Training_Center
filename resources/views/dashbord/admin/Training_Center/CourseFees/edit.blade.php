@@ -21,7 +21,7 @@
                 </li>
 
                 <li class="breadcrumb-item text-muted">
-                    <a href="{{ route('admin.Settings.CoursesFees.index') }}"
+                    <a href="{{ route('admin.Settings.CourseCosts.index') }}"
                        class="text-muted text-hover-primary"> {{trans('Toolbar.TrainingCenter')}}</a>
                 </li>
                 <li class="breadcrumb-item">
@@ -39,7 +39,7 @@
         <div class="d-flex align-items-center gap-2 gap-lg-3">
             <!--begin::Filter menu-->
             <div class="d-flex">
-                <a href="{{route('admin.Settings.CoursesFees.index')}}"
+                    <a href="{{route('admin.Settings.CourseCosts.index')}}"
                    class="btn btn-icon btn-sm btn-primary flex-shrink-0 ms-4">
 
                     <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/keenthemes/keen/docs/core/html/src/media/icons/duotune/arrows/arr054.svg-->
@@ -79,7 +79,7 @@
             </div>
         @endif
         <form id="StorForm" class="form d-flex flex-column flex-lg-row "
-        action="{{route('admin.Settings.CoursesFees.update',$one_data->id)}}" method="post" enctype="multipart/form-data">
+        action="{{route('admin.Settings.CourseCosts.update',$one_data->id)}}" method="post" enctype="multipart/form-data">
       @csrf
       @method('PATCH')
       <input type="hidden" name="id" value="{{$one_data->id}}">
@@ -131,12 +131,9 @@
                                         data-control="select2" data-hide-search="false"
                                         id="courses_id" name="courses_id">
 
-                                    <option disabled {{ old('courses_id') ? '' : 'selected' }} value="">
-                                        {{ trans('maindata.Select') }}
-                                    </option>
-
+                                    <option value="">{{ trans('maindata.Select') }}</option>
                                     @foreach($courses as $row)
-                                        <option value="{{ $row->id }}" {{ old('courses_id') == $row->id ? 'selected' : '' }}>
+                                        <option value="{{ $row->id }}" {{ old('courses_id',$one_data->courses_id) == $row->id ? 'selected' : '' }}>
                                             {{ $row->title }}
                                         </option>
                                     @endforeach
@@ -156,7 +153,7 @@
 
                                     <option value=" ">{{trans('maindata.Select')}}</option>
                                     @foreach($expenses as $row)
-                                    <option value="{{ $row->id }}">{{ $row->name}}</option>
+                                    <option value="{{ $row->id }}" {{ old('expenses_id',$one_data->expenses_id) == $row->id ? 'selected' : '' }}>{{ $row->name}}</option>
                                 @endforeach
                                 </select>
                                 <!--end::Select2-->

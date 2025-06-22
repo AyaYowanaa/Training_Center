@@ -183,19 +183,17 @@
 
                             <td class="text-end">
 
-                                <div class="btn-group" role="group" aria-label="Basic example">
-                                    <a href="{{route('admin.Settings.Expenses.edit', $x->id)}}"
 
-                                       data-bs-toggle="modal" data-bs-target="#exampleModal{{$x->id}}"
-                                       class="btn btn-sm btn-light-warning  btn-icon-warning btn-text-warning"><i
-                                            class="fas fa-pencil"></i></a>
-                                    </a>
+                                <a class="btn btn-icon btn-active-light-warning w-30px h-30px me-3"
+                                   href="{{route('admin.Settings.Expenses.edit', $x->id)}}" data-bs-toggle="modal" data-bs-target="#exampleModal{{$x->id}}">
+{{--                                    <i class="ki-duotone ki-setting-3 fs-3"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>--}}
+                                    <i class="ki-duotone ki-notepad-edit"><span class="path1"></span><span class="path2"></span></i>
+                                </a>
 
-                                    <a href="{{route('admin.Settings.Expenses.delete', $x->id)}}"
-                                       class="btn btn-sm btn-light-danger   btn-text-danger btn-icon-danger"><i
-                                            class="fas fa-trash"></i></a>
+                                <a class="btn btn-icon btn-active-light-danger w-30px h-30px" href="{{route('admin.Settings.Expenses.delete', $x->id)}}">
+                                    <i class="ki-duotone ki-trash fs-3"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
+                                </a>
 
-                                </div>
                             </td>
                             <!--end::Action=-->
                         </tr>

@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 
 
-class entitySettingController extends Controller
+class EntitySettingController extends Controller
 {
     /**
      * Display a listing of the resource.

@@ -102,7 +102,7 @@
                                         data-placeholder="Select an option" data-allow-clear="true"
                                         id="studentSelect">
                                         @if(old('student_id', $one_data->student_id ?? false))
-                                        <option value="{{ old('student_id', $one_data->student_id ?? '') }}" selected hidden>
+                                        <option value="{{ old('student_id', $one_data->student_id ?? '') }}" selected >
                                             {{ old('student_id', $one_data->studentData->name ?? '') }}
                                         </option>
                                     @endif
@@ -118,11 +118,11 @@
                                         id="courseSelect" name="course_id">
 
                                         @if(old('course_id', $one_data->course_id ?? false))
-                                        <option value="{{ old('course_id', $one_data->course_id ?? '') }}" selected hidden>
+                                        <option value="{{ old('course_id', $one_data->course_id ?? '') }}" selected >
                                             {{ old('course_id', $one_data->coursesData->title ?? '') }}
                                         </option>
                                     @endif
-                                
+
                                     <option value=" ">{{trans('maindata.Select')}}</option>
                                 </select>
                                 <!--end::Select2-->
@@ -154,10 +154,8 @@
                                         id="status" name="status">
 
                                     <option value="">{{ __('forms.Select') }}</option>
-                                    <option
-                                        value="completed" {{ old('status') == 'completed' ? 'selected' : '' }}>{{ __('forms.Completed') }}</option>
-                                    <option
-                                        value="pending" {{ old('status') == 'pending' ? 'selected' : '' }}>{{ __('forms.Pending') }}</option>
+                                    <option value="completed" {{ old('status',$one_data->status) == 'completed' ? 'selected' : '' }}>{{ __('forms.Completed') }}</option>
+                                    <option value="pending" {{ old('status',$one_data->status) == 'pending' ? 'selected' : '' }}>{{ __('forms.Pending') }}</option>
                                 </select>
 
                                 @error('status')

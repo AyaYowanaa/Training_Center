@@ -212,9 +212,8 @@
                                 <select name="parent_id" class="form-control mb-2  @error('parent_id') is-invalid @enderror"
                                         data-control="select2" data-placeholder="{{trans('forms.Select')}}">
                                     <option value="0"> {{trans('TC_Setting.parent')}}</option>
-
-                                @foreach($accounts as $account)
-                                        <option value="{{$account->id}}" @if($one_data->parent_id==$account->id ) {{'selected'}} @endif>{{$account->name}}</option>
+                                    @foreach($courses as $course)
+                                        <option value="{{$course->id}}" @if($one_data->parent_id==$course->id) {{'selected'}} @endif  >{{$course->name}}</option>
                                     @endforeach
                                 </select>
                                 <!--end::Input-->

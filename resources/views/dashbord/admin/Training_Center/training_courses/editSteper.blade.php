@@ -217,7 +217,7 @@
 
                                         <option value=" ">{{trans('maindata.Select')}}</option>
                                         @foreach($courses as $row)
-                                            <option value="{{ $row->id }}">{{ $row->title}}</option>
+                                            <option value="{{ $row->id }}"   @if($one_data->courses_id==$row->id) {{'selected'}} @endif>{{ $row->title}}</option>
                                         @endforeach
                                     </select>
 
@@ -241,7 +241,7 @@
 
                                         <option value=" ">{{trans('maindata.Select')}}</option>
                                         @foreach($location_id as $row)
-                                            <option value="{{ $row->id }}">{{ $row->name}}</option>
+                                            <option value="{{ $row->id }}" @if($one_data->location_id==$row->id) {{'selected'}} @endif>{{ $row->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>

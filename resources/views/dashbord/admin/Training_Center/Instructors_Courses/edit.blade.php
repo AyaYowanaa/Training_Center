@@ -19,8 +19,8 @@
                 <li class="breadcrumb-item">
                     <span class="bullet bg-gray-400 w-5px h-2px"></span>
                 </li>
-              
-           
+
+
                 <li class="breadcrumb-item text-muted">
                     {{trans('Toolbar.Update_Instructors_Courses')}}
                 </li>
@@ -90,34 +90,20 @@
                     <!--begin::Card body-->
                     <div class="card-body pt-0">
                         <!--begin::Input group-->
-                      
-                      
-                      
                         <div class="mb-10 fv-row row">
-                  
-                            
-
-                          
-                    
-
-                  
-                         
-                        
-                        
                             <div class="col-md-4">
                                 <label class="form-label">{{ trans('trainingCenter.Courses') }}</label>
-                            
                                 <!--begin::Select2-->
                                 <select class="form-select mb-2 @error('courses_id') is-invalid @enderror"
                                         data-control="select2" data-hide-search="false"
                                         id="courses_id" name="courses_id">
-                            
+
                                     <option disabled {{ old('courses_id') ? '' : 'selected' }} value="">
                                         {{ trans('maindata.Select') }}
                                     </option>
-                            
+
                                     @foreach($courses as $row)
-                                        <option value="{{ $row->id }}" {{ old('courses_id') == $row->id ? 'selected' : '' }}>
+                                        <option value="{{ $row->id }}" {{ old('courses_id',$one_data->courses_id) == $row->id ? 'selected' : '' }}>
                                             {{ $row->title }}
                                         </option>
                                     @endforeach
@@ -129,7 +115,7 @@
                                 <label class="form-label">{{trans('trainingCenter.Expenses')}}</label>
 
                                 <!--begin::Select2-->
-                                <select class="form-select mb-2 @error('expenses_id') is-invalid @enderror"
+                                <select class="form-select mb-2 @error('trainer_id') is-invalid @enderror"
                                         onchange="/*set_status()*/"
                                         data-control="select2" data-hide-search="false"
                                     data-placeholder="Select an option" data-allow-clear="true"
@@ -137,7 +123,7 @@
 
                                     <option value=" ">{{trans('maindata.Select')}}</option>
                                     @foreach($trainers as $row)
-                                    <option value="{{ $row->id }}">{{ $row->name}}</option>
+                                    <option value="{{ $row->id }}" {{ old('expenses_id',$one_data->trainer_id) == $row->id ? 'selected' : '' }}>{{ $row->name}}</option>
                                 @endforeach
                                 </select>
                                 <!--end::Select2-->
@@ -145,13 +131,13 @@
 
 
                             </div>
-                          
+
 
                         </div>
 
                     </div>
                     <!--end::Card header-->
-            
+
                 <!--end::General options-->
 
 
@@ -175,10 +161,10 @@
 
 @endsection
 @section('js')
-  
+
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
     {!! JsValidator::formRequest('App\Http\Requests\training_center\Instructors_Courses\UpdateRequest','#StorForm'); !!}
 
- 
+
 @endsection
 
