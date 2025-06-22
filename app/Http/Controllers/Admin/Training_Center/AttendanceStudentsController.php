@@ -67,6 +67,44 @@ class AttendanceStudentsController extends Controller
 
         }
     }
+    public function storeAll(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'course_id' => [
+                'required',
+                Rule::exists('tc_courses', 'id')
+            ]
+        ]);
+        if ($validator->fails()) {
+            // If the request is AJAX, return JSON with status code 422
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 422);
+        }
+        try {
+            $course_id = $request->input('course_id');
+            $entity_id = $request->input('entity_id');
+
+            $listStudentIDs = AttendanceStudents::select('student_id')->where('course_id', $course_id);
+            if ($entity_id) {
+                $listStudentIDs->where('entity_id', $entity_id);
+            }
+            $listStudentIDs->get()->pluck('student_id')->toArray();
+
+            $allData = Course_registration::select('*')->where('course_id', $course_id)->whereNotIn('student_id', $listStudentIDs)->get()->pluck('student_id')->toArray();
+            foreach ($allData as $student) {
+                AttendanceStudents::recoredStudent(
+                    $request->course_id,
+                    $student,
+                    $request->input('entity_id')
+                );
+            }
+            return response()->json(['message' => trans('forms.success')], 200);
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+
+        }
+    }
 
     /**
      * Display the specified resource.

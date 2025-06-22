@@ -144,6 +144,11 @@
                         </div>
 
                         <div class="mb-10 fv-row row">
+                            <div class="col-md-4">
+                                <button class="btn btn-sm btn-icon btn-success btn-add-all-student" >{{trans('trainingCenter.AttendanceAll')}} </button>
+                            </div>
+                        </div>
+                        <div class="mb-10 fv-row row">
                             <div class="col" id="kt_block_ui">
                                 <div class="table-responsive">
 
@@ -423,6 +428,82 @@
 
 
             }
+            var initAddAllStudent = function () {
+                KTUtil.on(document.body, '.btn-add-all-student', 'click', function (e) {
+
+                    e.preventDefault();
+
+                    var courseId = $('#course_id').val();
+                    var entityId = $(this).data('entity_id');
+
+                    $.ajax({
+                        url: '{{route('admin.TrainingCenter.AttendanceStudents.storeAll')}}',
+                        method: 'POST',
+                        data: {
+                            course_id: courseId,
+                            entity_id: entityId
+                        },
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Include CSRF token
+                        },
+                        beforeSend: function () {
+                            blockUI.block();
+
+                        },
+                        success: function (response) {
+                            blockUI.release();
+                            toastr.options = {
+                                "closeButton": true,
+                                "debug": false,
+                                "newestOnTop": false,
+                                "progressBar": false,
+                                "positionClass": "toastr-top-center",
+                                "preventDuplicates": false,
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "5000",
+                                "extendedTimeOut": "1000",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                            };
+
+                            toastr.success("", "{{trans('forms.success')}}");
+                            dt.draw();
+                            dtS.draw();
+                        },
+                        error: function (xhr) {
+                            blockUI.release();
+
+                            if (xhr.status === 422) { // Laravel validation error
+
+                                var errors = xhr.responseJSON.errors;
+                                // Iterate over the errors and add error feedback to corresponding fields
+                                $.each(errors, function (field, messages) {
+
+                                });
+                            } else {
+                                // Handle other errors
+                                toastr.error('An error occurred. Please try again.');
+                                Swal.fire({
+                                    text: xhr.error,
+                                    icon: "error",
+                                    buttonsStyling: false,
+                                    confirmButtonText: "{{trans('forms.error_occurred')}}",
+                                    customClass: {
+                                        confirmButton: "btn fw-bold btn-primary",
+                                    }
+                                });
+                            }
+                        }
+                    });
+
+
+                });
+
+
+            }
             var initRemoveStudent = function () {
                 KTUtil.on(document.body, '.btn-remove-student', 'click', function (e) {
                     e.preventDefault();
@@ -585,6 +666,7 @@
                     initDatatableStudent();
                     changeCourseSelect();
                     changeEntitySelect();
+                    initAddAllStudent();
                 }
             };
         }();

@@ -1,6 +1,4 @@
-<?php
-
-return array (
+<?php return array (
   'Action' => 'Action',
   'Completed' => 'Completed',
   'Delete' => 'Delete',
@@ -31,4 +29,5 @@ return array (
   'close' => 'close',
   'done' => 'done',
   'edit' => 'edit',
+  'User_name' => 'User_name',
 );

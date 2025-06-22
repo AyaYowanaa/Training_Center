@@ -36,11 +36,10 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        'student' => [
             'driver' => 'session',
-            'provider' => 'users',
-        ]
-        ,
+            'provider' => 'students',
+        ],
         'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
@@ -71,9 +70,9 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'students' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Admin::class,
+            'model' => App\Models\training_center\Students::class,
         ],
         'admins' => [
             'driver' => 'eloquent',

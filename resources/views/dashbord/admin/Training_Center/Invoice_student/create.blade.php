@@ -147,7 +147,7 @@
                                 <select class="form-select mb-2 @error('invoice_type') is-invalid @enderror"
                                         data-control="select2" data-hide-search="false"
                                         data-placeholder="Select an option" data-allow-clear="true"
-                                        id="invoice_type" name="invoice_type">
+                                        id="invoice_type" name="status">
 
                                     <option value="">{{ __('forms.Select') }}</option>
                                     <option

@@ -9,6 +9,7 @@ use App\Models\training_center\Students;
 use App\Models\training_center\TrainingCourse;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
 {
@@ -84,8 +85,10 @@ class StudentController extends Controller
 
         try {
             //  dd($request->input('courses_id'));
-
+        //user_name->phone , pass->static 123456
             $insert_data = $request->all();
+            $insert_data['user_name'] = $request->phone;
+            $insert_data['password'] = Hash::make('123456');
             $insert_data['name'] = ['en' => $request->name_en, 'ar' => $request->name_ar];
             $inserted_data = Students::create($insert_data);
             $insert_id = $inserted_data->id;

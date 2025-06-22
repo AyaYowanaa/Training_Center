@@ -1,5 +1,23 @@
 <?php
 
+use App\Http\Controllers\Admin\Training_Center\AttendanceStudentsController;
+use App\Http\Controllers\Admin\Training_Center\CourseController;
+use App\Http\Controllers\Admin\Training_Center\CourseRegistrationController;
+use App\Http\Controllers\Admin\Training_Center\Settings\CityController;
+use App\Http\Controllers\Admin\Training_Center\Settings\DistrictController;
+use App\Http\Controllers\Admin\Training_Center\Settings\MainSettingController;
+use App\Http\Controllers\Admin\Training_Center\Settings\TypeSettingController;
+use App\Http\Controllers\Admin\Training_Center\Settings\EntitySettingController;
+use App\Http\Controllers\Admin\Training_Center\Settings\ExpensesController;
+use App\Http\Controllers\Admin\Training_Center\CoursesFeesController;
+use App\Http\Controllers\Admin\Training_Center\Instructors_CoursesController;
+use App\Http\Controllers\Admin\Training_Center\StudentController;
+use App\Http\Controllers\Admin\Training_Center\TrainerController;
+use App\Http\Controllers\Admin\Training_Center\InvoiceController;
+use App\Http\Controllers\Admin\Training_Center\InvoiceEntityController;
+use App\Http\Controllers\Admin\Training_Center\ExamsController;
+use App\Http\Controllers\Admin\Training_Center\EvaluationController;
+use App\Http\Controllers\Admin\Training_Center\Course_registrationController;
 use App\Http\Controllers\Admin\Site\BannerController;
 use App\Http\Controllers\Admin\Site\BlogController;
 use App\Http\Controllers\Admin\Site\ContactController;
@@ -12,25 +30,7 @@ use App\Http\Controllers\Admin\Site\SiteFeedbackController;
 use App\Http\Controllers\Admin\Site\SitePartenersController;
 use App\Http\Controllers\Admin\Site\SitePolicesController;
 use App\Http\Controllers\Admin\Site\SiteStatisticsController;
-use App\Http\Controllers\Admin\Site\StaffController;
 use App\Http\Controllers\Admin\Site\VideosController;
-use App\Http\Controllers\Admin\Training_Center\AttendanceStudentsController;
-use App\Http\Controllers\Admin\Training_Center\Course_registrationController;
-use App\Http\Controllers\Admin\Training_Center\CourseController;
-use App\Http\Controllers\Admin\Training_Center\CourseRegistrationController;
-use App\Http\Controllers\Admin\Training_Center\CoursesFeesController;
-use App\Http\Controllers\Admin\Training_Center\ExamsController;
-use App\Http\Controllers\Admin\Training_Center\Instructors_CoursesController;
-use App\Http\Controllers\Admin\Training_Center\InvoiceController;
-use App\Http\Controllers\Admin\Training_Center\InvoiceEntityController;
-use App\Http\Controllers\Admin\Training_Center\Settings\CityController;
-use App\Http\Controllers\Admin\Training_Center\Settings\DistrictController;
-use App\Http\Controllers\Admin\Training_Center\Settings\EntitySettingController;
-use App\Http\Controllers\Admin\Training_Center\Settings\ExpensesController;
-use App\Http\Controllers\Admin\Training_Center\Settings\MainSettingController;
-use App\Http\Controllers\Admin\Training_Center\Settings\TypeSettingController;
-use App\Http\Controllers\Admin\Training_Center\StudentController;
-use App\Http\Controllers\Admin\Training_Center\TrainerController;
 use App\Http\Controllers\Admin\Training_Center\TrainingCourseController;
 use App\Http\Controllers\Admin\Users\PermissionsController;
 use App\Http\Controllers\Admin\Users\ProfileController;
@@ -98,11 +98,32 @@ Route::group(
 
             Route::get('AttendanceStudents/getStudent', [AttendanceStudentsController::class, 'getStudent'])->name('AttendanceStudents.getStudent');
             Route::get('AttendanceStudents/getCourseStudent', [AttendanceStudentsController::class, 'getCourseStudent'])->name('AttendanceStudents.getCourseStudent');
-//            Route::post('AttendanceStudents/storeStudent', [AttendanceStudentsController::class, 'store'])->name('AttendanceStudents.storeStudent');
+            Route::post('AttendanceStudents/storeAll', [AttendanceStudentsController::class, 'storeAll'])->name('AttendanceStudents.storeAll');
             Route::delete('AttendanceStudents/deleteStudent', [AttendanceStudentsController::class, 'deleteStudent'])->name('AttendanceStudents.deleteStudent');
             Route::resource('AttendanceStudents', AttendanceStudentsController::class);
             /*********************************** Invoice_student ******************************** */
+          Route::resource('Invoice', InvoiceController::class);
+          Route::get('/get_inrolled_student/{id}', [InvoiceController::class, 'getStudentCourses']);
+          Route::post('Invoice/getStudentFees', [InvoiceController::class, 'getStudentFees'])->name('Invoice.getStudentFees');
+
+          Route::resource('Invoice_Entity', InvoiceEntityController::class);
+          Route::post('Invoice/getEntityFees', [InvoiceEntityController::class, 'getEntityFees'])->name('Invoice.getEntityFees');
+        
+        /*************************************************************************************** */  
+          Route::get('Exams/getQuestions', [ExamsController::class, 'getQuestions'])->name('Exams.getQuestions');
+          Route::get('Exams/questions/{id}', [ExamsController::class, 'questions'])->name('Exams.questions');
+          Route::post('Exams/questions/store', [ExamsController::class, 'storeQuestion'])->name('Exams.storeQuestions');
+          Route::delete('Exams/questions/{id}', [ExamsController::class, 'deleteQuestion'])->name('Exams.questions.delete');
+          Route::resource('Exams', ExamsController::class);
+
+          Route::resource('Evaluation', EvaluationController::class);
+          Route::get('Evaluation/getQuestions', [EvaluationController::class, 'getQuestions'])->name('Evaluation.getQuestions');
+          Route::get('Evaluation/questions/{id}', [EvaluationController::class, 'questions'])->name('Evaluation.questions');
+          Route::post('Evaluation/questions/store', [EvaluationController::class, 'storeQuestion'])->name('Evaluation.storeQuestions');
+          Route::delete('Evaluation/questions/{id}', [EvaluationController::class, 'deleteQuestion'])->name('Evaluation.questions.delete');
+
             Route::resource('Invoice', InvoiceController::class);
+            Route::get('Invoice/show_load/{id}', [InvoiceController::class, 'show_load'])->name('Invoice.load_details');
             Route::get('/get_inrolled_student/{id}', [InvoiceController::class, 'getStudentCourses']);
             Route::post('Invoice/getStudentFees', [InvoiceController::class, 'getStudentFees'])->name('Invoice.getStudentFees');
             Route::get('Invoice/show_load/{id}', [InvoiceController::class, 'show_load'])->name('Invoice.load_details');
@@ -174,11 +195,7 @@ Route::group(
         /************************** About *****************************/
         Route::resource('about', \App\Http\Controllers\Admin\Site\AboutController::class);
         Route::get('about/show_load/{id}', [\App\Http\Controllers\Admin\Site\AboutController::class, 'show_load'])->name('about.load_details');
-        /************************** Staff *****************************/
-        Route::resource('staff', StaffController::class);
-
-        Route::get('staff/show_load/{id}', [StaffController::class, 'show_load'])->name('staff.load_details');
-        /************************** Contact Us *****************************/
+     /************************** Contact Us *****************************/
         Route::resource('contact', ContactController::class);
         Route::get('contact/delete/{id}', [ContactController::class, 'delete'])->name('contact.delete');
 

@@ -14,4 +14,5 @@
   'Q_text' => 'Q_text',
   'Q_answer' => 'Q_answer',
   'details' => 'details',
+  'Evaluation' => 'Evaluation',
 );

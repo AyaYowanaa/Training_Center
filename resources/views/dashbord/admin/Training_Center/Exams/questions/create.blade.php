@@ -252,7 +252,7 @@
                     }).then(function (result) {
                         if (result.value) {
 
-                            Swal.fire({
+                         /*    Swal.fire({
                                 imageUrl: 'https://media.tenor.com/C7KormPGIwQAAAAi/epic-loading.gif',
                                 imageWidth: 200,
                                 imageHeight: 200,
@@ -261,7 +261,17 @@
                                 timer: 2000,
                                 allowOutsideClick: false,
                                 allowEscapeKey: false
-                            }).then(function () {
+                            }) */
+                           Swal.fire({
+    imageUrl: 'https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif',
+    imageWidth: 200,
+    imageHeight: 200,
+    buttonsStyling: false,
+    showConfirmButton: false,
+    timer: 2000,
+    allowOutsideClick: false,
+    allowEscapeKey: false
+}).then(function () {
 
 
                                 if (action) {

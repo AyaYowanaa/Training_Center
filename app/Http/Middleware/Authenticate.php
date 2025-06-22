@@ -6,6 +6,7 @@ namespace App\Http\Middleware;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class Authenticate extends Middleware
 {
@@ -22,34 +23,22 @@ class Authenticate extends Middleware
 
     protected function redirectTo(Request $request)
     {
-        if (!$request->expectsJson()) {
-           /* if (Auth::guard('guest')->check()) {
-                return route('admin.login'); // Redirect to the login route for web guard
-            }*/
+               if (!$request->expectsJson()) {
+            // الحصول على اللغة من الرابط
+            $locale = LaravelLocalization::getCurrentLocale();
 
-            if (Auth::guard('admin')->check()) {
-                return route('admin.login'); // Redirect to the login route for web guard
+            // التحقق إذا كان الرابط يخص الأدمن
+            if ($request->is(patterns: "$locale/admin/*")) {
+                return route('admin.login');
+            } elseif ($request->is("$locale/student/*")) {
+                return route('student.login');
             }
 
-           /* if (Auth::guard('api')->check()) {
-                return $this->responseApiError('not login', 405);
-
-            }*/
-            else{
-                return route('admin.login'); // Redirect to the login route for web guard
-
-            }
+            // الافتراضي للويب
+            return route('admin.login');
+//            return route('web.login');
         }
-     /*   if (!$request->expectsJson()) {
-            if ((new \Illuminate\Http\Request)->is(app()->getLocale() . '/admin/dashboard')) {
-                return route('admin.login'); // Redirect to the login route for web guard
-            }
-            elseif((new \Illuminate\Http\Request)->is(app()->getLocale() . '/api')) {
-                return $this->responseApiError('not login', 405);
-            }
-            else {
-                return route('admin.login'); // Redirect to the login route for web guard
-            }
-        }*/
+        return response(['message'=>'Token not found'], 401);
+
     }
 }

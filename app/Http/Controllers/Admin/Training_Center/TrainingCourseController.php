@@ -42,11 +42,16 @@ class TrainingCourseController extends Controller
                                title="' . trans('forms.edite_btn') . '">
                                     <i class="ki-duotone ki-notepad-edit fs-1"><span class="path1"></span><span class="path2"></span></i>
                                 </a>
-                                <a class="btn btn-icon btn-active-light-info w-30px h-30px me-3 "
+                                 <a class="btn btn-icon btn-active-light-warning w-30px h-30px me-3 "
+                                   href="' . route('admin.Settings.training_courses.show', $row->id) . '"
+                               title="' . trans('forms.edite_btn') . '">
+                                     <i class="ki-duotone ki-information fs-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                                </a>
+                               <!-- <a class="btn btn-icon btn-active-light-info w-30px h-30px me-3 "
                                 href="javascript:void(0)" data-kt-table-details="details_row" data-url="' . route('admin.Settings.training_courses.load_details', $row->id) . '"
                                           data-bs-toggle="modal" data-bs-target="#kt_modal_1"  title="' . trans('forms.details') . '">
                                      <i class="ki-duotone ki-information fs-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
-                                 </a>
+                                 </a>-->
                                 <a class="btn btn-icon btn-active-light-danger w-30px h-30px"
                                  href="' . route('admin.Settings.training_courses.destroy', $row->id) . '" data-kt-table-delete="delete_row"
                                            title="' . trans('forms.delete_btn') . '">
@@ -101,10 +106,10 @@ class TrainingCourseController extends Controller
      */
     public function show($id)
     {
-     //  $one_data = TrainingCourse::with('images')->findOrFail($id);
+       $one_data = TrainingCourse::findOrFail($id);
 
-     //   $data['one_data'] = $one_data;
-      //  return view('dashbord.admin.Training_Center.training_courses.details', $data);
+        $data['one_data'] = $one_data;
+        return view('dashbord.admin.Training_Center.training_courses.details', $data);
     }
 
     /**
