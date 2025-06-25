@@ -35,4 +35,5 @@
   'web_site_pages' => 'web site pages',
   'Exams' => 'Exams',
   'Evaluation' => 'Evaluation',
+  'StudentsExams' => 'StudentsExams',
 );
