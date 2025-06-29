@@ -73,4 +73,5 @@
   'Price' => 'Price',
   'Remain_balance' => 'Remain_balance',
   'Invoice_type' => 'Invoice_type',
+  'AttendanceAll' => 'AttendanceAll',
 );

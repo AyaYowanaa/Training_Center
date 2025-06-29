@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\Training_Center\InvoiceEntityController;
 use App\Http\Controllers\Admin\Training_Center\ExamsController;
 use App\Http\Controllers\Admin\Training_Center\EvaluationController;
 use App\Http\Controllers\Admin\Training_Center\Course_registrationController;
+use App\Http\Controllers\Admin\Training_Center\DiplomaController;
 use App\Http\Controllers\Admin\Site\BannerController;
 use App\Http\Controllers\Admin\Site\BlogController;
 use App\Http\Controllers\Admin\Site\ContactController;
@@ -138,6 +139,19 @@ Route::group(
             Route::resource('Student', StudentController::class);
             // Route::get('Student/delete/{id}', [StudentController::class, 'delete'])->name('Student.delete');
             Route::get('Student/show_load/{id}', [StudentController::class, 'show_load'])->name('Student.load_details');
+        
+          /******************************** Diploma *************************************** */
+            Route::resource('Diploma', DiplomaController::class);
+            Route::get('Diploma/show_load/{id}', [DiplomaController::class, 'show_load'])->name('diploma.load_details');
+             Route::get('Diploma/getlevel', [DiplomaController::class, 'getlevel'])->name('Diploma.getlevel');
+            Route::get('Diploma/levels/{id}', [DiplomaController::class, 'levels'])->name('Diploma.levels');
+            Route::post('Diploma/levels/store', [DiplomaController::class, 'addlevel'])->name('Diploma.addlevel');
+            Route::delete('Diploma/levels/{id}', [DiplomaController::class, 'deleteLevel'])->name('Diploma.levels.delete');
+
+        
+        
+        
+        
         });
         Route::group(['prefix' => 'Settings', 'as' => 'Settings.'], function () {
             /********************************typesetting******************************/
@@ -188,7 +202,8 @@ Route::group(
             Route::resource('training_courses', TrainingCourseController::class);
             Route::get('training_courses/show_load/{id}', [TrainingCourseController::class, 'show_load'])->name('training_courses.load_details');
             // Route::get('training_courses/delete/{id}', [TrainingCourseController::class, 'delete'])->name('training_courses.delete');
-
+          
+          
         });
         /************************** MAINDATA *****************************/
         Route::resource('mdata', MaindataController::class);

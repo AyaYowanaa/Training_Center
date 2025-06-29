@@ -42,4 +42,8 @@
   'Update_Exams' => 'Update_Exams',
   'Update_Instructors_Courses' => 'Update_Instructors_Courses',
   'Update_CourseFees' => 'Update_CourseFees',
+  'Create_Diploma' => 'Create_Diploma',
+  'Update_Diploma' => 'Update_Diploma',
+  'Diploma' => 'Diploma',
+  'Levels' => 'Levels',
 );

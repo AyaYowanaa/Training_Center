@@ -73,7 +73,7 @@ class ExamsController extends Controller
                         </div>
                            <div class="menu-item px-3">
                              <a href="' . route('admin.TrainingCenter.Exams.questions', $row->id) . '"
-                               address="' . trans('fexam.questions') . '" class="menu-link px-3"
+                               address="' . trans('exam.questions') . '" class="menu-link px-3"
                                >' . trans('exam.questions') . '</a>
                         </div>
 

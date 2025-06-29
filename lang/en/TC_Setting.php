@@ -34,4 +34,7 @@
   'program' => 'program',
   'title' => 'title',
   'edit' => 'edit',
+  'Name' => 'Name',
+  'Total_Price' => 'Total_Price',
+  'Levels' => 'Levels',
 );

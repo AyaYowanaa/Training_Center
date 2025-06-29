@@ -35,4 +35,12 @@
   'web_site_pages' => 'web site pages',
   'Exams' => 'Exams',
   'Evaluation' => 'Evaluation',
+  'Diploma' => 'Diploma',
+  'Main_Data' => 'Main_Data',
+  'Data' => 'Data',
+  'User_Settings' => 'User_Settings',
+  'Main_Settings' => 'Main_Settings',
+  'Instructors' => 'Instructors',
+  'Student_attendance' => 'Student_attendance',
+  'Student_Attendance' => 'Student_Attendance',
 );

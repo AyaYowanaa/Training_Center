@@ -1,6 +1,4 @@
-<?php
-
-return array (
+<?php return array (
   'Capacity' => 'Capacity',
   'CourseOptions' => 'Course Options',
   'Courses' => 'Courses',
@@ -27,4 +25,7 @@ return array (
   'location' => 'location',
   'mainData' => 'Main Data',
   'name' => 'name',
+  'description' => 'description',
+  'Total_price' => 'Total_price',
+  'total_price' => 'total_price',
 );
