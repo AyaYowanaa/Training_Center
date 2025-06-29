@@ -74,4 +74,5 @@
   'Remain_balance' => 'Remain_balance',
   'Invoice_type' => 'Invoice_type',
   'AttendanceAll' => 'AttendanceAll',
+  'full_mark' => 'full_mark',
 );

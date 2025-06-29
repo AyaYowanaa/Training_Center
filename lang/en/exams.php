@@ -15,4 +15,5 @@
   'Q_answer' => 'Q_answer',
   'details' => 'details',
   'Evaluation' => 'Evaluation',
+  'duration' => 'duration',
 );

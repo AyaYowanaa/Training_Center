@@ -147,7 +147,7 @@
                                 <select class="form-select mb-2 @error('invoice_type') is-invalid @enderror"
                                         data-control="select2" data-hide-search="false"
                                         data-placeholder="Select an option" data-allow-clear="true"
-                                        id="invoice_type" name="status">
+                                        id="invoice_type" name="invoice_type">
 
                                     <option value="">{{ __('forms.Select') }}</option>
                                     <option
@@ -398,7 +398,8 @@
                     placeholder: 'Select an option',
                     minimumInputLength: 0
                 });
-            };const initPaymentSelect = () => {
+            };
+            const initPaymentSelect = () => {
                 $('#paymentSelect').select2({
                     ajax: {
                         url: '{{ route('admin.TrainingCenter.getPayment') }}',

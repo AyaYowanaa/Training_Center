@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\Students\ExamsController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\MainController;
@@ -38,12 +39,14 @@ Route::group(
 
             Route::get('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
-                
+
             Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
             Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
             Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
             Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
-
+            Route::get('/Exams', [ExamsController::class, 'show'])->name('Exams.show');
+            Route::get('/Exams/questions/{exam_id}', [ExamsController::class, 'questions'])->name('Exams.questions');
+            Route::post('/Exams/submit-answers', [ExamsController::class, 'storeStudentAnswers'])->name('Exams.submitAnswers');
         });
 
     }
