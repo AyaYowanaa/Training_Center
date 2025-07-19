@@ -141,12 +141,12 @@ Route::group(
             Route::get('Student/show_load/{id}', [StudentController::class, 'show_load'])->name('Student.load_details');
         
           /******************************** Diploma *************************************** */
-            Route::resource('Diploma', DiplomaController::class);
             Route::get('Diploma/show_load/{id}', [DiplomaController::class, 'show_load'])->name('diploma.load_details');
              Route::get('Diploma/getlevel', [DiplomaController::class, 'getlevel'])->name('Diploma.getlevel');
             Route::get('Diploma/levels/{id}', [DiplomaController::class, 'levels'])->name('Diploma.levels');
             Route::post('Diploma/levels/store', [DiplomaController::class, 'addlevel'])->name('Diploma.addlevel');
             Route::delete('Diploma/levels/{id}', [DiplomaController::class, 'deleteLevel'])->name('Diploma.levels.delete');
+            Route::resource('Diploma', DiplomaController::class);
 
         
         

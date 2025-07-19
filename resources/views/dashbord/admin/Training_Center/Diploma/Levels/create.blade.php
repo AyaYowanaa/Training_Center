@@ -22,7 +22,7 @@
                 <li class="breadcrumb-item text-muted">
                     {{trans('Toolbar.Diploma')}}
                 </li>
-                  <li class="breadcrumb-item">
+                <li class="breadcrumb-item">
                     <span class="bullet bg-gray-400 w-5px h-2px"></span>
                 </li>
                 <li class="breadcrumb-item text-muted">
@@ -30,12 +30,11 @@
                 </li>
 
 
-
             </ul>
             <!--end::Breadcrumb-->
         </div>
         <!--begin::Actions-->
-  
+
         <!--end::Actions-->
     </div>
     <!--end::Toolbar container-->
@@ -48,62 +47,75 @@
         <div class="card card-flush">
 
             <div class="card-body pt-0">
-<div class="mt-5">
+                <div class="mt-5">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    <form action="{{ route('admin.TrainingCenter.Diploma.addlevel') }}" method="POST" class="mb-10">
+                        @csrf
+                        <input type="hidden" name="diploma_id" value="{{ $one_data->id }}">
 
-<form action="{{ route('admin.TrainingCenter.Diploma.addlevel') }}" method="POST" class="mb-10">
-    @csrf
-    <input type="hidden" name="diploma_id" value="{{ $one_data->id }}">
+                        <div class="row g-4">
 
-    <div class="row g-4">
-        
-        <div class="col-md-6">
-            <label class="required form-label">{{ trans('diploma.Name') }}</label>
-            <input type="text" name="level_name" class="form-control @error('level_name') is-invalid @enderror"
-                   placeholder="{{ trans('diploma.Name') }}" value="{{ old('level_name') }}" />
-            @error('level_name')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
+                            <div class="col-md-6">
+                                <label class="required form-label">{{ trans('diploma.Name') }}</label>
+                                <input type="text" name="level_name"
+                                       class="form-control @error('level_name') is-invalid @enderror"
+                                       placeholder="{{ trans('diploma.Name') }}" value="{{ old('level_name') }}"/>
+                                @error('level_name')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
 
-        <div class="col-md-6">
-            <label class="required form-label">{{ trans('diploma.Duration-days') }}</label>
-            <input type="number" name="duration" class="form-control @error('duration') is-invalid @enderror"
-                   placeholder="{{ trans('diploma.Duration-days') }}" value="{{ old('duration') }}" />
-            @error('duration')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
-         <div class="col-md-6">
-            <label class="form-label">{{ trans('diploma.Price') }}</label>
-            <input type="text" name="level_price" readonly  class="form-control @error('level_price') is-invalid @enderror"
-                id="level_price"   placeholder="{{ trans('diploma.Duration-days') }}" value="{{ old('level_price') }}" />
-            @error('level_price')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
+                            <div class="col-md-6">
+                                <label class="required form-label">{{ trans('diploma.Duration-days') }}</label>
+                                <input type="number" name="duration"
+                                       class="form-control @error('duration') is-invalid @enderror"
+                                       placeholder="{{ trans('diploma.Duration-days') }}"
+                                       value="{{ old('duration') }}"/>
+                                @error('duration')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">{{ trans('diploma.Price') }}</label>
+                                <input type="text" name="level_price" readonly
+                                       class="form-control @error('level_price') is-invalid @enderror"
+                                       id="level_price" placeholder="{{ trans('diploma.Duration-days') }}"
+                                       value="{{ old('level_price') }}"/>
+                                @error('level_price')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
 
-        <!-- الدرجة -->
-        <div class="col-md-6">
-            <label class="required form-label">{{ trans('diploma.Pass_Mark') }}</label>
-            <input type="text" name="pass_mark" min="1" class="form-control @error('pass_mark') is-invalid @enderror"
-                   placeholder="{{ trans('diploma.pass_mark') }}" value="{{ old('pass_mark') }}" />
-            @error('pass_mark')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
+                            <!-- الدرجة -->
+                            <div class="col-md-6">
+                                <label class="required form-label">{{ trans('diploma.Pass_Mark') }}</label>
+                                <input type="text" name="pass_mark" min="1"
+                                       class="form-control @error('pass_mark') is-invalid @enderror"
+                                       placeholder="{{ trans('diploma.pass_mark') }}" value="{{ old('pass_mark') }}"/>
+                                @error('pass_mark')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
 
-          <div class="col-md-12 text-end">
-            <button type="submit" class="btn btn-success px-4">
-                <i class="fas fa-plus"></i> {{ trans('diploma.Save') }}
-            </button>
-        </div>
-    </div>
-</form>
-</div>
+                            <div class="col-md-12 text-end">
+                                <button type="submit" class="btn btn-success px-4">
+                                    <i class="fas fa-plus"></i> {{ trans('diploma.Save') }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
 
-            
 
-<!--/********************************************************************************************** -->
+                <!--/********************************************************************************************** -->
                 <table class="table align-middle table-row-dashed fs-6 gy-3"
                        id="data">
                     <thead>
@@ -174,16 +186,17 @@
                     ajax: {
                         url: "{{route('admin.TrainingCenter.Diploma.getlevel')}}",
                         data: function (d) {
-                       
+
                             d.diploma_id = {{$one_data->id}};
 
                         }
+                        //  data: { diploma_id: 2 },
                     },
-                    
+
                     columns: [
                         {data: 'id', name: 'id'},
-                        {data: 'name', name: 'name'},
-                        {data: 'price', name: 'price'},
+                        {data: 'level_name', name: 'level_name'},
+                        {data: 'level_price', name: 'level_price'},
                         {data: 'pass_mark', name: 'pass_mark'},
                         {data: 'duration', name: 'duration'},
 
@@ -233,16 +246,16 @@
                         }
                     }).then(function (result) {
                         if (result.value) {
-                           Swal.fire({
-    imageUrl: 'https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif',
-    imageWidth: 200,
-    imageHeight: 200,
-    buttonsStyling: false,
-    showConfirmButton: false,
-    timer: 2000,
-    allowOutsideClick: false,
-    allowEscapeKey: false
-}).then(function () {
+                            Swal.fire({
+                                imageUrl: 'https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif',
+                                imageWidth: 200,
+                                imageHeight: 200,
+                                buttonsStyling: false,
+                                showConfirmButton: false,
+                                timer: 2000,
+                                allowOutsideClick: false,
+                                allowEscapeKey: false
+                            }).then(function () {
 
 
                                 if (action) {

@@ -33,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
 
             // Add custom logic to handle missing keys
             // For example, you can log the missing key
-            Log::info("Missing translation key: $key");
+//            Log::info("Missing translation key: $key");
 
             // You can also add the missing key to the language file dynamically
             $keyParts = explode('.', $key);

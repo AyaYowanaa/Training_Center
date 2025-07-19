@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin\Training_Center;
 
 use App\Http\Controllers\Controller;
-  use App\Http\Requests\training_center\Diploma\StoreRequest;
-use App\Http\Requests\training_center\Diploma\UpdateRequest; 
+use App\Http\Requests\training_center\Diploma\StoreRequest;
+use App\Http\Requests\training_center\Diploma\UpdateRequest;
 use App\Models\training_center\Diploma;
 use App\Models\training_center\Diploma_levels;
 use App\Traits\ResponseApi;
@@ -15,7 +15,7 @@ class DiplomaController extends Controller
 {
     use ResponseApi;
 
-   // protected $upload_folder = 'Training_Center/training_courses';
+    // protected $upload_folder = 'Training_Center/training_courses';
 
     /**
      * Display a listing of the resource.
@@ -29,10 +29,10 @@ class DiplomaController extends Controller
                 ->editColumn('name', function ($row) {
                     return $row->name;
                 })
-                     ->addColumn('action', function ($row) {
+                ->addColumn('action', function ($row) {
 
                     return ' <a class="btn btn-icon btn-active-light-warning w-30px h-30px me-3 "
-                                   href="' .  route('admin.TrainingCenter.Diploma.edit', $row->id) . '"
+                                   href="' . route('admin.TrainingCenter.Diploma.edit', $row->id) . '"
                                title="' . trans('forms.edite_btn') . '">
                                     <i class="ki-duotone ki-notepad-edit fs-1"><span class="path1"></span><span class="path2"></span></i>
                                 </a>
@@ -53,12 +53,9 @@ class DiplomaController extends Controller
                                            title="' . trans('forms.delete_btn') . '">
                                     <i class="ki-duotone ki-trash fs-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
                                 </a>';
-              
-                 
 
-                
+
                 })
-              
                 ->rawColumns(['action'])
                 ->make(true);
         }
@@ -100,28 +97,30 @@ class DiplomaController extends Controller
      */
     public function show($id)
     {
-       $one_data = Diploma::findOrFail($id);
+        $one_data = Diploma::findOrFail($id);
 
         $data['one_data'] = $one_data;
         return view('dashbord.admin.Training_Center.Diploma.details', $data);
     }
 
-    
+
     /**
      * Show the form for editing the specified resource.
      */
     public function edit($id)
     {
-       $data['one_data'] = Diploma::findOrFail($id);
+        $data['one_data'] = Diploma::findOrFail($id);
         return view('dashbord.admin.Training_Center.Diploma.edit', $data);
 
     }
+
     public function show_load($id)
     {
         $data['one_data'] = Diploma::findOrFail($id);
 
         return view('dashbord.admin.Training_Center.Diploma.load_details', $data);
     }
+
     /**
      * Update the specified resource in storage.
      */
@@ -162,34 +161,37 @@ class DiplomaController extends Controller
     }
 
 
-    
-/************************************* Levels ************************************** */
+    /************************************* Levels ************************************** */
 
-     public function levels($id)
+    public function levels($id)
     {
         $data['one_data'] = Diploma::findOrFail($id);
         return view('dashbord.admin.Training_Center.Diploma.levels.create', $data);
     }
-    
+
     public function getlevel(Request $request)
     {
 
-
+//dd($request->all());
         $diploma_id = $request->input('diploma_id');
         $allData = Diploma_levels::select('*')->where('diploma_id', $diploma_id);
 
         return Datatables::of($allData)
-     
-           ->addColumn('action', function ($row) {
-    $deleteUrl = route('admin.TrainingCenter.Diploma.levels.delete', $row->id);
-    return '<a href="' . $deleteUrl . '" class="btn btn-sm btn-icon btn-danger"
+            ->addColumn('action', function ($row) {
+                $deleteUrl = route('admin.TrainingCenter.Diploma.levels.delete', $row->id);
+                return '  <!-- <a class="btn btn-icon btn-active-light-info  w-30px h-30px me-3 "
+                                   href="' . route('admin.TrainingCenter.Diploma.levels', $row->id) . '" title="' . trans('diploma.levels') . '">
+                            <i class="ki-duotone ki-abstract-14 fs-1">
+                                 <span class="path1"></span>
+                                <span class="path2"></span>
+                            </i>                                </a>-->
+    <a href="' . $deleteUrl . '" class="btn btn-sm btn-icon btn-danger"
         data-kt-table-delete="delete_row">
         <i class="ki-duotone ki-trash-square fs-1 ">
             <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>
         </i>
     </a>';
-})
-
+            })
             ->rawColumns(['action'])
             ->make(true);
 
@@ -199,11 +201,12 @@ class DiplomaController extends Controller
     public function addlevel(Request $request)
     {
 
-      $validated = $request->validate([
-        'name' => 'required|string',
-        'pass_mark' => 'required',
-     
-      ]);
+        $validated = $request->validate([
+            'level_name' => 'required|string',
+            'duration' => 'required|integer',
+            'pass_mark' => 'required',
+
+        ]);
 
 
         try {
@@ -213,26 +216,29 @@ class DiplomaController extends Controller
             $insert_id = $inserted_data->id;
 
             toastr()->addSuccess(trans('forms.success'));
-            return redirect()->route('admin.TrainingCenter.Diploma.levels');
-
+//            return redirect()->route('admin.TrainingCenter.Diploma.levels');
+            return redirect()->back();
         } catch (\Exception $e) {
+            toastr()->addError($e->getMessage());
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
 
 
     }
-  
+
     public function deletelevel($id)
-{
-    $question = Diploma_levels::find($id);
+    {
+        $level = Diploma_levels::find($id);
 
-    if (!$question) {
-        return response()->json(['message' => 'السؤال غير موجود'], 404);
+        if (!$level) {
+            return response()->json(['message' => 'المستوي غير موجود'], 404);
+        }
+
+        $level->delete();
+
+        return response()->json(['message' => 'تم حذف المستوي بنجاح']);
     }
+    /**************************** Courses ********************************************** */
 
-    $question->delete();
-
-    return response()->json(['message' => 'تم حذف السؤال بنجاح']);
-}
 
 }
