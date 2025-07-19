@@ -178,12 +178,13 @@
                             d.diploma_id = {{$one_data->id}};
 
                         }
+                       //  data: { diploma_id: 2 },
                     },
                     
                     columns: [
                         {data: 'id', name: 'id'},
-                        {data: 'name', name: 'name'},
-                        {data: 'price', name: 'price'},
+                        {data: 'level_name', name: 'level_name'},
+                        {data: 'level_price', name: 'level_price'},
                         {data: 'pass_mark', name: 'pass_mark'},
                         {data: 'duration', name: 'duration'},
 

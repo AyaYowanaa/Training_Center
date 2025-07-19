@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\training_center\Diploma\UpdateRequest; 
 use App\Models\training_center\Diploma;
 use App\Models\training_center\Diploma_levels;
+use App\Models\training_center\ Diploma_level_Courses;
 use App\Traits\ResponseApi;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -174,7 +175,7 @@ class DiplomaController extends Controller
     public function getlevel(Request $request)
     {
 
-
+//dd($request->all());
         $diploma_id = $request->input('diploma_id');
         $allData = Diploma_levels::select('*')->where('diploma_id', $diploma_id);
 
@@ -182,7 +183,13 @@ class DiplomaController extends Controller
      
            ->addColumn('action', function ($row) {
     $deleteUrl = route('admin.TrainingCenter.Diploma.levels.delete', $row->id);
-    return '<a href="' . $deleteUrl . '" class="btn btn-sm btn-icon btn-danger"
+    return '   <a class="btn btn-icon btn-active-light-info  w-30px h-30px me-3 "
+                                   href="' . route('admin.TrainingCenter.Diploma.levels', $row->id) . '" title="' . trans('diploma.levels') . '">
+                            <i class="ki-duotone ki-abstract-14 fs-1">
+                                 <span class="path1"></span>
+                                <span class="path2"></span>
+                            </i>                                </a>
+    <a href="' . $deleteUrl . '" class="btn btn-sm btn-icon btn-danger"
         data-kt-table-delete="delete_row">
         <i class="ki-duotone ki-trash-square fs-1 ">
             <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>
@@ -224,15 +231,19 @@ class DiplomaController extends Controller
   
     public function deletelevel($id)
 {
-    $question = Diploma_levels::find($id);
+    $level = Diploma_levels::find($id);
 
-    if (!$question) {
-        return response()->json(['message' => 'السؤال غير موجود'], 404);
+    if (!$level) {
+        return response()->json(['message' => 'المستوي غير موجود'], 404);
     }
 
-    $question->delete();
+    $level->delete();
 
-    return response()->json(['message' => 'تم حذف السؤال بنجاح']);
+    return response()->json(['message' => 'تم حذف المستوي بنجاح']);
 }
+/**************************** Courses ********************************************** */
+
+
+
 
 }
