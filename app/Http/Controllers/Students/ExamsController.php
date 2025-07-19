@@ -87,4 +87,97 @@ class ExamsController extends Controller
 
         return view('exams.results', compact('answers', 'score', 'correctAnswers', 'totalQuestions'));
     }
+
+
+    public function startExam(Request $request)
+    {
+        $attempt = ExamAttempt::firstOrCreate(
+            [
+                'student_id' => auth()->id(),
+                'exam_id' => $request->exam_id,
+                'completed_at' => null
+            ],
+            [
+                'started_at' => now()
+            ]
+        );
+
+        return response()->json(['attempt_id' => $attempt->id]);
+    }
+
+    public function autoSaveAnswers(Request $request)
+    {
+        $studentId = auth()->id();
+        $examId = $request->exam_id;
+
+        $attempt = ExamAttempt::where('student_id', $studentId)
+            ->where('exam_id', $examId)
+            ->whereNull('completed_at')
+            ->firstOrFail();
+
+        foreach ($request->question as $questionId => $studentAnswer) {
+            $question = Exam_Questions::find($questionId);
+            $isCorrect = $studentAnswer === $question->q_answer;
+
+            StudentExamAnswer::updateOrCreate(
+                [
+                    'student_id' => $studentId,
+                    'exam_id' => $examId,
+                    'question_id' => $questionId,
+                    'attempt_id' => $attempt->id
+                ],
+                [
+                    'answer' => $studentAnswer,
+                    'is_correct' => $isCorrect,
+                ]
+            );
+        }
+
+        return response()->json(['status' => 'success']);
+    }
+
+    public function forceSubmit(Request $request)
+    {
+        $studentId = auth()->id();
+        $examId = $request->exam_id;
+
+        $attempt = ExamAttempt::where('student_id', $studentId)
+            ->where('exam_id', $examId)
+            ->whereNull('completed_at')
+            ->firstOrFail();
+
+        $totalScore = 0;
+
+        foreach ($request->question as $questionId => $studentAnswer) {
+            $question = Exam_Questions::find($questionId);
+            $isCorrect = $studentAnswer === $question->q_answer;
+
+            if ($isCorrect) {
+                $totalScore += $question->mark;
+            }
+
+            StudentExamAnswer::updateOrCreate(
+                [
+                    'student_id' => $studentId,
+                    'exam_id' => $examId,
+                    'question_id' => $questionId,
+                    'attempt_id' => $attempt->id
+                ],
+                [
+                    'answer' => $studentAnswer,
+                    'is_correct' => $isCorrect,
+                ]
+            );
+        }
+
+        $attempt->update([
+            'completed_at' => now(),
+            'total_score' => $totalScore,
+            'time_spent' => now()->diffInSeconds($attempt->started_at)
+        ]);
+
+        return response()->json([
+            'redirect_url' => route('exams.results', $attempt->id)
+        ]);
+    }
 }

@@ -43,4 +43,6 @@
   'Instructors' => 'Instructors',
   'Student_attendance' => 'Student_attendance',
   'Student_Attendance' => 'Student_Attendance',
+  'Invoices' => 'Invoices',
+  'StudentsExams' => 'StudentsExams',
 );

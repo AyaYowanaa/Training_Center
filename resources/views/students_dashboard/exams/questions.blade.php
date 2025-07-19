@@ -175,7 +175,7 @@
                 </div>
                 <!--end::Navbar-->
 
-                <form action="{{ route('student.Exams.submitAnswers') }}" method="POST" class="mb-10">
+                <form action="{{ route('student.Exams.submitAnswers') }}" method="POST" class="mb-10" id="formExam">
                     @csrf
                     <input type="hidden" name="exam_id" value="{{ $exam->id }}">
 
@@ -292,7 +292,10 @@
                     if (timeLeft <= 0) {
                         clearInterval(timerInterval);
                         isRunning = false;
-                        alert('Time is up!');
+                        document.getElementById('formExam').submit();
+
+                        // alert('Time is up!');
+
                     }
                 }, 1000);
             }
@@ -320,4 +323,6 @@
             resetTimer();
         });
     </script>
+
+
 @endsection

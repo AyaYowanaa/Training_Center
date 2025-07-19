@@ -9,7 +9,6 @@ use App\Http\Controllers\Students\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Students\ProfileController;
 
 
-
 Route::get('/', function () {
     return view('students_dashboard.home');
 })->name('home');
@@ -47,6 +46,11 @@ Route::group(
             Route::get('/Exams', [ExamsController::class, 'show'])->name('Exams.show');
             Route::get('/Exams/questions/{exam_id}', [ExamsController::class, 'questions'])->name('Exams.questions');
             Route::post('/Exams/submit-answers', [ExamsController::class, 'storeStudentAnswers'])->name('Exams.submitAnswers');
+
+            Route::post('/Exams/start', [ExamsController::class, 'startExam']);
+            Route::post('/Exams/auto-save', [ExamsController::class, 'autoSaveAnswers']);
+            Route::post('/Exams/force-submit', [ExamsController::class, 'forceSubmit']);
+
         });
 
     }
